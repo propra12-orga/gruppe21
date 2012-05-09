@@ -4,7 +4,7 @@ package main;
 
 public enum ComponentState {
 
-	BASE_MENU_COMPONENT(0, "Hauptmenü"),
+	BASE_MENU_COMPONENT(0, "Hauptmenu"),
 	LEVEL_MANAGER_COMPONENT(1, "Spiel-Manager"),
 	TEMPORARY_COMPONENT(2, "Temporäre Spielanzeige");
 		
