@@ -3,7 +3,7 @@ package main;
 //	Gültige Spielzustände
 
 public enum ComponentState {
-
+	
 	BASE_MENU_COMPONENT(0, "Hauptmenü"),
 	LEVEL_MANAGER_COMPONENT(1, "Spiel-Manager"),
 	TEMPORARY_COMPONENT(2, "Temporäre Spielanzeige");
