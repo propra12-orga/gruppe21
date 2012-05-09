@@ -20,36 +20,39 @@ public class MainPanel extends JPanel implements Runnable{
 	 */
 	private static final long serialVersionUID = -3212988448230980893L;
 	
-//	Referenz auf Hauptspielklasse zum Zugriff auf die Verwaltungsoperationen der Spielzustände
-	private final BMGame game;
+	private volatile boolean running = false;
+	
+//	Referenz auf Navigator zum Zugriff auf die Verwaltungsoperationen für GraphicalGameUnits
+	private UnitNavigator unitNavigator;
+
 	
 //	Hauptthread zum Aktualisieren des Spielgeschehens und dem Rendern der aktiven Komponente
 	private Thread gameThread;
 	
-	public MainPanel(BMGame bmGame) {
-		this.game = bmGame;		
+	public MainPanel() {		
 		setBackground(Color.white);
 		setPreferredSize(new Dimension(GameConstants.FRAME_SIZE_X, GameConstants.FRAME_SIZE_Y));
-		setFocusable(true);
-		
+		setFocusable(true);		
 //		Lausche auf KeyEvents zur Weiterleitung		
 		addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
-				game.getActiveComponent().handleKeyPressed(e);
+				unitNavigator.getActiveUnit().handleKeyPressed(e);
 			}
 			@Override
 			public void keyReleased(KeyEvent e) {
-				game.getActiveComponent().handleKeyReleased(e);
+				unitNavigator.getActiveUnit().handleKeyReleased(e);
 			}
-		});
-		
-//		Füge Hauptmenu zur Liste der gespeicherten Spielkomponenten hinzu
-		MainMenu mainMenu = new MainMenu();
-		mainMenu.setGame(game);
-		game.addGameComponent(mainMenu, ComponentState.BASE_MENU_COMPONENT);
+		});		
 		requestFocus();
 		setDoubleBuffered(true);				
+	}
+	public void initGame() {
+		unitNavigator = new UnitNavigator(this);
+//		Füge Hauptmenu zur Liste der gespeicherten Einheiten hinzu
+		MainMenu mainMenu = new MainMenu();
+		mainMenu.setNavigator(unitNavigator);
+		unitNavigator.addGameUnit(mainMenu, UnitState.BASE_MENU_UNIT);
 		activateThread();
 	}
 
@@ -57,24 +60,23 @@ public class MainPanel extends JPanel implements Runnable{
 		if (gameThread == null) {
 			gameThread = new Thread(this);
 		}
+		this.start();		
 		gameThread.start();		
 	}
-	
-	public BMGame getGame() {
-		return game;
+
+	public UnitNavigator getGameStateNavigator() {
+		return unitNavigator;
 	}
 
 	@Override
-	public void run() {
-		game.setRunning(true);
-		
+	public void run() {		
 //		Zeitmessung um FPS konstant zu halten
 		long beforeTime, timeDiff, sleepTime;
 		beforeTime = System.nanoTime();
 			
 //		"Endlosschleife" bis zur Beendigung des Spiels
-		while (getGame().isRunning()) {
-			game.getActiveComponent().updateComponent();
+		while (this.isRunning()) {
+			unitNavigator.getActiveUnit().updateComponent();
 			repaint();
 					
 			timeDiff = System.nanoTime() - beforeTime;
@@ -89,18 +91,40 @@ public class MainPanel extends JPanel implements Runnable{
 			}
 			beforeTime = System.nanoTime();
 		}
-		game.quitGame();
+		quitGame();
 	}
 	
 //	Biete der aktuellen Spielkomponente 'Graphics'-Objekt
 //	für das Rendering seiner Oberfläche
 	@Override
 	public void paint(Graphics g) {
-		if (getGame().isRunning()) {
-			game.getActiveComponent().drawComponent(g);		
+		if (this.isRunning()) {
+			unitNavigator.getActiveUnit().drawComponent(g);		
 			Toolkit.getDefaultToolkit().sync();
 			g.dispose();
 		}
 	}
 
+//	Spiel beenden
+	private void quitGame() {
+		System.exit(0);
+	}
+		
+	public void stop() {
+		this.running = false;
+	}
+	
+	public void start() {
+		this.running = true;
+	}
+	
+	public boolean isRunning() {
+		if (running) {
+			return true;
+		}
+		return false;
+	}
+
+	
+	
 }

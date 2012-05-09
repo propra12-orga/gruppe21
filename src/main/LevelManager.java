@@ -3,7 +3,7 @@ package main;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 
-public class LevelManager extends GraphicalGameComponent {
+public class LevelManager extends GraphicalGameUnit {
 
 	@Override
 	public void drawComponent(Graphics g) {

@@ -11,7 +11,7 @@ public class GameConstants {
 	
 	public static final int ITERATION_TIME = 10;
 	
-	public static final int NUM_OF_GAME_STATES = 3;
+	public static final int NUM_OF_UNIT_STATES = 3;
 	
 	private GameConstants() {
 		// Konstruktion vermeiden

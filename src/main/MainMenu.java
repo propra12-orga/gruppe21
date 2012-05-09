@@ -5,7 +5,7 @@ import java.awt.event.KeyEvent;
 
 //	Hauptmenü
 
-public class MainMenu extends GraphicalGameComponent {
+public class MainMenu extends GraphicalGameUnit {
 
 	@Override
 	public void drawComponent(Graphics g) {
