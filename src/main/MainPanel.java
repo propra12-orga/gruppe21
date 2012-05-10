@@ -8,10 +8,11 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.JPanel;
 
-//	Spieloberfläche und Hauptthread für das
-// 	Rendering der grafischen Darstellung und die Aktualisierung
-//	der jeweils aktiven Spielkomponente. Nimmt außerdem KeyEvents
-//	entgegen und leitet sie an die aktive Spielkomponente weiter.
+/*
+ * main game class. Uses a UnitNavigator to determine the active
+ * game unit in order to call its update() and draw() methods. All KeyEvents
+ * are forwarded to the game unit in use.
+ */
 
 public class MainPanel extends JPanel implements Runnable{
 
@@ -22,18 +23,17 @@ public class MainPanel extends JPanel implements Runnable{
 	
 	private volatile boolean running = false;
 	
-//	Referenz auf Navigator zum Zugriff auf die Verwaltungsoperationen für GraphicalGameUnits
 	private UnitNavigator unitNavigator;
 
-	
-//	Hauptthread zum Aktualisieren des Spielgeschehens und dem Rendern der aktiven Komponente
 	private Thread gameThread;
 	
 	public MainPanel() {		
 		setBackground(Color.white);
 		setPreferredSize(new Dimension(GameConstants.FRAME_SIZE_X, GameConstants.FRAME_SIZE_Y));
 		setFocusable(true);		
-//		Lausche auf KeyEvents zur Weiterleitung		
+		/*
+		 * wait for KeyEvents to be propagated to the active game unit
+		 */
 		addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -49,12 +49,15 @@ public class MainPanel extends JPanel implements Runnable{
 	}
 	public void initGame() {
 		unitNavigator = new UnitNavigator(this);
-//		Füge Hauptmenu zur Liste der gespeicherten Einheiten hinzu
+		/*
+		 * add main menu 
+		 */
 		MainMenu mainMenu = new MainMenu();
 		mainMenu.setNavigator(unitNavigator);
 		unitNavigator.addGameUnit(mainMenu, UnitState.BASE_MENU_UNIT);
 		activateThread();
 	}
+
 
 	private void activateThread() {
 		if (gameThread == null) {
@@ -70,32 +73,40 @@ public class MainPanel extends JPanel implements Runnable{
 
 	@Override
 	public void run() {		
-//		Zeitmessung um FPS konstant zu halten
+		/*
+		 * some time measurement to maintain
+		 * constant fps
+		 */
 		long beforeTime, timeDiff, sleepTime;
 		beforeTime = System.nanoTime();
 			
-//		"Endlosschleife" bis zur Beendigung des Spiels
+		/*
+		 * infinite loop for updating and drawing
+		 * the selected game unit
+		 */
 		while (this.isRunning()) {
 			unitNavigator.getActiveUnit().updateComponent();
 			repaint();
 					
 			timeDiff = System.nanoTime() - beforeTime;
-			sleepTime = GameConstants.ITERATION_TIME - timeDiff;
+			sleepTime = GameConstants.ITERATION_TIME - timeDiff/1000000L;
 			
 			if (sleepTime < 0)
-				sleepTime = 50;
+				sleepTime = 4;
 			try {
 				Thread.sleep(sleepTime);
 			} catch (InterruptedException e) {
 				System.out.println("interrupted");
 			}
+			System.out.println(sleepTime);
 			beforeTime = System.nanoTime();
 		}
 		quitGame();
 	}
 	
-//	Biete der aktuellen Spielkomponente 'Graphics'-Objekt
-//	für das Rendering seiner Oberfläche
+	/*
+	 * get active game unit and delegate drawing
+	 */
 	@Override
 	public void paint(Graphics g) {
 		if (this.isRunning()) {
@@ -105,7 +116,9 @@ public class MainPanel extends JPanel implements Runnable{
 		}
 	}
 
-//	Spiel beenden
+	/*
+	 * end program
+	 */
 	private void quitGame() {
 		System.exit(0);
 	}

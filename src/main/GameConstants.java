@@ -1,6 +1,8 @@
 package main;
 
-// 	Spielkonstanten
+/*
+ * constants
+ */
 
 public class GameConstants {
 	
@@ -14,6 +16,8 @@ public class GameConstants {
 	public static final int NUM_OF_UNIT_STATES = 3;
 	
 	private GameConstants() {
-		// Konstruktion vermeiden
+		/*
+		 * avoid instantiation 
+		 */
 	}
 }

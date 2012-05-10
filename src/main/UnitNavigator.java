@@ -1,6 +1,8 @@
 package main;
 
-// 	Verwaltung der GameUnits
+/*
+ * responsible for managing the game units
+ */
 
 public class UnitNavigator {
 	
@@ -15,22 +17,31 @@ public class UnitNavigator {
 		this.mainPanel = mainPanel;
 	}
 
-//	Liefert aktive Einheit 
+	/*
+	 * returns active unit
+	 */
 	public GraphicalGameUnit getActiveUnit() {
 		return gameUnits[activeUnit];		
 	}
 	
-//	Ändert bzw fügt neue Einheit am angegebenen Index (state) in gameUnits ein
+	/*
+	 * adds new game unit to the array
+	 */
 	public void addGameUnit(GraphicalGameUnit newComponent, UnitState state) {
 		gameUnits[state.getValue()] = newComponent;
 	}
 	
-//	Setzt den aktiven Spielzustand (und damit die aktive Einheit)
+	/*
+	 * sets the active state/game unit
+	 */
 	public void set(UnitState state) {
 		activeUnit = state.getValue();
 	}
 	
-//	Ermoeglicht die Beendigung des Spiels	
+	/*
+	 * allows to terminate the infinite loop in mainPanel
+	 * which will lead to System.exit(0)
+	 */
 	public void terminateGame() {
 		mainPanel.stop();
 	}

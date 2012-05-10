@@ -1,6 +1,8 @@
 package main;
 
-//	Gueltige UnitStates
+/*
+ * valid unit states
+ */
 
 public enum UnitState {
 
@@ -11,7 +13,9 @@ public enum UnitState {
 	private final int value;
 	private final String description;
 	
-//	Hinzufügen weiterer Spielzustände vermeiden
+	/*
+	 * avoid the creation of additional states
+	 */
 	private UnitState(final int value, final String description) {
 		this.value = value;
 		this.description = description;

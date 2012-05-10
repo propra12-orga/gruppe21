@@ -2,14 +2,20 @@ package main;
 
 import javax.swing.JFrame;
 
-//	Launcher mit main()
+/*
+ * launcher with main()
+ */
 
 public class BMGame {
 
-//	Basisframe der Applikation
+	/*
+	 * main frame for the application
+	 */
 	private final JFrame mainFrame;
 	
-//	Konstruktor - Initialisierung des Basisframes und Hinzufügen des MainPanels
+	/*
+	 * initialize frame and add main panel
+	 */
 	public BMGame() {
 		mainFrame = new JFrame("Gruppe 21 - Bomberman");
 		mainFrame.setSize(GameConstants.FRAME_SIZE_X, GameConstants.FRAME_SIZE_Y);
@@ -22,7 +28,6 @@ public class BMGame {
 		mainFrame.add(mainPanel);		
 	}	
 
-//	Startet das Spiel
 	public static void main(String[] args) {    	
 		new BMGame();
 	}

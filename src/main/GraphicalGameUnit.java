@@ -3,6 +3,9 @@ package main;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 
+/*
+ * abstract superclass of all game units. 
+ */
 public abstract class GraphicalGameUnit {
 	
 	private UnitNavigator unitNavigator;
