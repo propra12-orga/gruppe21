@@ -5,7 +5,7 @@ import java.awt.Image;
 
 import javax.swing.ImageIcon;
 
-public class GameImage {
+public class GameImage extends GameGraphic{
 	private String path;
 	private Image image;
 	

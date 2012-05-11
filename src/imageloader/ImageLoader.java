@@ -6,9 +6,8 @@ import javax.swing.ImageIcon;
 
 public class ImageLoader {
 	private Vector<GameImage> imageStack = new Vector<GameImage>();
+	private Vector<AnimationSet> animationStack = new Vector<AnimationSet>();
 	private Image placeholder;
-
-	//TODO AnimationSt anleg private Vector animationStack = new Vector();
 	
 	{
 	ImageIcon icon = new ImageIcon("graphics/game/placeholder.png");
