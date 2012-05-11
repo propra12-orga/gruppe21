@@ -1,7 +1,13 @@
 package singleplayer;
 
+import java.awt.Point;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
+import main.GameConstants;
 import map.Map;
 import map.MapReader;
 
@@ -10,20 +16,29 @@ import map.MapReader;
  */
 public class Campaign {
 
+	private static final String SEQUENCE_INDICATOR = "seq";
+	private static final String WORLDMAP_INDICATOR = "wm";
+	
 	private ArrayList<MapSequence> levels;
 	private boolean campaignFinished;
 	private int mapCounter;
 	private int levelProgress;
 	private int currentLevel;
 	private MapReader mapReader;
+	private WorldMap worldMap;
 	
-	public Campaign() {
-		levels = new ArrayList<MapSequence>();
-		mapReader = new MapReader();
-		campaignFinished = false;
-		mapCounter = 0;
-		levelProgress = 0;
-		currentLevel = 0;
+	public Campaign(ArrayList<MapSequence> levels, WorldMap worldMap) {
+		if (levels == null || worldMap == null) {
+			throw new IllegalArgumentException();
+		} else {
+			this.levels = levels;
+			this.worldMap = worldMap;
+			mapReader = new MapReader();
+			campaignFinished = false;
+			mapCounter = 0;
+			levelProgress = 0;
+			currentLevel = 0;
+		}
 	}
 	
 	/*
@@ -71,9 +86,39 @@ public class Campaign {
 	/*
 	 * read campaign from text file
 	 */	
-	public static Campaign readCampaignFromFile(String name) {
-		// TODO Auto-generated method stub
-		return null;
+	public static Campaign readCampaignFromFile(String filename) throws IOException, FileNotFoundException {
+		ArrayList<MapSequence> mapSequences = new ArrayList<MapSequence>();
+		WorldMap worldMap = null;
+		File campaignFile = new File(GameConstants.CAMPAIGNS_DIR + filename);
+		Scanner sc = new Scanner(campaignFile);
+		while (sc.hasNext()) {
+			String[] data = sc.nextLine().split(":");
+			if (data[0].startsWith(SEQUENCE_INDICATOR)) {
+				String[] prefix = data[0].split(".");
+				System.out.println("seq found");
+				int index = Integer.parseInt(prefix[1]);
+				if (mapSequences.get(index) == null) {
+					MapSequence mapSeq = new MapSequence();
+					mapSequences.add(index, mapSeq);
+				}
+				mapSequences.get(index).addMap(data[1]);
+			}
+			if (data[0].startsWith(WORLDMAP_INDICATOR)) {
+				String[] mapData = data[1].split("-");
+				
+				String[] coordsData = mapData[0].split(";");
+				Point[] coords = new Point[coordsData.length];
+				for (int i = 0; i < coordsData.length; i++) {
+					String[] splitCoord = coordsData[i].split(",");
+					coords[i] = new Point(Integer.parseInt(splitCoord[0]), Integer.parseInt(splitCoord[1]));
+				}
+				String[] imageData = mapData[2].split(";");
+				
+				worldMap = new WorldMap(coords, imageData[1], imageData[0]);
+				
+			}
+		}
+		return new Campaign(mapSequences, worldMap);
 	}
 
 	
@@ -81,7 +126,7 @@ public class Campaign {
 	 * inner class MapSequence stores a sequence of map names
 	 * in an ArrayList
 	 */
-	public class MapSequence {
+	public static class MapSequence {
 		
 		ArrayList<String> maps;
 		
@@ -107,5 +152,9 @@ public class Campaign {
 				maps.remove(mapToRemove);
 			}
 		}
+	}
+	
+	public static void main(String[] args) throws IOException {
+		//Campaign campaign = Campaign.readCampaignFromFile("campaign1.txt");
 	}
 }

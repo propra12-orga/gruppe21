@@ -15,6 +15,12 @@ public class GameConstants {
 	
 	public static final int NUM_OF_UNIT_STATES = 3;
 	
+	/*
+	 * directory constants
+	 */
+	public static final String CAMPAIGNS_DIR = "campaigns/";
+	public static final String MENU_IMAGES_DIR = "graphics/MainMenu/";
+	
 	private GameConstants() {
 		/*
 		 * avoid instantiation 
