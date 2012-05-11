@@ -1,7 +1,6 @@
 package main;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
@@ -30,8 +29,7 @@ public class MainPanel extends JPanel implements Runnable {
 
 	public MainPanel() {
 		setBackground(Color.white);
-		setPreferredSize(new Dimension(GameConstants.FRAME_SIZE_X,
-				GameConstants.FRAME_SIZE_Y));
+		setSize(GameConstants.FRAME_SIZE_X, GameConstants.FRAME_SIZE_Y);		
 		setFocusable(true);
 		/*
 		 * wait for KeyEvents to be propagated to the active game unit
@@ -56,7 +54,7 @@ public class MainPanel extends JPanel implements Runnable {
 		/*
 		 * add main menu
 		 */
-		MainMenu mainMenu = new MainMenu();
+		MainMenuUnit mainMenu = new MainMenuUnit();
 		mainMenu.setNavigator(unitNavigator);
 		unitNavigator.addGameUnit(mainMenu, UnitState.BASE_MENU_UNIT);
 		activateThread();
@@ -99,7 +97,7 @@ public class MainPanel extends JPanel implements Runnable {
 			} catch (InterruptedException e) {
 				System.out.println("interrupted");
 			}
-			System.out.println(sleepTime);
+			//System.out.println(sleepTime);
 			beforeTime = System.nanoTime();
 		}
 		quitGame();

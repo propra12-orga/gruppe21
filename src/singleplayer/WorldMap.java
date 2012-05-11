@@ -1,46 +1,63 @@
-
 package singleplayer;
 
-import java.awt.Graphics;
-import java.awt.event.KeyEvent;
+import imageloader.GameImage;
 
-import main.GraphicalGameUnit;
+import java.awt.Point;
 
-/*
- * campaign worldmap 
- * (to be used as a temporary game unit)
- */
+public class WorldMap {
 
-public class WorldMap extends GraphicalGameUnit{
+	private int selectedLevel;
+	private Point[] levelCoords;
+	private int maxLevelAccessible;
+	private GameImage background;
+	private GameImage player;
 
-	@Override
-	public void drawComponent(Graphics g) {
-		// TODO Auto-generated method stub
-		
+	public WorldMap(Point[] levelCoords, String background, String player) {
+		this.levelCoords = levelCoords;
+		this.background = new GameImage(background);
+		this.player = new GameImage(player);
+		maxLevelAccessible = 0;
+		selectedLevel = 0;
 	}
 
-	@Override
-	public void handleKeyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
+	public GameImage getBackground() {
+		return background;
 	}
 
-	@Override
-	public void handleKeyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
+	public GameImage getPlayer() {
+		return player;
 	}
 
-	@Override
-	public void initComponent() {
-		// TODO Auto-generated method stub
-		
+	public int getSelectedLevel() {
+		return selectedLevel;
 	}
 
-	@Override
-	public void updateComponent() {
-		// TODO Auto-generated method stub
-		
+	public int getNumOfLevels() {
+		return levelCoords.length;
+	}
+
+	public Point getPlayerCoord() {
+		return levelCoords[selectedLevel];
+	}
+
+	public Point[] getLevelCoords() {
+		return levelCoords;
+	}
+
+	public void setSelectedLevel(int newSelectedLevel) {
+		if (newSelectedLevel <= maxLevelAccessible && newSelectedLevel >= 0) {
+			selectedLevel = newSelectedLevel;
+		}
+	}
+
+	public void setMaxLevelAccessible(int newMaxLevel) {
+		if (newMaxLevel >= 0 && newMaxLevel <= levelCoords.length) {
+			maxLevelAccessible = newMaxLevel;
+		}
+	}
+
+	public int getMaxLevelAccessible() {
+		return maxLevelAccessible;
 	}
 
 }
