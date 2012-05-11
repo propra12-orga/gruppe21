@@ -29,7 +29,7 @@ public class MainPanel extends JPanel implements Runnable {
 
 	public MainPanel() {
 		setBackground(Color.white);
-		setSize(GameConstants.FRAME_SIZE_X, GameConstants.FRAME_SIZE_Y);		
+		setSize(GameConstants.FRAME_SIZE_X, GameConstants.FRAME_SIZE_Y);
 		setFocusable(true);
 		/*
 		 * wait for KeyEvents to be propagated to the active game unit
@@ -54,7 +54,7 @@ public class MainPanel extends JPanel implements Runnable {
 		/*
 		 * add main menu
 		 */
-		MainMenuUnit mainMenu = new MainMenuUnit();
+		MainMenu mainMenu = new MainMenu();
 		mainMenu.setNavigator(unitNavigator);
 		unitNavigator.addGameUnit(mainMenu, UnitState.BASE_MENU_UNIT);
 		activateThread();
@@ -97,7 +97,7 @@ public class MainPanel extends JPanel implements Runnable {
 			} catch (InterruptedException e) {
 				System.out.println("interrupted");
 			}
-			//System.out.println(sleepTime);
+			// System.out.println(sleepTime);
 			beforeTime = System.nanoTime();
 		}
 		quitGame();
