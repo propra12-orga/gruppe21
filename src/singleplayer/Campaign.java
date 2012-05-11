@@ -12,7 +12,10 @@ import map.Map;
 import map.MapReader;
 
 /*
- * stores sequences of map names ( = level) 
+ * stores sequences of map names ( = level) and 
+ * the corresponding world map. Offers static
+ * method readCampaignFromFile to load previously
+ * stored campaign objects from a text file.
  */
 public class Campaign {
 
@@ -22,8 +25,6 @@ public class Campaign {
 	private ArrayList<MapSequence> levels;
 	private boolean campaignFinished;
 	private int mapCounter;
-	private int levelProgress;
-	private int currentLevel;
 	private MapReader mapReader;
 	private WorldMap worldMap;
 	
@@ -36,8 +37,6 @@ public class Campaign {
 			mapReader = new MapReader();
 			campaignFinished = false;
 			mapCounter = 0;
-			levelProgress = 0;
-			currentLevel = 0;
 		}
 	}
 	
@@ -50,54 +49,63 @@ public class Campaign {
 	}
 	
 	/*
-	 * called by the LevelManager
+	 * called by the LevelManager. Returns boolean value:
+	 * 	true - map counter has been successfully incremented
+	 * 	false - map counter could not be incremented =>
+	 * 			there were no more maps left in this particular 
+	 * 			level. 
+	 * 			As long as there is a level remaining, 
+	 * 			update level progress, otherwise turn campaignFinished to
+	 * 			true. 			
+	 * 
+	 * Providing these return values, the LevelManager is able to decide 
+	 * whether to ask for the next map or to initiate the WorldMap.
 	 */
-	public void finishedMap(boolean successful) {
-		// TODO Auto-generated method stub
+	public boolean updateCounters() {
+		if (mapCounter < levels.get(worldMap.getSelectedLevel()).getSize()-1) {	
+			mapCounter++;
+			return true;
+		} else {
+			if (worldMap.getSelectedLevel() == worldMap.getMaxLevelAccessible()) {
+				if (worldMap.getMaxLevelAccessible() == levels.size()-1) {
+					campaignFinished = true;
+				} else {
+					worldMap.setMaxLevelAccessible(worldMap.getMaxLevelAccessible()+1);
+				}
+			}
+			return false;
+		}
 	}
-	
+
+	public boolean isCampaignFinished() {
+		return campaignFinished;
+	}
 	
 	/*
-	 * update level progress and map / level counter
-	 */
-	
-	public void setLevelProgress(int newLevelProgress) {
-		if (newLevelProgress < levels.size() && newLevelProgress >= 0) {
-			levelProgress = newLevelProgress;
-		} else {
-			throw new IllegalArgumentException("Unknown Level");
-		}
-	}
-	
-	public void setCurrentLevel(int newCurrentLevel) {
-		if (newCurrentLevel <= levelProgress && newCurrentLevel >= 0) {
-			currentLevel = newCurrentLevel;
-		} else {
-			throw new IllegalArgumentException("Unknown Level");
-		}
-	}
-	
-	public void setMapCounter(int newMapCounter) {
-		if (levels.get(currentLevel)!=null && newMapCounter < levels.get(currentLevel).getSize()) {
-			mapCounter = newMapCounter;
-		}
-	}
-		
-	/*
-	 * read campaign from text file
+	 * read campaign from text file. 
+	 * 
+	 * Currently, it is of vital importance to stick to 
+	 * the right format (as specified in 
+	 * the standard 'campaign1.txt' file)
+	 * 
+	 * Advanced error detection yet to be implemented.
 	 */	
 	public static Campaign readCampaignFromFile(String filename) throws IOException, FileNotFoundException {
-		ArrayList<MapSequence> mapSequences = new ArrayList<MapSequence>();
+		ArrayList<MapSequence> mapSequences = new ArrayList<MapSequence>(10);
 		WorldMap worldMap = null;
 		File campaignFile = new File(GameConstants.CAMPAIGNS_DIR + filename);
 		Scanner sc = new Scanner(campaignFile);
 		while (sc.hasNext()) {
-			String[] data = sc.nextLine().split(":");
+			String line = sc.nextLine();
+			if (line.startsWith("#")) continue;
+			String[] data = line.split(":");
 			if (data[0].startsWith(SEQUENCE_INDICATOR)) {
-				String[] prefix = data[0].split(".");
-				System.out.println("seq found");
-				int index = Integer.parseInt(prefix[1]);
-				if (mapSequences.get(index) == null) {
+				String[] prefix = data[0].split("\\.");
+				int index = Integer.parseInt(prefix[1]);				
+				if (mapSequences.size() <= index) {
+					for (int i = mapSequences.size()-1; i < index; i++) {
+						mapSequences.add(new MapSequence());
+					}
 					MapSequence mapSeq = new MapSequence();
 					mapSequences.add(index, mapSeq);
 				}
@@ -112,10 +120,9 @@ public class Campaign {
 					String[] splitCoord = coordsData[i].split(",");
 					coords[i] = new Point(Integer.parseInt(splitCoord[0]), Integer.parseInt(splitCoord[1]));
 				}
-				String[] imageData = mapData[2].split(";");
+				String[] imageData = mapData[1].split(";");
 				
-				worldMap = new WorldMap(coords, imageData[1], imageData[0]);
-				
+				worldMap = new WorldMap(coords, imageData[1], imageData[0]);				
 			}
 		}
 		return new Campaign(mapSequences, worldMap);
@@ -155,6 +162,12 @@ public class Campaign {
 	}
 	
 	public static void main(String[] args) throws IOException {
-		//Campaign campaign = Campaign.readCampaignFromFile("campaign1.txt");
+		Campaign campaign = Campaign.readCampaignFromFile("campaign1.txt");
+		for (MapSequence sq : campaign.levels) {
+			for (int i = 0 ; i < sq.getSize(); i++) {
+				System.out.println(campaign.levels.indexOf(sq)+" "+sq.getMap(i));
+				
+			}
+		}
 	}
 }

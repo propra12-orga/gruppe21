@@ -1,3 +1,15 @@
+# standard campaign file
+# syntax:
+#
+# Define a level as a sequence of maps:
+# 	seq.<level number>:<map name>
+#
+# Add a world map:
+#	wm:<coord1>;<coord2>; ... <last coord>-<player image>;<worldmap image>
+#	
+# a coord consists of:
+#	<x>,<y>
+
 seq.0:beach1.txt
 seq.0:beach2.txt
 seq.0:beach3.txt
