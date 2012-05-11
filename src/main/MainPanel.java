@@ -52,7 +52,7 @@ public class MainPanel extends JPanel implements Runnable{
 		/*
 		 * add main menu 
 		 */
-		MainMenu mainMenu = new MainMenu();
+		MainMenuUnit mainMenu = new MainMenuUnit();
 		mainMenu.setNavigator(unitNavigator);
 		unitNavigator.addGameUnit(mainMenu, UnitState.BASE_MENU_UNIT);
 		activateThread();
@@ -98,7 +98,7 @@ public class MainPanel extends JPanel implements Runnable{
 			} catch (InterruptedException e) {
 				System.out.println("interrupted");
 			}
-			System.out.println(sleepTime);
+			//System.out.println(sleepTime);
 			beforeTime = System.nanoTime();
 		}
 		quitGame();

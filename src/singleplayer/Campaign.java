@@ -11,7 +11,6 @@ import map.MapReader;
 public class Campaign {
 
 	private ArrayList<MapSequence> levels;
-	private WorldMap worldMap;
 	private boolean campaignFinished;
 	private int mapCounter;
 	private int levelProgress;
@@ -21,7 +20,6 @@ public class Campaign {
 	public Campaign() {
 		levels = new ArrayList<MapSequence>();
 		mapReader = new MapReader();
-		worldMap = new WorldMap();
 		campaignFinished = false;
 		mapCounter = 0;
 		levelProgress = 0;
