@@ -1,6 +1,7 @@
 package imageloader;
 
 import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.util.Vector;
 import javax.swing.ImageIcon;
 
@@ -33,14 +34,12 @@ public class ImageLoader {
 //returns image if existing, else returns placeholder-image
 	
 	public Image getImage(String imagePath){
-		Image rImage = placeholder;
 		for(int i=0; i < imageStack.size();i++){
 			if(imageStack.get(i).pathEquals(imagePath)){
 				return imageStack.get(i).getImage();
 			}
 		}
-		return rImage;
-	
+		return placeholder;
 	}
 	
 // nur zum testen Später löschen

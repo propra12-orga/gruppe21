@@ -1,6 +1,7 @@
 package imageloader;
 
 import java.awt.Image;
+import java.awt.image.BufferedImage;
 
 
 import javax.swing.ImageIcon;
@@ -11,7 +12,7 @@ public class GameImage extends GameGraphic{
 	
 	public GameImage(String p){
 		path = p;
-		ImageIcon ii = new ImageIcon(path);
+		ImageIcon ii = new ImageIcon(p);
         image = ii.getImage();
 	}
 	

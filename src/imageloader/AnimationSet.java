@@ -9,7 +9,6 @@ public class AnimationSet {
         Vector<GameAnimation> animationList = new Vector<GameAnimation>();
         Vector<GameImage> imageList = new Vector<GameImage>(); 
        
-        
         public GameGraphic getAnimation(String n){
         	for(int i=0; i<animationList.size();i++){// Vector bei zugriff ausserhalb bereich kein prob ?
         		if(animationList.get(i).nameEquals(n)){

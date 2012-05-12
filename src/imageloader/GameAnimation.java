@@ -1,6 +1,9 @@
 package imageloader;
 
 import java.awt.Image;
+import java.awt.image.BufferedImage;
+
+import javax.swing.ImageIcon;
 
 // saves a picture with amount of frames hold in it
 
@@ -9,10 +12,11 @@ public class GameAnimation extends GameGraphic{
 	int frames;
 	Image image;
 	
-	public GameAnimation(String n,int f,Image i){
+	public GameAnimation(String n,int f,String p){
 		name = n;
 		frames = f;
-		image = i;
+		ImageIcon ii = new ImageIcon(p);
+        image = ii.getImage();
 	}
 	
 	public int getFrames(){
