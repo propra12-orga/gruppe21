@@ -71,8 +71,8 @@ public class MainMenuUnit extends GraphicalGameUnit {
 
 		if (key == KeyEvent.VK_UP || key == KeyEvent.VK_LEFT) {
 			// selectCounter = selectCounter + 1;
-			System.exit(0);
 			System.out.println("blabla");
+			System.exit(0);
 
 		}
 		if (key == KeyEvent.VK_DOWN || key == KeyEvent.VK_RIGHT) {
