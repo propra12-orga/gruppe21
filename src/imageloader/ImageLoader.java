@@ -18,7 +18,16 @@ public class ImageLoader {
     // adds an Image to Imagestack except it does already exist
 	
 	public void addImage(String imagePath){
-		imageStack.add(new GameImage(imagePath));
+		boolean gameimageexists = false;
+		// is Image already in stack
+		for(int i=0; i < imageStack.size();i++){
+			if(imageStack.get(i).pathEquals(imagePath)){
+				gameimageexists = true;
+				break;
+			}
+		}
+		// add if not
+		if(!gameimageexists){imageStack.add(new GameImage(imagePath));}
 	}
 	
 //returns image if existing, else returns placeholder-image
