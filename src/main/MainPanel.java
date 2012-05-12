@@ -37,6 +37,8 @@ public class MainPanel extends JPanel implements Runnable {
 		addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_UP)
+				System.out.println("mainpanel");
 				unitNavigator.getActiveUnit().handleKeyPressed(e);
 			}
 
@@ -45,7 +47,7 @@ public class MainPanel extends JPanel implements Runnable {
 				unitNavigator.getActiveUnit().handleKeyReleased(e);
 			}
 		});
-		requestFocus();
+		requestFocusInWindow();
 		setDoubleBuffered(true);
 	}
 
@@ -54,7 +56,7 @@ public class MainPanel extends JPanel implements Runnable {
 		/*
 		 * add main menu
 		 */
-		MainMenu mainMenu = new MainMenu();
+		MainMenuUnit mainMenu = new MainMenuUnit();
 		mainMenu.setNavigator(unitNavigator);
 		unitNavigator.addGameUnit(mainMenu, UnitState.BASE_MENU_UNIT);
 		activateThread();
@@ -84,6 +86,7 @@ public class MainPanel extends JPanel implements Runnable {
 		 * infinite loop for updating and drawing the selected game unit
 		 */
 		while (this.isRunning()) {
+			requestFocusInWindow();
 			unitNavigator.getActiveUnit().updateComponent();
 			repaint();
 
@@ -97,7 +100,7 @@ public class MainPanel extends JPanel implements Runnable {
 			} catch (InterruptedException e) {
 				System.out.println("interrupted");
 			}
-			// System.out.println(sleepTime);
+			//System.out.println(sleepTime);
 			beforeTime = System.nanoTime();
 		}
 		quitGame();
