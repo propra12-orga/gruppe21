@@ -54,7 +54,7 @@ public class MainPanel extends JPanel implements Runnable {
 		/*
 		 * add main menu
 		 */
-		MainMenu mainMenu = new MainMenu();
+		MainMenuUnit mainMenu = new MainMenuUnit();
 		mainMenu.setNavigator(unitNavigator);
 		unitNavigator.addGameUnit(mainMenu, UnitState.BASE_MENU_UNIT);
 		activateThread();
