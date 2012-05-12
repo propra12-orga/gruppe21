@@ -1,5 +1,7 @@
 package mapobjects;
 
+import imageloader.ImageLoader;
+
 import java.awt.Graphics2D;
 
 public class Exit extends MapObject{
@@ -10,9 +12,9 @@ public class Exit extends MapObject{
 	}
 	
 	@Override
-	public void draw(Graphics2D g2d){	
+	public void draw(Graphics2D g2d,ImageLoader gr){	
+		g2d.drawImage(gr.getImage(imageUrl),posX,posY,null);
 	}
-
 	@Override
 	public void update(){
 	}

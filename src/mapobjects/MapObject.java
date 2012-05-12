@@ -1,6 +1,7 @@
 package mapobjects;
 
 import imageloader.Animation;
+import imageloader.ImageLoader;
 
 import java.awt.Graphics2D;
 
@@ -9,13 +10,13 @@ import java.awt.Graphics2D;
 */
 
 public abstract class MapObject {
-	private int posX;
-	private int posY;
-	private boolean visible;
-	private boolean destroyable;
-	private boolean collision;
-	private String imageUrl;
-	private Animation objectAnimation;
+	protected int posX;
+	protected int posY;
+	protected boolean visible;
+	protected boolean destroyable;
+	protected boolean collision;
+	protected String imageUrl;
+	protected Animation objectAnimation;
 	
 	public MapObject(int x,int y,boolean v,boolean d,boolean c,String img){
 		posX=x;
@@ -33,7 +34,7 @@ public abstract class MapObject {
 
 	//all MapObjects have to implement
 	public abstract void update();
-	public abstract void draw(Graphics2D g2d);
+	public abstract void draw(Graphics2D g2d,ImageLoader gr);
 
 // Getter und Setter
 	
