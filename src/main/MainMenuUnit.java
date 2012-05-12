@@ -2,6 +2,7 @@ package main;
 
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Point;
 import java.awt.event.KeyEvent;
 
 import javax.swing.ImageIcon;
@@ -10,16 +11,17 @@ public class MainMenuUnit extends GraphicalGameUnit {
 
 	// using GameConstants for exact Buttonplacing on screen
 	private int startXPos = GameConstants.FRAME_SIZE_X / 2 - 100;
-	private int startYPos = (GameConstants.FRAME_SIZE_Y / 3) * 2 - 50;
+	private int startYPos = GameConstants.FRAME_SIZE_Y - 300;
 
 	// sets the space between all buttons and their positions
 	private int buttonSpace = 10;
 	private int buttonHeight = 50;
 	private int button1YPos = startYPos;
-	private int button2YPos = button1YPos + buttonHeight + buttonSpace;
-	private int button3YPos = button2YPos + buttonHeight + buttonSpace;
-	private int button4YPos = button3YPos + buttonHeight + buttonSpace;
+	private int button2YPos = startYPos + 1 * (buttonHeight + buttonSpace);
+	private int button3YPos = startYPos + 2 * (buttonHeight + buttonSpace);
+	private int button4YPos = startYPos + 3 * (buttonHeight + buttonSpace);
 	private int selectCounter;
+	private Point selectorGhost = new Point(startXPos, startYPos);
 
 	// not final, loading of all pictures will be handled in Imageloader class
 	private Image Background = new ImageIcon(GameConstants.MENU_IMAGES_DIR
@@ -36,7 +38,6 @@ public class MainMenuUnit extends GraphicalGameUnit {
 			+ "/ActiveQuitgamePlaceholder.png").getImage();
 	private Image ccontinueActive = new ImageIcon(GameConstants.MENU_IMAGES_DIR
 			+ "/ActiveContinueGamePlaceholder.png").getImage();
-
 	private Image singlePlayerInactive = new ImageIcon(
 			GameConstants.MENU_IMAGES_DIR
 					+ "/InactiveSingleplayerPlaceholder.png").getImage();
@@ -56,29 +57,52 @@ public class MainMenuUnit extends GraphicalGameUnit {
 		g.drawImage(multiplayerInactive, startXPos, button2YPos, null);
 		g.drawImage(quitInactive, startXPos, button3YPos, null);
 		g.drawImage(ccontinueInactive, startXPos, button4YPos, null);
-		g.drawImage(select, startXPos - (select.getWidth(null) + buttonSpace),
-				button1YPos, null);
-		// System.out.println(button1YPos);
-		// System.out.println(button2YPos);
-		// System.out.println(button3YPos);
-		// System.out.println(button4YPos);
+		g.drawImage(select, (int) selectorGhost.getX() - buttonSpace,
+				(int) selectorGhost.getY(), null);
+
+		if (selectorGhost.getY() == button1YPos)
+			g.drawImage(singlePlayerActive, startXPos, button1YPos, null);
+
+		if (selectorGhost.getY() == button2YPos)
+			g.drawImage(multiplayerActive, startXPos, button2YPos, null);
+
+		if (selectorGhost.getY() == button3YPos)
+			g.drawImage(quitActive, startXPos, button3YPos, null);
+
+		if (selectorGhost.getY() == button4YPos)
+			g.drawImage(ccontinueActive, startXPos, button4YPos, null);
 	}
 
 	// MainMenu Navigation
 	@Override
 	public void handleKeyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
-
+		// selectCounter is used to position the select image
 		if (key == KeyEvent.VK_UP || key == KeyEvent.VK_LEFT) {
-			// selectCounter = selectCounter + 1;
-			System.out.println("blabla");
-			System.exit(0);
-
+			selectCounter--;
 		}
 		if (key == KeyEvent.VK_DOWN || key == KeyEvent.VK_RIGHT) {
-
+			selectCounter++;
 		}
-
+		if (selectCounter > 3) {
+			selectCounter = 0;
+		}
+		if (selectCounter < 0) {
+			selectCounter = 3;
+		}
+		// what to do on enter
+		if (key == KeyEvent.VK_ENTER && selectCounter == 0) {
+			System.out.println("Singleplayer");
+		}
+		if (key == KeyEvent.VK_ENTER && selectCounter == 1) {
+			System.out.println("Multiplayer");
+		}
+		if (key == KeyEvent.VK_ENTER && selectCounter == 2) {
+			System.exit(0);
+		}
+		if (key == KeyEvent.VK_ENTER && selectCounter == 3) {
+			System.out.println("Continue");
+		}
 	}
 
 	@Override
@@ -88,11 +112,12 @@ public class MainMenuUnit extends GraphicalGameUnit {
 
 	@Override
 	public void initComponent() {
-
 	}
 
 	@Override
 	public void updateComponent() {
-
+		// updates selectorPosition after keyevent
+		selectorGhost.setLocation(startXPos - (select.getWidth(null)),
+				startYPos + selectCounter * (buttonHeight + buttonSpace));
 	}
 }
