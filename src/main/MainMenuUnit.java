@@ -59,7 +59,8 @@ public class MainMenuUnit extends GraphicalGameUnit {
 		g.drawImage(ccontinueInactive, startXPos, button4YPos, null);
 		g.drawImage(select, (int) selectorGhost.getX() - buttonSpace,
 				(int) selectorGhost.getY(), null);
-
+		// determines whaether to use active or inactive button layout based on
+		// selector position
 		if (selectorGhost.getY() == button1YPos)
 			g.drawImage(singlePlayerActive, startXPos, button1YPos, null);
 
@@ -107,7 +108,6 @@ public class MainMenuUnit extends GraphicalGameUnit {
 
 	@Override
 	public void handleKeyReleased(KeyEvent e) {
-
 	}
 
 	@Override
