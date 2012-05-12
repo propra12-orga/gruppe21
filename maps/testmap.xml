@@ -1,0 +1,537 @@
+<?xml version="1.0"?>
+<map>
+	<header>
+	    <mapname>Test Map</mapname>
+		<sizex>400</sizex>
+		<sizey>400</sizey>
+	</header>
+	<mapobjects>
+		<level>
+			<tile type="floor">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>0</posx>
+				<posy>0</posy>
+			</tile>
+			<tile type="floor">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>0</posx>
+				<posy>50</posy>
+			</tile>
+			<tile type="floor">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>0</posx>
+				<posy>100</posy>
+			</tile>
+			<tile type="floor">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>0</posx>
+				<posy>150</posy>
+			</tile>
+			<tile type="floor">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>0</posx>
+				<posy>200</posy>
+			</tile>
+			<tile type="floor">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>0</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="floor">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>0</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="floor">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>0</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="floor">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>50</posx>
+				<posy>0</posy>
+			</tile>
+			<tile type="floor">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>50</posx>
+				<posy>50</posy>
+			</tile>
+			<tile type="floor">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>50</posx>
+				<posy>100</posy>
+			</tile>
+			<tile type="floor">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>50</posx>
+				<posy>150</posy>
+			</tile>
+			<tile type="floor">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>50</posx>
+				<posy>200</posy>
+			</tile>
+			<tile type="floor">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>50</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="floor">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>50</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="floor">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>50</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="floor">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>100</posx>
+				<posy>0</posy>
+			</tile>
+			<tile type="floor">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floorempty.png</image>
+				<posx>100</posx>
+				<posy>50</posy>
+			</tile>
+			<tile type="floor">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>100</posx>
+				<posy>100</posy>
+			</tile>
+			<tile type="floor">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>100</posx>
+				<posy>150</posy>
+			</tile>
+			<tile type="floor">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>100</posx>
+				<posy>200</posy>
+			</tile>
+			<tile type="floor">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>100</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="floor">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>100</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="floor">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>100</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="floor">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>150</posx>
+				<posy>0</posy>
+			</tile>
+			<tile type="floor">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>150</posx>
+				<posy>50</posy>
+			</tile>
+			<tile type="floor">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>150</posx>
+				<posy>100</posy>
+			</tile>
+			<tile type="floor">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>150</posx>
+				<posy>150</posy>
+			</tile>
+			<tile type="floor">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>150</posx>
+				<posy>200</posy>
+			</tile>
+			<tile type="floor">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>150</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="floor">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>150</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="floor">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>150</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="floor">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>200</posx>
+				<posy>0</posy>
+			</tile>
+			<tile type="floor">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>200</posx>
+				<posy>50</posy>
+			</tile>
+			<tile type="floor">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>200</posx>
+				<posy>100</posy>
+			</tile>
+			<tile type="floor">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>200</posx>
+				<posy>150</posy>
+			</tile>
+			<tile type="floor">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>200</posx>
+				<posy>200</posy>
+			</tile>
+			<tile type="floor">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>200</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="floor">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>200</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="floor">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>200</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="floor">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>250</posx>
+				<posy>0</posy>
+			</tile>
+			<tile type="floor">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>250</posx>
+				<posy>50</posy>
+			</tile>
+			<tile type="floor">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>250</posx>
+				<posy>100</posy>
+			</tile>
+			<tile type="floor">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>250</posx>
+				<posy>150</posy>
+			</tile>
+			<tile type="floor">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>250</posx>
+				<posy>200</posy>
+			</tile>
+			<tile type="floor">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>250</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="floor">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>250</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="floor">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>250</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="floor">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>300</posx>
+				<posy>0</posy>
+			</tile>
+			<tile type="floor">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>300</posx>
+				<posy>50</posy>
+			</tile>
+			<tile type="floor">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>300</posx>
+				<posy>100</posy>
+			</tile>
+			<tile type="floor">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>300</posx>
+				<posy>150</posy>
+			</tile>
+			<tile type="floor">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>300</posx>
+				<posy>200</posy>
+			</tile>
+			<tile type="floor">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>300</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="floor">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>300</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="floor">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>300</posx>
+				<posy>350</posy>
+			</tile>
+		    <tile type="floor">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>350</posx>
+				<posy>0</posy>
+			</tile>
+			<tile type="floor">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>350</posx>
+				<posy>50</posy>
+			</tile>
+			<tile type="floor">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>350</posx>
+				<posy>100</posy>
+			</tile>
+			<tile type="floor">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>350</posx>
+				<posy>150</posy>
+			</tile>
+			<tile type="floor">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>350</posx>
+				<posy>200</posy>
+			</tile>
+			<tile type="floor">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>350</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="floor">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>350</posx>
+				<posy>300</posy>
+			</tile>
+			
+			<tile type="floor">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>350</posx>
+				<posy>350</posy>
+			</tile>
+			
+		</level>
+
+		<level>
+			<tile type="wall">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image>wall.png</image>
+				<posx>200</posx>
+				<posy>300</posy>
+			</tile>
+		</level>
+	</mapobjects>
+</map>
