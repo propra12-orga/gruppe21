@@ -27,6 +27,7 @@ public class Campaign {
 	private int mapCounter;
 	private MapReader mapReader;
 	private WorldMap worldMap;
+	private Map map;
 	
 	public Campaign(ArrayList<MapSequence> levels, WorldMap worldMap) {
 		if (levels == null || worldMap == null) {
@@ -34,7 +35,10 @@ public class Campaign {
 		} else {
 			this.levels = levels;
 			this.worldMap = worldMap;
-			mapReader = new MapReader();
+			/*mapReader = new MapReader();*/
+			//eher so 
+			this.map = new Map("testmap");
+			//Map wäre dann fertig geladen verfügbar
 			campaignFinished = false;
 			mapCounter = 0;
 		}
