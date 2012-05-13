@@ -9,20 +9,6 @@ import javax.swing.ImageIcon;
 
 public class MainMenuUnit extends GraphicalGameUnit {
 
-	// using GameConstants for exact Buttonplacing on screen
-	private int startXPos = GameConstants.FRAME_SIZE_X / 2 - 100;
-	private int startYPos = GameConstants.FRAME_SIZE_Y - 300;
-
-	// sets the space between all buttons and their positions
-	private int buttonSpace = 10;
-	private int buttonHeight = 50;
-	private int button1YPos = startYPos;
-	private int button2YPos = startYPos + 1 * (buttonHeight + buttonSpace);
-	private int button3YPos = startYPos + 2 * (buttonHeight + buttonSpace);
-	private int button4YPos = startYPos + 3 * (buttonHeight + buttonSpace);
-	private int selectCounter;
-	private Point selectorGhost = new Point(startXPos, startYPos);
-
 	// not final, loading of all pictures will be handled in Imageloader class
 	private Image Background = new ImageIcon(GameConstants.MENU_IMAGES_DIR
 			+ "/MMBGPlaceholder.png").getImage();
@@ -50,6 +36,21 @@ public class MainMenuUnit extends GraphicalGameUnit {
 			GameConstants.MENU_IMAGES_DIR
 					+ "/InactiveContinueGamePlaceholder.png").getImage();
 
+	private int buttonSpace = 10;
+	private int buttonHeight = singlePlayerActive.getHeight(null);
+	private int buttonWidth = singlePlayerActive.getWidth(null);
+	// using GameConstants for exact Buttonplacing on screen
+	private int startXPos = GameConstants.FRAME_SIZE_X / 2 - buttonWidth / 2;
+	private int startYPos = GameConstants.FRAME_SIZE_Y - 300;
+	// sets the space between all buttons and their positions
+	private int button1YPos = startYPos;
+	private int button2YPos = startYPos + 1 * (buttonHeight + buttonSpace);
+	private int button3YPos = startYPos + 2 * (buttonHeight + buttonSpace);
+	private int button4YPos = startYPos + 3 * (buttonHeight + buttonSpace);
+	private int selectCounter;
+	// point connected with the select image for optimal positioning
+	private Point selectorGhost = new Point(startXPos, startYPos);
+
 	@Override
 	public void drawComponent(Graphics g) {
 		g.drawImage(Background, 0, 0, null);
@@ -59,8 +60,10 @@ public class MainMenuUnit extends GraphicalGameUnit {
 		g.drawImage(ccontinueInactive, startXPos, button4YPos, null);
 		g.drawImage(select, (int) selectorGhost.getX() - buttonSpace,
 				(int) selectorGhost.getY(), null);
-		// determines whaether to use active or inactive button layout based on
-		// selector position
+		/*
+		 * determines whaether to use active or inactive button layout based on
+		 * select position
+		 */
 		if (selectorGhost.getY() == button1YPos)
 			g.drawImage(singlePlayerActive, startXPos, button1YPos, null);
 
@@ -91,7 +94,7 @@ public class MainMenuUnit extends GraphicalGameUnit {
 		if (selectCounter < 0) {
 			selectCounter = 3;
 		}
-		// what to do on enter
+		// what happens if Enter is pressed
 		if (key == KeyEvent.VK_ENTER && selectCounter == 0) {
 			System.out.println("Singleplayer");
 		}
