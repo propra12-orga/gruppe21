@@ -6,10 +6,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
-
 import main.GameConstants;
 import map.Map;
-import map.MapReader;
+
 
 /*
  * stores sequences of map names ( = level) and 
@@ -25,9 +24,8 @@ public class Campaign {
 	private ArrayList<MapSequence> levels;
 	private boolean campaignFinished;
 	private int mapCounter;
-	private MapReader mapReader;
 	private WorldMap worldMap;
-	private Map map;
+
 	
 	public Campaign(ArrayList<MapSequence> levels, WorldMap worldMap) {
 		if (levels == null || worldMap == null) {
@@ -35,21 +33,16 @@ public class Campaign {
 		} else {
 			this.levels = levels;
 			this.worldMap = worldMap;
-			/*mapReader = new MapReader();*/
-			//eher so 
-			this.map = new Map("testmap");
-			//Map wäre dann fertig geladen verfügbar
 			campaignFinished = false;
 			mapCounter = 0;
 		}
 	}
 	
 	/*
-	 * read current map using the mapReader 
+	 * return current map
 	 */
 	public Map getCurrentMap() {
-		//return mapReader.readMap(levels.get(currentLevel).getMap(mapCounter));
-		return null;
+		return new Map(levels.get(worldMap.getSelectedLevel()).getMap(mapCounter));
 	}
 	
 	/*
