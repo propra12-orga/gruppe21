@@ -8,6 +8,7 @@ import java.awt.Graphics2D;
 public class Bomb extends MapObject{
 	
 	private int radius = 1;
+	//TODO ändern , so funktioniert das nicht mit animation
 	private Animation animTickingBomb = new Animation("countdown"),
 					animExplosion = new Animation("explosion"),
 					currentAnim;

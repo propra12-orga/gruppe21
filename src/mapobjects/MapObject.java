@@ -5,6 +5,8 @@ import imageloader.ImageLoader;
 
 import java.awt.Graphics2D;
 
+import main.GameConstants;
+
 /*
   abstract class for all MapObjects     	
 */
@@ -24,7 +26,7 @@ public abstract class MapObject {
 		visible=v;
 		destroyable=d;
 		collision=c;
-		imageUrl = img;
+		imageUrl = GameConstants.MAP_GRAPHICS_DIR+img;
 		//TODO wenn imgUrl mit 'an:' beginnt dann anima
 		//TODO allgemein wie animation hinzf
 		//TODO setup animation , extra Thread ?
@@ -37,6 +39,9 @@ public abstract class MapObject {
 	public abstract void draw(Graphics2D g2d,ImageLoader gr);
 
 // Getter und Setter
+	public String getImageUrl(){
+		return imageUrl;
+	}
 	
 	public int getPosX(){
 		return posX;
