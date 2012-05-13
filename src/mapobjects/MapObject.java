@@ -38,7 +38,7 @@ public abstract class MapObject {
 	public abstract void update();
 	public abstract void draw(Graphics2D g2d,ImageLoader gr);
 
-// Getter und Setter
+	// Getter und Setter
 	public String getImageUrl(){
 		return imageUrl;
 	}

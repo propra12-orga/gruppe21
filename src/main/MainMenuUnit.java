@@ -125,7 +125,10 @@ public class MainMenuUnit extends GraphicalGameUnit {
 			getNavigator().terminateGame();
 		}
 		if (key == KeyEvent.VK_ENTER && selectCounter == 3) {
-			System.out.println("Continue");
+			// continue game
+			if (getNavigator().getUnitAt(UnitState.LEVEL_MANAGER_UNIT) != null) {
+				getNavigator().set(UnitState.LEVEL_MANAGER_UNIT);
+			}			
 		}
 	}
 

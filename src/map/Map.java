@@ -42,7 +42,7 @@ public class Map {
     	for(int i=0; i<drawLevels; i++){
     		for(int j=0; j<mapObjects.get(i).size(); j++){
     			mapObjects.get(i).get(j).draw(g2d,graphics);
-    			System.out.println("drawing: "+mapObjects.get(i).get(j).getImageUrl());
+    			//System.out.println("drawing: "+mapObjects.get(i).get(j).getImageUrl());
     		}
     	}
     }

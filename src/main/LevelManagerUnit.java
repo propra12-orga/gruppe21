@@ -3,10 +3,9 @@ package main;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
-
 import map.Map;
-
 import singleplayer.Campaign;
 import singleplayer.WorldMapUnit;
 
@@ -15,18 +14,20 @@ import singleplayer.WorldMapUnit;
  */
 public class LevelManagerUnit extends GraphicalGameUnit {
 
-	private Campaign campaign;
+//	private Campaign campaign;
 	private Map currentMap;
-	private WorldMapUnit worldMap;
+//	private WorldMapUnit worldMapUnit;
 	//private Player player;
+	
+	public LevelManagerUnit() {
+		initComponent();
+	}
 	
 	@Override
 	public void drawComponent(Graphics g) {	
-		g.setColor(Color.blue);
+		g.setColor(Color.white);
 		g.fillRect(0, 0, GameConstants.FRAME_SIZE_X, GameConstants.FRAME_SIZE_Y);
-		g.setColor(Color.red);
-		g.drawString("WOW DU BIST INGAME .....", GameConstants.FRAME_SIZE_X/3, GameConstants.FRAME_SIZE_Y/2);
-		//map.draw(g);
+		currentMap.drawMap((Graphics2D) g);
 	}
 
 	@Override
@@ -48,7 +49,9 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 	public void initComponent() {
 		//player = new Player();
 		//campaign = Campaign.readCampaignFromFile("campaign1.txt");
-		//currentMap = campaign.getCurrentMap();				
+		//currentMap = campaign.getCurrentMap();	
+		//worldMapUnit = new WorldMapUnit(campaign.getWorldMap());
+		currentMap = new Map("testmap");
 	}
 
 	@Override

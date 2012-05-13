@@ -46,6 +46,10 @@ public class Campaign {
 				levels.get(worldMap.getSelectedLevel()).getMap(mapCounter));
 	}
 	
+	public WorldMap getWorldMap() {
+		return worldMap;
+	}
+	
 	/*
 	 * called by the LevelManager. Returns boolean value:
 	 * 	true - map counter has been successfully incremented
