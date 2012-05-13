@@ -42,7 +42,8 @@ public class Campaign {
 	 * return current map
 	 */
 	public Map getCurrentMap() {
-		return new Map(levels.get(worldMap.getSelectedLevel()).getMap(mapCounter));
+		return new Map(GameConstants.MAP_FILES_DIR+
+				levels.get(worldMap.getSelectedLevel()).getMap(mapCounter));
 	}
 	
 	/*
