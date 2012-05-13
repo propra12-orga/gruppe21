@@ -1,13 +1,8 @@
 
 package singleplayer;
 
-import imageloader.GameImage;
-
 import java.awt.Graphics;
-import java.awt.Point;
 import java.awt.event.KeyEvent;
-
-import main.GameConstants;
 import main.GraphicalGameUnit;
 import main.UnitState;
 

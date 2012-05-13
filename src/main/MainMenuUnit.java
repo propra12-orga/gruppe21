@@ -96,7 +96,7 @@ public class MainMenuUnit extends GraphicalGameUnit {
 		}
 		// what happens if Enter is pressed
 		if (key == KeyEvent.VK_ENTER && selectCounter == 0) {
-			System.out.println("singleplayer");
+			// create new game
 			LevelManagerUnit levelmanager = new LevelManagerUnit();
 			levelmanager.setNavigator(getNavigator());
 			getNavigator().addGameUnit(levelmanager, UnitState.LEVEL_MANAGER_UNIT);
@@ -106,6 +106,7 @@ public class MainMenuUnit extends GraphicalGameUnit {
 			System.out.println("Multiplayer");
 		}
 		if (key == KeyEvent.VK_ENTER && selectCounter == 2) {
+			// end game
 			getNavigator().terminateGame();
 		}
 		if (key == KeyEvent.VK_ENTER && selectCounter == 3) {
