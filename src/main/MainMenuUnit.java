@@ -152,20 +152,18 @@ public class MainMenuUnit extends GraphicalGameUnit {
 	 */
 	public void playSounds() {
 		try {
-			AudioInputStream audioInputStream = AudioSystem
+			AudioInputStream menuSoundA = AudioSystem
 					.getAudioInputStream(new File(GameConstants.SOUNDS_DIR
 							+ "/MainMenuMIDI.mid"));
-			BufferedInputStream bufferedInputStream = new BufferedInputStream(
-					audioInputStream);
-			AudioFormat af = audioInputStream.getFormat();
-			int size = (int) (af.getFrameSize() * audioInputStream
-					.getFrameLength());
+			BufferedInputStream menuSoundB = new BufferedInputStream(menuSoundA);
+			AudioFormat af = menuSoundA.getFormat();
+			int size = (int) (af.getFrameSize() * menuSoundA.getFrameLength());
 			byte[] audio = new byte[size];
 			DataLine.Info info = new DataLine.Info(Clip.class, af, size);
-			bufferedInputStream.read(audio, 0, size);
-			Clip clip = (Clip) AudioSystem.getLine(info);
-			clip.open(af, audio, 0, size);
-			clip.start();
+			menuSoundB.read(audio, 0, size);
+			Clip bgSound = (Clip) AudioSystem.getLine(info);
+			bgSound.open(af, audio, 0, size);
+			bgSound.start();
 		} catch (LineUnavailableException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
