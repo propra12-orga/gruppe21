@@ -7,7 +7,6 @@ import java.awt.event.KeyEvent;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.IOException;
-
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -16,6 +15,7 @@ import javax.sound.sampled.DataLine;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
+
 
 public class MainMenuUnit extends GraphicalGameUnit {
 
@@ -157,7 +157,7 @@ public class MainMenuUnit extends GraphicalGameUnit {
 		try {
 			AudioInputStream menuSoundA = AudioSystem
 					.getAudioInputStream(new File(GameConstants.SOUNDS_DIR
-							+ "/MainMenuMIDI.mid"));
+							+ "MainMenuMIDI.mid"));
 			BufferedInputStream menuSoundB = new BufferedInputStream(menuSoundA);
 			AudioFormat af = menuSoundA.getFormat();
 			int size = (int) (af.getFrameSize() * menuSoundA.getFrameLength());
