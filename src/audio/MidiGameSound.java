@@ -9,6 +9,10 @@ import javax.sound.midi.Sequencer;
 
 import main.GameConstants;
 
+/*
+ * to be used for playing midi sounds
+ * No exception handling at the moment!
+ */
 public class MidiGameSound extends GameSound {
 
 	private String filename;
@@ -26,12 +30,8 @@ public class MidiGameSound extends GameSound {
 			seq = MidiSystem.getSequence(new File(GameConstants.SOUNDS_DIR
 					+ filename));
 		} catch (InvalidMidiDataException e) {
-			System.out.println("Unreadable/unsupported midi file: " + filename);
 		} catch (IOException e) {
-			System.out.println("Could not read: " + filename);
-		} catch (Exception e) {
-			System.out.println("Problem with " + filename);
-		}
+		} catch (Exception e) {	}
 	}
 	@Override
 	public void play(boolean loop) {

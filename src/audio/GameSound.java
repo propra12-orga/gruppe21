@@ -1,5 +1,8 @@
 package audio;
 
+/*
+ * abstract super class for both sampled and midi game sounds
+ */
 public abstract class GameSound {
 	
 	private String filename;

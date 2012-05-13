@@ -15,6 +15,10 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 import main.GameConstants;
 
+/*
+ * to be used for playing sampled audio
+ * needs exception handling
+ */
 public class SampledGameSound extends GameSound implements LineListener {
 
 	private String filename;
