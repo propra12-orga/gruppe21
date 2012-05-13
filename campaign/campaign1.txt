@@ -1,8 +1,0 @@
-sq0:beach1.txt
-sq0:beach2.txt
-sq0:beach3.txt
-sq1:woods1.txt
-sq1:woods2.txt
-sq2:supersecretbonuslevel.txt
-sq3:fortress.txt
-sq3:superevilboss.txt
