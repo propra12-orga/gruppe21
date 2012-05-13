@@ -3,13 +3,16 @@ package imageloader;
 import java.awt.Image;
 
 public class Animation {
-	String currentAnimation;
-	Image currentImage;
-	boolean running = false;
-	String asetName;
+	private GameGraphic currentAnimation;
+	private Image currentImage;
+	boolean isrunning = false;
+	boolean ispicture = false;
+	String aSetName;
+	AnimationSet animationSet;
+	int animationCounter;
 	
 	public Animation(String n){
-		asetName=n;		
+		aSetName=n;		
 	}
 	
 	//starts an Animation with/without deelay
@@ -35,6 +38,6 @@ public class Animation {
 	}
 	
 	public boolean isRunning(){
-		return running;
+		return isrunning;
 	}
 }
