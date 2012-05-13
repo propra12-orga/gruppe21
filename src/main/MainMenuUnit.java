@@ -61,7 +61,7 @@ public class MainMenuUnit extends GraphicalGameUnit {
 		g.drawImage(select, (int) selectorGhost.getX() - buttonSpace,
 				(int) selectorGhost.getY(), null);
 		/*
-		 * determines whaether to use active or inactive button layout based on
+		 * determines either to use active or inactive button layout based on
 		 * select position
 		 */
 		if (selectorGhost.getY() == button1YPos)
