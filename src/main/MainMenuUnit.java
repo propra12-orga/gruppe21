@@ -153,8 +153,7 @@ public class MainMenuUnit extends GraphicalGameUnit {
 	public void playSounds() {
 		try {
 			AudioInputStream menuSoundA = AudioSystem
-					.getAudioInputStream(new File(GameConstants.SOUNDS_DIR
-							+ "/MainMenuMIDI.mid"));
+					.getAudioInputStream(new File(GameConstants.SOUNDS_DIR+"/MainMenuMIDI.mid"));
 			BufferedInputStream menuSoundB = new BufferedInputStream(menuSoundA);
 			AudioFormat af = menuSoundA.getFormat();
 			int size = (int) (af.getFrameSize() * menuSoundA.getFrameLength());
