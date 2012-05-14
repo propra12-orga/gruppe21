@@ -7,6 +7,8 @@ import java.awt.event.KeyEvent;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.IOException;
+
+import javax.imageio.ImageIO;
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -15,7 +17,6 @@ import javax.sound.sampled.DataLine;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
-
 
 public class MainMenuUnit extends GraphicalGameUnit {
 
@@ -60,6 +61,7 @@ public class MainMenuUnit extends GraphicalGameUnit {
 	private int selectCounter;
 	// point connected with the select image for optimal positioning
 	private Point selectorGhost = new Point(startXPos, startYPos);
+	private Image selector;
 
 	public MainMenuUnit() {
 		playSounds();
@@ -72,7 +74,9 @@ public class MainMenuUnit extends GraphicalGameUnit {
 		g.drawImage(multiplayerInactive, startXPos, button2YPos, null);
 		g.drawImage(quitInactive, startXPos, button3YPos, null);
 		g.drawImage(ccontinueInactive, startXPos, button4YPos, null);
-		g.drawImage(select, (int) selectorGhost.getX() - buttonSpace,
+		// g.drawImage(select, (int) selectorGhost.getX() - buttonSpace,
+		// (int) selectorGhost.getY(), null);
+		g.drawImage(selector, (int) selectorGhost.getX() - buttonSpace,
 				(int) selectorGhost.getY(), null);
 		/*
 		 * determines either to use active or inactive button layout based on
@@ -128,7 +132,7 @@ public class MainMenuUnit extends GraphicalGameUnit {
 			// continue game
 			if (getNavigator().getUnitAt(UnitState.LEVEL_MANAGER_UNIT) != null) {
 				getNavigator().set(UnitState.LEVEL_MANAGER_UNIT);
-			}			
+			}
 		}
 	}
 
@@ -138,6 +142,13 @@ public class MainMenuUnit extends GraphicalGameUnit {
 
 	@Override
 	public void initComponent() {
+		try {
+			selector = ImageIO.read(new File(GameConstants.MENU_IMAGES_DIR
+					+ "/SelectorPlaceholder.png"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -149,7 +160,7 @@ public class MainMenuUnit extends GraphicalGameUnit {
 
 	/*
 	 * added a playSounds method for testing purpose & to check for performance
-	 * issues not exactly sure how this works in detail if you have problems
+	 * issues. Not exactly sure how this works in detail, if you have problems
 	 * with other parts of the game, just put the method contained in
 	 * constructor into comment lines
 	 */
