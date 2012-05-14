@@ -41,6 +41,16 @@ public class ImageLoader {
 		}
 		return placeholder;
 	}
+
+//returns animationSet
+	public AnimationSet getAnimationSet(String n) {
+		for(int i=0; i<animationStack.size(); i++){
+			if(animationStack.get(i).nameEquals(n)){
+				return animationStack.get(i);
+			}
+		}
+		return null;
+	}	
 	
 // nur zum testen Später löschen
 	
@@ -50,4 +60,5 @@ public class ImageLoader {
 		}
 		
 	}
+
 }

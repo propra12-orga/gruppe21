@@ -21,6 +21,8 @@ public class GameConstants {
 	public static final String MENU_IMAGES_DIR = "graphics/MainMenu/";
 	public static final String MAP_FILES_DIR = "maps/";
 	public static final String MAP_GRAPHICS_DIR = "graphics/game/map/";
+	public static final String ANIMATION_FILES_DIR = "graphics/game/";
+	
 	public static final String SOUNDS_DIR = "sounds";
 
 	private GameConstants() {

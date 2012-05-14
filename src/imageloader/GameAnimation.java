@@ -23,7 +23,8 @@ public class GameAnimation extends GameGraphic{
 		return frames;
 	}
 	
-	public Image getImage(){
+	//TODO bild in frames zerlegen
+	public Image getImage(int frame){
 		return image;
 	}
 	
