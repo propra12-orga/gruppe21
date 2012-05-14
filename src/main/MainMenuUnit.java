@@ -4,18 +4,10 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
-import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.sound.sampled.AudioFormat;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.DataLine;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
 
 public class MainMenuUnit extends GraphicalGameUnit {
@@ -64,7 +56,6 @@ public class MainMenuUnit extends GraphicalGameUnit {
 	private Image selector;
 
 	public MainMenuUnit() {
-		playSounds();
 	}
 
 	@Override
@@ -156,37 +147,5 @@ public class MainMenuUnit extends GraphicalGameUnit {
 		// updates selectorPosition after keyevent
 		selectorGhost.setLocation(startXPos - (select.getWidth(null)),
 				startYPos + selectCounter * (buttonHeight + buttonSpace));
-	}
-
-	/*
-	 * added a playSounds method for testing purpose & to check for performance
-	 * issues. Not exactly sure how this works in detail, if you have problems
-	 * with other parts of the game, just put the method contained in
-	 * constructor into comment lines
-	 */
-	public void playSounds() {
-		try {
-			AudioInputStream menuSoundA = AudioSystem
-					.getAudioInputStream(new File(GameConstants.SOUNDS_DIR
-							+ "MainMenuMIDI.mid"));
-			BufferedInputStream menuSoundB = new BufferedInputStream(menuSoundA);
-			AudioFormat af = menuSoundA.getFormat();
-			int size = (int) (af.getFrameSize() * menuSoundA.getFrameLength());
-			byte[] audio = new byte[size];
-			DataLine.Info info = new DataLine.Info(Clip.class, af, size);
-			menuSoundB.read(audio, 0, size);
-			Clip bgSound = (Clip) AudioSystem.getLine(info);
-			bgSound.open(af, audio, 0, size);
-			bgSound.start();
-		} catch (LineUnavailableException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (UnsupportedAudioFileException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 }
