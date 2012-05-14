@@ -25,6 +25,13 @@ public class UnitNavigator {
 	}
 	
 	/*
+	 * returns unit at given unit state
+	 */
+	public GraphicalGameUnit getUnitAt(UnitState state) {
+		return gameUnits[state.getValue()];
+	}
+	
+	/*
 	 * adds new game unit to the array
 	 */
 	public void addGameUnit(GraphicalGameUnit newComponent, UnitState state) {
