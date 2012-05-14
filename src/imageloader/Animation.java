@@ -5,18 +5,21 @@ import java.awt.Image;
 public class Animation {
 	private GameGraphic currentAnimation;
 	private Image currentImage;
-	boolean isrunning = false;
-	boolean ispicture = false;
-	String aSetName;
-	AnimationSet animationSet;
-	int animationCounter;
+	private boolean isrunning = false;
+	private boolean ispicture = false;
+	private String aSetName;
+	private AnimationSet animationSet;
+	private int animationCounter;
 	
-	public Animation(String n){
-		aSetName=n;		
+	public Animation(String n,ImageLoader gr){
+		aSetName=n;	
+		animationSet = gr.getAnimationSet(n);
+		currentImage = animationSet.getDefault();
 	}
 	
 	//starts an Animation with/without deelay
-	public void start(){}
+	public void start(){
+	}
 	
 	public void start(int deelay){}
 	
