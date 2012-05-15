@@ -30,7 +30,7 @@ public class Map {
     	drawLevels = mr.getDrawLevels();
     	
     	mr.loadGraphics(graphics);
-    	mr.getMap(mapObjects);
+    	mr.getMap(mapObjects,graphics);
     	graphics.printNames();
     }
     

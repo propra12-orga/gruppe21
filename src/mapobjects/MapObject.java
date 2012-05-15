@@ -18,7 +18,7 @@ public abstract class MapObject {
 	protected boolean destroyable;
 	protected boolean collision;
 	protected String imageUrl;
-	protected Animation objectAnimation;
+	protected Animation animation;
 	
 	public MapObject(int x,int y,boolean v,boolean d,boolean c,String img){
 		posX=x;
@@ -27,10 +27,17 @@ public abstract class MapObject {
 		destroyable=d;
 		collision=c;
 		imageUrl = GameConstants.MAP_GRAPHICS_DIR+img;
-		//TODO wenn imgUrl mit 'an:' beginnt dann anima
-		//TODO allgemein wie animation hinzf
-		//TODO setup animation , extra Thread ?
 		
+	}
+	
+	public MapObject(int x,int y,boolean v,boolean d,boolean c,String img,ImageLoader gr){
+		posX=x;
+		posY=y;
+		visible=v;
+		destroyable=d;
+		collision=c;
+		animation = new Animation(img,gr);
+
 	}
 	
 

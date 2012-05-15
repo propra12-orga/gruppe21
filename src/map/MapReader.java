@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Vector;
 import main.GameConstants;
+import mapobjects.Bomb;
 import mapobjects.Exit;
 import mapobjects.Floor;
 import mapobjects.MapObject;
@@ -44,14 +45,16 @@ public class MapReader {
 	
 	//loads all graphic elements of the map into the given imageloader
 	public void loadGraphics(ImageLoader il){
-		// kann liste nicht nach vector casten ...
 		List<Element> levels = mapRoot.getChild("mapobjects").getChildren("level");
 		
 		//TODO animation
 		for(int i=0; i<levels.size(); i++){
 			List<Element> tile = levels.get(i).getChildren("tile");
 			for(int j=0; j<tile.size(); j++){
-			il.addImage(GameConstants.MAP_GRAPHICS_DIR+tile.get(j).getChildText("image"));
+				if(Boolean.parseBoolean(tile.get(j).getAttributeValue("animated"))){
+					il.addAnimationSet(tile.get(j).getChildText("animationset"),"map");
+				}else
+					{il.addImage(GameConstants.MAP_GRAPHICS_DIR+tile.get(j).getChildText("image"));}
 			}
 		}
 		
@@ -63,7 +66,7 @@ public class MapReader {
 	// TODO ReadMap
 			// levels1
 			
-	public void getMap(Vector<Vector<MapObject>> mo){
+	public void getMap(Vector<Vector<MapObject>> mo,ImageLoader gr){
 		//until graphics have been loaded you can't get the map;
 		if(!graphicisloaded){/*TODO exception*/}
 		else{
@@ -110,6 +113,17 @@ public class MapReader {
 									Boolean.parseBoolean(templist.get(c).getChildText("collision")),
 									templist.get(c).getChildText("image")
 							));
+						}
+						if(moList[j].equals("bomb")){
+							mo.get(i).add(new Bomb(Integer.parseInt(templist.get(c).getChildText("posx")),
+								    Integer.parseInt(templist.get(c).getChildText("posy")),
+									Boolean.parseBoolean(templist.get(c).getChildText("visible")),
+									Boolean.parseBoolean(templist.get(c).getChildText("destroyable")),
+									Boolean.parseBoolean(templist.get(c).getChildText("collision")),
+									templist.get(c).getChildText("animationset"),
+									gr
+							));
+							System.out.println("bomb added");
 						}
 					}
 					

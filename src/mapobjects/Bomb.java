@@ -8,21 +8,17 @@ import java.awt.Graphics2D;
 public class Bomb extends MapObject{
 	
 	private int radius = 1;
-	//TODO ändern , so funktioniert das nicht mit animation
-	private Animation animTickingBomb = new Animation("countdown"),
-					animExplosion = new Animation("explosion"),
-					currentAnim;
 	
 	/*countdown (4s), explosiontime (1s) in nanosecs*/
 	private long countdownTime = 4000000000L, explosionTime = 1000000000,
 					beforeTime;
 	private boolean exploding = false;
 	
-	public Bomb(int x,int y,boolean v,boolean d,boolean c,String p){
-		super(x,y,v,d,c,p);
+	public Bomb(int x,int y,boolean v,boolean d,boolean c,String p,ImageLoader gr){
+		super(x,y,v,d,c,p,gr);
 		beforeTime = System.nanoTime();
-		animTickingBomb.start();
-		currentAnim = animTickingBomb;
+		//animTickingBomb.start();
+		//currentAnim = animTickingBomb;
 	}
 	
 	/*radius changes conditioned by upgrades*/
@@ -32,8 +28,8 @@ public class Bomb extends MapObject{
 	
 	@Override
 	public void draw(Graphics2D g2d,ImageLoader gr){	
-//		g2d.drawImage(gr.getImage(imageUrl),posX,posY,null);
-		g2d.drawImage(currentAnim.animate(), posX, posY, null);
+    //	g2d.drawImage(gr.getImage(imageUrl),posX,posY,null);
+	g2d.drawImage(animation.getCurrentImage(), posX, posY, null);
 	}
 
 	@Override
@@ -46,16 +42,16 @@ public class Bomb extends MapObject{
 		
 		if (visible && exploding) {
 			if (beforeTime + countdownTime + explosionTime <= System.nanoTime()) {
-				animExplosion.stop();
+		//		animExplosion.stop();
 				visible = false;
 			}
 		}
 	}
 	
 	public void explode() {
-		animTickingBomb.stop();
-		currentAnim = animExplosion;
-		animExplosion.start();
+	//	animTickingBomb.stop();
+	//	currentAnim = animExplosion;
+	//	animExplosion.start();
 		exploding = true;
 	}
 	
