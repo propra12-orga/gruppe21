@@ -18,7 +18,7 @@ public class GameConstants {
 	 * directory constants
 	 */
 	public static final String CAMPAIGNS_DIR = "campaigns/";
-	public static final String MENU_IMAGES_DIR = "graphics/MainMenu/";
+	public static final String MENU_IMAGES_DIR = "graphics/gui/MainMenu/";
 	public static final String MAP_FILES_DIR = "maps/";
 	public static final String MAP_GRAPHICS_DIR = "graphics/game/map/";
 	public static final String ANIMATION_FILES_DIR = "graphics/game/";
