@@ -2,12 +2,12 @@
 <map>
 	<header>
 	    <mapname>Test Map</mapname>
-		<sizex>400</sizex>
-		<sizey>400</sizey>
+		<sizex>1000</sizex>
+		<sizey>750</sizey>
 	</header>
 	<mapobjects>
 		<level>
-			<tile type="floor">
+			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
@@ -15,7 +15,7 @@
 				<posx>0</posx>
 				<posy>0</posy>
 			</tile>
-			<tile type="floor">
+			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
@@ -23,7 +23,7 @@
 				<posx>0</posx>
 				<posy>50</posy>
 			</tile>
-			<tile type="floor">
+			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
@@ -31,7 +31,7 @@
 				<posx>0</posx>
 				<posy>100</posy>
 			</tile>
-			<tile type="floor">
+			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
@@ -39,7 +39,7 @@
 				<posx>0</posx>
 				<posy>150</posy>
 			</tile>
-			<tile type="floor">
+			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
@@ -47,7 +47,7 @@
 				<posx>0</posx>
 				<posy>200</posy>
 			</tile>
-			<tile type="floor">
+			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
@@ -55,7 +55,7 @@
 				<posx>0</posx>
 				<posy>250</posy>
 			</tile>
-			<tile type="floor">
+			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
@@ -63,7 +63,7 @@
 				<posx>0</posx>
 				<posy>300</posy>
 			</tile>
-			<tile type="floor">
+			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
@@ -71,7 +71,71 @@
 				<posx>0</posx>
 				<posy>350</posy>
 			</tile>
-			<tile type="floor">
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>0</posx>
+				<posy>400</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>0</posx>
+				<posy>450</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>0</posx>
+				<posy>500</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>0</posx>
+				<posy>550</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>0</posx>
+				<posy>600</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>0</posx>
+				<posy>650</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>0</posx>
+				<posy>700</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>0</posx>
+				<posy>750</posy>
+			</tile>
+			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
@@ -79,7 +143,7 @@
 				<posx>50</posx>
 				<posy>0</posy>
 			</tile>
-			<tile type="floor">
+			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
@@ -87,7 +151,7 @@
 				<posx>50</posx>
 				<posy>50</posy>
 			</tile>
-			<tile type="floor">
+			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
@@ -95,7 +159,7 @@
 				<posx>50</posx>
 				<posy>100</posy>
 			</tile>
-			<tile type="floor">
+			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
@@ -103,7 +167,7 @@
 				<posx>50</posx>
 				<posy>150</posy>
 			</tile>
-			<tile type="floor">
+			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
@@ -111,7 +175,7 @@
 				<posx>50</posx>
 				<posy>200</posy>
 			</tile>
-			<tile type="floor">
+			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
@@ -119,7 +183,7 @@
 				<posx>50</posx>
 				<posy>250</posy>
 			</tile>
-			<tile type="floor">
+			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
@@ -127,7 +191,7 @@
 				<posx>50</posx>
 				<posy>300</posy>
 			</tile>
-			<tile type="floor">
+			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
@@ -135,7 +199,63 @@
 				<posx>50</posx>
 				<posy>350</posy>
 			</tile>
-			<tile type="floor">
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>50</posx>
+				<posy>400</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>50</posx>
+				<posy>450</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>50</posx>
+				<posy>500</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>50</posx>
+				<posy>550</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>50</posx>
+				<posy>600</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>50</posx>
+				<posy>650</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>50</posx>
+				<posy>700</posy>
+			</tile>
+			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
@@ -143,7 +263,7 @@
 				<posx>100</posx>
 				<posy>0</posy>
 			</tile>
-			<tile type="floor">
+			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
@@ -151,7 +271,7 @@
 				<posx>100</posx>
 				<posy>50</posy>
 			</tile>
-			<tile type="floor">
+			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
@@ -159,7 +279,7 @@
 				<posx>100</posx>
 				<posy>100</posy>
 			</tile>
-			<tile type="floor">
+			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
@@ -167,7 +287,7 @@
 				<posx>100</posx>
 				<posy>150</posy>
 			</tile>
-			<tile type="floor">
+			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
@@ -175,7 +295,7 @@
 				<posx>100</posx>
 				<posy>200</posy>
 			</tile>
-			<tile type="floor">
+			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
@@ -183,7 +303,7 @@
 				<posx>100</posx>
 				<posy>250</posy>
 			</tile>
-			<tile type="floor">
+			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
@@ -191,7 +311,7 @@
 				<posx>100</posx>
 				<posy>300</posy>
 			</tile>
-			<tile type="floor">
+			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
@@ -199,7 +319,63 @@
 				<posx>100</posx>
 				<posy>350</posy>
 			</tile>
-			<tile type="floor">
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>100</posx>
+				<posy>400</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>100</posx>
+				<posy>450</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>100</posx>
+				<posy>500</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>100</posx>
+				<posy>550</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>100</posx>
+				<posy>600</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>100</posx>
+				<posy>650</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image>floor.png</image>
+				<posx>100</posx>
+				<posy>700</posy>
+			</tile>
+			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
@@ -207,7 +383,7 @@
 				<posx>150</posx>
 				<posy>0</posy>
 			</tile>
-			<tile type="floor">
+			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
@@ -215,7 +391,7 @@
 				<posx>150</posx>
 				<posy>50</posy>
 			</tile>
-			<tile type="floor">
+			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
@@ -223,7 +399,7 @@
 				<posx>150</posx>
 				<posy>100</posy>
 			</tile>
-			<tile type="floor">
+			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
@@ -231,7 +407,7 @@
 				<posx>150</posx>
 				<posy>150</posy>
 			</tile>
-			<tile type="floor">
+			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
@@ -239,7 +415,7 @@
 				<posx>150</posx>
 				<posy>200</posy>
 			</tile>
-			<tile type="floor">
+			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
@@ -247,7 +423,7 @@
 				<posx>150</posx>
 				<posy>250</posy>
 			</tile>
-			<tile type="floor">
+			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
@@ -255,7 +431,7 @@
 				<posx>150</posx>
 				<posy>300</posy>
 			</tile>
-			<tile type="floor">
+			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
@@ -263,7 +439,7 @@
 				<posx>150</posx>
 				<posy>350</posy>
 			</tile>
-			<tile type="floor">
+			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
@@ -271,7 +447,7 @@
 				<posx>200</posx>
 				<posy>0</posy>
 			</tile>
-			<tile type="floor">
+			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
@@ -279,7 +455,7 @@
 				<posx>200</posx>
 				<posy>50</posy>
 			</tile>
-			<tile type="floor">
+			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
@@ -287,7 +463,7 @@
 				<posx>200</posx>
 				<posy>100</posy>
 			</tile>
-			<tile type="floor">
+			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
@@ -295,7 +471,7 @@
 				<posx>200</posx>
 				<posy>150</posy>
 			</tile>
-			<tile type="floor">
+			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
@@ -303,7 +479,7 @@
 				<posx>200</posx>
 				<posy>200</posy>
 			</tile>
-			<tile type="floor">
+			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
@@ -311,7 +487,7 @@
 				<posx>200</posx>
 				<posy>250</posy>
 			</tile>
-			<tile type="floor">
+			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
@@ -319,7 +495,7 @@
 				<posx>200</posx>
 				<posy>300</posy>
 			</tile>
-			<tile type="floor">
+			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
@@ -327,7 +503,7 @@
 				<posx>200</posx>
 				<posy>350</posy>
 			</tile>
-			<tile type="floor">
+			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
@@ -335,7 +511,7 @@
 				<posx>250</posx>
 				<posy>0</posy>
 			</tile>
-			<tile type="floor">
+			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
@@ -343,7 +519,7 @@
 				<posx>250</posx>
 				<posy>50</posy>
 			</tile>
-			<tile type="floor">
+			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
@@ -351,7 +527,7 @@
 				<posx>250</posx>
 				<posy>100</posy>
 			</tile>
-			<tile type="floor">
+			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
@@ -359,7 +535,7 @@
 				<posx>250</posx>
 				<posy>150</posy>
 			</tile>
-			<tile type="floor">
+			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
@@ -367,7 +543,7 @@
 				<posx>250</posx>
 				<posy>200</posy>
 			</tile>
-			<tile type="floor">
+			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
@@ -375,7 +551,7 @@
 				<posx>250</posx>
 				<posy>250</posy>
 			</tile>
-			<tile type="floor">
+			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
@@ -383,7 +559,7 @@
 				<posx>250</posx>
 				<posy>300</posy>
 			</tile>
-			<tile type="floor">
+			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
@@ -391,7 +567,7 @@
 				<posx>250</posx>
 				<posy>350</posy>
 			</tile>
-			<tile type="floor">
+			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
@@ -399,7 +575,7 @@
 				<posx>300</posx>
 				<posy>0</posy>
 			</tile>
-			<tile type="floor">
+			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
@@ -407,7 +583,7 @@
 				<posx>300</posx>
 				<posy>50</posy>
 			</tile>
-			<tile type="floor">
+			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
@@ -415,7 +591,7 @@
 				<posx>300</posx>
 				<posy>100</posy>
 			</tile>
-			<tile type="floor">
+			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
@@ -423,7 +599,7 @@
 				<posx>300</posx>
 				<posy>150</posy>
 			</tile>
-			<tile type="floor">
+			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
@@ -431,7 +607,7 @@
 				<posx>300</posx>
 				<posy>200</posy>
 			</tile>
-			<tile type="floor">
+			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
@@ -439,7 +615,7 @@
 				<posx>300</posx>
 				<posy>250</posy>
 			</tile>
-			<tile type="floor">
+			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
@@ -447,7 +623,7 @@
 				<posx>300</posx>
 				<posy>300</posy>
 			</tile>
-			<tile type="floor">
+			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
@@ -455,7 +631,7 @@
 				<posx>300</posx>
 				<posy>350</posy>
 			</tile>
-		    <tile type="floor">
+		    <tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
@@ -463,7 +639,7 @@
 				<posx>350</posx>
 				<posy>0</posy>
 			</tile>
-			<tile type="floor">
+			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
@@ -471,7 +647,7 @@
 				<posx>350</posx>
 				<posy>50</posy>
 			</tile>
-			<tile type="floor">
+			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
@@ -479,7 +655,7 @@
 				<posx>350</posx>
 				<posy>100</posy>
 			</tile>
-			<tile type="floor">
+			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
@@ -487,7 +663,7 @@
 				<posx>350</posx>
 				<posy>150</posy>
 			</tile>
-			<tile type="floor">
+			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
@@ -495,7 +671,7 @@
 				<posx>350</posx>
 				<posy>200</posy>
 			</tile>
-			<tile type="floor">
+			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
@@ -503,7 +679,7 @@
 				<posx>350</posx>
 				<posy>250</posy>
 			</tile>
-			<tile type="floor">
+			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
@@ -512,7 +688,7 @@
 				<posy>300</posy>
 			</tile>
 			
-			<tile type="floor">
+			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
@@ -524,13 +700,22 @@
 		</level>
 
 		<level>
-			<tile type="wall">
+			<tile type="wall" animated="false">
 			    <visible>true</visible>
 				<collision>true</collision>
 				<destroyable>false</destroyable>
 			 	<image>wall.png</image>
 				<posx>200</posx>
 				<posy>300</posy>
+			</tile>
+			
+			<tile type="bomb" animated="true">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<animationset>simplebomb</animationset>
+				<posx>0</posx>
+				<posy>0</posy>
 			</tile>
 		</level>
 	</mapobjects>
