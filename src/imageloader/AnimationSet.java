@@ -16,13 +16,13 @@ public class AnimationSet {
 		private Document setXML;
 		private Element setRoot;
 	    private String setName;
-        private GameImage defaultImage;
+        public GameImage defaultImage;
         private Vector<GameAnimation> animationList = new Vector<GameAnimation>();
         private Vector<GameImage> imageList = new Vector<GameImage>(); 
        
         public AnimationSet(String sn,String type){
         	setName = sn;
-        	
+        	System.out.println("ani set aufger");
         	try {
     			setXML = new SAXBuilder().build(GameConstants.ANIMATION_FILES_DIR+type+"/"+sn+".xml");
     		} catch (JDOMException e) {
@@ -36,9 +36,10 @@ public class AnimationSet {
        // TODO optimieren , ist das mit den einzelbildern sinnvoll ?
         	List<Element> animations = setRoot.getChildren("animation");
         	List<Element> stills = setRoot.getChildren("still");
-        	defaultImage = new GameImage(setRoot.getAttributeValue("defautImage")); 
+        	defaultImage = new GameImage(GameConstants.ANIMATION_FILES_DIR+type+"/"+setRoot.getAttributeValue("default")); 
         	
         	for(int i=0; i<animations.size(); i++){
+        		System.out.println("funzt");
         		animationList.add(new GameAnimation(
         				animations.get(i).getAttributeValue("name"),
         				Integer.parseInt(animations.get(i).getAttributeValue("frames")),
@@ -66,10 +67,17 @@ public class AnimationSet {
 			return defaultImage.getImage();
 		}
 		
+		public String getDefaultName(){
+			return defaultImage.getPath();
+		}
+		
 		public Boolean nameEquals(String n){
 			return n.equals(setName);
 		}
         
+		public String getSetName(){
+			return setName;
+		}
        //TODO entweder Image oder Object ! 
 
 }

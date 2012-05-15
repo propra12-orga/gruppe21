@@ -15,7 +15,7 @@ public class ImageLoader {
 	placeholder = icon.getImage();
 	}
 	
-	
+	//TODO image/animation zusammenfassen
     // adds an Image to Imagestack except it does already exist
 	
 	public void addImage(String imagePath){
@@ -29,6 +29,18 @@ public class ImageLoader {
 		}
 		// add if not
 		if(!gameimageexists){imageStack.add(new GameImage(imagePath));}
+	}
+											  // type für pfadspezifikation
+	public void addAnimationSet(String setName,String type){
+		boolean animationexists = false;
+		for(int i=0; i< animationStack.size(); i++){
+			if(animationStack.get(i).nameEquals(setName)){
+				animationexists = true;
+				break;
+			}
+			
+		}
+		if(!animationexists){animationStack.add(new AnimationSet(setName,type));}
 	}
 	
 //returns image if existing, else returns placeholder-image
@@ -58,7 +70,12 @@ public class ImageLoader {
 		for(int i=0; i < imageStack.size();i++){
 			System.out.println(imageStack.get(i).getPath());
 		}
+		for(int i=0; i < animationStack.size();i++){
+			System.out.println(animationStack.get(i).getSetName());
+		}
 		
 	}
+
+
 
 }

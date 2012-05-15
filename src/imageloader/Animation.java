@@ -36,9 +36,18 @@ public class Animation {
 	public void change(String aName,int deelay){}
 	
 	//animates and returns the new picture
-	public Image animate(){
-		return currentImage;
+	public void animate(){}
+	
+	public Image getCurrentImage(){
+	return currentImage;
 	}
+	
+	public String getCurrentImagePath(){
+		return animationSet.getDefaultName();
+	}
+	/*public Image getDefault(){
+		return animationSet.getDefault();
+	}*/
 	
 	public boolean isRunning(){
 		return isrunning;
