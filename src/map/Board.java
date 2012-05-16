@@ -70,8 +70,7 @@ public class Board extends JPanel{
 
 	
 	public void keyReleased(KeyEvent e) {
-		int key = e.getKeyCode()
-				;
+		int key = e.getKeyCode();
 		if (key == KeyEvent.VK_UP) {
 			map.stopPlayer("UP");
 			

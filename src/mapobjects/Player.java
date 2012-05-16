@@ -40,7 +40,9 @@ public class Player extends MoveableObject{
 
 	@Override
 	public void update() {
+		animation.animate();
 		move();
+		
 	}
 	
 	@Override

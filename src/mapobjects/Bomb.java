@@ -38,7 +38,6 @@ public class Bomb extends MapObject{
 	}
 	@Override
 	public void update(){
-		System.out.println("update");
 		animation.animate();
 //		if (visible && !exploding) {
 //			if (beforeTime + countdownTime <= System.nanoTime()) {

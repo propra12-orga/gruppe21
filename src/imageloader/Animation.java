@@ -102,7 +102,6 @@ public class Animation {
 		}
 		if(isrunning){
 			if(currentAnimation.end(animationCounter)){
-				System.out.println("das?");
 				currentImage = currentAnimation.getFrame(animationCounter);
 				animationCounter=0;
 			}else{
