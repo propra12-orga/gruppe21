@@ -3,7 +3,9 @@ package mapobjects;
 import imageloader.Animation;
 import imageloader.ImageLoader;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 
 public class Bomb extends MapObject{
 	
@@ -28,14 +30,17 @@ public class Bomb extends MapObject{
 	}
 	
 	@Override
-	public void draw(Graphics2D g2d,ImageLoader gr){	
-    //	g2d.drawImage(gr.getImage(imageUrl),posX,posY,null);
+	public void draw(Graphics2D g2d,ImageLoader gr,Graphics2D cm){
 	g2d.drawImage(animation.getCurrentImage(), posX, posY, null);
+		if(collides()){
+			cm.setPaint(Color.black);
+			cm.fillRect(posX, posY, 50, 50);
+		}else{
+			cm.setPaint(Color.white);
+			cm.fillRect(posX, posY, 50, 50);
+		}
 	}
 	
-	@Override
-	public void drawCollision(Graphics2D cm,ImageLoader gr){
-	}
 	@Override
 	public void update(){
 		animation.animate();

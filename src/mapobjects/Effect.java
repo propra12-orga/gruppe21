@@ -10,14 +10,10 @@ public class Effect extends MapObject{
 	}
 	
 	@Override
-	public void draw(Graphics2D g2d,ImageLoader gr){	
+	public void draw(Graphics2D g2d,ImageLoader gr,Graphics2D cm){	
 		g2d.drawImage(gr.getImage(imageUrl),posX,posY,null);
 	}
     
-	@Override
-	public void drawCollision(Graphics2D cm,ImageLoader gr){
-	}
-	
 	@Override
 	public void update(){
 	}

@@ -46,7 +46,6 @@ public class Map {
     		}
     	}
     	//make enemies
-    	graphics.printNames();
     }
     
     public void loadNewMap(){}
@@ -54,11 +53,14 @@ public class Map {
 	//TODO mapobjectarray mapreader.getMap
     // Vorsicht noch nciht impl
     public void drawMap(Graphics2D g2d){
+    	CollisionMap = new BufferedImage(Integer.parseInt(mapSizeX),Integer.parseInt(mapSizeY),BufferedImage.TYPE_INT_ARGB);
+		Graphics2D b = CollisionMap.createGraphics();
     	for(int i=0; i<drawLevels; i++){
     		for(int j=0; j<mapObjects.get(i).size(); j++){
-    			mapObjects.get(i).get(j).draw(g2d,graphics);
+    			mapObjects.get(i).get(j).draw(g2d,graphics,b);
     		}
     	}
+    	b.dispose();
     }
 
 	public void update() {
@@ -67,24 +69,8 @@ public class Map {
     			mapObjects.get(i).get(j).update();
     		}
     	}
-        //enemies move
-		//draw collision map
-		drawCollisionMap();
 	}
-	
-	public void drawCollisionMap(){
-		CollisionMap = new BufferedImage(Integer.parseInt(mapSizeX),Integer.parseInt(mapSizeY),BufferedImage.TYPE_INT_ARGB);
-		Graphics2D b = CollisionMap.createGraphics();
-		for(int i=0; i<drawLevels; i++){
-    		for(int j=0; j<mapObjects.get(i).size(); j++){
-    			mapObjects.get(i).get(j).drawCollision(b,graphics);
-    		}
-    	}
-		//b.drawImage(image,0,0,null);
-		
-		b.dispose();
-	}
-	
+
 	public void movePlayer(String dir){
 		//if collision false
 

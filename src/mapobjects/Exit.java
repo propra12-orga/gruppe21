@@ -14,29 +14,18 @@ public class Exit extends MapObject{
 	}
 	
 	@Override
-	public void draw(Graphics2D g2d,ImageLoader gr){	
+	public void draw(Graphics2D g2d,ImageLoader gr,Graphics2D cm){	
 		g2d.drawImage(gr.getImage(imageUrl),posX,posY,null);
+		if(collides()){
+			cm.setPaint(Color.black);
+			cm.fillRect(posX, posY, 50, 50);
+		}else{
+			cm.setPaint(Color.white);
+			cm.fillRect(posX, posY, 50, 50);
+		}
 	}
 	@Override
 	public void update(){
-	}
-	
-	@Override
-	public void drawCollision(Graphics2D cm,ImageLoader gr){
-		BufferedImage temp = new BufferedImage(50,50,BufferedImage.TYPE_INT_ARGB);
-		Graphics2D d = temp.createGraphics();
-		
-		if(collides()){
-			d.setPaint(Color.black);
-			d.fillRect(0, 0, 50, 50);
-			d.dispose();
-			cm.drawImage(temp,posX,posY,null);
-		}else{
-			d.setColor(Color.white);
-			d.fillRect(0, 0, 50, 50);
-			d.dispose();
-			cm.drawImage(temp,posX,posY,null);
-		}
 	}
 	
 	public void show(){}

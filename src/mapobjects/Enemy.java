@@ -19,29 +19,14 @@ public class Enemy  extends MoveableObject{
 	}
     
 	@Override
-	public void draw(Graphics2D g2d,ImageLoader gr){	
+	public void draw(Graphics2D g2d,ImageLoader gr,Graphics2D cm){	
 		g2d.drawImage(gr.getImage(imageUrl),posX,posY,null);
-	}
-	
-	@Override
-	public void drawCollision(Graphics2D cm,ImageLoader gr){
-		//auf rot ändern
 		
-		BufferedImage temp = new BufferedImage(50,50,BufferedImage.TYPE_INT_ARGB);
-		Graphics2D d = temp.createGraphics();
+		cm.setPaint(Color.green);
+		cm.fillRect(posX, posY, 50, 50);
 		
-		if(collides()){
-			d.setPaint(Color.black);
-			d.fillRect(0, 0, 50, 50);
-			d.dispose();
-			cm.drawImage(temp,posX,posY,null);
-		}else{
-			d.setColor(Color.white);
-			d.fillRect(0, 0, 50, 50);
-			d.dispose();
-			cm.drawImage(temp,posX,posY,null);
-		}
 	}
+
 
 	@Override
 	public void update(){

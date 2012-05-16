@@ -2,8 +2,10 @@ package mapobjects;
 
 import imageloader.ImageLoader;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
 
 public class Player extends MoveableObject{
 	private int maxbombs = 1;
@@ -46,12 +48,13 @@ public class Player extends MoveableObject{
 	}
 	
 	@Override
-	public void draw(Graphics2D g2d,ImageLoader gr) {	
+	public void draw(Graphics2D g2d,ImageLoader gr,Graphics2D cm) {	
 		g2d.drawImage(animation.getCurrentImage(),posX,posY,null);
-	}
-	
-	@Override
-	public void drawCollision(Graphics2D cm,ImageLoader gr){
+		
+		cm.setPaint(Color.green);
+		cm.fillRect(posX, posY, 50, 50);
+		
+		
 	}
 	
 //	public void keyPressed(KeyEvent e) {
