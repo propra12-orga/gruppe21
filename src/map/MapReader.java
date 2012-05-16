@@ -4,10 +4,12 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Vector;
 import main.GameConstants;
+import mapobjects.AnimatedFloor;
 import mapobjects.Bomb;
 import mapobjects.Exit;
 import mapobjects.Floor;
 import mapobjects.MapObject;
+import mapobjects.Player;
 import mapobjects.Wall;
 
 import org.jdom2.Document;
@@ -21,7 +23,7 @@ public class MapReader {
 	private Document mapXML;
 	private Element mapRoot;
 	private boolean graphicisloaded = false;
-	private String[] moList = {"floor","animatetfloor","bomb","effect","enemy","exit","player","wall"};
+	private String[] moList = {"floor","animatedfloor","bomb","effect","enemy","exit","player","wall"};
 	
 	
 	public MapReader(String mn) {
@@ -57,6 +59,13 @@ public class MapReader {
 					{il.addImage(GameConstants.MAP_GRAPHICS_DIR+tile.get(j).getChildText("image"));}
 			}
 		}
+		for(int i=0; i<levels.size(); i++){
+			List<Element> tile = levels.get(i).getChildren("character");
+			for(int j=0; j<tile.size(); j++){
+					il.addAnimationSet(tile.get(j).getChildText("animationset"),"characters");
+			
+			}
+		}
 		
 		//TODO animationtile eventuell animated true/false in xml einfüg
 		//TODO Movingobjects
@@ -77,7 +86,7 @@ public class MapReader {
 				//look for diffobjecttypes
 				for(int j=0; j<moList.length; j++){
 				    Vector<Element> templist = new Vector<Element>();
-					List<Element> tile = levels.get(i).getChildren("tile");
+					List<Element> tile = levels.get(i).getChildren();
 					for(int c=0; c<tile.size(); c++){
 						if(tile.get(c).getAttributeValue("type").equals(moList[j])){
 							templist.add(tile.get(c));
@@ -93,7 +102,6 @@ public class MapReader {
 									Boolean.parseBoolean(templist.get(c).getChildText("collision")),
 									templist.get(c).getChildText("image")
 							));
-							System.out.println("wall added");
 						}
 						if(moList[j].equals("floor")){
 							mo.get(i).add(new Floor(Integer.parseInt(templist.get(c).getChildText("posx")),
@@ -103,7 +111,6 @@ public class MapReader {
 									Boolean.parseBoolean(templist.get(c).getChildText("collision")),
 									templist.get(c).getChildText("image")
 							));
-						  System.out.println("floor added");
 						}
 						if(moList[j].equals("exit")){
 							mo.get(i).add(new Exit(Integer.parseInt(templist.get(c).getChildText("posx")),
@@ -114,8 +121,8 @@ public class MapReader {
 									templist.get(c).getChildText("image")
 							));
 						}
-						if(moList[j].equals("bomb")){
-							mo.get(i).add(new Bomb(Integer.parseInt(templist.get(c).getChildText("posx")),
+						if(moList[j].equals("animatedfloor")){
+							mo.get(i).add(new AnimatedFloor(Integer.parseInt(templist.get(c).getChildText("posx")),
 								    Integer.parseInt(templist.get(c).getChildText("posy")),
 									Boolean.parseBoolean(templist.get(c).getChildText("visible")),
 									Boolean.parseBoolean(templist.get(c).getChildText("destroyable")),
@@ -123,7 +130,18 @@ public class MapReader {
 									templist.get(c).getChildText("animationset"),
 									gr
 							));
-							System.out.println("bomb added");
+							System.out.println("animatedfloor added");
+						}
+						if(moList[j].equals("player")){
+							mo.get(i).add(new Player(Integer.parseInt(templist.get(c).getChildText("posx")),
+								    Integer.parseInt(templist.get(c).getChildText("posy")),
+									Boolean.parseBoolean(templist.get(c).getChildText("visible")),
+									Boolean.parseBoolean(templist.get(c).getChildText("destroyable")),
+									Boolean.parseBoolean(templist.get(c).getChildText("collision")),
+									templist.get(c).getChildText("animationset"),
+									gr
+							));
+							System.out.println("animatedfloor added");
 						}
 					}
 					
