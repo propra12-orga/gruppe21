@@ -717,6 +717,47 @@
 				<posx>0</posx>
 				<posy>0</posy>
 			</tile>
+			
+			<tile type="animatedfloor" animated="true">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<animationset>water1</animationset>
+				<posx>100</posx>
+				<posy>100</posy>
+			</tile>
+			<tile type="animatedfloor" animated="true">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<animationset>water1</animationset>
+				<posx>150</posx>
+				<posy>100</posy>
+			</tile>
+			<tile type="animatedfloor" animated="true">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<animationset>water1</animationset>
+				<posx>100</posx>
+				<posy>150</posy>
+			</tile>
+			<tile type="animatedfloor" animated="true">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<animationset>water1</animationset>
+				<posx>150</posx>
+				<posy>150</posy>
+			</tile>
+			<character type="player" animated="true">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<animationset>player1</animationset>
+				<posx>0</posx>
+				<posy>0</posy>
+			</character>
 		</level>
 	</mapobjects>
 </map>
