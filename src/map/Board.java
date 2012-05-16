@@ -52,19 +52,19 @@ public class Board extends JPanel{
 	int key = e.getKeyCode();
 	
 	if (key == KeyEvent.VK_UP) {
-		map.movePlayer("UP");
+		map.mapplayer.direction.UP.set(true);
 	}
 	
 	if (key == KeyEvent.VK_DOWN) {
-		map.movePlayer("DOWN");
+		map.mapplayer.direction.DOWN.set(true);
 	}
 	
 	if (key == KeyEvent.VK_LEFT) {
-		map.movePlayer("LEFT");
+		map.mapplayer.direction.LEFT.set(true);
 	}
 	
 	if (key == KeyEvent.VK_RIGHT) {
-		map.movePlayer("RIGHT");
+		map.mapplayer.direction.RIGHT.set(true);
 	}
 	}
 
@@ -72,20 +72,19 @@ public class Board extends JPanel{
 	public void keyReleased(KeyEvent e) {
 		int key = e.getKeyCode();
 		if (key == KeyEvent.VK_UP) {
-			map.stopPlayer("UP");
-			
+			map.mapplayer.direction.UP.set(false);
 		}
 		
 		if (key == KeyEvent.VK_DOWN) {
-			map.stopPlayer("DOWN");
+			map.mapplayer.direction.DOWN.set(false);
 		}
 		
 		if (key == KeyEvent.VK_LEFT) {
-			map.stopPlayer("LEFT");
+			map.mapplayer.direction.LEFT.set(false);
 		}
 		
 		if (key == KeyEvent.VK_RIGHT) {
-			map.stopPlayer("RIGHT");
+			map.mapplayer.direction.RIGHT.set(false);
 		}
 		
 	}
