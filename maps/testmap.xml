@@ -709,14 +709,15 @@
 				<posy>300</posy>
 			</tile>
 			
-			<tile type="bomb" animated="true">
+			<tile type="wall" animated="false">
 			    <visible>true</visible>
 				<collision>true</collision>
 				<destroyable>false</destroyable>
-			 	<animationset>simplebomb</animationset>
-				<posx>0</posx>
-				<posy>0</posy>
+			 	<image>wall.png</image>
+				<posx>200</posx>
+				<posy>200</posy>
 			</tile>
+			
 			
 			<tile type="animatedfloor" animated="true">
 			    <visible>true</visible>
