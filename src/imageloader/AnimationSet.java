@@ -64,8 +64,10 @@ public class AnimationSet {
         	for(int i=0; i<animationList.size();i++){
         		if(animationList.get(i).nameEquals(n)){
         			return animationList.get(i);
+        			
         		}
         	}
+        	
         	return defaultAnimation;
         }
         

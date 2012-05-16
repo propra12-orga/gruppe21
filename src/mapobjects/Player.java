@@ -21,22 +21,22 @@ public class Player extends MoveableObject{
 	public void move() {
 		if (direction.UP.is()) {
 			posY-=speed;
-			//animation.change("playerUp");
+			animation.change("playerUp");
 		}
 		
 		if (direction.DOWN.is()) {
 			posY+=speed;
-			//animation.change("playerDown");
+			animation.change("playerDown");
 		}
 		
 		if (direction.LEFT.is()) {
 			posX-=speed;
-			//animation.change("playerLeft");
+			animation.change("playerLeft");
 		}
 		
 		if (direction.RIGHT.is()) {
 			posX+=speed;
-			//animation.change("playerRight");
+			animation.change("playerRight");
 		}
 	}
 
@@ -52,8 +52,7 @@ public class Player extends MoveableObject{
 		g2d.drawImage(animation.getCurrentImage(),posX,posY,null);
 		
 		cm.setPaint(Color.green);
-		cm.fillRect(posX, posY, 50, 50);
-		
+		cm.fillRect(posX, posY, 50, 50);	
 		
 	}
 	

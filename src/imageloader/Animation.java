@@ -27,10 +27,11 @@ public class Animation {
 	
 	//sets animation
 	public void setCurrentAnimation(String an){
-		System.out.println(an);
+		System.out.println(an+" setCurr");
 		currentAnimation = animationSet.getAnimation(an);
 		animationCounter = 0;
 		isimage = false;
+		isrunning = true;
 	}
 	
 	//starts an Animation with/without delay
@@ -101,6 +102,7 @@ public class Animation {
 			}
 		}
 		if(isrunning){
+			System.out.println(animationCounter+currentAnimation.name);
 			if(currentAnimation.end(animationCounter)){
 				currentImage = currentAnimation.getFrame(animationCounter);
 				animationCounter=0;
