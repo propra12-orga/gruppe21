@@ -6,29 +6,35 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 
 public class Player extends MoveableObject{
+	private int maxbombs = 1;
+	private int lives = 1;
+	//private vector updates
+	//private boolean moveUP, moveDOWN, moveLEFT, moveRIGHT;
 	
-	private boolean moveUP, moveDOWN, moveLEFT, moveRIGHT;
-	
-	public Player(int x,int y,boolean v,boolean d,boolean c,String p){
-		super(x,y,v,d,c,p);
+	public Player(int x,int y,boolean v,boolean d,boolean c,String p,ImageLoader gr){
+		super(x,y,v,d,c,p,gr);
 	}
 	
 	@Override
 	public void move() {
-		if (moveUP) {
-			posX--;
+		if (direction.UP.is()) {
+			posY-=speed;
+			//animation.change("playerUp");
 		}
 		
-		if (moveDOWN) {
-			posX++;
+		if (direction.DOWN.is()) {
+			posY+=speed;
+			//animation.change("playerDown");
 		}
 		
-		if (moveLEFT) {
-			posY--;
+		if (direction.LEFT.is()) {
+			posX-=speed;
+			//animation.change("playerLeft");
 		}
 		
-		if (moveRIGHT) {
-			posY++;
+		if (direction.RIGHT.is()) {
+			posX+=speed;
+			//animation.change("playerRight");
 		}
 	}
 
@@ -39,54 +45,35 @@ public class Player extends MoveableObject{
 	
 	@Override
 	public void draw(Graphics2D g2d,ImageLoader gr) {	
-		g2d.drawImage(gr.getImage(imageUrl),posX,posY,null);
+		g2d.drawImage(animation.getCurrentImage(),posX,posY,null);
 	}
 	
-	public void keyPressed(KeyEvent e) {
-		int key = e.getKeyCode();
-		
-		if (key == KeyEvent.VK_UP) {
-			direction = Direction.UP;	//TODO: enum sinnvoll?
-			moveUP = true;
-		}
-		
-		if (key == KeyEvent.VK_DOWN) {
-			direction = Direction.DOWN;
-			moveDOWN = true;
-		}
-		
-		if (key == KeyEvent.VK_LEFT) {
-			direction = Direction.LEFT;
-			moveLEFT = true;
-		}
-		
-		if (key == KeyEvent.VK_RIGHT) {
-			direction = Direction.RIGHT;
-			moveRIGHT = true;
-		}
+	@Override
+	public void drawCollision(Graphics2D cm,ImageLoader gr){
 	}
 	
-	public void keyReleased(KeyEvent e) {
-		int key = e.getKeyCode();
-		
-		if (key == KeyEvent.VK_UP) {
-			direction = Direction.UP;	
-			moveUP = false;
-		}
-		
-		if (key == KeyEvent.VK_DOWN) {
-			direction = Direction.DOWN;
-			moveDOWN = false;
-		}
-		
-		if (key == KeyEvent.VK_LEFT) {
-			direction = Direction.LEFT;
-			moveLEFT = false;
-		}
-		
-		if (key == KeyEvent.VK_RIGHT) {
-			direction = Direction.RIGHT;
-			moveRIGHT = false;
-		}
-	}
+//	public void keyPressed(KeyEvent e) {
+//		int key = e.getKeyCode();
+//		
+//		if (key == KeyEvent.VK_UP) {
+//			direction = Direction.UP;	//TODO: enum sinnvoll?
+//			moveUP = true;
+//		}
+//		
+//		if (key == KeyEvent.VK_DOWN) {
+//			direction = Direction.DOWN;
+//			moveDOWN = true;
+//		}
+//		
+//		if (key == KeyEvent.VK_LEFT) {
+//			direction = Direction.LEFT;
+//			moveLEFT = true;
+//		}
+//		
+//		if (key == KeyEvent.VK_RIGHT) {
+//			direction = Direction.RIGHT;
+//			moveRIGHT = true;
+//		}
+//	}
+//
 }

@@ -17,6 +17,7 @@ public class Bomb extends MapObject{
 	public Bomb(int x,int y,boolean v,boolean d,boolean c,String p,ImageLoader gr){
 		super(x,y,v,d,c,p,gr);
 		beforeTime = System.nanoTime();
+		animation.start("simplebomb");
 		//animTickingBomb.start();
 		//currentAnim = animTickingBomb;
 	}
@@ -31,21 +32,26 @@ public class Bomb extends MapObject{
     //	g2d.drawImage(gr.getImage(imageUrl),posX,posY,null);
 	g2d.drawImage(animation.getCurrentImage(), posX, posY, null);
 	}
-
+	
+	@Override
+	public void drawCollision(Graphics2D cm,ImageLoader gr){
+	}
 	@Override
 	public void update(){
-		if (visible && !exploding) {
-			if (beforeTime + countdownTime <= System.nanoTime()) {
-				explode();
-			}
-		}
-		
-		if (visible && exploding) {
-			if (beforeTime + countdownTime + explosionTime <= System.nanoTime()) {
-		//		animExplosion.stop();
-				visible = false;
-			}
-		}
+		System.out.println("update");
+		animation.animate();
+//		if (visible && !exploding) {
+//			if (beforeTime + countdownTime <= System.nanoTime()) {
+//				explode();
+//			}
+//		}
+//		
+//		if (visible && exploding) {
+//			if (beforeTime + countdownTime + explosionTime <= System.nanoTime()) {
+//		//		animExplosion.stop();
+//				visible = false;
+//			}
+//		}
 	}
 	
 	public void explode() {

@@ -2,7 +2,9 @@ package mapobjects;
 
 import imageloader.ImageLoader;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 
 public class Exit extends MapObject{
 	private boolean activatet;
@@ -17,6 +19,24 @@ public class Exit extends MapObject{
 	}
 	@Override
 	public void update(){
+	}
+	
+	@Override
+	public void drawCollision(Graphics2D cm,ImageLoader gr){
+		BufferedImage temp = new BufferedImage(50,50,BufferedImage.TYPE_INT_ARGB);
+		Graphics2D d = temp.createGraphics();
+		
+		if(collides()){
+			d.setPaint(Color.black);
+			d.fillRect(0, 0, 50, 50);
+			d.dispose();
+			cm.drawImage(temp,posX,posY,null);
+		}else{
+			d.setColor(Color.white);
+			d.fillRect(0, 0, 50, 50);
+			d.dispose();
+			cm.drawImage(temp,posX,posY,null);
+		}
 	}
 	
 	public void show(){}

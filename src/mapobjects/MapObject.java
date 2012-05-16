@@ -44,6 +44,7 @@ public abstract class MapObject {
 	//all MapObjects have to implement
 	public abstract void update();
 	public abstract void draw(Graphics2D g2d,ImageLoader gr);
+	public abstract void drawCollision(Graphics2D g2d,ImageLoader gr);
 
 	// Getter und Setter
 	public String getImageUrl(){
