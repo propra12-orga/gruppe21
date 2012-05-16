@@ -22,7 +22,6 @@ public class GameAnimation extends GameGraphic{
 		return frames;
 	}
 	
-	//TODO bild in frames zerlegen
 	public BufferedImage getFrame(int frame){
 		return image.getSubimage(50*frame, 0, 50, 50);
 	}

@@ -130,7 +130,7 @@ public class MapReader {
 									templist.get(c).getChildText("animationset"),
 									gr
 							));
-							System.out.println("animatedfloor added");
+
 						}
 						if(moList[j].equals("player")){
 							mo.get(i).add(new Player(Integer.parseInt(templist.get(c).getChildText("posx")),
@@ -141,11 +141,8 @@ public class MapReader {
 									templist.get(c).getChildText("animationset"),
 									gr
 							));
-							System.out.println("animatedfloor added");
 						}
 					}
-					
-					//List<Element> type = tile.getChildren(moList[j]);
 				}
 			}
 			
@@ -153,7 +150,6 @@ public class MapReader {
 			// beim adden 
 		}
 	}
-
 
     // returns number of levels to be drawn
 	public int getDrawLevels() {

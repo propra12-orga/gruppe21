@@ -4,20 +4,21 @@ import imageloader.ImageLoader;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
 public class Player extends MoveableObject{
 	private int maxbombs = 1;
 	private int lives = 1;
+	private String bombtype = "standart";
 	
 	public Player(int x,int y,boolean v,boolean d,boolean c,String p,ImageLoader gr){
 		super(x,y,v,d,c,p,gr);
 	}
 	
+	//TODO UseWeapon or LayBomB,ChangeWeapon
+	
 	@Override
 	public void move(BufferedImage cm) {
-		int newX,newY;
 		if (direction.UP.is()) {
 			if(hasObjectCollision(posX,posY-speed,cm)){}
 			else{posY-=speed;}

@@ -1,8 +1,6 @@
 package imageloader;
 
-import java.awt.Image;
 import java.awt.image.BufferedImage;
-
 
 import javax.swing.ImageIcon;
 
@@ -31,5 +29,4 @@ public class GameImage extends GameGraphic{
 	public boolean nameEquals(String n) {
 		return name.equals(n);
 	}
-	
 }

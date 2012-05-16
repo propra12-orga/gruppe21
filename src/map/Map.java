@@ -1,14 +1,11 @@
 package map;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 import java.util.Vector;
 
 import mapobjects.MapObject;
 import mapobjects.Player;
-import mapobjects.Wall;
 
 import imageloader.ImageLoader;
 
@@ -36,7 +33,7 @@ public class Map {
     	
     	mr.loadGraphics(graphics);
     	mr.getMap(mapObjects,graphics);
-    	//make player
+
     	for(int i=0; i<drawLevels; i++){
     		for(int j=0; j<mapObjects.get(i).size(); j++){
     			if(mapObjects.get(i).get(j) instanceof Player){
@@ -44,13 +41,11 @@ public class Map {
     			}
     		}
     	}
-    	//make enemies
+    	//TODO make enemies
     }
     
-    public void loadNewMap(){}
-	//TODO mapreader
-	//TODO mapobjectarray mapreader.getMap
-    // Vorsicht noch nciht impl
+    //TODO public void loadNewMap(){}
+	
     public void drawMap(Graphics2D g2d){
     	collisionMap = new BufferedImage(Integer.parseInt(mapSizeX),Integer.parseInt(mapSizeY),BufferedImage.TYPE_INT_ARGB);
 		Graphics2D b = collisionMap.createGraphics();
@@ -69,7 +64,5 @@ public class Map {
     		}
     	}
 		mapplayer.move(collisionMap);
-	}
-
-	//playeraction methode	
+	}	
 }

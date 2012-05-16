@@ -1,6 +1,5 @@
 package imageloader;
 
-import java.awt.Image;
 import java.awt.image.BufferedImage;
 
 public class Animation {
@@ -8,8 +7,6 @@ public class Animation {
 	private BufferedImage currentImage;
 	private boolean isrunning = false;
 	private boolean isimage = false;
-	private boolean delayset = false;
-	private boolean newanimation = false;
 	private String aSetName;
 	private AnimationSet animationSet;
 	private int animationCounter = 0;
@@ -19,6 +16,8 @@ public class Animation {
 	private String waitingAnimation;
 	private BufferedImage waitingStopImage = null;
 	
+	//TODO Verzehrung ausführen am besten im Konstruktur oder gleich beim auslesen
+	
 	public Animation(String n,ImageLoader gr){
 		aSetName=n;	
 		animationSet = gr.getAnimationSet(n);
@@ -27,7 +26,6 @@ public class Animation {
 	
 	//sets animation
 	public void setCurrentAnimation(String an){
-		System.out.println(an+" setCurr");
 		currentAnimation = animationSet.getAnimation(an);
 		animationCounter = 0;
 		isimage = false;
@@ -98,18 +96,16 @@ public class Animation {
 		if(changedelay>=0){
 			if(startdelay==0){
 				setCurrentAnimation(waitingAnimation);
-				startdelay-=1;
-			}
+				changedelay=-1;
+			}else{changedelay-=1;}
 		}
 		if(isrunning){
-			System.out.println(animationCounter+currentAnimation.name);
 			if(currentAnimation.end(animationCounter)){
 				currentImage = currentAnimation.getFrame(animationCounter);
 				animationCounter=0;
 			}else{
 				currentImage = currentAnimation.getFrame(animationCounter);
 				animationCounter=animationCounter+1;
-				//TODO Achtung ! hier stimmt noch etwas nicht System.out.println(animationCounter);
 			}
 			
 		}
@@ -122,9 +118,6 @@ public class Animation {
 	public String getCurrentImagePath(){
 		return animationSet.getDefaultName();
 	}
-	/*public Image getDefault(){
-		return animationSet.getDefault();
-	}*/
 	
 	public boolean isRunning(){
 		return isrunning;

@@ -1,6 +1,5 @@
 package imageloader;
 
-import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.List;
@@ -24,7 +23,6 @@ public class AnimationSet {
        
         public AnimationSet(String sn,String type){
         	setName = sn;
-        	System.out.println("ani set aufger");
         	try {
     			setXML = new SAXBuilder().build(GameConstants.ANIMATION_FILES_DIR+type+"/"+sn+".xml");
     		} catch (JDOMException e) {
@@ -38,7 +36,12 @@ public class AnimationSet {
        // TODO optimieren , ist das mit den einzelbildern sinnvoll ?
         	List<Element> animations = setRoot.getChildren("animation");
         	List<Element> stills = setRoot.getChildren("still");
-        	defaultImage = new GameImage(GameConstants.ANIMATION_FILES_DIR+type+"/"+setRoot.getAttributeValue("default"),"default"); 
+        	
+        	defaultImage = new GameImage(
+        			GameConstants.ANIMATION_FILES_DIR+type+"/"+setRoot.getAttributeValue("default"),
+        			"default"
+        			); 
+        	
         	defaultAnimation = new GameAnimation(
         			"default",1,
         			GameConstants.ANIMATION_FILES_DIR+type+"/"+setRoot.getAttributeValue("default")
@@ -95,8 +98,6 @@ public class AnimationSet {
 		public String getSetName(){
 			return setName;
 		}
-       //TODO entweder Image oder Object ! 
-
 }
 
 

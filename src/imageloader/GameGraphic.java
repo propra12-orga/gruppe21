@@ -8,11 +8,11 @@ import javax.swing.ImageIcon;
 
 public class GameGraphic {
 	protected BufferedImage image;
+	
 	public GameGraphic(String p){
 		image = toBuff(p);
 	}
 
-	
 	// returns bufferd image from given imagepath
 	public BufferedImage toBuff(String p){
 		ImageIcon ii = new ImageIcon(p);
@@ -26,7 +26,4 @@ public class GameGraphic {
 		
 		return buff;
 	}
-
-	
-
 }

@@ -3,7 +3,6 @@ package mapobjects;
 import imageloader.ImageLoader;
 
 import java.awt.Color;
-import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 public abstract class MoveableObject extends MapObject {
