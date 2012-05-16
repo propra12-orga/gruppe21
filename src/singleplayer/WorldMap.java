@@ -14,8 +14,8 @@ public class WorldMap {
 
 	public WorldMap(Point[] levelCoords, String background, String player) {
 		this.levelCoords = levelCoords;
-		this.background = new GameImage(background);
-		this.player = new GameImage(player);
+		this.background = new GameImage(background,"background");
+		this.player = new GameImage(player,"player");
 		maxLevelAccessible = 0;
 		selectedLevel = 0;
 	}
