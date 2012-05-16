@@ -1,5 +1,6 @@
 package imageloader;
 
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.util.Vector;
@@ -8,11 +9,17 @@ import javax.swing.ImageIcon;
 public class ImageLoader {
 	private Vector<GameImage> imageStack = new Vector<GameImage>();
 	private Vector<AnimationSet> animationStack = new Vector<AnimationSet>();
-	private Image placeholder;
+	private BufferedImage placeholder;
 	
 	{
 	ImageIcon icon = new ImageIcon("graphics/game/placeholder.png");
-	placeholder = icon.getImage();
+	Image temp = icon.getImage();
+	BufferedImage placeholder = new BufferedImage(temp.getWidth(null),temp.getHeight(null),BufferedImage.TYPE_INT_ARGB);
+	Graphics2D b = placeholder.createGraphics();
+	
+	b.drawImage(temp,0,0,null);
+	b.dispose();
+	
 	}
 	
 	//TODO image/animation zusammenfassen
@@ -28,7 +35,7 @@ public class ImageLoader {
 			}
 		}
 		// add if not
-		if(!gameimageexists){imageStack.add(new GameImage(imagePath));}
+		if(!gameimageexists){imageStack.add(new GameImage(imagePath,nameFromPath(imagePath)));}
 	}
 											  // type für pfadspezifikation
 	public void addAnimationSet(String setName,String type){
@@ -45,7 +52,7 @@ public class ImageLoader {
 	
 //returns image if existing, else returns placeholder-image
 	
-	public Image getImage(String imagePath){
+	public BufferedImage getImage(String imagePath){
 		for(int i=0; i < imageStack.size();i++){
 			if(imageStack.get(i).pathEquals(imagePath)){
 				return imageStack.get(i).getImage();
@@ -76,6 +83,10 @@ public class ImageLoader {
 		
 	}
 
-
+	public String nameFromPath(String n){
+		return n.split("/")[n.split("/").length-1];
+	}
 
 }
+
+

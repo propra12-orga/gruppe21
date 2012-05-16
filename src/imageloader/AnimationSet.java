@@ -1,6 +1,7 @@
 package imageloader;
 
 import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.List;
 import java.util.Vector;
@@ -17,6 +18,7 @@ public class AnimationSet {
 		private Element setRoot;
 	    private String setName;
         public GameImage defaultImage;
+        public GameAnimation defaultAnimation;
         private Vector<GameAnimation> animationList = new Vector<GameAnimation>();
         private Vector<GameImage> imageList = new Vector<GameImage>(); 
        
@@ -36,10 +38,13 @@ public class AnimationSet {
        // TODO optimieren , ist das mit den einzelbildern sinnvoll ?
         	List<Element> animations = setRoot.getChildren("animation");
         	List<Element> stills = setRoot.getChildren("still");
-        	defaultImage = new GameImage(GameConstants.ANIMATION_FILES_DIR+type+"/"+setRoot.getAttributeValue("default")); 
+        	defaultImage = new GameImage(GameConstants.ANIMATION_FILES_DIR+type+"/"+setRoot.getAttributeValue("default"),"default"); 
+        	defaultAnimation = new GameAnimation(
+        			"default",1,
+        			GameConstants.ANIMATION_FILES_DIR+type+"/"+setRoot.getAttributeValue("default")
+        			); 
         	
         	for(int i=0; i<animations.size(); i++){
-        		System.out.println("funzt");
         		animationList.add(new GameAnimation(
         				animations.get(i).getAttributeValue("name"),
         				Integer.parseInt(animations.get(i).getAttributeValue("frames")),
@@ -49,21 +54,31 @@ public class AnimationSet {
         	
         	for(int i=0; i<stills.size(); i++){
         		imageList.add(new GameImage(
-        				GameConstants.ANIMATION_FILES_DIR+type+"/"+stills.get(i).getText()
+        				GameConstants.ANIMATION_FILES_DIR+type+"/"+stills.get(i).getText(),
+        				GameConstants.ANIMATION_FILES_DIR+type+"/"+stills.get(i).getAttributeValue("name")
         				)); 
         	}
         }
         
-        public GameGraphic getAnimation(String n){
+        public GameAnimation getAnimation(String n){
         	for(int i=0; i<animationList.size();i++){
         		if(animationList.get(i).nameEquals(n)){
         			return animationList.get(i);
         		}
         	}
-        	return defaultImage;
+        	return defaultAnimation;
         }
-
-		public Image getDefault() {
+        
+        public BufferedImage getImage(String n){
+        	for(int i=0; i<imageList.size();i++){
+        		if(imageList.get(i).nameEquals(n)){
+        			return imageList.get(i).getImage();
+        		}
+        	}
+        	return defaultImage.getImage();
+        }
+        
+		public BufferedImage getDefault() {
 			return defaultImage.getImage();
 		}
 		

@@ -10,13 +10,12 @@ import javax.swing.ImageIcon;
 public class GameAnimation extends GameGraphic{
 	String name;
 	int frames;
-	Image image;
+	
 	
 	public GameAnimation(String n,int f,String p){
+		super(p);
 		name = n;
 		frames = f;
-		ImageIcon ii = new ImageIcon(p);
-        image = ii.getImage();
 	}
 	
 	public int getFrames(){
@@ -24,11 +23,19 @@ public class GameAnimation extends GameGraphic{
 	}
 	
 	//TODO bild in frames zerlegen
-	public Image getImage(int frame){
+	public BufferedImage getFrame(int frame){
+		return image.getSubimage(50*frame, 0, 50, 50);
+	}
+	
+	public BufferedImage getImage(){
 		return image;
 	}
 	
 	public boolean nameEquals(String n){
 		return name.equals(n);
+	}
+
+	public boolean end(int ac) {
+		return ac>=frames-1;
 	}
 }

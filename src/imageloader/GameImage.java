@@ -8,15 +8,15 @@ import javax.swing.ImageIcon;
 
 public class GameImage extends GameGraphic{
 	private String path;
-	private Image image;
+	String name;
 	
-	public GameImage(String p){
+	public GameImage(String p,String n){
+		super(p);
 		path = p;
-		ImageIcon ii = new ImageIcon(p);
-        image = ii.getImage();
+		name = n;
 	}
 	
-	public Image getImage(){
+	public BufferedImage getImage(){
 		return image;
 	}
 
@@ -26,6 +26,10 @@ public class GameImage extends GameGraphic{
 
 	public String getPath() {
 		return path;
+	}
+
+	public boolean nameEquals(String n) {
+		return name.equals(n);
 	}
 	
 }
