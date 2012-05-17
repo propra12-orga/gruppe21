@@ -66,6 +66,9 @@ public class Board extends JPanel{
 	if (key == KeyEvent.VK_RIGHT) {
 		map.mapplayer.direction.RIGHT.set(true);
 	}
+	
+	if (key == KeyEvent.VK_SPACE)
+		map.layBomb();
 	}
 
 	

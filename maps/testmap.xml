@@ -761,4 +761,8 @@
 			</character>
 		</level>
 	</mapobjects>
+	
+	<items>
+		<animationset>simplebomb</animationset>
+	</items>
 </map>

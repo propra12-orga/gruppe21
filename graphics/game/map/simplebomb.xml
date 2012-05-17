@@ -1,3 +1,0 @@
-<animationset default="bomb.png">
-<animation frames="4" name="simplebomb">bombpuls.png</animation>
-</animationset>

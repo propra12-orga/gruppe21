@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.Vector;
 
+import mapobjects.Bomb;
 import mapobjects.MapObject;
 import mapobjects.Player;
 
@@ -64,5 +65,19 @@ public class Map {
     		}
     	}
 		mapplayer.move(collisionMap);
-	}	
+	}
+	
+	public void layBomb(){
+		if(!mapplayer.reachedMaxBombs()){
+			mapObjects.get(1).add(new Bomb(
+					mapplayer.getPosX(),
+					mapplayer.getPosY(),
+					true,
+					false,
+					false,
+					"simplebomb",
+					graphics));
+			mapplayer.addBomb();
+		}
+	}
 }

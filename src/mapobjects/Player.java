@@ -7,7 +7,8 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 public class Player extends MoveableObject{
-	private int maxbombs = 1;
+	private int maxbombs = 3;
+	private int actualbombs = 0;
 	private int lives = 1;
 	private String bombtype = "standart";
 	
@@ -55,5 +56,13 @@ public class Player extends MoveableObject{
 		
 		cm.setPaint(Color.green);
 		cm.fillRect(posX, posY, 50, 50);	
+	}
+	
+	public boolean reachedMaxBombs(){
+		return(actualbombs+1>maxbombs);
+	}
+
+	public void addBomb() {
+		actualbombs++;
 	}
 }

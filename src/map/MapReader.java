@@ -49,8 +49,7 @@ public class MapReader {
 	public void loadGraphics(ImageLoader il){
 		List<Element> levels = mapRoot.getChild("mapobjects").getChildren("level");
 		
-		//TODO animation
-		for(int i=0; i<levels.size(); i++){
+	    for(int i=0; i<levels.size(); i++){
 			List<Element> tile = levels.get(i).getChildren("tile");
 			for(int j=0; j<tile.size(); j++){
 				if(Boolean.parseBoolean(tile.get(j).getAttributeValue("animated"))){
@@ -67,8 +66,11 @@ public class MapReader {
 			}
 		}
 		
-		//TODO animationtile eventuell animated true/false in xml einfüg
-		//TODO Movingobjects
+		List<Element> items = mapRoot.getChild("items").getChildren("animationset");
+			for(int i=0; i<items.size(); i++){
+				il.addAnimationSet(items.get(i).getText(), "items");
+			}
+		
 		graphicisloaded = true;
 	}
 	
