@@ -16,6 +16,7 @@ public abstract class MoveableObject extends MapObject {
 	public abstract void move(BufferedImage cm);
 	
 	public boolean hasObjectCollision(int x, int y,BufferedImage cm){
+		if(x<0 || y<0 || x>cm.getWidth() || y>cm.getHeight()){return true;}
 		BufferedImage collTest = cm.getSubimage(x, y, 50, 50);
 		for(int i=0; i<collTest.getWidth(); i++){
 			for(int j=0; j<collTest.getHeight(); j++){
