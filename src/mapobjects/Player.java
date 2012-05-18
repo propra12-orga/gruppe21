@@ -21,25 +21,25 @@ public class Player extends MoveableObject{
 	@Override
 	public void move(BufferedImage cm) {
 		if (direction.UP.is()) {
-			if(hasObjectCollision(posX,posY-speed,cm)){}
+			if(hasObjectCollision(posX,posY-speed,cm,"UP")){}
 			else{posY-=speed;}
 			animation.change("playerUp");
 		}
 		
 		if (direction.DOWN.is()) {
-			if(hasObjectCollision(posX,posY+speed,cm)){}
+			if(hasObjectCollision(posX,posY+speed,cm,"DOWN")){}
 			else{posY+=speed;}
 			animation.change("playerDown");
 		}
 		
 		if (direction.LEFT.is()) {
-			if(hasObjectCollision(posX-speed,posY,cm)){}
+			if(hasObjectCollision(posX-speed,posY,cm,"LEFT")){}
 			else{posX-=speed;}
 			animation.change("playerLeft");
 		}
 		
 		if (direction.RIGHT.is()) {
-			if(hasObjectCollision(posX+speed,posY,cm)){}
+			if(hasObjectCollision(posX+speed,posY,cm,"RIGHT")){}
 			else{posX+=speed;}
 			animation.change("playerRight");
 		}

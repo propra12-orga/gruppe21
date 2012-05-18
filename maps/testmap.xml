@@ -718,6 +718,25 @@
 				<posy>200</posy>
 			</tile>
 			
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image>wall.png</image>
+				<posx>300</posx>
+				<posy>300</posy>
+			</tile>
+			
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image>wall.png</image>
+				<posx>300</posx>
+				<posy>200</posy>
+			</tile>
+			
+			
 			
 			<tile type="animatedfloor" animated="true">
 			    <visible>true</visible>
