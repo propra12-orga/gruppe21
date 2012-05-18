@@ -36,12 +36,46 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 		if (key == KeyEvent.VK_ESCAPE) {
 			getNavigator().set(UnitState.BASE_MENU_UNIT);
 		}
+		if (key == KeyEvent.VK_UP) {
+			currentMap.mapplayer.direction.UP.set(true);
+		}
+		
+		if (key == KeyEvent.VK_DOWN) {
+			currentMap.mapplayer.direction.DOWN.set(true);
+		}
+		
+		if (key == KeyEvent.VK_LEFT) {
+			currentMap.mapplayer.direction.LEFT.set(true);
+		}
+		
+		if (key == KeyEvent.VK_RIGHT) {
+			currentMap.mapplayer.direction.RIGHT.set(true);
+		}
+		
+		if (key == KeyEvent.VK_SPACE) {
+			currentMap.layBomb();
+		}
 		// TODO Auto-generated method stub		
 	}
 
 	@Override
 	public void handleKeyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
+		int key = e.getKeyCode();
+		if (key == KeyEvent.VK_UP) {
+			currentMap.mapplayer.direction.UP.set(false);
+		}
+		
+		if (key == KeyEvent.VK_DOWN) {
+			currentMap.mapplayer.direction.DOWN.set(false);
+		}
+		
+		if (key == KeyEvent.VK_LEFT) {
+			currentMap.mapplayer.direction.LEFT.set(false);
+		}
+		
+		if (key == KeyEvent.VK_RIGHT) {
+			currentMap.mapplayer.direction.RIGHT.set(false);
+		}
 		
 	}
 
@@ -56,6 +90,7 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 
 	@Override
 	public void updateComponent() {
+		currentMap.update();
 		//updateEnemies;
 		//updatePlayer;
 		//updateBombs;		
