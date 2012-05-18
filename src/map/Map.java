@@ -48,14 +48,15 @@ public class Map {
     //TODO public void loadNewMap(){}
 	
     public void drawMap(Graphics2D g2d){
-    	collisionMap = new BufferedImage(Integer.parseInt(mapSizeX),Integer.parseInt(mapSizeY),BufferedImage.TYPE_INT_ARGB);
-		Graphics2D b = collisionMap.createGraphics();
+    	BufferedImage collisionMaptemp = new BufferedImage(Integer.parseInt(mapSizeX),Integer.parseInt(mapSizeY),BufferedImage.TYPE_INT_ARGB);
+		Graphics2D b = collisionMaptemp.createGraphics();
     	for(int i=0; i<drawLevels; i++){
     		for(int j=0; j<mapObjects.get(i).size(); j++){
     			mapObjects.get(i).get(j).draw(g2d,graphics,b);
     		}
     	}
     	b.dispose();
+    	collisionMap = collisionMaptemp;
     }
 
 	public void update() {
