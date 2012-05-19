@@ -65,4 +65,8 @@ public class Player extends MoveableObject{
 	public void addBomb() {
 		actualbombs++;
 	}
+	
+	public void removeBomb() {
+		actualbombs--;
+	}
 }
