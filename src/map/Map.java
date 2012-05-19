@@ -11,14 +11,14 @@ import mapobjects.Player;
 import imageloader.ImageLoader;
 
 public class Map {
-	public ImageLoader graphics = new ImageLoader();
-	public Vector<Vector<MapObject>> mapObjects = new Vector<Vector<MapObject>>();
+	private ImageLoader graphics = new ImageLoader();
+	private Vector<Vector<MapObject>> mapObjects = new Vector<Vector<MapObject>>();
 
 	private String mapName;
     private String mapSizeX;
     private String mapSizeY;
     private int drawLevels;
-    public Player mapplayer;
+    private Player mapplayer;
    
     BufferedImage collisionMap;
     MapReader mr;
@@ -85,5 +85,9 @@ public class Map {
 					graphics));
 			mapplayer.addBomb();
 		}
+	}
+	
+	public Player getMapPlayer() {
+		return mapplayer;
 	}
 }
