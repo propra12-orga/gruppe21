@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import map.Map;
+import mapobjects.Player;
 import singleplayer.Campaign;
 import singleplayer.WorldMapUnit;
 
@@ -17,7 +18,7 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 //	private Campaign campaign;
 	private Map currentMap;
 //	private WorldMapUnit worldMapUnit;
-	//private Player player;
+	private Player player;
 	
 	public LevelManagerUnit() {
 		initComponent();
@@ -37,19 +38,19 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 			getNavigator().set(UnitState.BASE_MENU_UNIT);
 		}
 		if (key == KeyEvent.VK_UP) {
-			currentMap.mapplayer.direction.UP.set(true);
+			player.direction.UP.set(true);
 		}
 		
 		if (key == KeyEvent.VK_DOWN) {
-			currentMap.mapplayer.direction.DOWN.set(true);
+			player.direction.DOWN.set(true);
 		}
 		
 		if (key == KeyEvent.VK_LEFT) {
-			currentMap.mapplayer.direction.LEFT.set(true);
+			player.direction.LEFT.set(true);
 		}
 		
 		if (key == KeyEvent.VK_RIGHT) {
-			currentMap.mapplayer.direction.RIGHT.set(true);
+			player.direction.RIGHT.set(true);
 		}
 		
 		if (key == KeyEvent.VK_SPACE) {
@@ -62,19 +63,19 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 	public void handleKeyReleased(KeyEvent e) {
 		int key = e.getKeyCode();
 		if (key == KeyEvent.VK_UP) {
-			currentMap.mapplayer.direction.UP.set(false);
+			player.direction.UP.set(false);
 		}
 		
 		if (key == KeyEvent.VK_DOWN) {
-			currentMap.mapplayer.direction.DOWN.set(false);
+			player.direction.DOWN.set(false);
 		}
 		
 		if (key == KeyEvent.VK_LEFT) {
-			currentMap.mapplayer.direction.LEFT.set(false);
+			player.direction.LEFT.set(false);
 		}
 		
 		if (key == KeyEvent.VK_RIGHT) {
-			currentMap.mapplayer.direction.RIGHT.set(false);
+			player.direction.RIGHT.set(false);
 		}
 		
 	}
@@ -86,6 +87,7 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 		//currentMap = campaign.getCurrentMap();	
 		//worldMapUnit = new WorldMapUnit(campaign.getWorldMap());
 		currentMap = new Map("testmap");
+		player = currentMap.getMapPlayer();
 	}
 
 	@Override

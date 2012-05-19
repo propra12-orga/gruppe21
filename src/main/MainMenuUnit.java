@@ -65,8 +65,8 @@ public class MainMenuUnit extends GraphicalGameUnit {
 		g.drawImage(multiplayerInactive, startXPos, button2YPos, null);
 		g.drawImage(quitInactive, startXPos, button3YPos, null);
 		g.drawImage(ccontinueInactive, startXPos, button4YPos, null);
-		// g.drawImage(select, (int) selectorGhost.getX() - buttonSpace,
-		// (int) selectorGhost.getY(), null);
+		 g.drawImage(select, (int) selectorGhost.getX() - buttonSpace,
+		 (int) selectorGhost.getY(), null);
 		g.drawImage(selector, (int) selectorGhost.getX() - buttonSpace,
 				(int) selectorGhost.getY(), null);
 		/*
@@ -137,7 +137,6 @@ public class MainMenuUnit extends GraphicalGameUnit {
 			selector = ImageIO.read(new File(GameConstants.MENU_IMAGES_DIR
 					+ "/SelectorPlaceholder.png"));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
