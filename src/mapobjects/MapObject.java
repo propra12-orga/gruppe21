@@ -16,6 +16,7 @@ public abstract class MapObject {
 	protected int posY;
 	protected boolean visible;
 	protected boolean destroyable;
+	protected boolean destroyed = false;
 	protected boolean collision;
 	protected String imageUrl;
 	protected Animation animation;
@@ -74,6 +75,14 @@ public abstract class MapObject {
 		destroyable = b;
 	}
 	
+	public boolean isDestroyed() {
+		return destroyed;
+	}
+
+	public void setDestroyed(boolean destroyed) {
+		this.destroyed = destroyed;
+	}
+
 	public boolean isVisible(){
 		return visible;
 	}

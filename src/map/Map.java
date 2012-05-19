@@ -52,12 +52,9 @@ public class Map {
 		Graphics2D b = collisionMaptemp.createGraphics();
     	for(int i=0; i<drawLevels; i++){
     		for(int j=0; j<mapObjects.get(i).size(); j++){
-    			if (mapObjects.get(i).get(j).isVisible()) {		//non visible objects (e.g. exploded bombs) will be removed from the list
+    			if (mapObjects.get(i).get(j).isVisible()) {		
     				mapObjects.get(i).get(j).draw(g2d,graphics,b);
-    			}	else {
-    					mapObjects.get(i).remove(j);
-    					mapplayer.removeBomb();
-    			}
+    			}	
     		}
     	}
     	b.dispose();
@@ -67,7 +64,14 @@ public class Map {
 	public void update() {
 		for(int i=0; i<drawLevels; i++){
     		for(int j=0; j<mapObjects.get(i).size(); j++){
-    			mapObjects.get(i).get(j).update();
+    			if (mapObjects.get(i).get(j).isDestroyed()) {		//destroyed mapObjects will be removed from the list
+    				if (mapObjects.get(i).get(j) instanceof Bomb) {
+    					mapplayer.removeBomb();
+    				}
+    				mapObjects.get(i).remove(j);
+    			}	else {
+    					mapObjects.get(i).get(j).update();
+    				}
     		}
     	}
 		mapplayer.move(collisionMap);

@@ -58,6 +58,7 @@ public class Bomb extends MapObject{
 			if (beforeTime + countdownTime + explosionTime <= System.nanoTime()) {
 				animation.stop();
 				visible = false;
+				destroyed = true;
 			}
 		}
 	}
