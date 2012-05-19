@@ -4,6 +4,7 @@ import imageloader.Animation;
 import imageloader.ImageLoader;
 
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 
 import main.GameConstants;
 
@@ -14,6 +15,8 @@ import main.GameConstants;
 public abstract class MapObject {
 	protected int posX;
 	protected int posY;
+	protected int rotation = 0;
+	
 	protected boolean visible;
 	protected boolean destroyable;
 	protected boolean destroyed = false;
@@ -21,9 +24,11 @@ public abstract class MapObject {
 	protected String imageUrl;
 	protected Animation animation;
 	
-	public MapObject(int x,int y,boolean v,boolean d,boolean c,String img){
+	
+	public MapObject(int x,int y,int r,boolean v,boolean d,boolean c,String img){
 		posX=x;
 		posY=y;
+		rotation=r;
 		visible=v;
 		destroyable=d;
 		collision=c;
@@ -97,5 +102,25 @@ public abstract class MapObject {
 	
 	public void setCollision(boolean b){
 		collision = b;
+	}
+	
+	public BufferedImage rotate(BufferedImage original,int degc){
+		if(degc!=0){
+			BufferedImage rotated = new BufferedImage(50,50,BufferedImage.TYPE_INT_ARGB);
+		for(int i=0;i<original.getWidth();i++){
+			for(int j=0;j<original.getHeight();j++){
+				int cx = (int)(i*Math.cos(Math.toRadians(degc*90))-j*Math.sin(Math.toRadians(degc*90)));
+				int cy = (int)(i*Math.sin(Math.toRadians(degc*90))+j*Math.cos(Math.toRadians(degc*90)));
+				if(cx<1){cx+=49;}
+				if(cy<1){cy+=49;}
+				rotated.setRGB(
+						cx,
+						cy,
+						original.getRGB(i, j));
+			}
+			
+		}
+		return rotated;
+		}else return original;
 	}
 }

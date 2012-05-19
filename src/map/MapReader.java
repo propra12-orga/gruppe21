@@ -99,6 +99,7 @@ public class MapReader {
 						if(moList[j].equals("wall")){
 							mo.get(i).add(new Wall(Integer.parseInt(templist.get(c).getChildText("posx")),
 								    Integer.parseInt(templist.get(c).getChildText("posy")),
+								    Integer.parseInt(templist.get(c).getChild("image").getAttributeValue("rotation")),
 									Boolean.parseBoolean(templist.get(c).getChildText("visible")),
 									Boolean.parseBoolean(templist.get(c).getChildText("destroyable")),
 									Boolean.parseBoolean(templist.get(c).getChildText("collision")),
@@ -108,7 +109,8 @@ public class MapReader {
 						if(moList[j].equals("floor")){
 							mo.get(i).add(new Floor(Integer.parseInt(templist.get(c).getChildText("posx")),
 								    Integer.parseInt(templist.get(c).getChildText("posy")),
-									Boolean.parseBoolean(templist.get(c).getChildText("visible")),
+								    Integer.parseInt(templist.get(c).getChild("image").getAttributeValue("rotation")),
+								    Boolean.parseBoolean(templist.get(c).getChildText("visible")),
 									Boolean.parseBoolean(templist.get(c).getChildText("destroyable")),
 									Boolean.parseBoolean(templist.get(c).getChildText("collision")),
 									templist.get(c).getChildText("image")
@@ -117,7 +119,8 @@ public class MapReader {
 						if(moList[j].equals("exit")){
 							mo.get(i).add(new Exit(Integer.parseInt(templist.get(c).getChildText("posx")),
 								    Integer.parseInt(templist.get(c).getChildText("posy")),
-									Boolean.parseBoolean(templist.get(c).getChildText("visible")),
+								    Integer.parseInt(templist.get(c).getChild("image").getAttributeValue("rotation")),
+								    Boolean.parseBoolean(templist.get(c).getChildText("visible")),
 									Boolean.parseBoolean(templist.get(c).getChildText("destroyable")),
 									Boolean.parseBoolean(templist.get(c).getChildText("collision")),
 									templist.get(c).getChildText("image")

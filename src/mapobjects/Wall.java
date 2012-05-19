@@ -8,8 +8,8 @@ import java.awt.Graphics2D;
 public class Wall extends MapObject{
 	private boolean hiddenObject;
 	
-	public Wall(int x,int y,boolean v,boolean d,boolean c,String p){
-		super(x,y,v,d,c,p);
+	public Wall(int x,int y,int r,boolean v,boolean d,boolean c,String p){
+		super(x,y,r,v,d,c,p);
 	}
 	
 	@Override

@@ -29,4 +29,5 @@ public class GameImage extends GameGraphic{
 	public boolean nameEquals(String n) {
 		return name.equals(n);
 	}
+
 }

@@ -11,7 +11,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>0</posx>
 				<posy>0</posy>
 			</tile>
@@ -19,7 +19,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="1">floor.png</image>
 				<posx>0</posx>
 				<posy>50</posy>
 			</tile>
@@ -27,7 +27,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="2">floor.png</image>
 				<posx>0</posx>
 				<posy>100</posy>
 			</tile>
@@ -35,7 +35,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="3">floor.png</image>
 				<posx>0</posx>
 				<posy>150</posy>
 			</tile>
@@ -43,7 +43,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>0</posx>
 				<posy>200</posy>
 			</tile>
@@ -51,7 +51,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>0</posx>
 				<posy>250</posy>
 			</tile>
@@ -59,7 +59,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>0</posx>
 				<posy>300</posy>
 			</tile>
@@ -67,7 +67,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>0</posx>
 				<posy>350</posy>
 			</tile>
@@ -75,7 +75,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>0</posx>
 				<posy>400</posy>
 			</tile>
@@ -83,7 +83,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>0</posx>
 				<posy>450</posy>
 			</tile>
@@ -91,7 +91,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>0</posx>
 				<posy>500</posy>
 			</tile>
@@ -99,7 +99,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>0</posx>
 				<posy>550</posy>
 			</tile>
@@ -107,7 +107,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>0</posx>
 				<posy>600</posy>
 			</tile>
@@ -115,7 +115,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>0</posx>
 				<posy>650</posy>
 			</tile>
@@ -123,7 +123,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>0</posx>
 				<posy>700</posy>
 			</tile>
@@ -131,7 +131,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>0</posx>
 				<posy>750</posy>
 			</tile>
@@ -139,7 +139,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>50</posx>
 				<posy>0</posy>
 			</tile>
@@ -147,7 +147,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>50</posx>
 				<posy>50</posy>
 			</tile>
@@ -155,7 +155,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>50</posx>
 				<posy>100</posy>
 			</tile>
@@ -163,7 +163,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>50</posx>
 				<posy>150</posy>
 			</tile>
@@ -171,7 +171,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>50</posx>
 				<posy>200</posy>
 			</tile>
@@ -179,7 +179,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>50</posx>
 				<posy>250</posy>
 			</tile>
@@ -187,7 +187,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>50</posx>
 				<posy>300</posy>
 			</tile>
@@ -195,7 +195,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>50</posx>
 				<posy>350</posy>
 			</tile>
@@ -203,7 +203,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>50</posx>
 				<posy>400</posy>
 			</tile>
@@ -211,7 +211,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>50</posx>
 				<posy>450</posy>
 			</tile>
@@ -219,7 +219,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>50</posx>
 				<posy>500</posy>
 			</tile>
@@ -227,7 +227,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>50</posx>
 				<posy>550</posy>
 			</tile>
@@ -235,7 +235,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>50</posx>
 				<posy>600</posy>
 			</tile>
@@ -243,7 +243,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>50</posx>
 				<posy>650</posy>
 			</tile>
@@ -251,7 +251,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>50</posx>
 				<posy>700</posy>
 			</tile>
@@ -259,7 +259,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>100</posx>
 				<posy>0</posy>
 			</tile>
@@ -267,7 +267,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floorempty.png</image>
+				<image rotation="0">floorempty.png</image>
 				<posx>100</posx>
 				<posy>50</posy>
 			</tile>
@@ -275,7 +275,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>100</posx>
 				<posy>100</posy>
 			</tile>
@@ -283,7 +283,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>100</posx>
 				<posy>150</posy>
 			</tile>
@@ -291,7 +291,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>100</posx>
 				<posy>200</posy>
 			</tile>
@@ -299,7 +299,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>100</posx>
 				<posy>250</posy>
 			</tile>
@@ -307,7 +307,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>100</posx>
 				<posy>300</posy>
 			</tile>
@@ -315,7 +315,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>100</posx>
 				<posy>350</posy>
 			</tile>
@@ -323,7 +323,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>100</posx>
 				<posy>400</posy>
 			</tile>
@@ -331,7 +331,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>100</posx>
 				<posy>450</posy>
 			</tile>
@@ -339,7 +339,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>100</posx>
 				<posy>500</posy>
 			</tile>
@@ -347,7 +347,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>100</posx>
 				<posy>550</posy>
 			</tile>
@@ -355,7 +355,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>100</posx>
 				<posy>600</posy>
 			</tile>
@@ -363,7 +363,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>100</posx>
 				<posy>650</posy>
 			</tile>
@@ -371,7 +371,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>100</posx>
 				<posy>700</posy>
 			</tile>
@@ -379,7 +379,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>150</posx>
 				<posy>0</posy>
 			</tile>
@@ -387,7 +387,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>150</posx>
 				<posy>50</posy>
 			</tile>
@@ -395,7 +395,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>150</posx>
 				<posy>100</posy>
 			</tile>
@@ -403,7 +403,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>150</posx>
 				<posy>150</posy>
 			</tile>
@@ -411,7 +411,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>150</posx>
 				<posy>200</posy>
 			</tile>
@@ -419,7 +419,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>150</posx>
 				<posy>250</posy>
 			</tile>
@@ -427,7 +427,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>150</posx>
 				<posy>300</posy>
 			</tile>
@@ -435,7 +435,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>150</posx>
 				<posy>350</posy>
 			</tile>
@@ -443,7 +443,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>200</posx>
 				<posy>0</posy>
 			</tile>
@@ -451,7 +451,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>200</posx>
 				<posy>50</posy>
 			</tile>
@@ -459,7 +459,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>200</posx>
 				<posy>100</posy>
 			</tile>
@@ -467,7 +467,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>200</posx>
 				<posy>150</posy>
 			</tile>
@@ -475,7 +475,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>200</posx>
 				<posy>200</posy>
 			</tile>
@@ -483,7 +483,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>200</posx>
 				<posy>250</posy>
 			</tile>
@@ -491,7 +491,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>200</posx>
 				<posy>300</posy>
 			</tile>
@@ -499,7 +499,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>200</posx>
 				<posy>350</posy>
 			</tile>
@@ -507,7 +507,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>250</posx>
 				<posy>0</posy>
 			</tile>
@@ -515,7 +515,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>250</posx>
 				<posy>50</posy>
 			</tile>
@@ -523,7 +523,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>250</posx>
 				<posy>100</posy>
 			</tile>
@@ -531,7 +531,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>250</posx>
 				<posy>150</posy>
 			</tile>
@@ -539,7 +539,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>250</posx>
 				<posy>200</posy>
 			</tile>
@@ -547,7 +547,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>250</posx>
 				<posy>250</posy>
 			</tile>
@@ -555,7 +555,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>250</posx>
 				<posy>300</posy>
 			</tile>
@@ -563,7 +563,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>250</posx>
 				<posy>350</posy>
 			</tile>
@@ -571,7 +571,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>300</posx>
 				<posy>0</posy>
 			</tile>
@@ -579,7 +579,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>300</posx>
 				<posy>50</posy>
 			</tile>
@@ -587,7 +587,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>300</posx>
 				<posy>100</posy>
 			</tile>
@@ -595,7 +595,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>300</posx>
 				<posy>150</posy>
 			</tile>
@@ -603,7 +603,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>300</posx>
 				<posy>200</posy>
 			</tile>
@@ -611,7 +611,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>300</posx>
 				<posy>250</posy>
 			</tile>
@@ -619,7 +619,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>300</posx>
 				<posy>300</posy>
 			</tile>
@@ -627,7 +627,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>300</posx>
 				<posy>350</posy>
 			</tile>
@@ -635,7 +635,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>350</posx>
 				<posy>0</posy>
 			</tile>
@@ -643,7 +643,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>350</posx>
 				<posy>50</posy>
 			</tile>
@@ -651,7 +651,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>350</posx>
 				<posy>100</posy>
 			</tile>
@@ -659,7 +659,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="1">floor.png</image>
 				<posx>350</posx>
 				<posy>150</posy>
 			</tile>
@@ -667,7 +667,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="1">floor.png</image>
 				<posx>350</posx>
 				<posy>200</posy>
 			</tile>
@@ -675,7 +675,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>350</posx>
 				<posy>250</posy>
 			</tile>
@@ -683,7 +683,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>350</posx>
 				<posy>300</posy>
 			</tile>
@@ -692,7 +692,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image>floor.png</image>
+				<image rotation="0">floor.png</image>
 				<posx>350</posx>
 				<posy>350</posy>
 			</tile>
@@ -704,7 +704,7 @@
 			    <visible>true</visible>
 				<collision>true</collision>
 				<destroyable>false</destroyable>
-			 	<image>wall.png</image>
+			 	<image rotation="0">wall.png</image>
 				<posx>200</posx>
 				<posy>300</posy>
 			</tile>
@@ -713,7 +713,7 @@
 			    <visible>true</visible>
 				<collision>true</collision>
 				<destroyable>false</destroyable>
-			 	<image>wall.png</image>
+			 	<image rotation="0">wall.png</image>
 				<posx>200</posx>
 				<posy>200</posy>
 			</tile>
@@ -722,7 +722,7 @@
 			    <visible>true</visible>
 				<collision>true</collision>
 				<destroyable>false</destroyable>
-			 	<image>wall.png</image>
+			 	<image rotation="0">wall.png</image>
 				<posx>300</posx>
 				<posy>300</posy>
 			</tile>
@@ -731,7 +731,7 @@
 			    <visible>true</visible>
 				<collision>true</collision>
 				<destroyable>false</destroyable>
-			 	<image>wall.png</image>
+			 	<image rotation="0">wall.png</image>
 				<posx>300</posx>
 				<posy>200</posy>
 			</tile>

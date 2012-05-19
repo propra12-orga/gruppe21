@@ -46,6 +46,7 @@ public class Animation {
 	//stops an animation with/without delay and/or specific picture
 	public void stop(){
 		isrunning=false;
+		currentImage= new BufferedImage(50,50,BufferedImage.TYPE_INT_ARGB);
 	}
 	
 	public void stop(String stillName){
@@ -56,6 +57,7 @@ public class Animation {
 	
 	public void stop(int delay){
 		stopdelay = delay;
+		currentImage= new BufferedImage(50,50,BufferedImage.TYPE_INT_ARGB);
 	}
 	
 	public void stop(int delay,String stillName){

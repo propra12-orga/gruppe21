@@ -7,13 +7,13 @@ import java.awt.Graphics2D;
 
 public class Floor extends MapObject{
 	
-	public Floor(int x,int y,boolean v,boolean d,boolean c,String p){
-		super(x,y,v,d,c,p);
+	public Floor(int x,int y,int r,boolean v,boolean d,boolean c,String p){
+		super(x,y,r,v,d,c,p);
 	}
 	
 	@Override
 	public void draw(Graphics2D g2d,ImageLoader gr,Graphics2D cm){	
-		g2d.drawImage(gr.getImage(imageUrl),posX,posY,null);
+		g2d.drawImage(rotate(gr.getImage(imageUrl),rotation),posX,posY,null);
 		
 		if(collides()){
 			cm.setPaint(Color.black);

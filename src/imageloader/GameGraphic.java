@@ -26,4 +26,5 @@ public class GameGraphic {
 		
 		return buff;
 	}
+	
 }
