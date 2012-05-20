@@ -19,35 +19,50 @@ public class Player extends MoveableObject{
 	//TODO UseWeapon or LayBomB,ChangeWeapon
 	
 	@Override
-	public void move(BufferedImage cm) {
+	public void move() {
 		if (direction.UP.is()) {
-			if(hasObjectCollision(posX,posY-speed,cm,"UP")){}
+			if(hasObjectCollision(posX,posY-speed,map.getCollisionMap(),"UP")){}
 			else{posY-=speed;}
 			animation.change("playerUp");
 		}
 		
 		if (direction.DOWN.is()) {
-			if(hasObjectCollision(posX,posY+speed,cm,"DOWN")){}
+			if(hasObjectCollision(posX,posY+speed,map.getCollisionMap(),"DOWN")){}
 			else{posY+=speed;}
 			animation.change("playerDown");
 		}
 		
 		if (direction.LEFT.is()) {
-			if(hasObjectCollision(posX-speed,posY,cm,"LEFT")){}
+			if(hasObjectCollision(posX-speed,posY,map.getCollisionMap(),"LEFT")){}
 			else{posX-=speed;}
 			animation.change("playerLeft");
 		}
 		
 		if (direction.RIGHT.is()) {
-			if(hasObjectCollision(posX+speed,posY,cm,"RIGHT")){}
+			if(hasObjectCollision(posX+speed,posY,map.getCollisionMap(),"RIGHT")){}
 			else{posX+=speed;}
 			animation.change("playerRight");
+		}
+	}
+	
+	public void layBomb(){
+		if(!reachedMaxBombs()){
+			map.getMapObjects().get(1).add(new Bomb(
+					getPosX(),
+					getPosY(),
+					true,
+					false,
+					false,
+					"simplebomb",
+					map.getGraphics()));
+			addBomb();
 		}
 	}
 
 	@Override
 	public void update() {
 		animation.animate();
+		move();
 	}
 	
 	@Override

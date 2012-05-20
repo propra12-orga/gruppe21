@@ -14,7 +14,7 @@ public class Enemy  extends MoveableObject{
 	}
 	
 	@Override
-	public void move(BufferedImage cm){
+	public void move(){
 		// also move hidden Object
 	}
     

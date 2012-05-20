@@ -7,6 +7,7 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 import main.GameConstants;
+import map.Map;
 
 /*
   abstract class for all MapObjects     	
@@ -24,6 +25,8 @@ public abstract class MapObject {
 	protected String imageUrl;
 	protected Animation animation;
 	
+	
+	protected Map map;
 	
 	public MapObject(int x,int y,int r,boolean v,boolean d,boolean c,String img){
 		posX=x;
@@ -103,7 +106,15 @@ public abstract class MapObject {
 	public void setCollision(boolean b){
 		collision = b;
 	}
-	
+		
+	public Map getMap() {
+		return map;
+	}
+
+	public void setMap(Map map) {
+		this.map = map;
+	}
+
 	public BufferedImage rotate(BufferedImage original,int degc){
 		if(degc!=0){
 			BufferedImage rotated = new BufferedImage(50,50,BufferedImage.TYPE_INT_ARGB);

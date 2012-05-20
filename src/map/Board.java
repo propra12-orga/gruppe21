@@ -68,7 +68,7 @@ public class Board extends JPanel{
 	}
 	
 	if (key == KeyEvent.VK_SPACE)
-		map.layBomb();
+		map.getMapPlayer().layBomb();
 	}
 
 	

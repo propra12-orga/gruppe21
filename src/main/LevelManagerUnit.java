@@ -54,7 +54,7 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 		}
 		
 		if (key == KeyEvent.VK_SPACE) {
-			currentMap.layBomb();
+			player.layBomb();
 		}
 		// TODO Auto-generated method stub		
 	}
