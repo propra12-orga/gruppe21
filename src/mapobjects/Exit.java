@@ -6,7 +6,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 
 public class Exit extends MapObject{
-	private boolean activated;
+	private boolean activated = true;
 	
 	public Exit(int x,int y,int r,boolean v,boolean d,boolean c,String p){
 		super(x,y,r,v,d,c,p);
