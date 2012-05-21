@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
+
 import map.Map;
 import mapobjects.Player;
 import singleplayer.Campaign;
@@ -20,15 +22,23 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 //	private WorldMapUnit worldMapUnit;
 	private Player player;
 	
+	BufferedImage mapCanvas;
+	
 	public LevelManagerUnit() {
 		initComponent();
 	}
 	
 	@Override
 	public void drawComponent(Graphics g) {	
-		g.setColor(Color.white);
+		g.setColor(Color.black);
 		g.fillRect(0, 0, GameConstants.FRAME_SIZE_X, GameConstants.FRAME_SIZE_Y);
-		currentMap.drawMap((Graphics2D) g);
+		
+		/** centering map (temporary workaround) **/
+		mapCanvas = new BufferedImage(800, 650, BufferedImage.TYPE_INT_ARGB);
+		Graphics gMap = mapCanvas.getGraphics();
+		currentMap.drawMap((Graphics2D) gMap);
+		g.drawImage(mapCanvas, 0, 0, GameConstants.FRAME_SIZE_X, GameConstants.FRAME_SIZE_Y, null);
+		/*****************************************/
 	}
 
 	@Override
