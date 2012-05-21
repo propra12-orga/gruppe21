@@ -10,7 +10,7 @@ import java.awt.image.BufferedImage;
 public class Bomb extends MapObject{
 
 	private int radius = 1;
-
+	Animation armanimation;
 	/*countdown (4s), explosiontime (1s) in nanosecs*/
 	private long countdownTime = 4000000000L, explosionTime = 1000000000,
 					beforeTime;
@@ -22,6 +22,8 @@ public class Bomb extends MapObject{
 		posY = (y+25)/50*50;
 		beforeTime = System.nanoTime();
 		animation.start("simplebomb");
+		armanimation = new Animation("simplebomb",gr);
+		armanimation.start("up");
 	}
 
 	/*radius changes conditioned by upgrades*/
@@ -39,17 +41,57 @@ public class Bomb extends MapObject{
 			cm.setPaint(Color.white);
 			cm.fillRect(posX, posY, 50, 50);
 		}
+		
+	if(exploding){
+			g2d.drawImage(armanimation.getCurrentImage(), posX, posY-50, null);
+			if(collides()){
+				cm.setPaint(Color.black);
+				cm.fillRect(posX, posY-50, 50, 50);
+			}else{
+				cm.setPaint(Color.white);
+				cm.fillRect(posX, posY-50, 50, 50);
+			}
+			
+			g2d.drawImage(rotate(armanimation.getCurrentImage(),1), posX+50, posY, null);
+			if(collides()){
+				cm.setPaint(Color.black);
+				cm.fillRect(posX+50, posY, 50, 50);
+			}else{
+				cm.setPaint(Color.white);
+				cm.fillRect(posX+50, posY, 50, 50);
+			}
+			
+			g2d.drawImage(rotate(armanimation.getCurrentImage(),2), posX, posY+50, null);
+			if(collides()){
+				cm.setPaint(Color.black);
+				cm.fillRect(posX, posY+50, 50, 50);
+			}else{
+				cm.setPaint(Color.white);
+				cm.fillRect(posX, posY+50, 50, 50);
+			}
+			
+			g2d.drawImage(rotate(armanimation.getCurrentImage(),3), posX-50, posY, null);
+			if(collides()){
+				cm.setPaint(Color.black);
+				cm.fillRect(posX-50, posY, 50, 50);
+			}else{
+				cm.setPaint(Color.white);
+				cm.fillRect(posX-50, posY+50, 50, 50);
+			}
+		}
 	}
+	
 
 	@Override
 	public void update(){
 		if (visible && !exploding) {
 			animation.animate();
+			armanimation.animate();
 			if (beforeTime + countdownTime <= System.nanoTime()) {
 				animation.stop();
-				animation.change("explosion");
+				animation.change("center");
 				exploding = true;
-				animation.start("explosion");
+				animation.start("center");
 			}
 		}
 		

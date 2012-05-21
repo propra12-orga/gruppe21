@@ -117,12 +117,9 @@ public class Animation {
 					stretchcounter++;
 					}
 					else{animationCounter=animationCounter+1;
-					stretchcounter=0;}
-					
+					stretchcounter=0;}		
 				}
 			}
-			
-		
 	}
 	
 	public BufferedImage getCurrentImage(){
