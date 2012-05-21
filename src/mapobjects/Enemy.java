@@ -36,4 +36,10 @@ public class Enemy  extends MoveableObject{
 	public void addHiddenObject(){}
 	
 	public void die(){}
+
+	@Override
+	public boolean hasObjectCollision(int x, int y, BufferedImage cm, String dir) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

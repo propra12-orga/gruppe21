@@ -6,7 +6,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 
 public class Exit extends MapObject{
-	private boolean activatet;
+	private boolean activated;
 	
 	public Exit(int x,int y,int r,boolean v,boolean d,boolean c,String p){
 		super(x,y,r,v,d,c,p);
@@ -16,7 +16,11 @@ public class Exit extends MapObject{
 	public void draw(Graphics2D g2d,ImageLoader gr,Graphics2D cm){	
 		g2d.drawImage(gr.getImage(imageUrl),posX,posY,null);
 		if(collides()){
-			cm.setPaint(Color.black);
+			if (activated) {
+				cm.setPaint(Color.yellow);
+			} else {
+				cm.setPaint(Color.black);
+			}
 			cm.fillRect(posX, posY, 50, 50);
 		}else{
 			cm.setPaint(Color.white);
