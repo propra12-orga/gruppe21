@@ -87,6 +87,10 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 		//worldMapUnit = new WorldMapUnit(campaign.getWorldMap());
 		currentMap = new Map("testmap");
 		player = currentMap.getMapPlayer();
+		player.direction.UP.set(false);
+		player.direction.DOWN.set(false);
+		player.direction.LEFT.set(false);
+		player.direction.RIGHT.set(false);
 	}
 
 	@Override
