@@ -15,6 +15,8 @@ public class Animation {
 	private int changedelay = -1;
 	private String waitingAnimation;
 	private BufferedImage waitingStopImage = null;
+	private int stretch = 1;
+	private int stretchcounter = 0;
 	
 	//TODO Verzehrung ausführen am besten im Konstruktur oder gleich beim auslesen
 	
@@ -28,6 +30,8 @@ public class Animation {
 	public void setCurrentAnimation(String an){
 		currentAnimation = animationSet.getAnimation(an);
 		animationCounter = 0;
+		stretchcounter = 0;
+		stretch = currentAnimation.getStretch();
 		isimage = false;
 		isrunning = true;
 	}
@@ -104,13 +108,21 @@ public class Animation {
 		if(isrunning){
 			if(currentAnimation.end(animationCounter)){
 				currentImage = currentAnimation.getFrame(animationCounter);
-				animationCounter=0;
+				if(stretchcounter<stretch){stretchcounter++;}
+				else{stretchcounter=0;animationCounter=0;}
+				
 			}else{
 				currentImage = currentAnimation.getFrame(animationCounter);
-				animationCounter=animationCounter+1;
+				if(stretchcounter<stretch){
+					stretchcounter++;
+					}
+					else{animationCounter=animationCounter+1;
+					stretchcounter=0;}
+					
+				}
 			}
 			
-		}
+		
 	}
 	
 	public BufferedImage getCurrentImage(){

@@ -1,6 +1,6 @@
 <animationset default="playerdefault.png">
-<animation frames="1" name="playerUp">playerUp.png</animation>
-<animation frames="1" name="playerDown">playerDown.png</animation>
-<animation frames="1" name="playerLeft">playerLeft.png</animation>
-<animation frames="1" name="playerRight">playerRight.png</animation>
+<animation frames="1" stretch="1" name="playerUp">playerUp.png</animation>
+<animation frames="1" stretch="1" name="playerDown">playerDown.png</animation>
+<animation frames="1" stretch="1" name="playerLeft">playerLeft.png</animation>
+<animation frames="1" stretch="1" name="playerRight">playerRight.png</animation>
 </animationset>

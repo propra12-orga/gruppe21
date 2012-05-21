@@ -44,14 +44,16 @@ public class AnimationSet {
         	
         	defaultAnimation = new GameAnimation(
         			"default",1,
-        			GameConstants.ANIMATION_FILES_DIR+type+"/"+setRoot.getAttributeValue("default")
+        			GameConstants.ANIMATION_FILES_DIR+type+"/"+setRoot.getAttributeValue("default"),
+        			1
         			); 
         	
         	for(int i=0; i<animations.size(); i++){
         		animationList.add(new GameAnimation(
         				animations.get(i).getAttributeValue("name"),
         				Integer.parseInt(animations.get(i).getAttributeValue("frames")),
-        				GameConstants.ANIMATION_FILES_DIR+type+"/"+animations.get(i).getText()                            
+        				GameConstants.ANIMATION_FILES_DIR+type+"/"+animations.get(i).getText() ,
+        				Integer.parseInt(animations.get(i).getAttributeValue("stretch"))
         				));
         	}
         	

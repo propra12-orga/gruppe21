@@ -10,12 +10,13 @@ import javax.swing.ImageIcon;
 public class GameAnimation extends GameGraphic{
 	String name;
 	int frames;
+	private int stretch = 1;
 	
-	
-	public GameAnimation(String n,int f,String p){
+	public GameAnimation(String n,int f,String p,int st){
 		super(p);
 		name = n;
 		frames = f;
+		stretch = st;
 	}
 	
 	public int getFrames(){
@@ -36,5 +37,9 @@ public class GameAnimation extends GameGraphic{
 
 	public boolean end(int ac) {
 		return ac>=frames-1;
+	}
+
+	public int getStretch() {
+		return stretch;
 	}
 }
