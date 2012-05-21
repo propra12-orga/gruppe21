@@ -43,7 +43,7 @@
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image rotation="0">floor.png</image>
+				<image rotation="4">floor.png</image>
 				<posx>0</posx>
 				<posy>200</posy>
 			</tile>
