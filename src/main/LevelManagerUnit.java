@@ -56,7 +56,6 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 		if (key == KeyEvent.VK_SPACE) {
 			player.layBomb();
 		}
-		// TODO Auto-generated method stub		
 	}
 
 	@Override
@@ -92,10 +91,12 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 
 	@Override
 	public void updateComponent() {
-		currentMap.update();
-		//updateEnemies;
-		//updatePlayer;
-		//updateBombs;		
+		if (!currentMap.isFinished()) {
+			currentMap.update();
+		} else {
+			getNavigator().set(UnitState.BASE_MENU_UNIT);
+			getNavigator().removeGameUnit(UnitState.LEVEL_MANAGER_UNIT);
+		}	
 	}
 
 }

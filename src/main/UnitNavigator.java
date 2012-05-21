@@ -53,4 +53,8 @@ public class UnitNavigator {
 		mainPanel.stop();
 	}
 	
+	public void removeGameUnit(UnitState state) {
+		gameUnits[state.getValue()] = null;
+	}
+	
 }

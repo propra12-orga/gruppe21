@@ -709,11 +709,11 @@
 				<posy>300</posy>
 			</tile>
 			
-			<tile type="wall" animated="false">
+			<tile type="exit" animated="false">
 			    <visible>true</visible>
 				<collision>true</collision>
 				<destroyable>false</destroyable>
-			 	<image rotation="0">wall.png</image>
+			 	<image rotation="0">exit.png</image>
 				<posx>200</posx>
 				<posy>200</posy>
 			</tile>
