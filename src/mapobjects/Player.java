@@ -61,7 +61,7 @@ public class Player extends MoveableObject{
 
 	@Override
 	public boolean hasObjectCollision(int x, int y,BufferedImage cm,String dir){
-		if(x<0 || y<0 || x>cm.getWidth() || y>cm.getHeight()){return true;}
+		if(x<0 || y<0 || x>cm.getWidth() || y>cm.getHeight()){return true;}		
 		int t=20;
 		int cornercounter = 0;
 		boolean collision = false;
