@@ -15,8 +15,8 @@ public class Map {
 	private Vector<Vector<MapObject>> mapObjects = new Vector<Vector<MapObject>>();
 
 	private String mapName;
-	private String mapSizeX;
-	private String mapSizeY;
+	private int mapSizeX;
+	private int mapSizeY;
 	private int drawLevels;
 	private Player mapplayer;
 
@@ -30,8 +30,8 @@ public class Map {
 
 		//read Mapheader
 		mapName = mr.getHeader("mapname");
-		mapSizeX = mr.getHeader("sizex");
-		mapSizeY = mr.getHeader("sizey");
+		mapSizeX = Integer.parseInt(mr.getHeader("sizex"));
+		mapSizeY = Integer.parseInt(mr.getHeader("sizey"));
 		drawLevels = mr.getDrawLevels();
 
 		mr.loadGraphics(graphics);
@@ -51,7 +51,7 @@ public class Map {
 	//TODO public void loadNewMap(){}
 
 	public void drawMap(Graphics2D g2d){
-		BufferedImage collisionMaptemp = new BufferedImage(Integer.parseInt(mapSizeX),Integer.parseInt(mapSizeY),BufferedImage.TYPE_INT_ARGB);
+		BufferedImage collisionMaptemp = new BufferedImage(mapSizeX,mapSizeY,BufferedImage.TYPE_INT_ARGB);
 		Graphics2D b = collisionMaptemp.createGraphics();
 		for(int i=0; i<drawLevels; i++){
 			for(int j=0; j<mapObjects.get(i).size(); j++){

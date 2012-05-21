@@ -61,7 +61,7 @@ public class Player extends MoveableObject{
 
 	@Override
 	public boolean hasObjectCollision(int x, int y,BufferedImage cm,String dir){
-		if(x<0 || y<0 || x>cm.getWidth() || y>cm.getHeight()){return true;}		
+		if(x<0 || y<0 || x>cm.getWidth()-50 || y>cm.getHeight()-50){return true;}		
 		int t=20;
 		int cornercounter = 0;
 		boolean collision = false;
@@ -86,70 +86,92 @@ public class Player extends MoveableObject{
 					if(upleft ^ upright ^ downleft ^ downright){
 						if(upleft){
 							if(dir.equals("UP")){
-								System.out.println("corner upleft");
-								this.posX+=1;
-								System.out.println(posX);
-								return true;
+								if(simpleHasColl(posX+1,posY,cm)){return true;}
+								else{
+									this.posX+=1;
+									return true;
+								}
 							}
 
 							if(dir.equals("LEFT")){
-								System.out.println("corner upleft");
-								this.posY+=1;
-								System.out.println(posY);
-								return true;
+								if(simpleHasColl(posX,posY+1,cm)){return true;}
+								else{
+									this.posY+=1;
+									return true;
+								}
 							}
 						}
 
 						if(upright){
 							if(dir.equals("UP")){
-								System.out.println("corner upright");
-								this.posX-=1;
-								System.out.println(posX);
-								return true;
+								if(simpleHasColl(posX-1,posY,cm)){return true;}
+								else{
+									this.posX-=1;
+									return true;
+								}
+								
 							}
 
 							if(dir.equals("RIGHT")){
-								System.out.println("corner upright");
-								this.posY+=1;
-								System.out.println(posY);
-								return true;
+								if(simpleHasColl(posX,posY+1,cm)){return true;}
+								else{
+									this.posY+=1;
+									return true;
+								}
 							}
 						}
 
 						if(downleft){
 							if(dir.equals("DOWN")){
-								System.out.println("corner downleft");
-								this.posX+=1;
-								System.out.println(posX);
-								return true;
+								if(simpleHasColl(posX+1,posY,cm)){return true;}
+								else{
+									this.posX+=1;
+									return true;
+								}
 							}
 
 							if(dir.equals("LEFT")){
-								System.out.println("corner downleft");
-								this.posY-=1;
-								System.out.println(posY);
-								return true;
+								if(simpleHasColl(posX,posY-1,cm)){return true;}
+								else{
+									this.posY-=1;
+									return true;
+								}
 							}
 						}
 
 						if(downright){
 							if(dir.equals("DOWN")){
-								System.out.println("corner downright");
-								this.posX-=1;
-								System.out.println(posX);
-								return true;
+								if(simpleHasColl(posX-1,posY,cm)){return true;}
+								else{
+									this.posX-=1;
+									return true;
+								}
 							}
 
 							if(dir.equals("RIGHT")){
-								System.out.println("corner downright");
-								this.posY-=1;
-								System.out.println(posY);
-								return true;
+								if(simpleHasColl(posX,posY-1,cm)){return true;}
+								else{
+									this.posY-=1;
+									return true;
+								}
+								
 							}
 						}
 					}
 				}
 
+			}
+		}
+		return false;
+	}
+	
+	public boolean simpleHasColl(int x, int y,BufferedImage cm){
+		if(x<0 || y<0 || x>cm.getWidth()-50 || y>cm.getHeight()-50){return true;}		
+		BufferedImage collTest = cm.getSubimage(x, y, 50, 50);
+		for(int i=0; i<collTest.getWidth(); i++){
+			for(int j=0; j<collTest.getHeight(); j++){
+				Color test = new Color(collTest.getRGB(i, j));
+				if (test.equals(Color.black)){return true;}
 			}
 		}
 		return false;

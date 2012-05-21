@@ -1,5 +1,5 @@
 <animationset default="bomb.png">
-<animation frames="4" stretch="1" name="simplebomb">bombpuls.png</animation>
+<animation frames="4" stretch="15" name="simplebomb">bombpuls.png</animation>
 <animation frames="1" stretch="1" name="explosion">explosion.png</animation>
 <animation frames="1" stretch="1" name="center">explosion_center.png</animation>
 <animation frames="1" stretch="1" name="up">explosion_end_up.png</animation>
