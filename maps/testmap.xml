@@ -2445,8 +2445,8 @@
 				<collision>true</collision>
 				<destroyable>false</destroyable>
 			 	<animationset>player1</animationset>
-				<posx>50</posx>
-				<posy>400</posy>
+				<posx>600</posx>
+				<posy>450</posy>
 			</character>
 		</level>
 	</mapobjects>

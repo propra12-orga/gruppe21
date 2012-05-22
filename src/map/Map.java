@@ -116,4 +116,12 @@ public class Map {
 	public Player getMapPlayer() {
 		return mapplayer;
 	}
+
+	public int getWidth() {
+		return this.mapSizeX;
+	}
+	
+	public int getHeight() {
+		return this.mapSizeY;
+	}
 }
