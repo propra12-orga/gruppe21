@@ -2620,6 +2620,14 @@
 			
 		</level>
 		<level>
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">hut.png</image>
+				<posx>350</posx>
+				<posy>400</posy>
+			</tile>
 				<tile type="wall" animated="false">
 			    <visible>true</visible>
 				<collision>true</collision>
@@ -2627,6 +2635,171 @@
 			 	<image rotation="0">boat.png</image>
 				<posx>400</posx>
 				<posy>450</posy>
+			</tile>
+			
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">pirateflag.png</image>
+				<posx>400</posx>
+				<posy>350</posy>
+			</tile>
+			
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">bones.png</image>
+				<posx>350</posx>
+				<posy>250</posy>
+			</tile>
+
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">palmtree.png</image>
+				<posx>350</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">palmtree.png</image>
+				<posx>300</posx>
+				<posy>400</posy>
+			</tile>
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">palmtree.png</image>
+				<posx>300</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">palmtree.png</image>
+				<posx>250</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">palmtree.png</image>
+				<posx>250</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">palmtree.png</image>
+				<posx>200</posx>
+				<posy>400</posy>
+			</tile>
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">palmtree.png</image>
+				<posx>450</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">palmtree.png</image>
+				<posx>300</posx>
+				<posy>350</posy>
+			</tile>
+			
+			
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">palmtree.png</image>
+				<posx>400</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">palmtree.png</image>
+				<posx>500</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">palmtree.png</image>
+				<posx>550</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">palmtree.png</image>
+				<posx>600</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">palmtree.png</image>
+				<posx>650</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">palmtree.png</image>
+				<posx>250</posx>
+				<posy>400</posy>
+			</tile>
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">palmtree.png</image>
+				<posx>300</posx>
+				<posy>450</posy>
+			</tile>
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">palmtree.png</image>
+				<posx>650</posx>
+				<posy>400</posy>
+			</tile>
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">palmtree.png</image>
+				<posx>300</posx>
+				<posy>200</posy>
+			</tile>
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">palmtree.png</image>
+				<posx>350</posx>
+				<posy>200</posy>
 			</tile>
 			<character type="player" animated="true">
 			    <visible>true</visible>
