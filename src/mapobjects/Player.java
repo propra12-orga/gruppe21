@@ -12,7 +12,9 @@ public class Player extends MoveableObject{
 	private int bombradius = 2;
 	private int lives = 1;
 	private String bombtype = "standart";
-
+    private boolean dontdraw = false;
+	public BufferedImage collMap;
+    
 	public Player(int x,int y,boolean v,boolean d,boolean c,String p,ImageLoader gr){
 		super(x,y,v,d,c,p,gr);
 	}
@@ -77,13 +79,16 @@ public class Player extends MoveableObject{
 			for(int j=0; j<collTest.getHeight(); j++){
 				Color test = new Color(collTest.getRGB(i, j));
 				if (test.equals(Color.yellow)) {
-					map.finishMap();
+					map.finishMap(true);
+				}
+				else if(test.equals(Color.orange)){
+					map.finishMap(false);
 				}
 				else if(test.equals(Color.black) || test.equals(Color.gray)){
 					if(i<t && j<t){upleft = true;}
 					else if(i>50-t && j<t){upright = true;}
 					else if(i<t && j>50-t){downleft = true;}
-					else if(i>50-t && j>50-t){downright = true;System.out.println("downright true");}
+					else if(i>50-t && j>50-t){downright = true;}
 					else{return true;}
 				}
 			}
@@ -192,9 +197,10 @@ public class Player extends MoveableObject{
 	@Override
 	public void draw(Graphics2D g2d,ImageLoader gr,Graphics2D cm) {	
 		g2d.drawImage(animation.getCurrentImage(),posX,posY,null);
-
-		cm.setPaint(Color.green);
-		cm.fillRect(posX, posY, 50, 50);	
+			cm.setPaint(Color.green);
+		    cm.fillRect(posX, posY, 50, 50);
+	
+		
 	}
 
 	public boolean reachedMaxBombs(){

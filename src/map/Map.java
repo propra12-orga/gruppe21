@@ -20,8 +20,9 @@ public class Map {
 	private int mapSizeY;
 	private int drawLevels;
 	private Player mapplayer;
-
-	private boolean mapFinished = false;
+	
+	private boolean playerDead = false;
+    private boolean mapFinished = false;
 
 	BufferedImage collisionMap; 
 	MapReader mr;
@@ -52,6 +53,7 @@ public class Map {
 		gtemp.setPaint(Color.white);
 	    gtemp.fillRect(mapSizeX, mapSizeY, 50, 50);
 	    gtemp.dispose();
+	    mapplayer.collMap = collisionMap;
 		//TODO make enemies
 	}
 
@@ -69,6 +71,7 @@ public class Map {
 		}
 		b.dispose();
 		collisionMap = collisionMaptemp;
+
 	}
 
 	public void update() {
@@ -115,9 +118,14 @@ public class Map {
 	public boolean isFinished() {
 		return mapFinished;
 	}
+	
+	public boolean playerSucced(){
+		return !playerDead;
+	}
 
-	public void finishMap() {
+	public void finishMap(boolean dead) {
 		mapFinished = true;
+		playerDead = dead;
 	}
 
 	public Player getMapPlayer() {
