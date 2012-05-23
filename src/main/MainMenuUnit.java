@@ -21,7 +21,7 @@ public class MainMenuUnit extends GraphicalGameUnit {
 			GameConstants.MENU_IMAGES_DIR + "/SinglePlayerActive.png")
 			.getImage();
 	private Image multiplayerActive = new ImageIcon(
-			GameConstants.MENU_IMAGES_DIR + "/MultiplayerActive.png")
+			GameConstants.MENU_IMAGES_DIR + "/MultiPlayerActive.png")
 			.getImage();
 	private Image quitActive = new ImageIcon(GameConstants.MENU_IMAGES_DIR
 			+ "/QuitActive.png").getImage();
