@@ -75,7 +75,7 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 			}
 	
 			if (key == KeyEvent.VK_SPACE) {
-				player.layBomb();
+				player.layBomb(currentMap.getCollisionMap());
 			}
 		}
 	}

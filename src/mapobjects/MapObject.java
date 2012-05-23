@@ -3,6 +3,7 @@ package mapobjects;
 import imageloader.Animation;
 import imageloader.ImageLoader;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
@@ -51,7 +52,7 @@ public abstract class MapObject {
 	
 
 	//all MapObjects have to implement
-	public abstract void update();
+	public abstract void update(BufferedImage cm);
 	public abstract void draw(Graphics2D g2d,ImageLoader gr,Graphics2D b);
 
 	// Getter und Setter
@@ -114,7 +115,34 @@ public abstract class MapObject {
 	public void setMap(Map map) {
 		this.map = map;
 	}
-
+    
+	public boolean simpleHasColl(int x, int y,BufferedImage cm,Color c){
+		if(x<0 || y<0 || x>cm.getWidth()-50 || y>cm.getHeight()-50){return true;}		
+		BufferedImage collTest = cm.getSubimage(x, y, 50, 50);
+		for(int i=0; i<collTest.getWidth(); i++){
+			for(int j=0; j<collTest.getHeight(); j++){
+				Color test = new Color(collTest.getRGB(i, j));
+				if (test.equals(c)){return true;}
+			}
+		}
+		return false;
+	}
+	
+	// eventuell nicht notwendig für mehrere farben
+//	public boolean simpleHasColl(int x, int y,BufferedImage cm,Color ca[]){
+//		if(x<0 || y<0 || x>cm.getWidth()-50 || y>cm.getHeight()-50){return true;}		
+//		BufferedImage collTest = cm.getSubimage(x, y, 50, 50);
+//		for(int i=0; i<collTest.getWidth(); i++){
+//			for(int j=0; j<collTest.getHeight(); j++){
+//				Color test = new Color(collTest.getRGB(i, j));
+//				for(int c = 0;c<ca.length;c++){
+//					if (test.equals(ca[c])){return true;}
+//				}
+//			}
+//		}
+//		return false;
+//	}
+	
 	public BufferedImage rotate(BufferedImage original,int degc){
 		if(degc!=0){
 			BufferedImage rotated = new BufferedImage(50,50,BufferedImage.TYPE_INT_ARGB);

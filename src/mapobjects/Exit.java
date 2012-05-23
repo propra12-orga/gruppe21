@@ -4,6 +4,7 @@ import imageloader.ImageLoader;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 
 public class Exit extends MapObject{
 	private boolean activated = true;
@@ -28,7 +29,7 @@ public class Exit extends MapObject{
 		}
 	}
 	@Override
-	public void update(){
+	public void update(BufferedImage cm){
 	}
 	
 	public void show(){}

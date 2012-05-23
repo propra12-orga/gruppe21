@@ -29,7 +29,7 @@ public class Enemy  extends MoveableObject{
 
 
 	@Override
-	public void update(){
+	public void update(BufferedImage cm){
 	}
 	
 	// hidden object released on die

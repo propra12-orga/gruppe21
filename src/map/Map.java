@@ -1,5 +1,6 @@
 package map;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.Vector;
@@ -22,7 +23,7 @@ public class Map {
 
 	private boolean mapFinished = false;
 
-	BufferedImage collisionMap;
+	BufferedImage collisionMap; 
 	MapReader mr;
 
 	public Map(String mn){
@@ -45,6 +46,12 @@ public class Map {
 				}
 			}
 		}
+		
+		collisionMap = new BufferedImage(mapSizeX,mapSizeY,BufferedImage.TYPE_INT_ARGB);
+		Graphics2D gtemp = collisionMap.createGraphics();
+		gtemp.setPaint(Color.white);
+	    gtemp.fillRect(mapSizeX, mapSizeY, 50, 50);
+	    gtemp.dispose();
 		//TODO make enemies
 	}
 
@@ -73,7 +80,7 @@ public class Map {
 					}
 					mapObjects.get(i).remove(j);
 				} else {
-					mapObjects.get(i).get(j).update();
+					mapObjects.get(i).get(j).update(collisionMap);
 				}
 			}
 		}

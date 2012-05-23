@@ -4,6 +4,7 @@ import imageloader.ImageLoader;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 
 public class AnimatedFloor extends MapObject{
 	public AnimatedFloor(int x,int y,boolean v,boolean d,boolean c,String p,ImageLoader gr){
@@ -24,7 +25,7 @@ public class AnimatedFloor extends MapObject{
 	}
 
 	@Override
-	public void update(){
+	public void update(BufferedImage cm){
 		animation.animate();
 	}
 }
