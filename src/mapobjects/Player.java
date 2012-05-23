@@ -83,7 +83,7 @@ public class Player extends MoveableObject{
 					if(i<t && j<t){upleft = true;}
 					else if(i>50-t && j<t){upright = true;}
 					else if(i<t && j>50-t){downleft = true;}
-					else if(i>50-t && j>50-t){downright = true;System.out.println("downright true");}
+					else if(i>50-t && j>50-t){downright = true;}
 					else{return true;}
 				}
 			}

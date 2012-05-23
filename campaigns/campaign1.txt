@@ -11,5 +11,5 @@
 #	<x>,<y>
 
 seq.0:long
-seq.0:testmap
-wm:4,4;4,5;3,5;2,4-testmap
+seq.1:testmap
+wm:11,10;10,8-campaign1worldmap

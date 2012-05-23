@@ -45,8 +45,7 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 			g.setColor(Color.black);
 			g.fillRect(0, 0, GameConstants.FRAME_SIZE_X, GameConstants.FRAME_SIZE_Y);
 			mapCanvas = new BufferedImage(currentMap.getWidth(), currentMap.getHeight(), BufferedImage.TYPE_INT_ARGB);
-			Graphics gMap = mapCanvas.getGraphics();
-			currentMap.drawMap((Graphics2D) gMap);
+			currentMap.drawMap((Graphics2D) mapCanvas.getGraphics());
 			g.drawImage(mapCanvas, this.mapOffsetX, this.mapOffsetY, currentMap.getWidth(), currentMap.getHeight(), null);
 		}
 	}
@@ -106,7 +105,8 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 	public void initComponent() {		
 		try {
 			campaign = Campaign.readCampaignFromFile("campaign1.txt");
-			worldMapUnit = new WorldMapUnit(campaign.getWorldMap());
+			worldMapUnit = new WorldMapUnit(campaign.getWorldMap());			
+			
 		} catch (FileNotFoundException e) {
 			System.err.println("Error loading Campaign: Campaign not found!");
 			e.printStackTrace();
@@ -138,10 +138,10 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 						terminateLevelManager();
 					} else {
 						// level completed, show world map
-//						unitRunning = false;
-//						getNavigator().addGameUnit(worldMapUnit, UnitState.TEMPORARY_UNIT);
-//						getNavigator().set(UnitState.TEMPORARY_UNIT);
-						terminateLevelManager();
+						unitRunning = false;
+						worldMapUnit.setNavigator(getNavigator());
+						getNavigator().addGameUnit(worldMapUnit, UnitState.TEMPORARY_UNIT);
+						getNavigator().set(UnitState.TEMPORARY_UNIT);
 					}				
 				}
 			}	

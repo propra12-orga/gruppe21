@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 import main.GameConstants;
 import map.Map;
@@ -164,10 +165,6 @@ public class Campaign {
 	
 	public static void main(String[] args) throws IOException {
 		Campaign campaign = Campaign.readCampaignFromFile("campaign1.txt");
-		for (MapSequence sq : campaign.levels) {
-			for (int i = 0 ; i < sq.getSize(); i++) {
-				System.out.println(campaign.levels.indexOf(sq)+" "+sq.getMap(i));				
-			}
-		}
+		System.out.println(Arrays.toString(campaign.getWorldMap().getLevelCoords()));
 	}
 }
