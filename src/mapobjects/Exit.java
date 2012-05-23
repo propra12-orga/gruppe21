@@ -6,6 +6,8 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
+import main.GameConstants;
+
 public class Exit extends MapObject{
 	private boolean activated = true;
 	
@@ -22,7 +24,8 @@ public class Exit extends MapObject{
 			} else {
 				cm.setPaint(Color.black);
 			}
-			cm.fillRect(posX, posY, 50, 50);
+			cm.fillRect(posX + GameConstants.TILE_SIZE / 3, posY + GameConstants.TILE_SIZE / 3, 
+					GameConstants.TILE_SIZE / 3, GameConstants.TILE_SIZE / 3);
 		}else{
 			cm.setPaint(Color.white);
 			cm.fillRect(posX, posY, 50, 50);
