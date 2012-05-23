@@ -17,31 +17,29 @@ import singleplayer.WorldMapUnit;
  */
 public class LevelManagerUnit extends GraphicalGameUnit {
 
-//	private Campaign campaign;
+	private Campaign campaign;
 	private Map currentMap;
-	/*
-	 * Erster Test für zentralisierte Map
-	 */
-	 // OffsetVariablen für die zu Zeichnende Map
+	private WorldMapUnit worldMapUnit;
+	private Player player;
+
+	// OffsetVariablen für die zu Zeichnende Map
 	private int mapOffsetX=0;
 	private int mapOffsetY=0;
-	//Booleans wenn map kleiner als berreich bei initalisierung auf true
+	//Booleans wenn map kleiner als bereich bei initalisierung auf true
 	private boolean mapXSmaller = false;
 	private boolean mapYSmaller = false;
-//	private WorldMapUnit worldMapUnit;
-	private Player player;
-	
 	BufferedImage mapCanvas;
-	
+
+
 	public LevelManagerUnit() {
 		initComponent();
 	}
-	
+
 	@Override
 	public void drawComponent(Graphics g) {	
 		g.setColor(Color.black);
 		g.fillRect(0, 0, GameConstants.FRAME_SIZE_X, GameConstants.FRAME_SIZE_Y);
-		
+
 		/** centering map (EIKS temporary workaround) **/
 		mapCanvas = new BufferedImage(currentMap.getWidth(), currentMap.getHeight(), BufferedImage.TYPE_INT_ARGB);
 		Graphics gMap = mapCanvas.getGraphics();
@@ -59,19 +57,19 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 		if (key == KeyEvent.VK_UP) {
 			player.direction.UP.set(true);
 		}
-		
+
 		if (key == KeyEvent.VK_DOWN) {
 			player.direction.DOWN.set(true);
 		}
-		
+
 		if (key == KeyEvent.VK_LEFT) {
 			player.direction.LEFT.set(true);
 		}
-		
+
 		if (key == KeyEvent.VK_RIGHT) {
 			player.direction.RIGHT.set(true);
 		}
-		
+
 		if (key == KeyEvent.VK_SPACE) {
 			player.layBomb();
 		}
@@ -83,19 +81,19 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 		if (key == KeyEvent.VK_UP) {
 			player.direction.UP.set(false);
 		}
-		
+
 		if (key == KeyEvent.VK_DOWN) {
 			player.direction.DOWN.set(false);
 		}
-		
+
 		if (key == KeyEvent.VK_LEFT) {
 			player.direction.LEFT.set(false);
 		}
-		
+
 		if (key == KeyEvent.VK_RIGHT) {
 			player.direction.RIGHT.set(false);
 		}
-		
+
 	}
 
 	@Override
@@ -110,33 +108,8 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 		player.direction.DOWN.set(false);
 		player.direction.LEFT.set(false);
 		player.direction.RIGHT.set(false);
-		
-		//Mapini Offseteinrichtungrichtung
-		if(currentMap.getWidth()<GameConstants.FRAME_SIZE_X){
-			mapOffsetX = (GameConstants.FRAME_SIZE_X-currentMap.getWidth())/2;
-			mapXSmaller = true;
-		}else{
-			if(player.getPosX()-50>= GameConstants.FRAME_SIZE_X){
-				if(player.getPosX()>=currentMap.getWidth()-GameConstants.FRAME_SIZE_X){
-					mapOffsetX = -(currentMap.getWidth()-GameConstants.FRAME_SIZE_X);
-				}else{
-					mapOffsetX = -(player.getPosX()-GameConstants.FRAME_SIZE_X/2);
-				}
-			}
-		}
-		
-		if(currentMap.getHeight()<GameConstants.FRAME_SIZE_Y){
-			mapOffsetY = (GameConstants.FRAME_SIZE_Y-currentMap.getHeight())/2;  //wenn Map kleiner offset auf halben leerbereich setzen
-			mapYSmaller = true;
-		}else{
-			if(player.getPosY()-50>= GameConstants.FRAME_SIZE_Y){
-				if(player.getPosY()>=currentMap.getWidth()-GameConstants.FRAME_SIZE_Y){
-					mapOffsetY = -(currentMap.getWidth()-GameConstants.FRAME_SIZE_Y);
-				}else{
-					mapOffsetY = -(player.getPosY()-GameConstants.FRAME_SIZE_Y/2);
-				}
-			}
-		}
+
+
 	}
 
 	@Override
@@ -149,34 +122,66 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 			getNavigator().removeGameUnit(UnitState.LEVEL_MANAGER_UNIT);
 		}	
 	}
-	
+
 	/*
-	 * sets the Currrent Offset
+	 * initializes offset
+	 */
+
+	public void initOffset() {
+		if(currentMap.getWidth()<GameConstants.FRAME_SIZE_X){
+			mapOffsetX = (GameConstants.FRAME_SIZE_X-currentMap.getWidth())/2;
+			mapXSmaller = true;
+		}else{
+			if(player.getPosX()-GameConstants.TILE_SIZE>= GameConstants.FRAME_SIZE_X){
+				if(player.getPosX()>=currentMap.getWidth()-GameConstants.FRAME_SIZE_X){
+					mapOffsetX = -(currentMap.getWidth()-GameConstants.FRAME_SIZE_X);
+				}else{
+					mapOffsetX = -(player.getPosX()-GameConstants.FRAME_SIZE_X/2);
+				}
+			}
+		}
+
+		if(currentMap.getHeight()<GameConstants.FRAME_SIZE_Y){
+			mapOffsetY = (GameConstants.FRAME_SIZE_Y-currentMap.getHeight())/2;  //wenn Map kleiner offset auf halben leerbereich setzen
+			mapYSmaller = true;
+		}else{
+			if(player.getPosY()- GameConstants.TILE_SIZE >= GameConstants.FRAME_SIZE_Y){
+				if(player.getPosY()>=currentMap.getWidth()-GameConstants.FRAME_SIZE_Y){
+					mapOffsetY = -(currentMap.getWidth()-GameConstants.FRAME_SIZE_Y);
+				}else{
+					mapOffsetY = -(player.getPosY()-GameConstants.FRAME_SIZE_Y/2);
+				}
+			}
+		}
+	}
+
+	/*
+	 * updates the current Offset
 	 */
 	public void updateOffset(){
 		if(!mapXSmaller){
-		if(player.getPosX()>GameConstants.FRAME_SIZE_X/2-25){
-			if(player.getPosX()-GameConstants.FRAME_SIZE_X/2+25<currentMap.getWidth()-GameConstants.FRAME_SIZE_X){
-				this.mapOffsetX = -(player.getPosX()-GameConstants.FRAME_SIZE_X/2)-25;
+			if(player.getPosX()>GameConstants.FRAME_SIZE_X/2-25){
+				if(player.getPosX()-GameConstants.FRAME_SIZE_X/2+25<currentMap.getWidth()-GameConstants.FRAME_SIZE_X){
+					this.mapOffsetX = -(player.getPosX()-GameConstants.FRAME_SIZE_X/2)-GameConstants.TILE_SIZE/2;
+				}else{
+					this.mapOffsetX= -(currentMap.getWidth()-GameConstants.FRAME_SIZE_X);
+				}
 			}else{
-				this.mapOffsetX= -(currentMap.getWidth()-GameConstants.FRAME_SIZE_X);
+				this.mapOffsetX=0;
 			}
-		}else{
-		   this.mapOffsetX=0;
 		}
-		}
-		
+
 		if(!mapYSmaller){
-		if(player.getPosY()>GameConstants.FRAME_SIZE_Y/2-25){
-			if(player.getPosY()-GameConstants.FRAME_SIZE_Y/2+25<currentMap.getHeight()-GameConstants.FRAME_SIZE_Y){
-				this.mapOffsetY = -(player.getPosY()-GameConstants.FRAME_SIZE_Y/2)-25;
+			if(player.getPosY()>GameConstants.FRAME_SIZE_Y/2-25){
+				if(player.getPosY()-GameConstants.FRAME_SIZE_Y/2+25<currentMap.getHeight()-GameConstants.FRAME_SIZE_Y){
+					this.mapOffsetY = -(player.getPosY()-GameConstants.FRAME_SIZE_Y/2)-GameConstants.TILE_SIZE/2;
+				}else{
+					this.mapOffsetY= -(currentMap.getHeight()-GameConstants.FRAME_SIZE_Y);
+				}
 			}else{
-				this.mapOffsetY= -(currentMap.getHeight()-GameConstants.FRAME_SIZE_Y);
+				this.mapOffsetY=0;
 			}
-		}else{
-		   this.mapOffsetY=0;
 		}
-		}
-    }
+	}
 
 }
