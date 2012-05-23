@@ -4,14 +4,18 @@ package main;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import javax.swing.ImageIcon;
+
 import map.Map;
 import mapobjects.Player;
 import singleplayer.Campaign;
+import singleplayer.TransitionUnit;
 import singleplayer.WorldMapUnit;
 
 /*
@@ -129,22 +133,45 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 				currentMap.update();
 				updateOffset();
 			} else {
+				unitRunning = false;			
+				
 				if (currentMap.playerSucced()) {
-					if (campaign.updateCounters()) {
-						changeCurrentMap();			
-					} else {
+					
+					BufferedImage message = new BufferedImage(
+							GameConstants.FRAME_SIZE_X,GameConstants.FRAME_SIZE_X, BufferedImage.TYPE_INT_ARGB);
+					Image tmp = new ImageIcon("graphics/gui/YouWin.png").getImage();
+					message.createGraphics().drawImage(tmp, 0, GameConstants.FRAME_SIZE_X/8
+							, GameConstants.FRAME_SIZE_X,tmp.getHeight(null), null);
+					
+					if (!campaign.updateCounters()) {					
 						if (campaign.isFinished()) {
-							// campaign completed, show credits
-							terminateLevelManager();
+							TransitionUnit trans = new TransitionUnit(UnitState.BASE_MENU_UNIT, message);
+							trans.setNavigator(getNavigator());
+							getNavigator().removeGameUnit(UnitState.LEVEL_MANAGER_UNIT);		
+							getNavigator().addGameUnit(trans, UnitState.TEMPORARY_UNIT);
+							getNavigator().set(UnitState.TEMPORARY_UNIT);
 						} else {
 							// level completed, show world map
-							unitRunning = false;
 							worldMapUnit.setNavigator(getNavigator());
-							getNavigator().addGameUnit(worldMapUnit, UnitState.TEMPORARY_UNIT);
+							TransitionUnit trans = new TransitionUnit( UnitState.TEMPORARY_UNIT, message, worldMapUnit);
+							trans.setNavigator(getNavigator());
+							getNavigator().addGameUnit(trans, UnitState.TEMPORARY_UNIT);
 							getNavigator().set(UnitState.TEMPORARY_UNIT);
 						}				
 					}
-				} unitRunning = false;
+				} else {
+					
+					BufferedImage message = new BufferedImage(
+							GameConstants.FRAME_SIZE_X,GameConstants.FRAME_SIZE_X, BufferedImage.TYPE_INT_ARGB);
+					Image tmp = new ImageIcon("graphics/gui/YouLose.png").getImage();
+					message.createGraphics().drawImage(tmp, 0, GameConstants.FRAME_SIZE_X/8
+							, GameConstants.FRAME_SIZE_X,tmp.getHeight(null), null);
+					
+					TransitionUnit trans = new TransitionUnit( UnitState.LEVEL_MANAGER_UNIT, message);
+					trans.setNavigator(getNavigator());
+					getNavigator().addGameUnit(trans, UnitState.TEMPORARY_UNIT);
+					getNavigator().set(UnitState.TEMPORARY_UNIT);
+				}
 			}	
 		} else {
 			changeCurrentMap();
@@ -152,6 +179,7 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 		}
 	}
 
+	
 	private void changeCurrentMap() {
 		currentMap = campaign.getCurrentMap();
 		player = currentMap.getMapPlayer();
