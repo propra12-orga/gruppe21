@@ -77,12 +77,15 @@ public class Player extends MoveableObject{
 					map.finishMap();
 				}
 				else if(test.equals(Color.black)){
-					if(i<t && j<t){upleft = true;}
-					else if(i>50-t && j<t){upright = true;}
-					else if(i<t && j>50-t){downleft = true;}
-					else if(i>50-t && j>50-t){downright = true;}
+					if(i<t && j<t){upleft = true;System.out.println("upleft true");}
+					else if(i>50-t && j<t){upright = true;System.out.println("upright true");}
+					else if(i<t && j>50-t){downleft = true;System.out.println("downleft true");}
+					else if(i>50-t && j>50-t){downright = true;System.out.println("downright true");}
 					else{return true;}
-
+				}
+			}
+		}	
+		
 					if(upleft ^ upright ^ downleft ^ downright){
 						if(upleft){
 							if(dir.equals("UP")){
@@ -157,11 +160,11 @@ public class Player extends MoveableObject{
 								
 							}
 						}
-					}
-				}
+					
+				}//else{return true;}
 
-			}
-		}
+			
+		
 		return false;
 	}
 	

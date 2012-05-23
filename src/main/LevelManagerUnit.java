@@ -104,9 +104,7 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 		//campaign = Campaign.readCampaignFromFile("campaign1.txt");
 		//currentMap = campaign.getCurrentMap();	
 		//worldMapUnit = new WorldMapUnit(campaign.getWorldMap());
-		System.out.println("davor");
 		currentMap = new Map("long");
-		System.out.println("danach");
 		player = currentMap.getMapPlayer();
 		player.direction.UP.set(false);
 		player.direction.DOWN.set(false);
