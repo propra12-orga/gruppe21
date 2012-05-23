@@ -32,81 +32,81 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 	private boolean mapYSmaller = false;
 	BufferedImage mapCanvas;
 
-
+	// Might be necessary to protect unit from KeyEvent inferno
+	private boolean unitRunning = false;
+	
 	public LevelManagerUnit() {
 		initComponent();
 	}
 
 	@Override
 	public void drawComponent(Graphics g) {	
-		g.setColor(Color.black);
-		g.fillRect(0, 0, GameConstants.FRAME_SIZE_X, GameConstants.FRAME_SIZE_Y);
-		mapCanvas = new BufferedImage(currentMap.getWidth(), currentMap.getHeight(), BufferedImage.TYPE_INT_ARGB);
-		Graphics gMap = mapCanvas.getGraphics();
-		currentMap.drawMap((Graphics2D) gMap);
-		g.drawImage(mapCanvas, this.mapOffsetX, this.mapOffsetY, currentMap.getWidth(), currentMap.getHeight(), null);
+		if (unitRunning) {
+			g.setColor(Color.black);
+			g.fillRect(0, 0, GameConstants.FRAME_SIZE_X, GameConstants.FRAME_SIZE_Y);
+			mapCanvas = new BufferedImage(currentMap.getWidth(), currentMap.getHeight(), BufferedImage.TYPE_INT_ARGB);
+			Graphics gMap = mapCanvas.getGraphics();
+			currentMap.drawMap((Graphics2D) gMap);
+			g.drawImage(mapCanvas, this.mapOffsetX, this.mapOffsetY, currentMap.getWidth(), currentMap.getHeight(), null);
+		}
 	}
 
 	@Override
 	public void handleKeyPressed(KeyEvent e) {
-		int key = e.getKeyCode();
-		if (key == KeyEvent.VK_ESCAPE) {
-			getNavigator().set(UnitState.BASE_MENU_UNIT);
-		}
-		if (key == KeyEvent.VK_UP) {
-			player.direction.UP.set(true);
-		}
-
-		if (key == KeyEvent.VK_DOWN) {
-			player.direction.DOWN.set(true);
-		}
-
-		if (key == KeyEvent.VK_LEFT) {
-			player.direction.LEFT.set(true);
-		}
-
-		if (key == KeyEvent.VK_RIGHT) {
-			player.direction.RIGHT.set(true);
-		}
-
-		if (key == KeyEvent.VK_SPACE) {
-			player.layBomb();
+		if (unitRunning) {
+			int key = e.getKeyCode();
+			if (key == KeyEvent.VK_ESCAPE) {
+				getNavigator().set(UnitState.BASE_MENU_UNIT);
+			}
+			if (key == KeyEvent.VK_UP) {
+				player.direction.UP.set(true);
+			}
+	
+			if (key == KeyEvent.VK_DOWN) {
+				player.direction.DOWN.set(true);
+			}
+	
+			if (key == KeyEvent.VK_LEFT) {
+				player.direction.LEFT.set(true);
+			}
+	
+			if (key == KeyEvent.VK_RIGHT) {
+				player.direction.RIGHT.set(true);
+			}
+	
+			if (key == KeyEvent.VK_SPACE) {
+				player.layBomb();
+			}
 		}
 	}
 
 	@Override
 	public void handleKeyReleased(KeyEvent e) {
-		int key = e.getKeyCode();
-		if (key == KeyEvent.VK_UP) {
-			player.direction.UP.set(false);
+		if (unitRunning) {
+			int key = e.getKeyCode();
+			if (key == KeyEvent.VK_UP) {
+				player.direction.UP.set(false);
+			}
+	
+			if (key == KeyEvent.VK_DOWN) {
+				player.direction.DOWN.set(false);
+			}
+	
+			if (key == KeyEvent.VK_LEFT) {
+				player.direction.LEFT.set(false);
+			}
+	
+			if (key == KeyEvent.VK_RIGHT) {
+				player.direction.RIGHT.set(false);
+			}
 		}
-
-		if (key == KeyEvent.VK_DOWN) {
-			player.direction.DOWN.set(false);
-		}
-
-		if (key == KeyEvent.VK_LEFT) {
-			player.direction.LEFT.set(false);
-		}
-
-		if (key == KeyEvent.VK_RIGHT) {
-			player.direction.RIGHT.set(false);
-		}
-
 	}
 
 	@Override
-	public void initComponent() {
-		
+	public void initComponent() {		
 		try {
 			campaign = Campaign.readCampaignFromFile("campaign1.txt");
-			changeCurrentMap();
 			worldMapUnit = new WorldMapUnit(campaign.getWorldMap());
-			
-			player.direction.UP.set(false);
-			player.direction.DOWN.set(false);
-			player.direction.LEFT.set(false);
-			player.direction.RIGHT.set(false);
 		} catch (FileNotFoundException e) {
 			System.err.println("Error loading Campaign: Campaign not found!");
 			e.printStackTrace();
@@ -125,28 +125,39 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 
 	@Override
 	public void updateComponent() {
-		if (!currentMap.isFinished()) {
-			currentMap.update();
-			updateOffset();
-		} else {
-			if (campaign.updateCounters()) {
-				changeCurrentMap();			
+		if (unitRunning) {
+			if (!currentMap.isFinished()) {
+				currentMap.update();
+				updateOffset();
 			} else {
-				if (campaign.isFinished()) {
-					// campaign completed, show credits
-					terminateLevelManager();
+				if (campaign.updateCounters()) {
+					changeCurrentMap();			
 				} else {
-					// level completed, show world map
-					getNavigator().addGameUnit(worldMapUnit, UnitState.TEMPORARY_UNIT);
-					getNavigator().set(UnitState.TEMPORARY_UNIT);
-				}				
-			}
-		}	
+					if (campaign.isFinished()) {
+						// campaign completed, show credits
+						terminateLevelManager();
+					} else {
+						// level completed, show world map
+//						unitRunning = false;
+//						getNavigator().addGameUnit(worldMapUnit, UnitState.TEMPORARY_UNIT);
+//						getNavigator().set(UnitState.TEMPORARY_UNIT);
+						terminateLevelManager();
+					}				
+				}
+			}	
+		} else {
+			changeCurrentMap();
+			unitRunning = true;
+		}
 	}
 
 	private void changeCurrentMap() {
 		currentMap = campaign.getCurrentMap();
 		player = currentMap.getMapPlayer();
+		player.direction.UP.set(false);
+		player.direction.DOWN.set(false);
+		player.direction.LEFT.set(false);
+		player.direction.RIGHT.set(false);
 		initOffset();
 	}
 

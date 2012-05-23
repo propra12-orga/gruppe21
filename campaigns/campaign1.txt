@@ -10,6 +10,6 @@
 # a coord consists of:
 #	<x>,<y>
 
-seq.0:beach1
-seq.0:beach2
-wm:4,4;4,5;3,5;2,4-campaign1worldmap
+seq.0:long
+seq.0:testmap
+wm:4,4;4,5;3,5;2,4-testmap
