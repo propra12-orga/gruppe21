@@ -124,11 +124,15 @@ public abstract class MapObject {
 						 -j*(int)Math.sin(Math.toRadians((double)degc*90.00)));
 				int cy = (i*(int)Math.sin(Math.toRadians((double)degc*90.00))
 						  +j*(int)Math.cos(Math.toRadians((double)degc*90.00)));
+				if(degc==1){if(cx<=0){cx+=49;}}
+				else if(degc==3){if(cy<=0){cy+=49;}}
+				else{
 				if(cx<=0){cx+=49;}
-				if(cy<0){cy+=49;}
+				if(cy<=0){cy+=49;}
+				}
 				rotated.setRGB(
-						cx,
-						cy,
+						(int)Math.floor(cx),
+						(int)Math.floor(cy),
 						original.getRGB(i, j));
 			}
 			
