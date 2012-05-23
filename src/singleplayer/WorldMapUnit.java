@@ -2,6 +2,7 @@
 package singleplayer;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import main.GraphicalGameUnit;
 import main.UnitState;
@@ -21,8 +22,7 @@ public class WorldMapUnit extends GraphicalGameUnit{
 	
 	@Override
 	public void drawComponent(Graphics g) {
-		g.drawImage(worldMap.getBackground().getImage(), 0, 0, null);
-		g.drawImage(worldMap.getPlayer().getImage(), worldMap.getPlayerCoord().x,  worldMap.getPlayerCoord().y, null);
+		worldMap.getMap().drawMap((Graphics2D)g);
 	}
 
 	@Override
@@ -50,6 +50,8 @@ public class WorldMapUnit extends GraphicalGameUnit{
 	public void initComponent() {}
 
 	@Override
-	public void updateComponent() {}
+	public void updateComponent() {
+		worldMap.getMap().update();
+	}
 
 }

@@ -4,28 +4,30 @@ import imageloader.GameImage;
 
 import java.awt.Point;
 
+import map.Map;
+
 public class WorldMap {
 
 	private int selectedLevel;
 	private Point[] levelCoords;
 	private int maxLevelAccessible;
-	private GameImage background;
-	private GameImage player;
+	private Map worldmap;
 
-	public WorldMap(Point[] levelCoords, String background, String player) {
+	public WorldMap(Point[] levelCoords, Map worldmap) {
 		this.levelCoords = levelCoords;
-		this.background = new GameImage(background,"background");
-		this.player = new GameImage(player,"player");
+		this.worldmap = worldmap;
 		maxLevelAccessible = 0;
 		selectedLevel = 0;
 	}
+	
+	
 
-	public GameImage getBackground() {
-		return background;
+	public Map getMap() {
+		return worldmap;
 	}
 
-	public GameImage getPlayer() {
-		return player;
+	public void setWorldmap(Map worldmap) {
+		this.worldmap = worldmap;
 	}
 
 	public int getSelectedLevel() {
