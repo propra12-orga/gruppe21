@@ -2354,7 +2354,16 @@
 			<tile type="wall" animated="false">
 			    <visible>true</visible>
 				<collision>true</collision>
-				<destroyable>false</destroyable>
+				<destroyable>true</destroyable>
+			 	<image rotation="0">gras.png</image>
+				<posx>500</posx>
+				<posy>50</posy>
+			</tile>
+			
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>true</destroyable>
 			 	<image rotation="0">gras.png</image>
 				<posx>750</posx>
 				<posy>100</posy>
@@ -2363,7 +2372,7 @@
 			<tile type="wall" animated="false">
 			    <visible>true</visible>
 				<collision>true</collision>
-				<destroyable>false</destroyable>
+				<destroyable>true</destroyable>
 			 	<image rotation="0">gras.png</image>
 				<posx>350</posx>
 				<posy>200</posy>
@@ -2372,7 +2381,7 @@
 			<tile type="wall" animated="false">
 			    <visible>true</visible>
 				<collision>true</collision>
-				<destroyable>false</destroyable>
+				<destroyable>true</destroyable>
 			 	<image rotation="0">gras.png</image>
 				<posx>400</posx>
 				<posy>200</posy>
@@ -2381,7 +2390,7 @@
 			<tile type="wall" animated="false">
 			    <visible>true</visible>
 				<collision>true</collision>
-				<destroyable>false</destroyable>
+				<destroyable>true</destroyable>
 			 	<image rotation="0">gras.png</image>
 				<posx>450</posx>
 				<posy>250</posy>
@@ -2390,7 +2399,7 @@
 			<tile type="wall" animated="false">
 			    <visible>true</visible>
 				<collision>true</collision>
-				<destroyable>false</destroyable>
+				<destroyable>true</destroyable>
 			 	<image rotation="0">gras.png</image>
 				<posx>0</posx>
 				<posy>300</posy>
@@ -2399,7 +2408,7 @@
 			<tile type="wall" animated="false">
 			    <visible>true</visible>
 				<collision>true</collision>
-				<destroyable>false</destroyable>
+				<destroyable>true</destroyable>
 			 	<image rotation="0">gras.png</image>
 				<posx>600</posx>
 				<posy>300</posy>
@@ -2408,7 +2417,7 @@
 			<tile type="wall" animated="false">
 			    <visible>true</visible>
 				<collision>true</collision>
-				<destroyable>false</destroyable>
+				<destroyable>true</destroyable>
 			 	<image rotation="0">gras.png</image>
 				<posx>700</posx>
 				<posy>350</posy>
@@ -2417,7 +2426,7 @@
 			<tile type="wall" animated="false">
 			    <visible>true</visible>
 				<collision>true</collision>
-				<destroyable>false</destroyable>
+				<destroyable>true</destroyable>
 			 	<image rotation="0">gras.png</image>
 				<posx>750</posx>
 				<posy>350</posy>
@@ -2426,7 +2435,7 @@
 			<tile type="wall" animated="false">
 			    <visible>true</visible>
 				<collision>true</collision>
-				<destroyable>false</destroyable>
+				<destroyable>true</destroyable>
 			 	<image rotation="0">gras.png</image>
 				<posx>0</posx>
 				<posy>400</posy>
@@ -2435,19 +2444,12 @@
 			<tile type="wall" animated="false">
 			    <visible>true</visible>
 				<collision>true</collision>
-				<destroyable>false</destroyable>
+				<destroyable>true</destroyable>
 			 	<image rotation="0">gras.png</image>
 				<posx>550</posx>
 				<posy>400</posy>
 			</tile>
-			<character type="player" animated="true">
-			    <visible>true</visible>
-				<collision>true</collision>
-				<destroyable>false</destroyable>
-			 	<animationset>player1</animationset>
-				<posx>600</posx>
-				<posy>450</posy>
-			</character>
+			
 		</level>
 		<level>
 			<character type="player" animated="true">

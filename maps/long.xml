@@ -1356,7 +1356,7 @@
 				<destroyable>false</destroyable>
 			 	<image rotation="0">fels1.png</image>
 				<posx>50</posx>
-				<posy>150</posy>
+				<posy>100</posy>
 			</tile>
 			
 			<tile type="wall" animated="false">
@@ -1365,7 +1365,7 @@
 				<destroyable>false</destroyable>
 			 	<image rotation="0">fels1.png</image>
 				<posx>100</posx>
-				<posy>150</posy>
+				<posy>100</posy>
 			</tile>
 			
 			<tile type="wall" animated="false">
@@ -1374,7 +1374,7 @@
 				<destroyable>false</destroyable>
 			 	<image rotation="0">fels1.png</image>
 				<posx>200</posx>
-				<posy>150</posy>
+				<posy>100</posy>
 			</tile>
 			
 			<tile type="wall" animated="false">
@@ -1382,8 +1382,8 @@
 				<collision>true</collision>
 				<destroyable>false</destroyable>
 			 	<image rotation="0">fels1.png</image>
-				<posx>200</posx>
-				<posy>0</posy>
+				<posx>0</posx>
+				<posy>200</posy>
 			</tile>
 			
 			<tile type="wall" animated="false">
@@ -1464,7 +1464,7 @@
 				<destroyable>true</destroyable>
 			 	<image rotation="0">gras.png</image>
 				<posx>250</posx>
-				<posy>100</posy>
+				<posy>200</posy>
 			</tile>
 			
 			<tile type="wall" animated="false">
@@ -1473,6 +1473,15 @@
 				<destroyable>true</destroyable>
 			 	<image rotation="0">gras.png</image>
 				<posx>50</posx>
+				<posy>300</posy>
+			</tile>
+			
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>true</destroyable>
+			 	<image rotation="0">gras.png</image>
+				<posx>200</posx>
 				<posy>300</posy>
 			</tile>
 			
