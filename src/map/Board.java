@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 public class Board extends JPanel{
 	public Map map;
 	public Board(){
-		map = new Map("testmap");
+		map = new Map("campaign1worldmap");
 		}
 	
 	public void paint(Graphics g){

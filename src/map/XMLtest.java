@@ -13,7 +13,7 @@ public class XMLtest extends JFrame implements KeyListener{
 		add(myb);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(450,450);
+		setSize(1024, 768);
 		setFocusable(true);
 		setLocationRelativeTo(null);
 		setTitle("MapReader Test");
