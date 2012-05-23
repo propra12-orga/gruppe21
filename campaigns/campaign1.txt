@@ -10,12 +10,6 @@
 # a coord consists of:
 #	<x>,<y>
 
-seq.0:beach1.txt
-seq.0:beach2.txt
-seq.0:beach3.txt
-seq.1:woods1.txt
-seq.1:woods2.txt
-seq.2:supersecretbonuslevel.txt
-seq.3:fortress.txt
-seq.3:superevilboss.txt
-wm:4,4;4,5;3,5;2,4-playerFront.png;beachWorldMap.png
+seq.0:beach1
+seq.0:beach2
+wm:4,4;4,5;3,5;2,4-campaign1worldmap

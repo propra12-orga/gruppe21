@@ -6,6 +6,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import map.Map;
 import mapobjects.Player;
@@ -39,13 +41,10 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 	public void drawComponent(Graphics g) {	
 		g.setColor(Color.black);
 		g.fillRect(0, 0, GameConstants.FRAME_SIZE_X, GameConstants.FRAME_SIZE_Y);
-
-		/** centering map (EIKS temporary workaround) **/
 		mapCanvas = new BufferedImage(currentMap.getWidth(), currentMap.getHeight(), BufferedImage.TYPE_INT_ARGB);
 		Graphics gMap = mapCanvas.getGraphics();
 		currentMap.drawMap((Graphics2D) gMap);
 		g.drawImage(mapCanvas, this.mapOffsetX, this.mapOffsetY, currentMap.getWidth(), currentMap.getHeight(), null);
-		/*****************************************/
 	}
 
 	@Override
@@ -98,18 +97,30 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 
 	@Override
 	public void initComponent() {
-		//player = new Player();
-		//campaign = Campaign.readCampaignFromFile("campaign1.txt");
-		//currentMap = campaign.getCurrentMap();	
-		//worldMapUnit = new WorldMapUnit(campaign.getWorldMap());
-		currentMap = new Map("long");
-		player = currentMap.getMapPlayer();
-		player.direction.UP.set(false);
-		player.direction.DOWN.set(false);
-		player.direction.LEFT.set(false);
-		player.direction.RIGHT.set(false);
+		
+		try {
+			campaign = Campaign.readCampaignFromFile("campaign1.txt");
+			changeCurrentMap();
+			worldMapUnit = new WorldMapUnit(campaign.getWorldMap());
+			
+			player.direction.UP.set(false);
+			player.direction.DOWN.set(false);
+			player.direction.LEFT.set(false);
+			player.direction.RIGHT.set(false);
+		} catch (FileNotFoundException e) {
+			System.err.println("Error loading Campaign: Campaign not found!");
+			e.printStackTrace();
+			terminateLevelManager();
+		} catch (IOException e) {
+			System.err.println("Error loading Campaign: IOException!");
+			e.printStackTrace();
+			terminateLevelManager();
+		}
+	}
 
-
+	private void terminateLevelManager() {
+		getNavigator().set(UnitState.BASE_MENU_UNIT);
+		getNavigator().removeGameUnit(UnitState.LEVEL_MANAGER_UNIT);		
 	}
 
 	@Override
@@ -118,9 +129,25 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 			currentMap.update();
 			updateOffset();
 		} else {
-			getNavigator().set(UnitState.BASE_MENU_UNIT);
-			getNavigator().removeGameUnit(UnitState.LEVEL_MANAGER_UNIT);
+			if (campaign.updateCounters()) {
+				changeCurrentMap();			
+			} else {
+				if (campaign.isFinished()) {
+					// campaign completed, show credits
+					terminateLevelManager();
+				} else {
+					// level completed, show world map
+					getNavigator().addGameUnit(worldMapUnit, UnitState.TEMPORARY_UNIT);
+					getNavigator().set(UnitState.TEMPORARY_UNIT);
+				}				
+			}
 		}	
+	}
+
+	private void changeCurrentMap() {
+		currentMap = campaign.getCurrentMap();
+		player = currentMap.getMapPlayer();
+		initOffset();
 	}
 
 	/*

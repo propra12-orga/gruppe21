@@ -42,8 +42,7 @@ public class Campaign {
 	 * return current map
 	 */
 	public Map getCurrentMap() {
-		return new Map(GameConstants.MAP_FILES_DIR+
-				levels.get(worldMap.getSelectedLevel()).getMap(mapCounter));
+		return new Map(levels.get(worldMap.getSelectedLevel()).getMap(mapCounter));
 	}
 	
 	public WorldMap getWorldMap() {
@@ -79,7 +78,7 @@ public class Campaign {
 		}
 	}
 
-	public boolean isCampaignFinished() {
+	public boolean isFinished() {
 		return campaignFinished;
 	}
 	
@@ -122,9 +121,9 @@ public class Campaign {
 					String[] splitCoord = coordsData[i].split(",");
 					coords[i] = new Point(Integer.parseInt(splitCoord[0]), Integer.parseInt(splitCoord[1]));
 				}
-				String[] imageData = mapData[1].split(";");
+				String worldmap = mapData[1];
 				
-				worldMap = new WorldMap(coords, imageData[1], imageData[0]);				
+				worldMap = new WorldMap(coords, new Map(worldmap));				
 			}
 		}
 		return new Campaign(mapSequences, worldMap);
@@ -167,8 +166,7 @@ public class Campaign {
 		Campaign campaign = Campaign.readCampaignFromFile("campaign1.txt");
 		for (MapSequence sq : campaign.levels) {
 			for (int i = 0 ; i < sq.getSize(); i++) {
-				System.out.println(campaign.levels.indexOf(sq)+" "+sq.getMap(i));
-				
+				System.out.println(campaign.levels.indexOf(sq)+" "+sq.getMap(i));				
 			}
 		}
 	}
