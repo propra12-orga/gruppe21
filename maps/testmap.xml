@@ -2449,6 +2449,16 @@
 				<posy>450</posy>
 			</character>
 		</level>
+		<level>
+			<character type="player" animated="true">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<animationset>player1</animationset>
+				<posx>600</posx>
+				<posy>450</posy>
+			</character>
+		</level>
 	</mapobjects>
 	
 	<items>

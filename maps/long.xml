@@ -1485,6 +1485,9 @@
 				<posy>900</posy>
 			</tile>
 			
+		</level>
+		
+		<level>
 			<character type="player" animated="true">
 			    <visible>true</visible>
 				<collision>true</collision>
