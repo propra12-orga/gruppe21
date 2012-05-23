@@ -2620,7 +2620,14 @@
 			
 		</level>
 		<level>
-				
+				<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">boat.png</image>
+				<posx>400</posx>
+				<posy>450</posy>
+			</tile>
 			<character type="player" animated="true">
 			    <visible>true</visible>
 				<collision>true</collision>
