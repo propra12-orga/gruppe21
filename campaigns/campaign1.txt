@@ -5,7 +5,7 @@
 # 	seq.<level number>:<map name>
 #
 # Add a world map:
-#	wm:<coord1>;<coord2>; ... <last coord>-<player image>;<worldmap image>
+#	wm:<coord1>;<coord2>; ... <last coord>-<worldmap name>
 #	
 # a coord consists of:
 #	<x>,<y>

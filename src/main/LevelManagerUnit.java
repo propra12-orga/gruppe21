@@ -34,7 +34,7 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 
 	// Might be necessary to protect unit from KeyEvent inferno
 	private boolean unitRunning = false;
-	
+
 	public LevelManagerUnit() {
 		initComponent();
 	}
@@ -60,19 +60,19 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 			if (key == KeyEvent.VK_UP) {
 				player.direction.UP.set(true);
 			}
-	
+
 			if (key == KeyEvent.VK_DOWN) {
 				player.direction.DOWN.set(true);
 			}
-	
+
 			if (key == KeyEvent.VK_LEFT) {
 				player.direction.LEFT.set(true);
 			}
-	
+
 			if (key == KeyEvent.VK_RIGHT) {
 				player.direction.RIGHT.set(true);
 			}
-	
+
 			if (key == KeyEvent.VK_SPACE) {
 				player.layBomb(currentMap.getCollisionMap());
 			}
@@ -81,24 +81,23 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 
 	@Override
 	public void handleKeyReleased(KeyEvent e) {
-		if (unitRunning) {
-			int key = e.getKeyCode();
-			if (key == KeyEvent.VK_UP) {
-				player.direction.UP.set(false);
-			}
-	
-			if (key == KeyEvent.VK_DOWN) {
-				player.direction.DOWN.set(false);
-			}
-	
-			if (key == KeyEvent.VK_LEFT) {
-				player.direction.LEFT.set(false);
-			}
-	
-			if (key == KeyEvent.VK_RIGHT) {
-				player.direction.RIGHT.set(false);
-			}
+		int key = e.getKeyCode();
+		if (key == KeyEvent.VK_UP) {
+			player.direction.UP.set(false);
 		}
+
+		if (key == KeyEvent.VK_DOWN) {
+			player.direction.DOWN.set(false);
+		}
+
+		if (key == KeyEvent.VK_LEFT) {
+			player.direction.LEFT.set(false);
+		}
+
+		if (key == KeyEvent.VK_RIGHT) {
+			player.direction.RIGHT.set(false);
+		}
+
 	}
 
 	@Override
@@ -106,7 +105,7 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 		try {
 			campaign = Campaign.readCampaignFromFile("campaign1.txt");
 			worldMapUnit = new WorldMapUnit(campaign.getWorldMap());			
-			
+
 		} catch (FileNotFoundException e) {
 			System.err.println("Error loading Campaign: Campaign not found!");
 			e.printStackTrace();
