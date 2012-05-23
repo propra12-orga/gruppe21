@@ -14,30 +14,31 @@ public class MainMenuUnit extends GraphicalGameUnit {
 
 	// not final, loading of all pictures will be handled in Imageloader class
 	private Image Background = new ImageIcon(GameConstants.MENU_IMAGES_DIR
-			+ "/MMBGPlaceholder.png").getImage();
+			+ "/BombermanIsland.jpg").getImage();
 	private Image select = new ImageIcon(GameConstants.MENU_IMAGES_DIR
-			+ "/SelectorPlaceholder.png").getImage();
+			+ "/Select.png").getImage();
 	private Image singlePlayerActive = new ImageIcon(
-			GameConstants.MENU_IMAGES_DIR
-					+ "/ActiveSingleplayerPlaceholder.png").getImage();
+			GameConstants.MENU_IMAGES_DIR + "/SinglePlayerActive.png")
+			.getImage();
 	private Image multiplayerActive = new ImageIcon(
-			GameConstants.MENU_IMAGES_DIR + "/ActiveMultiplayerPlaceholder.png")
+			GameConstants.MENU_IMAGES_DIR + "/MultiplayerActive.png")
 			.getImage();
 	private Image quitActive = new ImageIcon(GameConstants.MENU_IMAGES_DIR
-			+ "/ActiveQuitgamePlaceholder.png").getImage();
+			+ "/QuitActive.png").getImage();
 	private Image ccontinueActive = new ImageIcon(GameConstants.MENU_IMAGES_DIR
-			+ "/ActiveContinueGamePlaceholder.png").getImage();
+			+ "/ContinueActive.png").getImage();
 	private Image singlePlayerInactive = new ImageIcon(
-			GameConstants.MENU_IMAGES_DIR
-					+ "/InactiveSingleplayerPlaceholder.png").getImage();
+			GameConstants.MENU_IMAGES_DIR + "/SinglePlayerInactive.png")
+			.getImage();
 	private Image multiplayerInactive = new ImageIcon(
-			GameConstants.MENU_IMAGES_DIR
-					+ "/InactiveMultiplayerPlaceholder.png").getImage();
+			GameConstants.MENU_IMAGES_DIR + "/MultiPlayerInactive.png")
+			.getImage();
 	private Image quitInactive = new ImageIcon(GameConstants.MENU_IMAGES_DIR
-			+ "/InactiveQuitgamePlaceholder.png").getImage();
+			+ "/QuitInactive.png").getImage();
 	private Image ccontinueInactive = new ImageIcon(
-			GameConstants.MENU_IMAGES_DIR
-					+ "/InactiveContinueGamePlaceholder.png").getImage();
+			GameConstants.MENU_IMAGES_DIR + "/ContinueInactive.png").getImage();
+	private Image toolTip = new ImageIcon(GameConstants.MENU_IMAGES_DIR
+			+ "/Help.png").getImage();
 
 	private int buttonSpace = 10;
 	private int buttonHeight = singlePlayerActive.getHeight(null);
@@ -61,12 +62,13 @@ public class MainMenuUnit extends GraphicalGameUnit {
 	@Override
 	public void drawComponent(Graphics g) {
 		g.drawImage(Background, 0, 0, null);
+		g.drawImage(toolTip, 140, GameConstants.FRAME_SIZE_Y - 60, null);
 		g.drawImage(singlePlayerInactive, startXPos, button1YPos, null);
 		g.drawImage(multiplayerInactive, startXPos, button2YPos, null);
 		g.drawImage(quitInactive, startXPos, button3YPos, null);
 		g.drawImage(ccontinueInactive, startXPos, button4YPos, null);
-		 g.drawImage(select, (int) selectorGhost.getX() - buttonSpace,
-		 (int) selectorGhost.getY(), null);
+		g.drawImage(select, (int) selectorGhost.getX() - buttonSpace,
+				(int) selectorGhost.getY(), null);
 		g.drawImage(selector, (int) selectorGhost.getX() - buttonSpace,
 				(int) selectorGhost.getY(), null);
 		/*
