@@ -3,6 +3,7 @@ package mapobjects;
 import imageloader.ImageLoader;
 
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 
 public class Effect extends MapObject{
 	public Effect(int x,int y,int r,boolean v,boolean d,boolean c,String p){
@@ -15,6 +16,6 @@ public class Effect extends MapObject{
 	}
     
 	@Override
-	public void update(){
+	public void update(BufferedImage cm){
 	}
 }

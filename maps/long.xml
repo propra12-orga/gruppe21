@@ -1443,7 +1443,7 @@
 			<tile type="wall" animated="false">
 			    <visible>true</visible>
 				<collision>true</collision>
-				<destroyable>false</destroyable>
+				<destroyable>true</destroyable>
 			 	<image rotation="0">gras.png</image>
 				<posx>0</posx>
 				<posy>100</posy>
@@ -1452,7 +1452,7 @@
 			<tile type="wall" animated="false">
 			    <visible>true</visible>
 				<collision>true</collision>
-				<destroyable>false</destroyable>
+				<destroyable>true</destroyable>
 			 	<image rotation="0">gras.png</image>
 				<posx>200</posx>
 				<posy>200</posy>
@@ -1461,7 +1461,7 @@
 			<tile type="wall" animated="false">
 			    <visible>true</visible>
 				<collision>true</collision>
-				<destroyable>false</destroyable>
+				<destroyable>true</destroyable>
 			 	<image rotation="0">gras.png</image>
 				<posx>250</posx>
 				<posy>100</posy>
@@ -1470,7 +1470,7 @@
 			<tile type="wall" animated="false">
 			    <visible>true</visible>
 				<collision>true</collision>
-				<destroyable>false</destroyable>
+				<destroyable>true</destroyable>
 			 	<image rotation="0">gras.png</image>
 				<posx>50</posx>
 				<posy>300</posy>
@@ -1479,7 +1479,7 @@
 			<tile type="wall" animated="false">
 			    <visible>true</visible>
 				<collision>true</collision>
-				<destroyable>false</destroyable>
+				<destroyable>true</destroyable>
 			 	<image rotation="0">gras.png</image>
 				<posx>150</posx>
 				<posy>900</posy>

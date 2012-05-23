@@ -4,6 +4,7 @@ import imageloader.ImageLoader;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 
 public class Wall extends MapObject{
 	private boolean hiddenObject;
@@ -17,7 +18,7 @@ public class Wall extends MapObject{
 		g2d.drawImage(gr.getImage(imageUrl),posX,posY,null);
 		
 		if(collides()){
-			cm.setPaint(Color.black);
+			if(destroyable){cm.setPaint(Color.gray);}else{cm.setPaint(Color.black);}
 			cm.fillRect(posX, posY, 50, 50);
 		}else{
 			cm.setPaint(Color.white);
@@ -27,7 +28,10 @@ public class Wall extends MapObject{
 
 
 	@Override
-	public void update(){
+	public void update(BufferedImage cm){
+		if(isDestroyable()){
+			if(simpleHasColl(posX,posY,cm,Color.orange)){destroyed=true;visible=false;}
+		}
 	}
 	
 	public void addHiddenObject(){}

@@ -9,6 +9,7 @@ import java.awt.image.BufferedImage;
 public class Player extends MoveableObject{
 	private int maxbombs = 3;
 	private int actualbombs = 0;
+	private int bombradius = 2;
 	private int lives = 1;
 	private String bombtype = "standart";
 
@@ -45,7 +46,7 @@ public class Player extends MoveableObject{
 		}
 	}
 
-	public void layBomb(){
+	public void layBomb(BufferedImage cm){
 		if(!reachedMaxBombs()){
 			map.getMapObjects().get(1).add(new Bomb(
 					getPosX(),
@@ -54,7 +55,9 @@ public class Player extends MoveableObject{
 					false,
 					false,
 					"simplebomb",
-					map.getGraphics()));
+					map.getGraphics(),
+					bombradius,
+					cm));
 			addBomb();
 		}
 	}
@@ -76,7 +79,7 @@ public class Player extends MoveableObject{
 				if (test.equals(Color.yellow)) {
 					map.finishMap();
 				}
-				else if(test.equals(Color.black)){
+				else if(test.equals(Color.black) || test.equals(Color.gray)){
 					if(i<t && j<t){upleft = true;}
 					else if(i>50-t && j<t){upright = true;}
 					else if(i<t && j>50-t){downleft = true;}
@@ -174,14 +177,14 @@ public class Player extends MoveableObject{
 		for(int i=0; i<collTest.getWidth(); i++){
 			for(int j=0; j<collTest.getHeight(); j++){
 				Color test = new Color(collTest.getRGB(i, j));
-				if (test.equals(Color.black)){return true;}
+				if (test.equals(Color.black) || test.equals(Color.gray)){return true;}
 			}
 		}
 		return false;
 	}
 
 	@Override
-	public void update() {
+	public void update(BufferedImage cm) {
 		animation.animate();
 		move();
 	}

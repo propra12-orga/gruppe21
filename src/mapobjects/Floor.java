@@ -4,6 +4,7 @@ import imageloader.ImageLoader;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 
 public class Floor extends MapObject{
 	
@@ -25,6 +26,6 @@ public class Floor extends MapObject{
 	}
 	
 	@Override
-	public void update(){
+	public void update(BufferedImage cm){
 	}
 }
