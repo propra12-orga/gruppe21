@@ -120,10 +120,12 @@ public abstract class MapObject {
 			BufferedImage rotated = new BufferedImage(50,50,BufferedImage.TYPE_INT_ARGB);
 		for(int i=0;i<original.getWidth();i++){
 			for(int j=0;j<original.getHeight();j++){
-				int cx = (int)(Math.ceil((double)i*(Math.cos(Math.toRadians((double)degc*90.00)))-(double)j*Math.sin(Math.toRadians((double)degc*90.00))));
-				int cy = (int)(Math.ceil((double)i*Math.sin(Math.toRadians((double)degc*90.00))+(double)j*Math.cos(Math.toRadians((double)degc*90.00))));
-				if(cx<1){cx+=49;}
-				if(cy<1){cy+=49;}
+				int cx = (i*(int)(Math.cos(Math.toRadians((double)degc*90.00)))
+						 -j*(int)Math.sin(Math.toRadians((double)degc*90.00)));
+				int cy = (i*(int)Math.sin(Math.toRadians((double)degc*90.00))
+						  +j*(int)Math.cos(Math.toRadians((double)degc*90.00)));
+				if(cx<=0){cx+=49;}
+				if(cy<0){cy+=49;}
 				rotated.setRGB(
 						cx,
 						cy,
