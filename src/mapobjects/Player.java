@@ -79,10 +79,10 @@ public class Player extends MoveableObject{
 			for(int j=0; j<collTest.getHeight(); j++){
 				Color test = new Color(collTest.getRGB(i, j));
 				if (test.equals(Color.yellow)) {
-					map.finishMap(true);
+					map.finishMap(false);
 				}
 				else if(test.equals(Color.orange)){
-					map.finishMap(false);
+					map.finishMap(true);
 				}
 				else if(test.equals(Color.black) || test.equals(Color.gray)){
 					if(i<t && j<t){upleft = true;}

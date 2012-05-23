@@ -40,16 +40,16 @@ public class WorldMapUnit extends GraphicalGameUnit{
 	public void handleKeyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
 		if (key == KeyEvent.VK_LEFT) {
+			if (worldMap.getSelectedLevel()+1 <= worldMap.getMaxLevelAccessible()) {
+				worldMap.setSelectedLevel(worldMap.getSelectedLevel()+1);
+				updatePlayerPosition();
+			}
+		}
+		if (key == KeyEvent.VK_RIGHT) {
 			if (worldMap.getSelectedLevel()-1 >= 0 ) {
 				worldMap.setSelectedLevel(worldMap.getSelectedLevel()-1);
 				updatePlayerPosition();
 				
-			}
-		}
-		if (key == KeyEvent.VK_RIGHT) {
-			if (worldMap.getSelectedLevel()+1 <= worldMap.getMaxLevelAccessible()) {
-				worldMap.setSelectedLevel(worldMap.getSelectedLevel()+1);
-				updatePlayerPosition();
 			}
 		}
 		if (key == KeyEvent.VK_ENTER) {

@@ -130,20 +130,22 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 				currentMap.update();
 				updateOffset();
 			} else {
-				if (campaign.updateCounters()) {
-					changeCurrentMap();			
-				} else {
-					if (campaign.isFinished()) {
-						// campaign completed, show credits
-						terminateLevelManager();
+				if (currentMap.playerSucced()) {
+					if (campaign.updateCounters()) {
+						changeCurrentMap();			
 					} else {
-						// level completed, show world map
-						unitRunning = false;
-						worldMapUnit.setNavigator(getNavigator());
-						getNavigator().addGameUnit(worldMapUnit, UnitState.TEMPORARY_UNIT);
-						getNavigator().set(UnitState.TEMPORARY_UNIT);
-					}				
-				}
+						if (campaign.isFinished()) {
+							// campaign completed, show credits
+							terminateLevelManager();
+						} else {
+							// level completed, show world map
+							unitRunning = false;
+							worldMapUnit.setNavigator(getNavigator());
+							getNavigator().addGameUnit(worldMapUnit, UnitState.TEMPORARY_UNIT);
+							getNavigator().set(UnitState.TEMPORARY_UNIT);
+						}				
+					}
+				} unitRunning = false;
 			}	
 		} else {
 			changeCurrentMap();
