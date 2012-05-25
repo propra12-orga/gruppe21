@@ -8,6 +8,7 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.lang.reflect.Array;
 
+
 public class Bomb extends MapObject{
 
 	private int radius = 1;
@@ -52,6 +53,16 @@ public class Bomb extends MapObject{
 		this.radius = radius;
 	}
 
+	/** 
+	 * <b>draw</b><p>
+	 * Method which draws the bomb's current images. Also draws specific parts of the collision map. 
+	 * Called by the map.
+	 * @param g2d - graphics2D object which draws the images
+	 * @param gr - ImageLoader
+	 * @param cm - graphics2D objects which draws parts of the collision map
+	 * @see mapobjects.MapObject#draw(java.awt.Graphics2D, imageloader.ImageLoader, java.awt.Graphics2D)
+	 * @see imageloader.ImageLoader
+	 */
 	@Override
 	public void draw(Graphics2D g2d,ImageLoader gr,Graphics2D cm){
 	g2d.drawImage(animation.getCurrentImage(), posX, posY, null);
@@ -115,7 +126,14 @@ public class Bomb extends MapObject{
 		}
 	}
 	
-
+	/**
+	 * <b>update</b><p>
+	 * public void update(BufferedImage cm)<p>
+	 * Called by the Map before drawing the images.
+	 * @param cm - image used for collision detection
+	 * @see mapobjects.MapObject#update(java.awt.image.BufferedImage)
+	 * @see map.Map#update()
+	 */
 	@Override
 	public void update(BufferedImage cm){
 		armanimation.animate();

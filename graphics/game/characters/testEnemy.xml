@@ -1,0 +1,4 @@
+<animationset default="enemy.png">
+<animation frames="1" stretch="1" name="enemyLeft">enemy_left.png</animation>
+<animation frames="1" stretch="1" name="enemyRight">enemy_right.png</animation>
+</animationset>
