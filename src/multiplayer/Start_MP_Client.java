@@ -4,9 +4,9 @@ import java.io.IOException;
 import java.net.InetAddress;
 
 public class Start_MP_Client {
-	private Thread clientThread;
+	private static Thread clientThread;
 
-	public void main(String[] args) {
+	public static void main(String[] args) {
 		try {
 			clientThread = new Client(InetAddress.getLocalHost(), 5555);
 			clientThread.start();

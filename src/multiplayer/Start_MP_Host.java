@@ -3,15 +3,14 @@ package multiplayer;
 import java.io.IOException;
 
 public class Start_MP_Host {
-	
-	private Thread hostThread;
 
-	public void main(String[] args) {
+	private static Thread hostThread;
+
+	public static void main(String[] args) {
 		try {
 			hostThread = new Server(5555);
 			hostThread.start();
-		} catch(IOException e)
-		{
+		} catch (IOException e) {
 			System.out.println("Sry, couldn't establish server");
 		}
 	}
