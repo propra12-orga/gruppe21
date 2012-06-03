@@ -1,4 +1,7 @@
-<animationset default="enemy.png">
-<animation frames="1" stretch="1" name="enemyLeft">enemy_left.png</animation>
-<animation frames="1" stretch="1" name="enemyRight">enemy_right.png</animation>
+<animationset default="enemyDefault.png">
+<animation frames="2" stretch="1" name="enemyDying">enemyDying.png</animation>
+<animation frames="1" stretch="1" name="enemyLeft">enemyLEFT.png</animation>
+<animation frames="1" stretch="1" name="enemyRight">enemyRIGHT.png</animation>
+<animation frames="1" stretch="1" name="enemyUp">enemyUP.png</animation>
+<animation frames="1" stretch="1" name="enemyDown">enemyDOWN.png</animation>
 </animationset>

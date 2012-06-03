@@ -2460,6 +2460,14 @@
 				<posx>600</posx>
 				<posy>450</posy>
 			</character>
+			<character type="enemy" animated="true">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<animationset>testEnemy</animationset>
+				<posx>0</posx>
+				<posy>250</posy>
+			</character>
 		</level>
 	</mapobjects>
 	

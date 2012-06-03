@@ -2031,6 +2031,14 @@
 				<posx>100</posx>
 				<posy>950</posy>
 			</character>
+			<character type="enemy" animated="true">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<animationset>testEnemy</animationset>
+				<posx>50</posx>
+				<posy>350</posy>
+			</character>
 		</level>
 	</mapobjects>
 	
