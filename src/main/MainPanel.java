@@ -11,6 +11,8 @@ import javax.swing.JPanel;
 /**
  * Serves as a canvas for the active GraphicalGameUnit. All KeyEvents are
  * forwarded to the game unit in use.
+ * 
+ * @author tohei
  */
 public class MainPanel extends JPanel implements Runnable {
 
