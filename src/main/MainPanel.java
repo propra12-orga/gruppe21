@@ -8,12 +8,10 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.JPanel;
 
-/*
- * main game class. Uses a UnitNavigator to determine the active
- * game unit in order to call its update() and draw() methods. All KeyEvents
- * are forwarded to the game unit in use.
+/**
+ * Serves as a canvas for the active GraphicalGameUnit. All KeyEvents are
+ * forwarded to the game unit in use.
  */
-
 public class MainPanel extends JPanel implements Runnable {
 
 	/**
@@ -21,10 +19,35 @@ public class MainPanel extends JPanel implements Runnable {
 	 */
 	private static final long serialVersionUID = -3212988448230980893L;
 
-	private volatile boolean running = false;
+	/**
+	 * As long as this flag remains true, the MainPanel keeps updating and
+	 * redrawing the active GraphicalGameUnit
+	 */
+	private boolean running = false;
+
+	/**
+	 * Minimum amount of time of one iteration of the game-update-loop (in
+	 * milliseconds). If the duration of an update process surpasses
+	 * ITERATION_TIME, the game-update-thread will be put to sleep for the
+	 * duration specified in STANDARD_SLEEP, otherwise the sleep time is
+	 * computed by subtracting the update period from ITERATION_TIME.
+	 */
 	public static final int ITERATION_TIME = 10;
+	/**
+	 * If it takes longer to draw and update the active GraphicalGameUnit than
+	 * specified in ITERATION_TIME, the update-thread is being put to sleep for
+	 * as long as determined in STANDARD_SLEEP (in milliseconds).
+	 */
+	public static final int STANDARD_SLEEP = 4;
+
+	/**
+	 * Main thread for updating and rendering the active GraphicalGameUnit.
+	 */
 	private Thread gameThread;
 
+	/**
+	 * Set up MainPanel and add a KeyListener.
+	 */
 	public MainPanel() {
 		setBackground(Color.white);
 		setSize(GameConstants.FRAME_SIZE_X, GameConstants.FRAME_SIZE_Y);
@@ -52,6 +75,9 @@ public class MainPanel extends JPanel implements Runnable {
 		setDoubleBuffered(true);
 	}
 
+	/**
+	 * Creates a new MainMenuUnit and hands it to the UnitNavigator.
+	 */
 	public void initGame() {
 		/*
 		 * add main menu
@@ -62,14 +88,27 @@ public class MainPanel extends JPanel implements Runnable {
 		activateThread();
 	}
 
+	/**
+	 * Starts a new thread for the rendering and update process.
+	 */
 	private void activateThread() {
 		if (gameThread == null) {
 			gameThread = new Thread(this);
 		}
-		this.start();
+		running = true;
 		gameThread.start();
 	}
 
+	/**
+	 * Contains "infinite" loop that updates and renders the active
+	 * GraphicalGameUnit determined by the UnitNavigator.
+	 * 
+	 * To maintain relatively constant frames per second, it captures the amount
+	 * of time required and proceeds by dynamically calculating the sleeping
+	 * time. Checks if a GraphicalGameUnit has requested termination of the
+	 * update-loop (i.e. the user selected 'quit' in the MainMenu) and if so,
+	 * sets running to false.
+	 */
 	@Override
 	public void run() {
 		/*
@@ -81,9 +120,9 @@ public class MainPanel extends JPanel implements Runnable {
 		/*
 		 * infinite loop for updating and drawing the selected game unit
 		 */
-		while (this.isRunning()) {
+		while (running) {
 			if (UnitNavigator.getNavigator().terminationRequested()) {
-				this.stop();
+				running = false;
 			}
 			requestFocusInWindow();
 			UnitNavigator.getNavigator().getActiveUnit().updateComponent();
@@ -105,38 +144,23 @@ public class MainPanel extends JPanel implements Runnable {
 		quitGame();
 	}
 
-	/*
-	 * get active game unit and delegate drawing
+	/**
+	 * Will be called periodically by the update thread. Redraws the active
+	 * GraphicalGameUnit.
 	 */
 	@Override
 	public void paint(Graphics g) {
-		if (this.isRunning()) {
+		if (running) {
 			UnitNavigator.getNavigator().getActiveUnit().drawComponent(g);
 			Toolkit.getDefaultToolkit().sync();
 			g.dispose();
 		}
 	}
 
-	/*
-	 * end program
+	/**
+	 * Leads to System.exit(0).
 	 */
 	private void quitGame() {
 		System.exit(0);
 	}
-
-	public void stop() {
-		this.running = false;
-	}
-
-	public void start() {
-		this.running = true;
-	}
-
-	public boolean isRunning() {
-		if (running) {
-			return true;
-		}
-		return false;
-	}
-
 }
