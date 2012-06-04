@@ -112,22 +112,22 @@ public class MainMenuUnit extends GraphicalGameUnit {
 		if (key == KeyEvent.VK_ENTER && selectCounter == 0) {
 			// create new game
 			LevelManagerUnit levelmanager = new LevelManagerUnit();
-			levelmanager.setNavigator(getNavigator());
-			getNavigator().addGameUnit(levelmanager,
+			UnitNavigator.getNavigator().addGameUnit(levelmanager,
 					UnitState.LEVEL_MANAGER_UNIT);
-			getNavigator().set(UnitState.LEVEL_MANAGER_UNIT);
+			UnitNavigator.getNavigator().set(UnitState.LEVEL_MANAGER_UNIT);
 		}
 		if (key == KeyEvent.VK_ENTER && selectCounter == 1) {
 			System.out.println("Multiplayer");
 		}
 		if (key == KeyEvent.VK_ENTER && selectCounter == 2) {
 			// end game
-			getNavigator().terminateGame();
+			UnitNavigator.getNavigator().terminateGame();
 		}
 		if (key == KeyEvent.VK_ENTER && selectCounter == 3) {
 			// continue game
-			if (getNavigator().getUnitAt(UnitState.LEVEL_MANAGER_UNIT) != null) {
-				getNavigator().set(UnitState.LEVEL_MANAGER_UNIT);
+			if (UnitNavigator.getNavigator().getUnitAt(
+					UnitState.LEVEL_MANAGER_UNIT) != null) {
+				UnitNavigator.getNavigator().set(UnitState.LEVEL_MANAGER_UNIT);
 			}
 		}
 	}

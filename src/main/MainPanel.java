@@ -22,9 +22,7 @@ public class MainPanel extends JPanel implements Runnable {
 	private static final long serialVersionUID = -3212988448230980893L;
 
 	private volatile boolean running = false;
-
-	private UnitNavigator unitNavigator;
-
+	public static final int ITERATION_TIME = 10;
 	private Thread gameThread;
 
 	public MainPanel() {
@@ -38,13 +36,16 @@ public class MainPanel extends JPanel implements Runnable {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_UP)
-				System.out.println(""); // this somehow helps avoiding nasty keyListener bugs 
-				unitNavigator.getActiveUnit().handleKeyPressed(e);
+					System.out.println(""); // this somehow helps avoiding nasty
+											// keyListener bugs
+				UnitNavigator.getNavigator().getActiveUnit()
+						.handleKeyPressed(e);
 			}
 
 			@Override
 			public void keyReleased(KeyEvent e) {
-				unitNavigator.getActiveUnit().handleKeyReleased(e);
+				UnitNavigator.getNavigator().getActiveUnit()
+						.handleKeyReleased(e);
 			}
 		});
 		requestFocusInWindow();
@@ -52,13 +53,12 @@ public class MainPanel extends JPanel implements Runnable {
 	}
 
 	public void initGame() {
-		unitNavigator = new UnitNavigator(this);
 		/*
 		 * add main menu
 		 */
 		MainMenuUnit mainMenu = new MainMenuUnit();
-		mainMenu.setNavigator(unitNavigator);
-		unitNavigator.addGameUnit(mainMenu, UnitState.BASE_MENU_UNIT);
+		UnitNavigator.getNavigator().addGameUnit(mainMenu,
+				UnitState.BASE_MENU_UNIT);
 		activateThread();
 	}
 
@@ -68,10 +68,6 @@ public class MainPanel extends JPanel implements Runnable {
 		}
 		this.start();
 		gameThread.start();
-	}
-
-	public UnitNavigator getGameStateNavigator() {
-		return unitNavigator;
 	}
 
 	@Override
@@ -86,12 +82,15 @@ public class MainPanel extends JPanel implements Runnable {
 		 * infinite loop for updating and drawing the selected game unit
 		 */
 		while (this.isRunning()) {
+			if (UnitNavigator.getNavigator().terminationRequested()) {
+				this.stop();
+			}
 			requestFocusInWindow();
-			unitNavigator.getActiveUnit().updateComponent();
+			UnitNavigator.getNavigator().getActiveUnit().updateComponent();
 			repaint();
 
 			timeDiff = System.nanoTime() - beforeTime;
-			sleepTime = GameConstants.ITERATION_TIME - timeDiff / 1000000L;
+			sleepTime = ITERATION_TIME - timeDiff / 1000000L;
 
 			if (sleepTime < 0)
 				sleepTime = 4;
@@ -100,7 +99,7 @@ public class MainPanel extends JPanel implements Runnable {
 			} catch (InterruptedException e) {
 				System.out.println("interrupted");
 			}
-			System.out.println(sleepTime);
+			// System.out.println(sleepTime);
 			beforeTime = System.nanoTime();
 		}
 		quitGame();
@@ -112,7 +111,7 @@ public class MainPanel extends JPanel implements Runnable {
 	@Override
 	public void paint(Graphics g) {
 		if (this.isRunning()) {
-			unitNavigator.getActiveUnit().drawComponent(g);
+			UnitNavigator.getNavigator().getActiveUnit().drawComponent(g);
 			Toolkit.getDefaultToolkit().sync();
 			g.dispose();
 		}

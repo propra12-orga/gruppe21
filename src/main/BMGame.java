@@ -12,23 +12,24 @@ public class BMGame {
 	 * main frame for the application
 	 */
 	private final JFrame mainFrame;
-	
-	/*
-	 * initialize frame and add main panel
+
+	/**
+	 * Initializes Game-Frame and adds main panel.
 	 */
 	public BMGame() {
 		mainFrame = new JFrame("Gruppe 21 - Bomberman");
-		mainFrame.setSize(GameConstants.FRAME_SIZE_X, GameConstants.FRAME_SIZE_Y);
+		mainFrame.setSize(GameConstants.FRAME_SIZE_X,
+				GameConstants.FRAME_SIZE_Y);
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainFrame.setLocationRelativeTo(null);
 		mainFrame.setResizable(false);
 		mainFrame.setVisible(true);
 		MainPanel mainPanel = new MainPanel();
 		mainPanel.initGame();
-		mainFrame.add(mainPanel);		
-	}	
+		mainFrame.add(mainPanel);
+	}
 
-	public static void main(String[] args) {    	
+	public static void main(String[] args) {
 		new BMGame();
 	}
 
