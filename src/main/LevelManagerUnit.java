@@ -228,8 +228,10 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 	public void updateOffset(){
 		if(!mapXSmaller){
 			if(player.getPosX()>GameConstants.FRAME_SIZE_X/2-25){
-				if(player.getPosX()-GameConstants.FRAME_SIZE_X/2+25<currentMap.getWidth()-GameConstants.FRAME_SIZE_X){
-					this.mapOffsetX = -(player.getPosX()-GameConstants.FRAME_SIZE_X/2)-GameConstants.TILE_SIZE/2;
+				if(player.getPosX()-GameConstants.FRAME_SIZE_X/2+25<currentMap.getWidth()
+						-GameConstants.FRAME_SIZE_X){
+					this.mapOffsetX = -(player.getPosX()-GameConstants.FRAME_SIZE_X/2)
+							-GameConstants.TILE_SIZE/2;
 				}else{
 					this.mapOffsetX= -(currentMap.getWidth()-GameConstants.FRAME_SIZE_X);
 				}

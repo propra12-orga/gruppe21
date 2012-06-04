@@ -100,7 +100,7 @@ public class MainPanel extends JPanel implements Runnable {
 			} catch (InterruptedException e) {
 				System.out.println("interrupted");
 			}
-			//System.out.println(sleepTime);
+			System.out.println(sleepTime);
 			beforeTime = System.nanoTime();
 		}
 		quitGame();
