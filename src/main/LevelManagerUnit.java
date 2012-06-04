@@ -17,14 +17,30 @@ import singleplayer.Campaign;
 import singleplayer.TransitionUnit;
 import singleplayer.WorldMapUnit;
 
-/*
- * loads single-player campaign and updates the current map object
+/**
+ * The LevelManagerUnit controls all single-player related game content. It
+ * starts by loading a particular campaign object from file and requesting a map
+ * object to display. The LevelManagerUnit extends GraphicalGameUnit and thus
+ * offers a common interface by overriding methods that allow updating and
+ * displaying its components.
+ * 
+ * @author tohei
+ * 
  */
 public class LevelManagerUnit extends GraphicalGameUnit {
 
 	private Campaign campaign;
 	private Map currentMap;
+	/**
+	 * The WorldMapUnit is used to display the WorldMap in between different
+	 * levels.
+	 */
 	private WorldMapUnit worldMapUnit;
+
+	/**
+	 * Store main Player object so it can be handed to the active Map object
+	 * once a new map is loaded in order to maintain its upgrades and stats
+	 */
 	private Player player;
 
 	// OffsetVariablen für die zu Zeichnende Map

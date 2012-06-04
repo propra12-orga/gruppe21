@@ -1,8 +1,8 @@
 package main;
 
 /**
- * Contains constants that need to be accessible to all classes (directory
- * paths, frame and tile size).
+ * Contains ease-of-use constants that need to be accessible to all classes
+ * (directory paths, frame and tile size).
  * 
  * @author tohei
  * 

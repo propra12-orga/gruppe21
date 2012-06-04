@@ -45,7 +45,6 @@ public class TransitionUnit extends GraphicalGameUnit {
 				UnitNavigator.getNavigator().addGameUnit(nextUnit,
 						nextUnitState);
 			}
-			System.out.println(nextUnitState);
 			UnitNavigator.getNavigator().set(nextUnitState);
 		}
 	}
