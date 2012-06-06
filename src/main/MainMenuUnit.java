@@ -5,11 +5,17 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
-import java.io.File;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+
+/**
+ * This class represents the main menu. It is used as the main hub, from where
+ * you can choose what to do. Including singleplayer, multiplayer or exit the
+ * game.
+ * 
+ * @author Saber104
+ * 
+ */
 
 public class MainMenuUnit extends GraphicalGameUnit {
 
@@ -55,10 +61,6 @@ public class MainMenuUnit extends GraphicalGameUnit {
 	private int selectCounter;
 	// point connected with the select image for optimal positioning
 	private Point selectorGhost = new Point(startXPos, startYPos);
-	private Image selector;
-
-	public MainMenuUnit() {
-	}
 
 	@Override
 	public void drawComponent(Graphics g) {
@@ -72,10 +74,8 @@ public class MainMenuUnit extends GraphicalGameUnit {
 		g.drawImage(ccontinueInactive, startXPos, button4YPos, null);
 		g.drawImage(select, (int) selectorGhost.getX() - buttonSpace,
 				(int) selectorGhost.getY(), null);
-		g.drawImage(selector, (int) selectorGhost.getX() - buttonSpace,
-				(int) selectorGhost.getY(), null);
 		/*
-		 * determines either to use active or inactive button layout based on
+		 * determines whether to use active or inactive button layout based on
 		 * select position
 		 */
 		if (selectorGhost.getY() == button1YPos)
@@ -138,12 +138,7 @@ public class MainMenuUnit extends GraphicalGameUnit {
 
 	@Override
 	public void initComponent() {
-		try {
-			selector = ImageIO.read(new File(GameConstants.MENU_IMAGES_DIR
-					+ "/SelectorPlaceholder.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+
 	}
 
 	@Override
