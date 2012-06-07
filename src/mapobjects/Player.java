@@ -63,10 +63,10 @@ public class Player extends MoveableObject {
 
 	public void layBomb(BufferedImage cm) {
 		if (!reachedMaxBombs()) {
-			map.getMapObjects()
-					.get(1)
-					.add(new Bomb(getPosX(), getPosY(), true, false, false,
-							"simplebomb", map.getGraphics(), bombradius, cm));
+			Bomb bomb = new Bomb(getPosX(), getPosY(), true, false, false,
+					"simplebomb", map.getGraphics(), bombradius, cm);
+			bomb.setMap(getMap());
+			map.getMapObjects().get(1).add(bomb);
 			addBomb();
 		}
 	}

@@ -138,12 +138,22 @@ public class Bomb extends MapObject {
 			for (int j = 0; j < arms[i]; j++) {
 				if (i == 0) {
 					if (simpleHasColl(posX, posY - ((j + 1) * 50), cm,
+							Color.green)) {
+						map.finishMap(true);
+						break;
+					}
+					if (simpleHasColl(posX, posY - ((j + 1) * 50), cm,
 							Color.black)) {
 						arms[i] = j;
 						break;
 					}
 				}
 				if (i == 1) {
+					if (simpleHasColl(posX + ((j + 1) * 50), posY, cm,
+							Color.green)) {
+						map.finishMap(true);
+						break;
+					}
 					if (simpleHasColl(posX + ((j + 1) * 50), posY, cm,
 							Color.black)) {
 						arms[i] = j;
@@ -152,12 +162,22 @@ public class Bomb extends MapObject {
 				}
 				if (i == 2) {
 					if (simpleHasColl(posX, posY + ((j + 1) * 50), cm,
+							Color.green)) {
+						map.finishMap(true);
+						break;
+					}
+					if (simpleHasColl(posX, posY + ((j + 1) * 50), cm,
 							Color.black)) {
 						arms[i] = j;
 						break;
 					}
 				}
 				if (i == 3) {
+					if (simpleHasColl(posX - ((j + 1) * 50), posY, cm,
+							Color.green)) {
+						map.finishMap(true);
+						break;
+					}
 					if (simpleHasColl(posX - ((j + 1) * 50), posY, cm,
 							Color.black)) {
 						arms[i] = j;
