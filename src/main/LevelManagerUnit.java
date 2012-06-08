@@ -80,19 +80,19 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 				UnitNavigator.getNavigator().set(UnitState.BASE_MENU_UNIT);
 			}
 			if (key == KeyEvent.VK_UP) {
-				player.direction.UP.set(true);
+				player.direction.setUp(true);
 			}
 
 			if (key == KeyEvent.VK_DOWN) {
-				player.direction.DOWN.set(true);
+				player.direction.setDown(true);
 			}
 
 			if (key == KeyEvent.VK_LEFT) {
-				player.direction.LEFT.set(true);
+				player.direction.setLeft(true);
 			}
 
 			if (key == KeyEvent.VK_RIGHT) {
-				player.direction.RIGHT.set(true);
+				player.direction.setRight(true);
 			}
 
 			if (key == KeyEvent.VK_SPACE) {
@@ -105,19 +105,19 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 	public void handleKeyReleased(KeyEvent e) {
 		int key = e.getKeyCode();
 		if (key == KeyEvent.VK_UP) {
-			player.direction.UP.set(false);
+			player.direction.setUp(false);
 		}
 
 		if (key == KeyEvent.VK_DOWN) {
-			player.direction.DOWN.set(false);
+			player.direction.setDown(false);
 		}
 
 		if (key == KeyEvent.VK_LEFT) {
-			player.direction.LEFT.set(false);
+			player.direction.setLeft(false);
 		}
 
 		if (key == KeyEvent.VK_RIGHT) {
-			player.direction.RIGHT.set(false);
+			player.direction.setRight(false);
 		}
 
 	}
@@ -217,10 +217,10 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 	private void changeCurrentMap() {
 		currentMap = campaign.getCurrentMap();
 		player = currentMap.getMapPlayer();
-		player.direction.UP.set(false);
-		player.direction.DOWN.set(false);
-		player.direction.LEFT.set(false);
-		player.direction.RIGHT.set(false);
+		player.direction.setUp(false);
+		player.direction.setDown(false);
+		player.direction.setLeft(false);
+		player.direction.setRight(false);
 		initOffset();
 	}
 

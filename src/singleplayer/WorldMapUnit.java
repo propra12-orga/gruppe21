@@ -79,10 +79,10 @@ public class WorldMapUnit extends GraphicalGameUnit {
 	@Override
 	public void updateComponent() {
 		Player player = worldMap.getMap().getMapPlayer();
-		player.direction.UP.set(false);
-		player.direction.DOWN.set(false);
-		player.direction.LEFT.set(false);
-		player.direction.RIGHT.set(false);
+		player.direction.setUp(false);
+		player.direction.setDown(false);
+		player.direction.setLeft(false);
+		player.direction.setRight(false);
 		worldMap.getMap().update();
 	}
 

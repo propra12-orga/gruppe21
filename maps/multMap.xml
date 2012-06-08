@@ -1,0 +1,2478 @@
+<?xml version="1.0"?>
+<map>
+	<header>
+	    <mapname>Test Map</mapname>
+		<sizex>800</sizex>
+		<sizey>650</sizey>
+	</header>
+	<mapobjects>
+		<level>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>0</posx>
+				<posy>0</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>50</posx>
+				<posy>0</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>100</posx>
+				<posy>0</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>150</posx>
+				<posy>0</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>200</posx>
+				<posy>0</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>250</posx>
+				<posy>0</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>300</posx>
+				<posy>0</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>350</posx>
+				<posy>0</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>400</posx>
+				<posy>0</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>450</posx>
+				<posy>0</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>500</posx>
+				<posy>0</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>550</posx>
+				<posy>0</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>600</posx>
+				<posy>0</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>650</posx>
+				<posy>0</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>700</posx>
+				<posy>0</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>750</posx>
+				<posy>0</posy>
+			</tile>
+		    
+		    <tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>0</posx>
+				<posy>50</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>50</posx>
+				<posy>50</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>100</posx>
+				<posy>50</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>150</posx>
+				<posy>50</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>200</posx>
+				<posy>50</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>250</posx>
+				<posy>50</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>300</posx>
+				<posy>50</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>350</posx>
+				<posy>50</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>400</posx>
+				<posy>50</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>450</posx>
+				<posy>50</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>500</posx>
+				<posy>50</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>550</posx>
+				<posy>50</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>600</posx>
+				<posy>50</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>650</posx>
+				<posy>50</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>700</posx>
+				<posy>50</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>750</posx>
+				<posy>50</posy>
+			</tile>
+			
+					    
+		    <tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>0</posx>
+				<posy>100</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>50</posx>
+				<posy>100</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>100</posx>
+				<posy>100</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>150</posx>
+				<posy>100</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>200</posx>
+				<posy>100</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>250</posx>
+				<posy>100</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>300</posx>
+				<posy>100</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>350</posx>
+				<posy>100</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>400</posx>
+				<posy>100</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>450</posx>
+				<posy>100</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>500</posx>
+				<posy>100</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>550</posx>
+				<posy>100</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>600</posx>
+				<posy>100</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>650</posx>
+				<posy>100</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>700</posx>
+				<posy>100</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>750</posx>
+				<posy>100</posy>
+			</tile>
+		
+		   <tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>0</posx>
+				<posy>100</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>50</posx>
+				<posy>100</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>100</posx>
+				<posy>100</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>150</posx>
+				<posy>100</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>200</posx>
+				<posy>100</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>250</posx>
+				<posy>100</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>300</posx>
+				<posy>100</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>350</posx>
+				<posy>100</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>400</posx>
+				<posy>100</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>450</posx>
+				<posy>100</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>500</posx>
+				<posy>100</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>550</posx>
+				<posy>100</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>600</posx>
+				<posy>100</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>650</posx>
+				<posy>100</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>700</posx>
+				<posy>100</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>750</posx>
+				<posy>100</posy>
+			</tile>
+		
+		
+		   <tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>0</posx>
+				<posy>150</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>50</posx>
+				<posy>150</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>100</posx>
+				<posy>150</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>150</posx>
+				<posy>150</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>200</posx>
+				<posy>150</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>250</posx>
+				<posy>150</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>300</posx>
+				<posy>150</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>350</posx>
+				<posy>150</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>400</posx>
+				<posy>150</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>450</posx>
+				<posy>150</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>500</posx>
+				<posy>150</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>550</posx>
+				<posy>150</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>600</posx>
+				<posy>150</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>650</posx>
+				<posy>150</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>700</posx>
+				<posy>150</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>750</posx>
+				<posy>150</posy>
+			</tile>
+		
+		
+		
+		   <tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>0</posx>
+				<posy>200</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>50</posx>
+				<posy>200</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>100</posx>
+				<posy>200</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>150</posx>
+				<posy>200</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>200</posx>
+				<posy>200</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>250</posx>
+				<posy>200</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>300</posx>
+				<posy>200</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>350</posx>
+				<posy>200</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>400</posx>
+				<posy>200</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>450</posx>
+				<posy>200</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>500</posx>
+				<posy>200</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>550</posx>
+				<posy>200</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>600</posx>
+				<posy>200</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>650</posx>
+				<posy>200</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>700</posx>
+				<posy>200</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>750</posx>
+				<posy>200</posy>
+			</tile>
+		
+		
+		
+		   <tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>0</posx>
+				<posy>250</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>50</posx>
+				<posy>250</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>100</posx>
+				<posy>250</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>150</posx>
+				<posy>250</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>200</posx>
+				<posy>250</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>250</posx>
+				<posy>250</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>300</posx>
+				<posy>250</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>350</posx>
+				<posy>250</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>400</posx>
+				<posy>250</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>450</posx>
+				<posy>250</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>500</posx>
+				<posy>250</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>550</posx>
+				<posy>250</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>600</posx>
+				<posy>250</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>650</posx>
+				<posy>250</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>700</posx>
+				<posy>250</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>750</posx>
+				<posy>250</posy>
+			</tile>
+		
+		
+		   <tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>0</posx>
+				<posy>300</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>50</posx>
+				<posy>300</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>100</posx>
+				<posy>300</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>150</posx>
+				<posy>300</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>200</posx>
+				<posy>300</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>250</posx>
+				<posy>300</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>300</posx>
+				<posy>300</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>350</posx>
+				<posy>300</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>400</posx>
+				<posy>300</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>450</posx>
+				<posy>300</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>500</posx>
+				<posy>300</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>550</posx>
+				<posy>300</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>600</posx>
+				<posy>300</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>650</posx>
+				<posy>300</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>700</posx>
+				<posy>300</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>750</posx>
+				<posy>300</posy>
+			</tile>				
+		
+		
+		<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>0</posx>
+				<posy>350</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>50</posx>
+				<posy>350</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>100</posx>
+				<posy>350</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>150</posx>
+				<posy>350</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>200</posx>
+				<posy>350</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>250</posx>
+				<posy>350</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="3">wasser_sand_eckewa.png</image>
+				<posx>300</posx>
+				<posy>350</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">wasser_sand_gerade.png</image>
+				<posx>350</posx>
+				<posy>350</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">wasser_sand_eckewa.png</image>
+				<posx>400</posx>
+				<posy>350</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>450</posx>
+				<posy>350</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>500</posx>
+				<posy>350</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>550</posx>
+				<posy>350</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>600</posx>
+				<posy>350</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>650</posx>
+				<posy>350</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>700</posx>
+				<posy>350</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>750</posx>
+				<posy>350</posy>
+			</tile>
+			
+
+<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>0</posx>
+				<posy>400</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>50</posx>
+				<posy>400</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>100</posx>
+				<posy>400</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>150</posx>
+				<posy>400</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>200</posx>
+				<posy>400</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>250</posx>
+				<posy>400</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="3">wasser_sand_gerade.png</image>
+				<posx>300</posx>
+				<posy>400</posy>
+			</tile>
+			
+			<tile type="animatedfloor" animated="true">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<animationset>water1</animationset>
+				<posx>350</posx>
+				<posy>400</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">wasser_sand_eckesa.png</image>
+				<posx>400</posx>
+				<posy>400</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">wasser_sand_gerade.png</image>
+				<posx>450</posx>
+				<posy>400</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">wasser_sand_eckewa.png</image>
+				<posx>500</posx>
+				<posy>400</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>550</posx>
+				<posy>400</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>600</posx>
+				<posy>400</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>650</posx>
+				<posy>400</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>700</posx>
+				<posy>400</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>750</posx>
+				<posy>400</posy>
+			</tile>
+			
+			
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">wasser_sand_gerade.png</image>
+				<posx>0</posx>
+				<posy>500</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">wasser_sand_gerade.png</image>
+				<posx>50</posx>
+				<posy>500</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">wasser_sand_gerade.png</image>
+				<posx>100</posx>
+				<posy>500</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">wasser_sand_gerade.png</image>
+				<posx>150</posx>
+				<posy>500</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">wasser_sand_gerade.png</image>
+				<posx>200</posx>
+				<posy>500</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="3">wasser_sand_eckesa.png</image>
+				<posx>250</posx>
+				<posy>500</posy>
+			</tile>
+			
+			<tile type="animatedfloor" animated="true">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<animationset>water1</animationset>
+				<posx>300</posx>
+				<posy>500</posy>
+			</tile>
+			
+			<tile type="animatedfloor" animated="true">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<animationset>water1</animationset>
+				<posx>350</posx>
+				<posy>500</posy>
+			</tile>
+			
+			<tile type="animatedfloor" animated="true">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<animationset>water1</animationset>
+				<posx>400</posx>
+				<posy>500</posy>
+			</tile>
+			
+			<tile type="animatedfloor" animated="true">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<animationset>water1</animationset>
+				<posx>450</posx>
+				<posy>500</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">wasser_sand_eckesa.png</image>
+				<posx>500</posx>
+				<posy>500</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">wasser_sand_gerade.png</image>
+				<posx>550</posx>
+				<posy>500</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">wasser_sand_gerade.png</image>
+				<posx>600</posx>
+				<posy>500</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">wasser_sand_gerade.png</image>
+				<posx>650</posx>
+				<posy>500</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">wasser_sand_gerade.png</image>
+				<posx>700</posx>
+				<posy>500</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">wasser_sand_gerade.png</image>
+				<posx>750</posx>
+				<posy>500</posy>
+			</tile>
+			
+			
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>0</posx>
+				<posy>450</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>50</posx>
+				<posy>450</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>100</posx>
+				<posy>450</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>150</posx>
+				<posy>450</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>200</posx>
+				<posy>450</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="3">wasser_sand_eckewa.png</image>
+				<posx>250</posx>
+				<posy>450</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="3">wasser_sand_eckesa.png</image>
+				<posx>300</posx>
+				<posy>450</posy>
+			</tile>
+			
+			<tile type="animatedfloor" animated="true">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<animationset>water1</animationset>
+				<posx>350</posx>
+				<posy>450</posy>
+			</tile>
+			
+			<tile type="animatedfloor" animated="true">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<animationset>water1</animationset>
+				<posx>400</posx>
+				<posy>450</posy>
+			</tile>
+			
+			<tile type="animatedfloor" animated="true">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<animationset>water1</animationset>
+				<posx>450</posx>
+				<posy>450</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="1">wasser_sand_gerade.png</image>
+				<posx>500</posx>
+				<posy>450</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>550</posx>
+				<posy>450</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>600</posx>
+				<posy>450</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>650</posx>
+				<posy>450</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>700</posx>
+				<posy>450</posy>
+			</tile>
+			
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Sand1.png</image>
+				<posx>750</posx>
+				<posy>450</posy>
+			</tile>
+			
+			
+			
+			
+			<tile type="animatedfloor" animated="true">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<animationset>water1</animationset>
+				<posx>0</posx>
+				<posy>550</posy>
+			</tile>
+			
+			<tile type="animatedfloor" animated="true">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<animationset>water1</animationset>
+				<posx>50</posx>
+				<posy>550</posy>
+			</tile>
+			
+			<tile type="animatedfloor" animated="true">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<animationset>water1</animationset>
+				<posx>100</posx>
+				<posy>550</posy>
+			</tile>
+			
+			<tile type="animatedfloor" animated="true">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<animationset>water1</animationset>
+				<posx>150</posx>
+				<posy>550</posy>
+			</tile>
+			
+			<tile type="animatedfloor" animated="true">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<animationset>water1</animationset>
+				<posx>200</posx>
+				<posy>550</posy>
+			</tile>
+			
+			
+			<tile type="animatedfloor" animated="true">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<animationset>water1</animationset>
+				<posx>250</posx>
+				<posy>550</posy>
+			</tile>
+			
+			<tile type="animatedfloor" animated="true">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<animationset>water1</animationset>
+				<posx>300</posx>
+				<posy>550</posy>
+			</tile>
+			
+			<tile type="animatedfloor" animated="true">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<animationset>water1</animationset>
+				<posx>350</posx>
+				<posy>550</posy>
+			</tile>
+			
+			<tile type="animatedfloor" animated="true">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<animationset>water1</animationset>
+				<posx>400</posx>
+				<posy>550</posy>
+			</tile>
+			
+			<tile type="animatedfloor" animated="true">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<animationset>water1</animationset>
+				<posx>450</posx>
+				<posy>550</posy>
+			</tile>
+			
+			<tile type="animatedfloor" animated="true">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<animationset>water1</animationset>
+				<posx>500</posx>
+				<posy>550</posy>
+			</tile>
+			
+			<tile type="animatedfloor" animated="true">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<animationset>water1</animationset>
+				<posx>550</posx>
+				<posy>550</posy>
+			</tile>
+			
+			<tile type="animatedfloor" animated="true">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<animationset>water1</animationset>
+				<posx>600</posx>
+				<posy>550</posy>
+			</tile>
+			
+			<tile type="animatedfloor" animated="true">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<animationset>water1</animationset>
+				<posx>650</posx>
+				<posy>550</posy>
+			</tile>
+			
+			<tile type="animatedfloor" animated="true">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<animationset>water1</animationset>
+				<posx>700</posx>
+				<posy>550</posy>
+			</tile>
+			
+			<tile type="animatedfloor" animated="true">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<animationset>water1</animationset>
+				<posx>750</posx>
+				<posy>550</posy>
+			</tile>
+					
+		<tile type="animatedfloor" animated="true">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<animationset>water1</animationset>
+				<posx>0</posx>
+				<posy>600</posy>
+			</tile>
+			
+			<tile type="animatedfloor" animated="true">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<animationset>water1</animationset>
+				<posx>50</posx>
+				<posy>600</posy>
+			</tile>
+			
+			<tile type="animatedfloor" animated="true">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<animationset>water1</animationset>
+				<posx>100</posx>
+				<posy>600</posy>
+			</tile>
+			
+			<tile type="animatedfloor" animated="true">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<animationset>water1</animationset>
+				<posx>150</posx>
+				<posy>600</posy>
+			</tile>
+			
+			<tile type="animatedfloor" animated="true">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<animationset>water1</animationset>
+				<posx>200</posx>
+				<posy>600</posy>
+			</tile>
+			
+			
+			<tile type="animatedfloor" animated="true">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<animationset>water1</animationset>
+				<posx>250</posx>
+				<posy>600</posy>
+			</tile>
+			
+			<tile type="animatedfloor" animated="true">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<animationset>water1</animationset>
+				<posx>300</posx>
+				<posy>600</posy>
+			</tile>
+			
+			<tile type="animatedfloor" animated="true">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<animationset>water1</animationset>
+				<posx>350</posx>
+				<posy>600</posy>
+			</tile>
+			
+			<tile type="animatedfloor" animated="true">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<animationset>water1</animationset>
+				<posx>400</posx>
+				<posy>600</posy>
+			</tile>
+			
+			<tile type="animatedfloor" animated="true">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<animationset>water1</animationset>
+				<posx>450</posx>
+				<posy>600</posy>
+			</tile>
+			
+			<tile type="animatedfloor" animated="true">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<animationset>water1</animationset>
+				<posx>500</posx>
+				<posy>600</posy>
+			</tile>
+			
+			<tile type="animatedfloor" animated="true">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<animationset>water1</animationset>
+				<posx>550</posx>
+				<posy>600</posy>
+			</tile>
+			
+			<tile type="animatedfloor" animated="true">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<animationset>water1</animationset>
+				<posx>600</posx>
+				<posy>600</posy>
+			</tile>
+			
+			<tile type="animatedfloor" animated="true">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<animationset>water1</animationset>
+				<posx>650</posx>
+				<posy>600</posy>
+			</tile>
+			
+			<tile type="animatedfloor" animated="true">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<animationset>water1</animationset>
+				<posx>700</posx>
+				<posy>600</posy>
+			</tile>
+			
+			<tile type="animatedfloor" animated="true">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<animationset>water1</animationset>
+				<posx>750</posx>
+				<posy>600</posy>
+			</tile>
+						
+					
+		</level>
+
+		<level>
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">fels1.png</image>
+				<posx>0</posx>
+				<posy>0</posy>
+			</tile>
+			
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">fels1.png</image>
+				<posx>50</posx>
+				<posy>0</posy>
+			</tile>
+			
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">fels1.png</image>
+				<posx>150</posx>
+				<posy>0</posy>
+			</tile>
+			
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">fels1.png</image>
+				<posx>200</posx>
+				<posy>0</posy>
+			</tile>
+			
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">fels1.png</image>
+				<posx>250</posx>
+				<posy>0</posy>
+			</tile>
+			
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">fels1.png</image>
+				<posx>350</posx>
+				<posy>0</posy>
+			</tile>
+			
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">fels1.png</image>
+				<posx>450</posx>
+				<posy>0</posy>
+			</tile>
+			
+			<tile type="exit" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">exit.png</image>
+				<posx>500</posx>
+				<posy>0</posy>
+			</tile>
+			
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">fels1.png</image>
+				<posx>550</posx>
+				<posy>0</posy>
+			</tile>
+			
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">fels1.png</image>
+				<posx>600</posx>
+				<posy>0</posy>
+			</tile>
+			
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">fels1.png</image>
+				<posx>650</posx>
+				<posy>0</posy>
+			</tile>
+			
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">fels1.png</image>
+				<posx>750</posx>
+				<posy>0</posy>
+			</tile>
+			
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">fels1.png</image>
+				<posx>0</posx>
+				<posy>100</posy>
+			</tile>
+			
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">fels1.png</image>
+				<posx>100</posx>
+				<posy>100</posy>
+			</tile>
+			
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">fels1.png</image>
+				<posx>300</posx>
+				<posy>100</posy>
+			</tile>
+			
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">fels1.png</image>
+				<posx>400</posx>
+				<posy>100</posy>
+			</tile>
+			
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">fels1.png</image>
+				<posx>500</posx>
+				<posy>100</posy>
+			</tile>
+			
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">fels1.png</image>
+				<posx>500</posx>
+				<posy>150</posy>
+			</tile>
+			
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">fels1.png</image>
+				<posx>550</posx>
+				<posy>150</posy>
+			</tile>
+			
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">fels1.png</image>
+				<posx>700</posx>
+				<posy>150</posy>
+			</tile>
+			
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">fels1.png</image>
+				<posx>750</posx>
+				<posy>150</posy>
+			</tile>
+			
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">fels1.png</image>
+				<posx>0</posx>
+				<posy>200</posy>
+			</tile>
+			
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">fels1.png</image>
+				<posx>100</posx>
+				<posy>200</posy>
+			</tile>
+			
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">fels1.png</image>
+				<posx>200</posx>
+				<posy>200</posy>
+			</tile>
+			
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">fels1.png</image>
+				<posx>650</posx>
+				<posy>250</posy>
+			</tile>
+			
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">fels1.png</image>
+				<posx>300</posx>
+				<posy>100</posy>
+			</tile>
+			
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">fels1_klein.png</image>
+				<posx>200</posx>
+				<posy>100</posy>
+			</tile>
+			
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">fels1_klein.png</image>
+				<posx>600</posx>
+				<posy>150</posy>
+			</tile>
+			
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">fels1_klein.png</image>
+				<posx>550</posx>
+				<posy>200</posy>
+			</tile>
+			
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">fels1_klein.png</image>
+				<posx>250</posx>
+				<posy>200</posy>
+			</tile>
+			
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">fels1_klein.png</image>
+				<posx>750</posx>
+				<posy>250</posy>
+			</tile>
+			
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">fels1_klein.png</image>
+				<posx>150</posx>
+				<posy>300</posy>
+			</tile>
+			
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">fels1_klein.png</image>
+				<posx>100</posx>
+				<posy>350</posy>
+			</tile>
+			
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">fels1_klein.png</image>
+				<posx>600</posx>
+				<posy>50</posy>
+			</tile>
+			
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>true</destroyable>
+			 	<image rotation="0">gras.png</image>
+				<posx>500</posx>
+				<posy>50</posy>
+			</tile>
+			
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>true</destroyable>
+			 	<image rotation="0">gras.png</image>
+				<posx>750</posx>
+				<posy>100</posy>
+			</tile>
+			
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>true</destroyable>
+			 	<image rotation="0">gras.png</image>
+				<posx>350</posx>
+				<posy>200</posy>
+			</tile>
+			
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>true</destroyable>
+			 	<image rotation="0">gras.png</image>
+				<posx>400</posx>
+				<posy>200</posy>
+			</tile>
+			
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>true</destroyable>
+			 	<image rotation="0">gras.png</image>
+				<posx>450</posx>
+				<posy>250</posy>
+			</tile>
+			
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>true</destroyable>
+			 	<image rotation="0">gras.png</image>
+				<posx>0</posx>
+				<posy>300</posy>
+			</tile>
+			
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>true</destroyable>
+			 	<image rotation="0">gras.png</image>
+				<posx>600</posx>
+				<posy>300</posy>
+			</tile>
+			
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>true</destroyable>
+			 	<image rotation="0">gras.png</image>
+				<posx>700</posx>
+				<posy>350</posy>
+			</tile>
+			
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>true</destroyable>
+			 	<image rotation="0">gras.png</image>
+				<posx>750</posx>
+				<posy>350</posy>
+			</tile>
+			
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>true</destroyable>
+			 	<image rotation="0">gras.png</image>
+				<posx>0</posx>
+				<posy>400</posy>
+			</tile>
+			
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>true</destroyable>
+			 	<image rotation="0">gras.png</image>
+				<posx>550</posx>
+				<posy>400</posy>
+			</tile>
+			
+		</level>
+		<level>
+			<character type="player" animated="true">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<animationset>player1</animationset>
+				<posx>600</posx>
+				<posy>450</posy>
+			</character>
+			<character type="player" animated="true">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<animationset>player1</animationset>
+				<posx>550</posx>
+				<posy>450</posy>
+			</character>
+
+		</level>
+	</mapobjects>
+	
+	<items>
+		<animationset>simplebomb</animationset>
+	</items>
+</map>

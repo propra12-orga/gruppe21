@@ -8,7 +8,6 @@ import java.awt.image.BufferedImage;
 import java.util.Vector;
 
 import mapobjects.Bomb;
-import mapobjects.Enemy;
 import mapobjects.MapObject;
 import mapobjects.Player;
 
@@ -20,9 +19,8 @@ public class Map {
 	private int mapSizeX;
 	private int mapSizeY;
 	private int drawLevels;
-	private Player mapplayer;
-	private Enemy enemy;
-
+	private Vector<Player> players;
+	private int playerIDCnt = 0;
 	private boolean playerDead = false;
 	private boolean mapFinished = false;
 
@@ -41,14 +39,15 @@ public class Map {
 		mr.loadGraphics(graphics);
 		mr.getMap(mapObjects, graphics);
 
+		players = new Vector<Player>();
 		for (int i = 0; i < drawLevels; i++) {
 			for (int j = 0; j < mapObjects.get(i).size(); j++) {
 				mapObjects.get(i).get(j).setMap(this);
 				if (mapObjects.get(i).get(j) instanceof Player) {
-					mapplayer = (Player) mapObjects.get(i).get(j);
-				}
-				if (mapObjects.get(i).get(j) instanceof Enemy) {
-					enemy = (Enemy) mapObjects.get(i).get(j);
+					Player player = (Player) mapObjects.get(i).get(j);
+					players.add(player);
+					player.setID(playerIDCnt);
+					playerIDCnt++;
 				}
 			}
 		}
@@ -59,11 +58,11 @@ public class Map {
 		gtemp.setPaint(Color.white);
 		gtemp.fillRect(mapSizeX, mapSizeY, 50, 50);
 		gtemp.dispose();
-		mapplayer.collMap = collisionMap;
+		for (Player player : players) {
+			player.collMap = collisionMap;
+		}
 		// TODO make enemies
 	}
-
-	// TODO public void loadNewMap(){}
 
 	public void drawMap(Graphics2D g2d) {
 		BufferedImage collisionMaptemp = new BufferedImage(mapSizeX, mapSizeY,
@@ -84,13 +83,18 @@ public class Map {
 	public void update() {
 		for (int i = 0; i < drawLevels; i++) {
 			for (int j = 0; j < mapObjects.get(i).size(); j++) {
+				mapObjects.get(i).get(j);
 				if (mapObjects.get(i).get(j).isDestroyed()) { // destroyed
-																// mapObjects
-																// will be
-																// removed from
-																// the list
+					// mapObjects
+					// will be
+					// removed from
+					// the list
 					if (mapObjects.get(i).get(j) instanceof Bomb) {
-						mapplayer.removeBomb();
+						for (Player player : players) {
+							if (player.getID() == ((Bomb) mapObjects.get(i)
+									.get(j)).getPlayerID())
+								player.removeBomb();
+						}
 					}
 					mapObjects.get(i).remove(j);
 				} else {
@@ -138,7 +142,16 @@ public class Map {
 	}
 
 	public Player getMapPlayer() {
-		return mapplayer;
+		if (players.size() > 0)
+			return players.get(0);
+		return null;
+	}
+
+	public Player getPlayerByNumber(int number) {
+		if (number <= players.size()) {
+			return players.get(number - 1);
+		}
+		return null;
 	}
 
 	public int getWidth() {

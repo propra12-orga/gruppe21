@@ -7,6 +7,7 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 public class Player extends MoveableObject {
+	private int ID;
 	private int maxbombs = 3;
 	private int actualbombs = 0;
 	private int bombradius = 2;
@@ -24,7 +25,7 @@ public class Player extends MoveableObject {
 
 	@Override
 	public void move() {
-		if (direction.UP.is()) {
+		if (direction.isUp()) {
 			if (hasObjectCollision(posX, posY - speed, map.getCollisionMap(),
 					"UP")) {
 			} else {
@@ -33,7 +34,7 @@ public class Player extends MoveableObject {
 			animation.change("playerUp");
 		}
 
-		if (direction.DOWN.is()) {
+		if (direction.isDown()) {
 			if (hasObjectCollision(posX, posY + speed, map.getCollisionMap(),
 					"DOWN")) {
 			} else {
@@ -42,7 +43,7 @@ public class Player extends MoveableObject {
 			animation.change("playerDown");
 		}
 
-		if (direction.LEFT.is()) {
+		if (direction.isLeft()) {
 			if (hasObjectCollision(posX - speed, posY, map.getCollisionMap(),
 					"LEFT")) {
 			} else {
@@ -51,7 +52,7 @@ public class Player extends MoveableObject {
 			animation.change("playerLeft");
 		}
 
-		if (direction.RIGHT.is()) {
+		if (direction.isRight()) {
 			if (hasObjectCollision(posX + speed, posY, map.getCollisionMap(),
 					"RIGHT")) {
 			} else {
@@ -64,7 +65,7 @@ public class Player extends MoveableObject {
 	public void layBomb(BufferedImage cm) {
 		if (!reachedMaxBombs()) {
 			Bomb bomb = new Bomb(getPosX(), getPosY(), true, false, false,
-					"simplebomb", map.getGraphics(), bombradius, cm);
+					"simplebomb", map.getGraphics(), bombradius, cm, ID);
 			bomb.setMap(getMap());
 			map.getMapObjects().get(1).add(bomb);
 			addBomb();
@@ -238,4 +239,13 @@ public class Player extends MoveableObject {
 	public void removeBomb() {
 		actualbombs--;
 	}
+
+	public int getID() {
+		return ID;
+	}
+
+	public void setID(int iD) {
+		ID = iD;
+	}
+
 }

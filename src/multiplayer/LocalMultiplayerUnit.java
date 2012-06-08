@@ -1,8 +1,12 @@
 package multiplayer;
 
+import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
 
+import main.GameConstants;
 import main.GraphicalGameUnit;
 import main.UnitNavigator;
 import main.UnitState;
@@ -15,10 +19,21 @@ public class LocalMultiplayerUnit extends GraphicalGameUnit {
 	Player playerTwo;
 
 	Map multiplayerMap;
+	BufferedImage mapCanvas;
+
+	public LocalMultiplayerUnit() {
+		initComponent();
+	}
 
 	@Override
 	public void updateComponent() {
-		// TODO Auto-generated method stub
+		if (!multiplayerMap.isFinished()) {
+			multiplayerMap.update();
+		} else {
+			UnitNavigator.getNavigator().set(UnitState.BASE_MENU_UNIT);
+			UnitNavigator.getNavigator().removeGameUnit(
+					UnitState.LEVEL_MANAGER_UNIT);
+		}
 
 	}
 
@@ -35,22 +50,22 @@ public class LocalMultiplayerUnit extends GraphicalGameUnit {
 		 * playerOne KeyEvents
 		 */
 		if (key == KeyEvent.VK_UP) {
-			playerOne.direction.UP.set(true);
+			playerOne.direction.setUp(true);
 		}
 
 		if (key == KeyEvent.VK_DOWN) {
-			playerOne.direction.DOWN.set(true);
+			playerOne.direction.setDown(true);
 		}
 
 		if (key == KeyEvent.VK_LEFT) {
-			playerOne.direction.LEFT.set(true);
+			playerOne.direction.setLeft(true);
 		}
 
 		if (key == KeyEvent.VK_RIGHT) {
-			playerOne.direction.RIGHT.set(true);
+			playerOne.direction.setRight(true);
 		}
 
-		if (key == KeyEvent.VK_INSERT) {
+		if (key == KeyEvent.VK_PLUS) {
 			playerOne.layBomb(multiplayerMap.getCollisionMap());
 		}
 
@@ -58,19 +73,19 @@ public class LocalMultiplayerUnit extends GraphicalGameUnit {
 		 * playerTwo KeyEvents
 		 */
 		if (key == KeyEvent.VK_W) {
-			playerTwo.direction.UP.set(true);
+			playerTwo.direction.setUp(true);
 		}
 
 		if (key == KeyEvent.VK_S) {
-			playerTwo.direction.DOWN.set(true);
+			playerTwo.direction.setDown(true);
 		}
 
 		if (key == KeyEvent.VK_A) {
-			playerTwo.direction.LEFT.set(true);
+			playerTwo.direction.setLeft(true);
 		}
 
 		if (key == KeyEvent.VK_D) {
-			playerTwo.direction.RIGHT.set(true);
+			playerTwo.direction.setRight(true);
 		}
 
 		if (key == KeyEvent.VK_SPACE) {
@@ -85,51 +100,57 @@ public class LocalMultiplayerUnit extends GraphicalGameUnit {
 		 * playerOne KeyEvents
 		 */
 		if (key == KeyEvent.VK_UP) {
-			playerOne.direction.UP.set(false);
+			playerOne.direction.setUp(false);
 		}
 
 		if (key == KeyEvent.VK_DOWN) {
-			playerOne.direction.DOWN.set(false);
+			playerOne.direction.setDown(false);
 		}
 
 		if (key == KeyEvent.VK_LEFT) {
-			playerOne.direction.LEFT.set(false);
+			playerOne.direction.setLeft(false);
 		}
 
 		if (key == KeyEvent.VK_RIGHT) {
-			playerOne.direction.RIGHT.set(false);
+			playerOne.direction.setRight(false);
 		}
 
 		/*
 		 * playerTwo KeyEvents
 		 */
 		if (key == KeyEvent.VK_W) {
-			playerOne.direction.UP.set(false);
+			playerTwo.direction.setUp(false);
 		}
 
 		if (key == KeyEvent.VK_S) {
-			playerOne.direction.DOWN.set(false);
+			playerTwo.direction.setDown(false);
 		}
 
 		if (key == KeyEvent.VK_A) {
-			playerOne.direction.LEFT.set(false);
+			playerTwo.direction.setLeft(false);
 		}
 
 		if (key == KeyEvent.VK_D) {
-			playerOne.direction.RIGHT.set(false);
+			playerTwo.direction.setRight(false);
 		}
 	}
 
 	@Override
 	public void initComponent() {
-		multiplayerMap = new Map("testmap");
-
+		multiplayerMap = new Map("multMap");
+		playerOne = multiplayerMap.getPlayerByNumber(1);
+		playerTwo = multiplayerMap.getPlayerByNumber(2);
 	}
 
 	@Override
 	public void drawComponent(Graphics g) {
-		// TODO Auto-generated method stub
-
+		g.setColor(Color.black);
+		g.fillRect(0, 0, GameConstants.FRAME_SIZE_X, GameConstants.FRAME_SIZE_Y);
+		mapCanvas = new BufferedImage(multiplayerMap.getWidth(),
+				multiplayerMap.getHeight(), BufferedImage.TYPE_INT_ARGB);
+		multiplayerMap.drawMap((Graphics2D) mapCanvas.getGraphics());
+		g.drawImage(mapCanvas, 10, 10, multiplayerMap.getWidth(),
+				multiplayerMap.getHeight(), null);
 	}
 
 }

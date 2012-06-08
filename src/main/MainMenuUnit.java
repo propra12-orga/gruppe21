@@ -8,6 +8,8 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.ImageIcon;
 
+import multiplayer.LocalMultiplayerUnit;
+
 /**
  * This class represents the main menu. It is used as the main hub, from where
  * you can choose what to do. Including singleplayer, multiplayer or exit the
@@ -117,7 +119,11 @@ public class MainMenuUnit extends GraphicalGameUnit {
 			UnitNavigator.getNavigator().set(UnitState.LEVEL_MANAGER_UNIT);
 		}
 		if (key == KeyEvent.VK_ENTER && selectCounter == 1) {
-			System.out.println("Multiplayer");
+			// create new game
+			LocalMultiplayerUnit levelmanager = new LocalMultiplayerUnit();
+			UnitNavigator.getNavigator().addGameUnit(levelmanager,
+					UnitState.LEVEL_MANAGER_UNIT);
+			UnitNavigator.getNavigator().set(UnitState.LEVEL_MANAGER_UNIT);
 		}
 		if (key == KeyEvent.VK_ENTER && selectCounter == 2) {
 			// end game

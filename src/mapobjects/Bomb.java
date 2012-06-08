@@ -9,6 +9,7 @@ import java.awt.image.BufferedImage;
 
 public class Bomb extends MapObject {
 
+	private int playerID;
 	private int radius = 1;
 	Animation armanimation;
 	Animation endanimation;
@@ -20,7 +21,7 @@ public class Bomb extends MapObject {
 	private boolean exploding = false;
 
 	public Bomb(int x, int y, boolean v, boolean d, boolean c, String p,
-			ImageLoader gr, int r, BufferedImage cm) {
+			ImageLoader gr, int r, BufferedImage cm, int playerID) {
 		super(x, y, v, d, c, p, gr);
 		posX = (x + 25) / 50 * 50;
 		posY = (y + 25) / 50 * 50;
@@ -237,4 +238,9 @@ public class Bomb extends MapObject {
 			}
 		}
 	}
+
+	public int getPlayerID() {
+		return playerID;
+	}
+
 }
