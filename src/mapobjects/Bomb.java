@@ -36,7 +36,7 @@ public class Bomb extends MapObject {
 		endanimation = new Animation("simplebomb", gr);
 		armanimation.start("gerade");
 		endanimation.start("up");
-
+		this.playerID = playerID;
 		// calculate arms lengths just before explosion
 	}
 
