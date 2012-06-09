@@ -14,7 +14,6 @@ import javax.swing.ImageIcon;
 import map.Map;
 import mapobjects.Player;
 import singleplayer.Campaign;
-import singleplayer.TransitionUnit;
 import singleplayer.WorldMapUnit;
 
 /**

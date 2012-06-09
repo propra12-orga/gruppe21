@@ -138,29 +138,99 @@ public class Bomb extends MapObject {
 		for (int i = 0; i < arms.length; i++) {
 			for (int j = 0; j < arms[i]; j++) {
 				if (i == 0) {
+					// if (simpleHasColl(posX, posY - ((j + 1) * 50), cm,
+					//
+					// Color.green)) {
+					// for (Player player : map.getPlayers()) {
+					// Rectangle playerRect = new Rectangle(
+					// player.getPosX(), player.getPosY(),
+					// GameConstants.TILE_SIZE,
+					// GameConstants.TILE_SIZE);
+					// if (playerRect.intersects(new Rectangle(posX, posY
+					// - ((j + 1) * 50), GameConstants.TILE_SIZE,
+					// GameConstants.TILE_SIZE))) {
+					// player.die();
+					// }
+					// // }
+					// // map.finishMap(true);
+					// }
 					if (simpleHasColl(posX, posY - ((j + 1) * 50), cm,
-							Color.black)) {
+
+					Color.black)) {
 						arms[i] = j;
 						break;
 					}
 				}
 				if (i == 1) {
+					// if (simpleHasColl(posX + ((j + 1) * 50), posY, cm,
+					//
+					// Color.green)) {
+					// for (Player player : map.getPlayers()) {
+					// Rectangle playerRect = new Rectangle(
+					// player.getPosX(), player.getPosY(),
+					// GameConstants.TILE_SIZE,
+					// GameConstants.TILE_SIZE);
+					// if (playerRect.intersects(new Rectangle(posX
+					// + ((j + 1) * 50), posY,
+					// GameConstants.TILE_SIZE,
+					// GameConstants.TILE_SIZE))) {
+					// player.die();
+					// }
+					// }
+					// map.finishMap(true);
+					// }
 					if (simpleHasColl(posX + ((j + 1) * 50), posY, cm,
-							Color.black)) {
+
+					Color.black)) {
 						arms[i] = j;
 						break;
 					}
 				}
 				if (i == 2) {
+					// if (simpleHasColl(posX, posY + ((j + 1) * 50), cm,
+					//
+					// Color.green)) {
+					// for (Player player : map.getPlayers()) {
+					// Rectangle playerRect = new Rectangle(
+					// player.getPosX(), player.getPosY(),
+					// GameConstants.TILE_SIZE,
+					// GameConstants.TILE_SIZE);
+					// if (playerRect.intersects(new Rectangle(posX, posY
+					// + ((j + 1) * 50), GameConstants.TILE_SIZE,
+					// GameConstants.TILE_SIZE))) {
+					// player.die();
+					// }
+					// }
+					// map.finishMap(true);
+					// }
 					if (simpleHasColl(posX, posY + ((j + 1) * 50), cm,
-							Color.black)) {
+
+					Color.black)) {
 						arms[i] = j;
 						break;
 					}
 				}
 				if (i == 3) {
+					// if (simpleHasColl(posX - ((j + 1) * 50), posY, cm,
+					//
+					// Color.green)) {
+					// for (Player player : map.getPlayers()) {
+					// Rectangle playerRect = new Rectangle(
+					// player.getPosX(), player.getPosY(),
+					// GameConstants.TILE_SIZE,
+					// GameConstants.TILE_SIZE);
+					// if (playerRect.intersects(new Rectangle(posX
+					// - ((j + 1) * 50), posY,
+					// GameConstants.TILE_SIZE,
+					// GameConstants.TILE_SIZE))) {
+					// player.die();
+					// }
+					// }
+					// map.finishMap(true);
+					// }
 					if (simpleHasColl(posX - ((j + 1) * 50), posY, cm,
-							Color.black)) {
+
+					Color.black)) {
 						arms[i] = j;
 						break;
 					}

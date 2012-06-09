@@ -8,18 +8,32 @@ import java.awt.image.BufferedImage;
 
 import main.GameConstants;
 import main.GraphicalGameUnit;
+import main.TransitionUnit;
 import main.UnitNavigator;
 import main.UnitState;
 import map.Map;
 import mapobjects.Player;
 
+/**
+ * Subclass of GraphicalGameUnit for simple "Two-Players-One-Keyboard"
+ * multiplayer games.
+ * 
+ * @author tohei
+ * 
+ */
 public class LocalMultiplayerUnit extends GraphicalGameUnit {
 
-	Player playerOne;
-	Player playerTwo;
+	private Player playerOne;
+	private Player playerTwo;
 
-	Map multiplayerMap;
-	BufferedImage mapCanvas;
+	private Map multiplayerMap;
+	private BufferedImage mapCanvas;
+
+	/**
+	 * Some win messages one can randomly choose from.
+	 */
+	private String[] winMessages = { " is bomb-happy!",
+			" achieves a blasting victory!", " leaves nothing but a crater!" };
 
 	public LocalMultiplayerUnit() {
 		initComponent();
@@ -30,9 +44,23 @@ public class LocalMultiplayerUnit extends GraphicalGameUnit {
 		if (!multiplayerMap.isFinished()) {
 			multiplayerMap.update();
 		} else {
-			UnitNavigator.getNavigator().set(UnitState.BASE_MENU_UNIT);
-			UnitNavigator.getNavigator().removeGameUnit(
-					UnitState.LEVEL_MANAGER_UNIT);
+			/*
+			 * A player died: Generate the appropriate image ...
+			 */
+			BufferedImage transitionMsg = createDrawMessage();
+			if (playerOne.isAlive()) {
+				transitionMsg = createWinMessage("Player One");
+			} else if (playerTwo.isAlive()) {
+				transitionMsg = createWinMessage("Player Two");
+			}
+			/*
+			 * ... and pass it to a TransitionUnit
+			 */
+			TransitionUnit trans = new TransitionUnit(UnitState.BASE_MENU_UNIT,
+					transitionMsg);
+			UnitNavigator.getNavigator().addGameUnit(trans,
+					UnitState.TEMPORARY_UNIT);
+			UnitNavigator.getNavigator().set(UnitState.TEMPORARY_UNIT);
 		}
 
 	}
@@ -137,20 +165,71 @@ public class LocalMultiplayerUnit extends GraphicalGameUnit {
 
 	@Override
 	public void initComponent() {
+		/*
+		 * load map and players
+		 */
 		multiplayerMap = new Map("multMap");
 		playerOne = multiplayerMap.getPlayerByNumber(1);
 		playerTwo = multiplayerMap.getPlayerByNumber(2);
+		/*
+		 * create mapcanvas (used to depict and center the map)
+		 */
+		mapCanvas = new BufferedImage(multiplayerMap.getWidth(),
+				multiplayerMap.getHeight(), BufferedImage.TYPE_INT_ARGB);
 	}
 
 	@Override
 	public void drawComponent(Graphics g) {
+		/*
+		 * Black background color
+		 */
 		g.setColor(Color.black);
 		g.fillRect(0, 0, GameConstants.FRAME_SIZE_X, GameConstants.FRAME_SIZE_Y);
-		mapCanvas = new BufferedImage(multiplayerMap.getWidth(),
-				multiplayerMap.getHeight(), BufferedImage.TYPE_INT_ARGB);
+		/*
+		 * draw map onto the mapcanvas
+		 */
 		multiplayerMap.drawMap((Graphics2D) mapCanvas.getGraphics());
 		g.drawImage(mapCanvas, 10, 10, multiplayerMap.getWidth(),
 				multiplayerMap.getHeight(), null);
 	}
 
+	/**
+	 * Generates a message (i.e. a BufferedImage that displays a string)
+	 * containing the name of the player that succeeded.
+	 * 
+	 * @param playerName
+	 *            the player's name
+	 * @return BufferedImage win message
+	 */
+	private BufferedImage createWinMessage(String playerName) {
+		BufferedImage msg = new BufferedImage(GameConstants.FRAME_SIZE_X,
+				GameConstants.FRAME_SIZE_Y, BufferedImage.TYPE_INT_ARGB);
+		Graphics g = msg.getGraphics();
+		g.setColor(Color.black);
+		g.drawRect(0, 0, msg.getWidth(), msg.getHeight());
+		g.setColor(Color.red);
+		String output = playerName
+				+ winMessages[(int) (Math.random() * winMessages.length)];
+		g.drawString(output, GameConstants.FRAME_SIZE_X / 4,
+				GameConstants.FRAME_SIZE_Y / 2);
+		return msg;
+	}
+
+	/**
+	 * Generates a BufferedImage indicating that the match has ended up in a
+	 * tie.
+	 * 
+	 * @return BufferedImage draw message
+	 */
+	private BufferedImage createDrawMessage() {
+		BufferedImage msg = new BufferedImage(GameConstants.FRAME_SIZE_X,
+				GameConstants.FRAME_SIZE_Y, BufferedImage.TYPE_INT_ARGB);
+		Graphics g = msg.getGraphics();
+		g.setColor(Color.black);
+		g.drawRect(0, 0, msg.getWidth(), msg.getHeight());
+		g.setColor(Color.red);
+		g.drawString("Unbelieveable! It's a draw!",
+				GameConstants.FRAME_SIZE_X / 4, GameConstants.FRAME_SIZE_Y / 2);
+		return msg;
+	}
 }
