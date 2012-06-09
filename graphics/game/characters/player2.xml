@@ -1,0 +1,6 @@
+<animationset default="BM2default.png">
+<animation frames="1" stretch="1" name="playerUp">BM2up.png</animation>
+<animation frames="1" stretch="1" name="playerDown">BM2Front.png</animation>
+<animation frames="1" stretch="1" name="playerLeft">BM2Left.png</animation>
+<animation frames="1" stretch="1" name="playerRight">BM2Right.png</animation>
+</animationset>
