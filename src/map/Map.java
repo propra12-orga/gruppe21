@@ -88,7 +88,7 @@ public class Map {
 	}
 
 	public void update() {
-		if (enemies <= 0) {
+		if (enemies <= 0 && exit != null) {
 			this.exit.activate();
 		}
 		for (int i = 0; i < drawLevels; i++) {
