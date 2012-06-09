@@ -2792,8 +2792,197 @@
 		</level>
 
 		<level>
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>true</destroyable>
+			 	<image rotation="0">gras.png</image>
+				<posx>600</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>true</destroyable>
+			 	<image rotation="0">gras.png</image>
+				<posx>600</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>true</destroyable>
+			 	<image rotation="0">gras.png</image>
+				<posx>550</posx>
+				<posy>400</posy>
+			</tile>
+			
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>true</destroyable>
+			 	<image rotation="0">gras.png</image>
+				<posx>400</posx>
+				<posy>200</posy>
+			</tile>
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>true</destroyable>
+			 	<image rotation="0">gras.png</image>
+				<posx>450</posx>
+				<posy>150</posy>
+			</tile>
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>true</destroyable>
+			 	<image rotation="0">gras.png</image>
+				<posx>500</posx>
+				<posy>200</posy>
+			</tile>
+			
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>true</destroyable>
+			 	<image rotation="0">gras.png</image>
+				<posx>400</posx>
+				<posy>500</posy>
+			</tile>
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>true</destroyable>
+			 	<image rotation="0">gras.png</image>
+				<posx>350</posx>
+				<posy>550</posy>
+			</tile>
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>true</destroyable>
+			 	<image rotation="0">gras.png</image>
+				<posx>300</posx>
+				<posy>450</posy>
+			</tile>
+			
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>true</destroyable>
+			 	<image rotation="0">fels1_klein.png</image>
+				<posx>300</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">fels1.png</image>
+				<posx>200</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">fels1.png</image>
+				<posx>200</posx>
+				<posy>200</posy>
+			</tile>
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">fels1.png</image>
+				<posx>200</posx>
+				<posy>400</posy>
+			</tile>
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">fels1.png</image>
+				<posx>100</posx>
+				<posy>300</posy>
+			</tile>
+			
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>true</destroyable>
+			 	<image rotation="0">gras.png</image>
+				<posx>100</posx>
+				<posy>200</posy>
+			</tile>
 			
 			
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">fels1.png</image>
+				<posx>100</posx>
+				<posy>400</posy>
+			</tile>
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">fels1.png</image>
+				<posx>300</posx>
+				<posy>200</posy>
+			</tile>
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">fels1.png</image>
+				<posx>300</posx>
+				<posy>400</posy>
+			</tile>
+			
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">fels1.png</image>
+				<posx>200</posx>
+				<posy>100</posy>
+			</tile>
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">fels1_klein.png</image>
+				<posx>300</posx>
+				<posy>100</posy>
+			</tile>
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>true</destroyable>
+			 	<image rotation="0">fels1_klein.png</image>
+				<posx>50</posx>
+				<posy>100</posy>
+			</tile>
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">fels1.png</image>
+				<posx>0</posx>
+				<posy>200</posy>
+			</tile>
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<image rotation="0">fels1.png</image>
+				<posx>0</posx>
+				<posy>300</posy>
+			</tile>
 		</level>
 		<level>
 			<character type="player" animated="true">

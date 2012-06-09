@@ -5,7 +5,10 @@ import imageloader.ImageLoader;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+
+import main.GameConstants;
 
 public class Bomb extends MapObject {
 
@@ -140,8 +143,18 @@ public class Bomb extends MapObject {
 				if (i == 0) {
 					if (simpleHasColl(posX, posY - ((j + 1) * 50), cm,
 							Color.green)) {
+						for (Player player : map.getPlayers()) {
+							Rectangle playerRect = new Rectangle(
+									player.getPosX(), player.getPosY(),
+									GameConstants.TILE_SIZE,
+									GameConstants.TILE_SIZE);
+							if (playerRect.intersects(new Rectangle(posX, posY
+									- ((j + 1) * 50), GameConstants.TILE_SIZE,
+									GameConstants.TILE_SIZE))) {
+								player.die();
+							}
+						}
 						map.finishMap(true);
-						break;
 					}
 					if (simpleHasColl(posX, posY - ((j + 1) * 50), cm,
 							Color.black)) {
@@ -152,8 +165,19 @@ public class Bomb extends MapObject {
 				if (i == 1) {
 					if (simpleHasColl(posX + ((j + 1) * 50), posY, cm,
 							Color.green)) {
+						for (Player player : map.getPlayers()) {
+							Rectangle playerRect = new Rectangle(
+									player.getPosX(), player.getPosY(),
+									GameConstants.TILE_SIZE,
+									GameConstants.TILE_SIZE);
+							if (playerRect.intersects(new Rectangle(posX
+									+ ((j + 1) * 50), posY,
+									GameConstants.TILE_SIZE,
+									GameConstants.TILE_SIZE))) {
+								player.die();
+							}
+						}
 						map.finishMap(true);
-						break;
 					}
 					if (simpleHasColl(posX + ((j + 1) * 50), posY, cm,
 							Color.black)) {
@@ -164,8 +188,18 @@ public class Bomb extends MapObject {
 				if (i == 2) {
 					if (simpleHasColl(posX, posY + ((j + 1) * 50), cm,
 							Color.green)) {
+						for (Player player : map.getPlayers()) {
+							Rectangle playerRect = new Rectangle(
+									player.getPosX(), player.getPosY(),
+									GameConstants.TILE_SIZE,
+									GameConstants.TILE_SIZE);
+							if (playerRect.intersects(new Rectangle(posX, posY
+									+ ((j + 1) * 50), GameConstants.TILE_SIZE,
+									GameConstants.TILE_SIZE))) {
+								player.die();
+							}
+						}
 						map.finishMap(true);
-						break;
 					}
 					if (simpleHasColl(posX, posY + ((j + 1) * 50), cm,
 							Color.black)) {
@@ -176,8 +210,19 @@ public class Bomb extends MapObject {
 				if (i == 3) {
 					if (simpleHasColl(posX - ((j + 1) * 50), posY, cm,
 							Color.green)) {
+						for (Player player : map.getPlayers()) {
+							Rectangle playerRect = new Rectangle(
+									player.getPosX(), player.getPosY(),
+									GameConstants.TILE_SIZE,
+									GameConstants.TILE_SIZE);
+							if (playerRect.intersects(new Rectangle(posX
+									- ((j + 1) * 50), posY,
+									GameConstants.TILE_SIZE,
+									GameConstants.TILE_SIZE))) {
+								player.die();
+							}
+						}
 						map.finishMap(true);
-						break;
 					}
 					if (simpleHasColl(posX - ((j + 1) * 50), posY, cm,
 							Color.black)) {

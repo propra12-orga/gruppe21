@@ -11,14 +11,12 @@ public class Player extends MoveableObject {
 	private int maxbombs = 3;
 	private int actualbombs = 0;
 	private int bombradius = 2;
-	private int lives = 1;
-	private String bombtype = "standart";
-	private boolean dontdraw = false;
-	public BufferedImage collMap;
+	private boolean alive;
 
 	public Player(int x, int y, boolean v, boolean d, boolean c, String p,
 			ImageLoader gr) {
 		super(x, y, v, d, c, p, gr);
+		alive = true;
 	}
 
 	// TODO UseWeapon or LayBomB,ChangeWeapon
@@ -78,8 +76,6 @@ public class Player extends MoveableObject {
 			return true;
 		}
 		int t = 20;
-		int cornercounter = 0;
-		boolean collision = false;
 		boolean upleft = false;
 		boolean upright = false;
 		boolean downleft = false;
@@ -91,8 +87,10 @@ public class Player extends MoveableObject {
 				if (test.equals(Color.yellow)) {
 					map.finishMap(false);
 				} else if (test.equals(Color.orange)) {
+					alive = false;
 					map.finishMap(true);
 				} else if (test.equals(Color.red)) {
+					alive = false;
 					map.finishMap(true);
 				} else if (test.equals(Color.black) || test.equals(Color.gray)) {
 					if (i < t && j < t) {
@@ -240,12 +238,38 @@ public class Player extends MoveableObject {
 		actualbombs--;
 	}
 
+	/**
+	 * Returns a player's identification number.
+	 * 
+	 * @return current ID
+	 */
 	public int getID() {
 		return ID;
 	}
 
+	/**
+	 * Sets a player's identification number.
+	 * 
+	 * @param iD
+	 *            new ID
+	 */
 	public void setID(int iD) {
 		ID = iD;
 	}
 
+	/**
+	 * Allows checking for a player's 'alive'-status.
+	 * 
+	 * @return alive flag
+	 */
+	public boolean isAlive() {
+		return alive;
+	}
+
+	/**
+	 * Kills player object (i.e. sets its 'alive' flag to false).
+	 */
+	public void die() {
+		alive = false;
+	}
 }

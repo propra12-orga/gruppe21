@@ -5,6 +5,7 @@ import imageloader.ImageLoader;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.util.List;
 import java.util.Vector;
 
 import mapobjects.Bomb;
@@ -39,6 +40,13 @@ public class Map {
 		mr.loadGraphics(graphics);
 		mr.getMap(mapObjects, graphics);
 
+		collisionMap = new BufferedImage(mapSizeX, mapSizeY,
+				BufferedImage.TYPE_INT_ARGB);
+		Graphics2D gtemp = collisionMap.createGraphics();
+		gtemp.setPaint(Color.white);
+		gtemp.fillRect(mapSizeX, mapSizeY, 50, 50);
+		gtemp.dispose();
+
 		players = new Vector<Player>();
 		for (int i = 0; i < drawLevels; i++) {
 			for (int j = 0; j < mapObjects.get(i).size(); j++) {
@@ -51,17 +59,6 @@ public class Map {
 				}
 			}
 		}
-
-		collisionMap = new BufferedImage(mapSizeX, mapSizeY,
-				BufferedImage.TYPE_INT_ARGB);
-		Graphics2D gtemp = collisionMap.createGraphics();
-		gtemp.setPaint(Color.white);
-		gtemp.fillRect(mapSizeX, mapSizeY, 50, 50);
-		gtemp.dispose();
-		for (Player player : players) {
-			player.collMap = collisionMap;
-		}
-		// TODO make enemies
 	}
 
 	public void drawMap(Graphics2D g2d) {
@@ -160,5 +157,9 @@ public class Map {
 
 	public int getHeight() {
 		return this.mapSizeY;
+	}
+
+	public List<Player> getPlayers() {
+		return players;
 	}
 }
