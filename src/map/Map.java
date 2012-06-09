@@ -24,7 +24,6 @@ public class Map {
 	private int drawLevels;
 	private Vector<Player> players;
 	private int playerIDCnt = 0;
-	private boolean playerDead = false;
 	private boolean mapFinished = false;
 
 	private int enemies = 0;
@@ -146,12 +145,14 @@ public class Map {
 	}
 
 	public boolean playerSucced() {
-		return !playerDead;
+		if (players.size() > 0) {
+			return players.get(0).isAlive();
+		}
+		return false;
 	}
 
-	public void finishMap(boolean dead) {
+	public void finishMap() {
 		mapFinished = true;
-		playerDead = dead;
 	}
 
 	public Player getMapPlayer() {

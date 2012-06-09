@@ -111,7 +111,8 @@ public class Enemy extends MoveableObject {
 				} else if (test.equals(Color.orange)) {
 					die();
 				} else if (test.equals(Color.green)) {
-					map.finishMap(true);
+					map.getMapPlayer().die();
+					map.finishMap();
 				}
 			}
 		}

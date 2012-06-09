@@ -11,79 +11,80 @@ import main.GameConstants;
 import map.Map;
 
 /*
-  abstract class for all MapObjects     	
-*/
+ abstract class for all MapObjects     	
+ */
 
 public abstract class MapObject {
 	protected int posX;
 	protected int posY;
 	protected int rotation = 0;
-	
+
 	protected boolean visible;
 	protected boolean destroyable;
 	protected boolean destroyed = false;
 	protected boolean collision;
 	protected String imageUrl;
 	protected Animation animation;
-	
-	
+
 	protected Map map;
-	
-	public MapObject(int x,int y,int r,boolean v,boolean d,boolean c,String img){
-		posX=x;
-		posY=y;
-		rotation=r;
-		visible=v;
-		destroyable=d;
-		collision=c;
-		imageUrl = GameConstants.MAP_GRAPHICS_DIR+img;
-		
-	}
-	
-	public MapObject(int x,int y,boolean v,boolean d,boolean c,String img,ImageLoader gr){
-		posX=x;
-		posY=y;
-		visible=v;
-		destroyable=d;
-		collision=c;
-		animation = new Animation(img,gr);
+
+	public MapObject(int x, int y, int r, boolean v, boolean d, boolean c,
+			String img) {
+		posX = x;
+		posY = y;
+		rotation = r;
+		visible = v;
+		destroyable = d;
+		collision = c;
+		imageUrl = GameConstants.MAP_GRAPHICS_DIR + img;
 
 	}
-	
 
-	//all MapObjects have to implement
+	public MapObject(int x, int y, boolean v, boolean d, boolean c, String img,
+			ImageLoader gr) {
+		posX = x;
+		posY = y;
+		visible = v;
+		destroyable = d;
+		collision = c;
+		animation = new Animation(img, gr);
+
+	}
+
+	// all MapObjects have to implement
 	public abstract void update(BufferedImage cm);
-	public abstract void draw(Graphics2D g2d,ImageLoader gr,Graphics2D b);
+
+	public abstract void draw(Graphics2D g2d, ImageLoader gr, Graphics2D b);
 
 	// Getter und Setter
-	public String getImageUrl(){
+	public String getImageUrl() {
 		return imageUrl;
 	}
-	
-	public int getPosX(){
+
+	public int getPosX() {
 		return posX;
 	}
-	
-	public void setPosX(int x){
+
+	public void setPosX(int x) {
 		posX = x;
 	}
-	
-	public int getPosY(){
+
+	public int getPosY() {
 		return posY;
 	}
-	
-	public void setPosY(int y){
+
+	public void setPosY(int y) {
 		posY = y;
 	}
-	
-	public boolean isDestroyable(){
+
+	public boolean isDestroyable() {
 		return destroyable;
 	}
-	
-	public void setDestroyable(boolean b){
+
+	public void setDestroyable(boolean b) {
 		destroyable = b;
 	}
-	
+
 	public boolean isDestroyed() {
 		return destroyed;
 	}
@@ -92,22 +93,22 @@ public abstract class MapObject {
 		this.destroyed = destroyed;
 	}
 
-	public boolean isVisible(){
+	public boolean isVisible() {
 		return visible;
 	}
-	
-	public void setVisible(boolean b){
+
+	public void setVisible(boolean b) {
 		visible = b;
 	}
-	
-	public boolean collides(){
+
+	public boolean collides() {
 		return collision;
 	}
-	
-	public void setCollision(boolean b){
+
+	public void setCollision(boolean b) {
 		collision = b;
 	}
-		
+
 	public Map getMap() {
 		return map;
 	}
@@ -115,57 +116,64 @@ public abstract class MapObject {
 	public void setMap(Map map) {
 		this.map = map;
 	}
-    
-	public boolean simpleHasColl(int x, int y,BufferedImage cm,Color c){
-		if(x<0 || y<0 || x>cm.getWidth()-50 || y>cm.getHeight()-50){return true;}		
+
+	public boolean simpleHasColl(int x, int y, BufferedImage cm, Color... ca) {
+		if (x < 0 || y < 0 || x > cm.getWidth() - 50 || y > cm.getHeight() - 50) {
+			return true;
+		}
 		BufferedImage collTest = cm.getSubimage(x, y, 50, 50);
-		for(int i=0; i<collTest.getWidth(); i++){
-			for(int j=0; j<collTest.getHeight(); j++){
+		for (int i = 0; i < collTest.getWidth(); i++) {
+			for (int j = 0; j < collTest.getHeight(); j++) {
 				Color test = new Color(collTest.getRGB(i, j));
-				if (test.equals(c)){return true;}
+				for (Color color : ca) {
+					if (test.equals(color)) {
+						return true;
+					}
+				}
 			}
 		}
 		return false;
 	}
-	
-	// eventuell nicht notwendig für mehrere farben
-//	public boolean simpleHasColl(int x, int y,BufferedImage cm,Color ca[]){
-//		if(x<0 || y<0 || x>cm.getWidth()-50 || y>cm.getHeight()-50){return true;}		
-//		BufferedImage collTest = cm.getSubimage(x, y, 50, 50);
-//		for(int i=0; i<collTest.getWidth(); i++){
-//			for(int j=0; j<collTest.getHeight(); j++){
-//				Color test = new Color(collTest.getRGB(i, j));
-//				for(int c = 0;c<ca.length;c++){
-//					if (test.equals(ca[c])){return true;}
-//				}
-//			}
-//		}
-//		return false;
-//	}
-	
-	public BufferedImage rotate(BufferedImage original,int degc){
-		if(degc!=0){
-			BufferedImage rotated = new BufferedImage(50,50,BufferedImage.TYPE_INT_ARGB);
-		for(int i=0;i<original.getWidth();i++){
-			for(int j=0;j<original.getHeight();j++){
-				int cx = (i*(int)(Math.cos(Math.toRadians((double)degc*90.00)))
-						 -j*(int)Math.sin(Math.toRadians((double)degc*90.00)));
-				int cy = (i*(int)Math.sin(Math.toRadians((double)degc*90.00))
-						  +j*(int)Math.cos(Math.toRadians((double)degc*90.00)));
-				if(degc==1){if(cx<=0){cx+=49;}}
-				else if(degc==3){if(cy<=0){cy+=49;}}
-				else{
-				if(cx<=0){cx+=49;}
-				if(cy<=0){cy+=49;}
+
+	public BufferedImage rotate(BufferedImage original, int degc) {
+		if (degc != 0) {
+			BufferedImage rotated = new BufferedImage(50, 50,
+					BufferedImage.TYPE_INT_ARGB);
+			for (int i = 0; i < original.getWidth(); i++) {
+				for (int j = 0; j < original.getHeight(); j++) {
+					int cx = (i
+							* (int) (Math.cos(Math
+									.toRadians((double) degc * 90.00))) - j
+							* (int) Math.sin(Math
+									.toRadians((double) degc * 90.00)));
+					int cy = (i
+							* (int) Math.sin(Math
+									.toRadians((double) degc * 90.00)) + j
+							* (int) Math.cos(Math
+									.toRadians((double) degc * 90.00)));
+					if (degc == 1) {
+						if (cx <= 0) {
+							cx += 49;
+						}
+					} else if (degc == 3) {
+						if (cy <= 0) {
+							cy += 49;
+						}
+					} else {
+						if (cx <= 0) {
+							cx += 49;
+						}
+						if (cy <= 0) {
+							cy += 49;
+						}
+					}
+					rotated.setRGB((int) Math.floor(cx), (int) Math.floor(cy),
+							original.getRGB(i, j));
 				}
-				rotated.setRGB(
-						(int)Math.floor(cx),
-						(int)Math.floor(cy),
-						original.getRGB(i, j));
+
 			}
-			
-		}
-		return rotated;
-		}else return original;
+			return rotated;
+		} else
+			return original;
 	}
 }

@@ -85,13 +85,13 @@ public class Player extends MoveableObject {
 			for (int j = 0; j < collTest.getHeight(); j++) {
 				Color test = new Color(collTest.getRGB(i, j));
 				if (test.equals(Color.yellow)) {
-					map.finishMap(false);
+					map.finishMap();
 				} else if (test.equals(Color.orange)) {
-					alive = false;
-					map.finishMap(true);
+					this.die();
+					map.finishMap();
 				} else if (test.equals(Color.red)) {
-					alive = false;
-					map.finishMap(true);
+					this.die();
+					map.finishMap();
 				} else if (test.equals(Color.black) || test.equals(Color.gray)) {
 					if (i < t && j < t) {
 						upleft = true;
@@ -111,7 +111,8 @@ public class Player extends MoveableObject {
 		if (upleft ^ upright ^ downleft ^ downright) {
 			if (upleft) {
 				if (dir.equals("UP")) {
-					if (simpleHasColl(posX + 1, posY, cm)) {
+					if (simpleHasColl(posX + 1, posY, cm, new Color[] {
+							Color.black, Color.gray })) {
 						return true;
 					} else {
 						this.posX += 1;
@@ -120,7 +121,8 @@ public class Player extends MoveableObject {
 				}
 
 				if (dir.equals("LEFT")) {
-					if (simpleHasColl(posX, posY + 1, cm)) {
+					if (simpleHasColl(posX, posY + 1, cm, new Color[] {
+							Color.black, Color.gray })) {
 						return true;
 					} else {
 						this.posY += 1;
@@ -131,7 +133,8 @@ public class Player extends MoveableObject {
 
 			if (upright) {
 				if (dir.equals("UP")) {
-					if (simpleHasColl(posX - 1, posY, cm)) {
+					if (simpleHasColl(posX - 1, posY, cm, new Color[] {
+							Color.black, Color.gray })) {
 						return true;
 					} else {
 						this.posX -= 1;
@@ -141,7 +144,8 @@ public class Player extends MoveableObject {
 				}
 
 				if (dir.equals("RIGHT")) {
-					if (simpleHasColl(posX, posY + 1, cm)) {
+					if (simpleHasColl(posX, posY + 1, cm, new Color[] {
+							Color.black, Color.gray })) {
 						return true;
 					} else {
 						this.posY += 1;
@@ -152,7 +156,8 @@ public class Player extends MoveableObject {
 
 			if (downleft) {
 				if (dir.equals("DOWN")) {
-					if (simpleHasColl(posX + 1, posY, cm)) {
+					if (simpleHasColl(posX + 1, posY, cm, new Color[] {
+							Color.black, Color.gray })) {
 						return true;
 					} else {
 						this.posX += 1;
@@ -161,7 +166,8 @@ public class Player extends MoveableObject {
 				}
 
 				if (dir.equals("LEFT")) {
-					if (simpleHasColl(posX, posY - 1, cm)) {
+					if (simpleHasColl(posX, posY - 1, cm, new Color[] {
+							Color.black, Color.gray })) {
 						return true;
 					} else {
 						this.posY -= 1;
@@ -172,7 +178,8 @@ public class Player extends MoveableObject {
 
 			if (downright) {
 				if (dir.equals("DOWN")) {
-					if (simpleHasColl(posX - 1, posY, cm)) {
+					if (simpleHasColl(posX - 1, posY, cm, new Color[] {
+							Color.black, Color.gray })) {
 						return true;
 					} else {
 						this.posX -= 1;
@@ -181,7 +188,8 @@ public class Player extends MoveableObject {
 				}
 
 				if (dir.equals("RIGHT")) {
-					if (simpleHasColl(posX, posY - 1, cm)) {
+					if (simpleHasColl(posX, posY - 1, cm, new Color[] {
+							Color.black, Color.gray })) {
 						return true;
 					} else {
 						this.posY -= 1;
@@ -196,27 +204,12 @@ public class Player extends MoveableObject {
 		return false;
 	}
 
-	public boolean simpleHasColl(int x, int y, BufferedImage cm) {
-		if (x < 0 || y < 0 || x > cm.getWidth() - 50 || y > cm.getHeight() - 50) {
-			return true;
-		}
-		BufferedImage collTest = cm.getSubimage(x, y, 50, 50);
-		for (int i = 0; i < collTest.getWidth(); i++) {
-			for (int j = 0; j < collTest.getHeight(); j++) {
-				Color test = new Color(collTest.getRGB(i, j));
-				if (test.equals(Color.black) || test.equals(Color.gray)) {
-					return true;
-				}
-			}
-		}
-		return false;
-	}
-
 	@Override
 	public void update(BufferedImage cm) {
-		if (simpleHasColl(posX, posY, map.getCollisionMap(), Color.orange)) {
-			alive = false;
-			map.finishMap(true);
+		if (simpleHasColl(posX, posY, map.getCollisionMap(), Color.orange,
+				Color.red)) {
+			this.die();
+			map.finishMap();
 		}
 		animation.animate();
 		move();
