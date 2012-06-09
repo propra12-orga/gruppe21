@@ -111,8 +111,8 @@ public class Player extends MoveableObject {
 		if (upleft ^ upright ^ downleft ^ downright) {
 			if (upleft) {
 				if (dir.equals("UP")) {
-					if (simpleHasColl(posX + 1, posY, cm, new Color[] {
-							Color.black, Color.gray })) {
+					if (simpleHasColl(posX + 1, posY, cm, Color.black,
+							Color.gray)) {
 						return true;
 					} else {
 						this.posX += 1;
@@ -121,8 +121,8 @@ public class Player extends MoveableObject {
 				}
 
 				if (dir.equals("LEFT")) {
-					if (simpleHasColl(posX, posY + 1, cm, new Color[] {
-							Color.black, Color.gray })) {
+					if (simpleHasColl(posX, posY + 1, cm, Color.black,
+							Color.gray)) {
 						return true;
 					} else {
 						this.posY += 1;
@@ -133,8 +133,8 @@ public class Player extends MoveableObject {
 
 			if (upright) {
 				if (dir.equals("UP")) {
-					if (simpleHasColl(posX - 1, posY, cm, new Color[] {
-							Color.black, Color.gray })) {
+					if (simpleHasColl(posX - 1, posY, cm, Color.black,
+							Color.gray)) {
 						return true;
 					} else {
 						this.posX -= 1;
@@ -144,8 +144,8 @@ public class Player extends MoveableObject {
 				}
 
 				if (dir.equals("RIGHT")) {
-					if (simpleHasColl(posX, posY + 1, cm, new Color[] {
-							Color.black, Color.gray })) {
+					if (simpleHasColl(posX, posY + 1, cm, Color.black,
+							Color.gray)) {
 						return true;
 					} else {
 						this.posY += 1;
@@ -156,8 +156,8 @@ public class Player extends MoveableObject {
 
 			if (downleft) {
 				if (dir.equals("DOWN")) {
-					if (simpleHasColl(posX + 1, posY, cm, new Color[] {
-							Color.black, Color.gray })) {
+					if (simpleHasColl(posX + 1, posY, cm, Color.black,
+							Color.gray)) {
 						return true;
 					} else {
 						this.posX += 1;
@@ -166,8 +166,8 @@ public class Player extends MoveableObject {
 				}
 
 				if (dir.equals("LEFT")) {
-					if (simpleHasColl(posX, posY - 1, cm, new Color[] {
-							Color.black, Color.gray })) {
+					if (simpleHasColl(posX, posY - 1, cm, Color.black,
+							Color.gray)) {
 						return true;
 					} else {
 						this.posY -= 1;
@@ -178,8 +178,8 @@ public class Player extends MoveableObject {
 
 			if (downright) {
 				if (dir.equals("DOWN")) {
-					if (simpleHasColl(posX - 1, posY, cm, new Color[] {
-							Color.black, Color.gray })) {
+					if (simpleHasColl(posX - 1, posY, cm, Color.black,
+							Color.gray)) {
 						return true;
 					} else {
 						this.posX -= 1;
@@ -188,8 +188,8 @@ public class Player extends MoveableObject {
 				}
 
 				if (dir.equals("RIGHT")) {
-					if (simpleHasColl(posX, posY - 1, cm, new Color[] {
-							Color.black, Color.gray })) {
+					if (simpleHasColl(posX, posY - 1, cm, Color.black,
+							Color.gray)) {
 						return true;
 					} else {
 						this.posY -= 1;

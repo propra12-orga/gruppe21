@@ -189,8 +189,13 @@ public class LocalMultiplayerUnit extends GraphicalGameUnit {
 		 * draw map onto the mapcanvas
 		 */
 		multiplayerMap.drawMap((Graphics2D) mapCanvas.getGraphics());
-		g.drawImage(mapCanvas, 10, 10, multiplayerMap.getWidth(),
-				multiplayerMap.getHeight(), null);
+		/*
+		 * center mapcanvas on panel by using the Graphics parameter
+		 */
+		g.drawImage(mapCanvas,
+				(GameConstants.FRAME_SIZE_X - mapCanvas.getWidth()) / 2,
+				(GameConstants.FRAME_SIZE_Y - mapCanvas.getHeight()) / 2,
+				multiplayerMap.getWidth(), multiplayerMap.getHeight(), null);
 	}
 
 	/**
