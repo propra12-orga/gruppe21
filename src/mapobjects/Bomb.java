@@ -65,7 +65,7 @@ public class Bomb extends MapObject {
 	public void draw(Graphics2D g2d, ImageLoader gr, Graphics2D cm) {
 		g2d.drawImage(animation.getCurrentImage(), posX, posY, null);
 		if (collides() || !playerleft) {
-			cm.setPaint(Color.black);
+			cm.setPaint(Color.gray);
 			cm.fillRect(posX, posY, 50, 50);
 		} else {
 			cm.setPaint(Color.orange);
@@ -139,22 +139,12 @@ public class Bomb extends MapObject {
 			for (int j = 0; j < arms[i]; j++) {
 				if (i == 0) {
 					if (simpleHasColl(posX, posY - ((j + 1) * 50), cm,
-							Color.green)) {
-						map.finishMap(true);
-						break;
-					}
-					if (simpleHasColl(posX, posY - ((j + 1) * 50), cm,
 							Color.black)) {
 						arms[i] = j;
 						break;
 					}
 				}
 				if (i == 1) {
-					if (simpleHasColl(posX + ((j + 1) * 50), posY, cm,
-							Color.green)) {
-						map.finishMap(true);
-						break;
-					}
 					if (simpleHasColl(posX + ((j + 1) * 50), posY, cm,
 							Color.black)) {
 						arms[i] = j;
@@ -163,22 +153,12 @@ public class Bomb extends MapObject {
 				}
 				if (i == 2) {
 					if (simpleHasColl(posX, posY + ((j + 1) * 50), cm,
-							Color.green)) {
-						map.finishMap(true);
-						break;
-					}
-					if (simpleHasColl(posX, posY + ((j + 1) * 50), cm,
 							Color.black)) {
 						arms[i] = j;
 						break;
 					}
 				}
 				if (i == 3) {
-					if (simpleHasColl(posX - ((j + 1) * 50), posY, cm,
-							Color.green)) {
-						map.finishMap(true);
-						break;
-					}
 					if (simpleHasColl(posX - ((j + 1) * 50), posY, cm,
 							Color.black)) {
 						arms[i] = j;
@@ -209,12 +189,17 @@ public class Bomb extends MapObject {
 		if (visible && !exploding) {
 			animation.animate();
 
-			if (beforeTime + countdownTime <= System.nanoTime()) {
+			if (beforeTime + countdownTime <= System.nanoTime()
+					|| simpleHasColl(posX, posY, cm, Color.orange)) {
 				animation.stop();
 				animation.change("center");
 				exploding = true;
 				animation.start("center");
 
+				// verschiebe Bombe bei explosion in höhere ebene, damit
+				// bombengrafik über player
+				this.map.getMapObjects().get(1).remove(this);
+				this.map.getMapObjects().get(3).add(this);
 				// armlängen berechnen
 				calcArms(cm);
 			}

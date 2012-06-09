@@ -93,8 +93,8 @@ public class Enemy extends MoveableObject {
 
 	public void die() {
 		stop();
-
 		this.setDestroyed(true);
+		// this.map.decreaseEnemies();
 	}
 
 	@Override

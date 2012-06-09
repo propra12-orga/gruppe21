@@ -216,6 +216,9 @@ public class Player extends MoveableObject {
 
 	@Override
 	public void update(BufferedImage cm) {
+		if (simpleHasColl(posX, posY, map.getCollisionMap(), Color.orange)) {
+			map.finishMap(true);
+		}
 		animation.animate();
 		move();
 	}

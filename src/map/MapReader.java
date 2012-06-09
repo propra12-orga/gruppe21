@@ -26,6 +26,7 @@ public class MapReader {
 	private boolean graphicisloaded = false;
 	private String[] moList = { "floor", "animatedfloor", "bomb", "effect",
 			"enemy", "exit", "player", "wall" };
+	private int enemies = 0;
 
 	public MapReader(String mn) {
 
@@ -78,6 +79,11 @@ public class MapReader {
 				"animationset");
 		for (int i = 0; i < items.size(); i++) {
 			il.addAnimationSet(items.get(i).getText(), "items");
+		}
+
+		items = mapRoot.getChild("items").getChildren("image");
+		for (int i = 0; i < items.size(); i++) {
+			il.addImage(GameConstants.MAP_GRAPHICS_DIR + items.get(i).getText());
 		}
 
 		graphicisloaded = true;
@@ -230,6 +236,7 @@ public class MapReader {
 															"collision")),
 											templist.get(c).getChildText(
 													"animationset"), gr));
+							enemies++;
 						}
 					}
 				}
@@ -244,6 +251,10 @@ public class MapReader {
 	// returns number of levels to be drawn
 	public int getDrawLevels() {
 		return mapRoot.getChild("mapobjects").getChildren().size();
+	}
+
+	public int getEnemies() {
+		return enemies;
 	}
 
 }

@@ -1843,7 +1843,7 @@
 			    <visible>true</visible>
 				<collision>true</collision>
 				<destroyable>false</destroyable>
-			 	<image rotation="0">exit.png</image>
+			 	<image rotation="0">fels1.png</image>
 				<posx>300</posx>
 				<posy>300</posy>
 			</tile>
@@ -2023,6 +2023,7 @@
 		</level>
 		
 		<level>
+			
 			<character type="player" animated="true">
 			    <visible>true</visible>
 				<collision>true</collision>
@@ -2031,6 +2032,7 @@
 				<posx>100</posx>
 				<posy>950</posy>
 			</character>
+			
 			<character type="enemy" animated="true">
 			    <visible>true</visible>
 				<collision>true</collision>
@@ -2039,10 +2041,23 @@
 				<posx>50</posx>
 				<posy>350</posy>
 			</character>
+			
+			<character type="enemy" animated="true">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<animationset>testEnemy</animationset>
+				<posx>50</posx>
+				<posy>50</posy>
+			</character>
+			
 		</level>
+		<level></level>
+		<level></level>
 	</mapobjects>
 	
 	<items>
 		<animationset>simplebomb</animationset>
+		<image>exit.png</image>
 	</items>
 </map>

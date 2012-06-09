@@ -8,6 +8,8 @@ import java.awt.image.BufferedImage;
 import java.util.Vector;
 
 import mapobjects.Bomb;
+import mapobjects.Enemy;
+import mapobjects.Exit;
 import mapobjects.MapObject;
 import mapobjects.Player;
 
@@ -24,6 +26,9 @@ public class Map {
 	private boolean playerDead = false;
 	private boolean mapFinished = false;
 
+	private int enemies = 0;
+	private Exit exit;
+
 	BufferedImage collisionMap;
 	MapReader mr;
 
@@ -38,6 +43,7 @@ public class Map {
 
 		mr.loadGraphics(graphics);
 		mr.getMap(mapObjects, graphics);
+		enemies = mr.getEnemies();
 
 		players = new Vector<Player>();
 		for (int i = 0; i < drawLevels; i++) {
@@ -48,6 +54,9 @@ public class Map {
 					players.add(player);
 					player.setID(playerIDCnt);
 					playerIDCnt++;
+				}
+				if (mapObjects.get(i).get(j) instanceof Exit) {
+					exit = (Exit) mapObjects.get(i).get(j);
 				}
 			}
 		}
@@ -77,10 +86,14 @@ public class Map {
 		}
 		b.dispose();
 		collisionMap = collisionMaptemp;
+		// g2d.drawImage(collisionMap, 0, 0, mapSizeX, mapSizeY, null);
 
 	}
 
 	public void update() {
+		if (enemies <= 0) {
+			this.exit.activate();
+		}
 		for (int i = 0; i < drawLevels; i++) {
 			for (int j = 0; j < mapObjects.get(i).size(); j++) {
 				mapObjects.get(i).get(j);
@@ -95,6 +108,9 @@ public class Map {
 									.get(j)).getPlayerID())
 								player.removeBomb();
 						}
+					}
+					if (mapObjects.get(i).get(j) instanceof Enemy) {
+						this.decreaseEnemies();
 					}
 					mapObjects.get(i).remove(j);
 				} else {
@@ -161,4 +177,11 @@ public class Map {
 	public int getHeight() {
 		return this.mapSizeY;
 	}
+
+	public void decreaseEnemies() {
+		if (enemies != 0)
+			this.enemies--;
+		System.out.println(enemies);
+	}
+
 }
