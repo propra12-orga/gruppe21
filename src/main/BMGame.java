@@ -2,10 +2,12 @@ package main;
 
 import javax.swing.JFrame;
 
-/*
- * launcher with main()
+/**
+ * Contains main frame for the application and the main method.
+ * 
+ * @author tohei
+ * 
  */
-
 public class BMGame {
 
 	/*

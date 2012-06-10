@@ -9,7 +9,7 @@ import java.awt.event.KeyEvent;
  * components.
  * 
  * @author tohei
- * 
+ * @see main.UnitState
  */
 public abstract class GraphicalGameUnit {
 
