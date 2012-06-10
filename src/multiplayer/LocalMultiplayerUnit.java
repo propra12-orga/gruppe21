@@ -168,7 +168,7 @@ public class LocalMultiplayerUnit extends GraphicalGameUnit {
 		/*
 		 * load map and players
 		 */
-		multiplayerMap = new Map("multMap");
+		multiplayerMap = new Map("MP-Woodwars");
 		playerOne = multiplayerMap.getPlayerByNumber(1);
 		playerTwo = multiplayerMap.getPlayerByNumber(2);
 		/*

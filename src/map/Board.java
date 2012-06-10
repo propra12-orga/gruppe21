@@ -13,7 +13,7 @@ public class Board extends JPanel {
 	public Map map;
 
 	public Board() {
-		map = new Map("campaign1worldmap");
+		map = new Map("MP-Woodwars");
 	}
 
 	public void paint(Graphics g) {
