@@ -13,16 +13,29 @@ import main.UnitNavigator;
 import main.UnitState;
 import mapobjects.Player;
 
-/*
- * campaign worldmap 
- * (to be used as a temporary game unit)
+/**
+ * This subclass of GraphicalGameUnit is used to depict and interact with a
+ * WorldMap object. This unit is to be used as a TEMPORARY_UNIT.
+ * 
+ * @author tohei
+ * @see singleplayer.WorldMap
  */
-
 public class WorldMapUnit extends GraphicalGameUnit {
 
+	/**
+	 * The corresponding WorldMap object manages all related data.
+	 */
 	private WorldMap worldMap;
+	/**
+	 * Used to center and draw the worldMap's map object.
+	 */
 	private BufferedImage mapCanvas;
 
+	/**
+	 * Create a new WorldMapUnit from a WorldMap object.
+	 * 
+	 * @param worldMap
+	 */
 	public WorldMapUnit(WorldMap worldMap) {
 		this.worldMap = worldMap;
 	}
@@ -34,12 +47,20 @@ public class WorldMapUnit extends GraphicalGameUnit {
 		mapCanvas = new BufferedImage(worldMap.getMap().getWidth(), worldMap
 				.getMap().getHeight(), BufferedImage.TYPE_INT_ARGB);
 		worldMap.getMap().drawMap((Graphics2D) mapCanvas.getGraphics());
-		g.drawImage(mapCanvas, 0, 0, GameConstants.FRAME_SIZE_X,
-				GameConstants.FRAME_SIZE_Y, null);
+		/*
+		 * Center and draw mapCanvas
+		 */
+		g.drawImage(mapCanvas,
+				(GameConstants.FRAME_SIZE_X - mapCanvas.getWidth()) / 2,
+				(GameConstants.FRAME_SIZE_Y - mapCanvas.getHeight()) / 2,
+				mapCanvas.getWidth(), mapCanvas.getHeight(), null);
 	}
 
 	@Override
 	public void handleKeyPressed(KeyEvent e) {
+		/*
+		 * User input will change the selectedLevel variable of the worldMap.
+		 */
 		int key = e.getKeyCode();
 		if (key == KeyEvent.VK_LEFT) {
 			if (worldMap.getSelectedLevel() + 1 <= worldMap
@@ -55,11 +76,17 @@ public class WorldMapUnit extends GraphicalGameUnit {
 
 			}
 		}
+		/*
+		 * Return to the LevelManagerUnit and start a new map.
+		 */
 		if (key == KeyEvent.VK_ENTER) {
 			UnitNavigator.getNavigator().set(UnitState.LEVEL_MANAGER_UNIT);
 		}
 	}
 
+	/**
+	 * Set player position according to the worldMap's selectedLevel variable.
+	 */
 	private void updatePlayerPosition() {
 		Point playerCoord = worldMap.getPlayerCoord();
 		worldMap.getMap().getMapPlayer()
