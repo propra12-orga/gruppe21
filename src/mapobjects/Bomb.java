@@ -195,6 +195,7 @@ public class Bomb extends MapObject {
 				animation.stop();
 				animation.change("center");
 				exploding = true;
+				beforeTime = System.nanoTime();
 				animation.start("center");
 
 				// verschiebe Bombe bei explosion in höhere ebene, damit
@@ -209,7 +210,7 @@ public class Bomb extends MapObject {
 		if (visible && exploding) {
 			animation.animate();
 			collision = false;
-			if (beforeTime + countdownTime + explosionTime <= System.nanoTime()) {
+			if (beforeTime + explosionTime <= System.nanoTime()) {
 				animation.stop();
 				visible = false;
 				destroyed = true;
