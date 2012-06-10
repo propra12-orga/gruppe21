@@ -64,12 +64,12 @@ public class Bomb extends MapObject {
 	@Override
 	public void draw(Graphics2D g2d, ImageLoader gr, Graphics2D cm) {
 		g2d.drawImage(animation.getCurrentImage(), posX, posY, null);
-		if (!(playerleft && collides())) {
+		if (exploding) {
+			cm.setPaint(Color.orange);
+		} else if (!(playerleft && collides())) {
 			cm.setPaint(Color.white);
 		} else if (collides()) {
 			cm.setPaint(Color.gray);
-		} else {
-			cm.setPaint(Color.orange);
 		}
 		cm.fillRect(posX, posY, 50, 50);
 
