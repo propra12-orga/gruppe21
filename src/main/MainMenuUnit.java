@@ -1,6 +1,5 @@
 package main;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
@@ -66,8 +65,7 @@ public class MainMenuUnit extends GraphicalGameUnit {
 
 	@Override
 	public void drawComponent(Graphics g) {
-		g.setColor(Color.blue);
-		g.fillRect(0, 0, GameConstants.FRAME_SIZE_X, GameConstants.FRAME_SIZE_Y);
+
 		g.drawImage(Background, 0, 0, null);
 		g.drawImage(toolTip, 140, GameConstants.FRAME_SIZE_Y - 60, null);
 		g.drawImage(singlePlayerInactive, startXPos, button1YPos, null);
