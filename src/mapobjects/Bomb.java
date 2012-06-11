@@ -16,7 +16,7 @@ public class Bomb extends MapObject {
 	int arms[] = new int[4];
 	boolean playerleft = false;
 	/* countdown (4s), explosiontime (1s) in nanosecs */
-	private long countdownTime = 4000000000L, explosionTime = 1000000000,
+	private long countdownTime = 4000000000L, explosionTime = 500000000,
 			beforeTime;
 	private boolean exploding = false;
 
