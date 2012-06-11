@@ -2,30 +2,69 @@ package imageloader;
 
 import java.awt.image.BufferedImage;
 
-import javax.swing.ImageIcon;
+/**
+ * Holds an Image
+ * 
+ * @author eik
+ * 
+ */
 
-public class GameImage extends GameGraphic{
+public class GameImage extends GameGraphic {
 	private String path;
 	String name;
-	
-	public GameImage(String p,String n){
+
+	/**
+	 * constructor
+	 * 
+	 * @param p
+	 *            url of the image
+	 * @param n
+	 *            name of the image
+	 */
+	public GameImage(String p, String n) {
 		super(p);
 		path = p;
 		name = n;
 	}
-	
-	public BufferedImage getImage(){
+
+	/**
+	 * returns the image
+	 * 
+	 * @return BufferdImage
+	 */
+	public BufferedImage getImage() {
 		return image;
 	}
 
+	/**
+	 * compares a given path with the actual path , returns true if they are
+	 * equal
+	 * 
+	 * @param inS
+	 *            string to compare
+	 * @return boolean , true if equals - false if not
+	 */
 	public boolean pathEquals(String inS) {
-		return(path.equals(inS));
+		return (path.equals(inS));
 	}
 
+	/**
+	 * returns the url of the image
+	 * 
+	 * @return path as String
+	 */
 	public String getPath() {
 		return path;
 	}
 
+	/**
+	 * compares a given name with the GameImage name , returns true if they are
+	 * equal
+	 * 
+	 * @param n
+	 *            name to compare
+	 * @return boolean, true if equals - false if not
+	 */
 	public boolean nameEquals(String n) {
 		return name.equals(n);
 	}
