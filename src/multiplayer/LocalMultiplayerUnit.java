@@ -52,6 +52,7 @@ public class LocalMultiplayerUnit extends GraphicalGameUnit {
 
 	public LocalMultiplayerUnit(String mapName) {
 		this.mapName = mapName;
+		initComponent();
 	}
 
 	@Override
