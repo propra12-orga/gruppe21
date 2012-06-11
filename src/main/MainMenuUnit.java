@@ -1,6 +1,5 @@
 package main;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
@@ -8,7 +7,7 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.ImageIcon;
 
-import multiplayer.LocalMultiplayerUnit;
+import multiplayer.OptionMenuUnit;
 
 /**
  * This class represents the main menu. It is used as the main hub, from where
@@ -66,8 +65,7 @@ public class MainMenuUnit extends GraphicalGameUnit {
 
 	@Override
 	public void drawComponent(Graphics g) {
-		g.setColor(Color.blue);
-		g.fillRect(0, 0, GameConstants.FRAME_SIZE_X, GameConstants.FRAME_SIZE_Y);
+
 		g.drawImage(Background, 0, 0, null);
 		g.drawImage(toolTip, 140, GameConstants.FRAME_SIZE_Y - 60, null);
 		g.drawImage(singlePlayerInactive, startXPos, button1YPos, null);
@@ -120,10 +118,10 @@ public class MainMenuUnit extends GraphicalGameUnit {
 		}
 		if (key == KeyEvent.VK_ENTER && selectCounter == 1) {
 			// create new game
-			LocalMultiplayerUnit levelmanager = new LocalMultiplayerUnit();
-			UnitNavigator.getNavigator().addGameUnit(levelmanager,
-					UnitState.LEVEL_MANAGER_UNIT);
-			UnitNavigator.getNavigator().set(UnitState.LEVEL_MANAGER_UNIT);
+			OptionMenuUnit optionMenu = new OptionMenuUnit();
+			UnitNavigator.getNavigator().addGameUnit(optionMenu,
+					UnitState.TEMPORARY_UNIT);
+			UnitNavigator.getNavigator().set(UnitState.TEMPORARY_UNIT);
 		}
 		if (key == KeyEvent.VK_ENTER && selectCounter == 2) {
 			// end game

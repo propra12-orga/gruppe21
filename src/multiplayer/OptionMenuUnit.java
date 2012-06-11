@@ -21,34 +21,35 @@ import main.UnitState;
  * 
  */
 
-public class OptionMenu extends GraphicalGameUnit {
+public class OptionMenuUnit extends GraphicalGameUnit {
 
 	private Image background = new ImageIcon(GameConstants.MENU_IMAGES_DIR
-			+ "/MultiplayerMenuBG").getImage();
+			+ "/MultiplayerMenuBG.png").getImage();
 	private Image select = new ImageIcon(GameConstants.MENU_IMAGES_DIR
 			+ "/Select.png").getImage();
 	private Image activeLocal = new ImageIcon(GameConstants.MENU_IMAGES_DIR
-			+ "/ActiveLocal").getImage();
+			+ "/ActiveLocal.png").getImage();
 	private Image inactiveLocal = new ImageIcon(GameConstants.MENU_IMAGES_DIR
-			+ "/InactiveLocal").getImage();
+			+ "/InactiveLocal.png").getImage();
 	private Image activeNetwork = new ImageIcon(GameConstants.MENU_IMAGES_DIR
-			+ "/ActiveNetwork").getImage();
+			+ "/ActiveNetwork.png").getImage();
 	private Image inactiveNetwork = new ImageIcon(GameConstants.MENU_IMAGES_DIR
-			+ "/InactiveNetwork").getImage();
+			+ "/InactiveNetwork.png").getImage();
 	private Image activeBack = new ImageIcon(GameConstants.MENU_IMAGES_DIR
 			+ "/ActiveBack").getImage();
 	private Image inactiveBack = new ImageIcon(GameConstants.MENU_IMAGES_DIR
-			+ "/InactiveBack").getImage();
+			+ "/InactiveBack.png").getImage();
 
 	private int buttonSpace = 20;
 	private int buttonWidth = activeLocal.getWidth(null);
-	private int startYPos = GameConstants.FRAME_SIZE_Y / 2 - buttonWidth / 2;
+	private int startYPos = GameConstants.FRAME_SIZE_Y / 2;
 	private int startXPos = GameConstants.FRAME_SIZE_X / 2
 			- (buttonWidth + buttonWidth / 2 + buttonSpace);
 	private int button1XPos = startXPos;
 	private int button2XPos = startXPos + 1 * (buttonWidth + buttonSpace);
 	private int button3XPos = startXPos + 2 * (buttonWidth + buttonSpace);
-	private Point selectorGhost = new Point(startXPos, startYPos);
+	private Point selectorGhost = new Point(
+			button1XPos - select.getWidth(null), startYPos);
 	private int selectCounter;
 
 	@Override
@@ -75,11 +76,10 @@ public class OptionMenu extends GraphicalGameUnit {
 			selectCounter = 2;
 		}
 		if (key == KeyEvent.VK_ENTER && selectCounter == 0) {
-			// create new game
-			LocalMultiplayerUnit levelmanager = new LocalMultiplayerUnit();
-			UnitNavigator.getNavigator().addGameUnit(levelmanager,
-					UnitState.LEVEL_MANAGER_UNIT);
-			UnitNavigator.getNavigator().set(UnitState.LEVEL_MANAGER_UNIT);
+			MapMenuUnit mapMenu = new MapMenuUnit();
+			UnitNavigator.getNavigator().addGameUnit(mapMenu,
+					UnitState.TEMPORARY_UNIT);
+			UnitNavigator.getNavigator().set(UnitState.TEMPORARY_UNIT);
 
 		}
 		if (key == KeyEvent.VK_ENTER && selectCounter == 1) {
@@ -105,7 +105,8 @@ public class OptionMenu extends GraphicalGameUnit {
 
 	@Override
 	public void drawComponent(Graphics g) {
-		g.drawImage(background, 0, 0, null);
+		g.drawImage(background, 0, 0, GameConstants.FRAME_SIZE_X,
+				GameConstants.FRAME_SIZE_Y, null);
 		g.drawImage(inactiveLocal, button1XPos, startYPos, null);
 		g.drawImage(inactiveNetwork, button2XPos, startYPos, null);
 		g.drawImage(inactiveBack, button3XPos, startYPos, null);

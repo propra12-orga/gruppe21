@@ -39,6 +39,8 @@ public class LocalMultiplayerUnit extends GraphicalGameUnit {
 	private int mapCanvasPosX = 0;
 	private int mapCanvasPosY = 0;
 
+	private String mapName = "MP-Woodwars";
+
 	/**
 	 * Some win messages one can randomly choose from.
 	 */
@@ -51,6 +53,10 @@ public class LocalMultiplayerUnit extends GraphicalGameUnit {
 
 	public LocalMultiplayerUnit() {
 		initComponent();
+	}
+
+	public LocalMultiplayerUnit(String mapName) {
+		this.mapName = mapName;
 	}
 
 	@Override
@@ -182,7 +188,7 @@ public class LocalMultiplayerUnit extends GraphicalGameUnit {
 		/*
 		 * load map and players
 		 */
-		multiplayerMap = new Map("MP-Woodwars");
+		multiplayerMap = new Map(mapName);
 		playerOne = multiplayerMap.getPlayerByNumber(1);
 		playerTwo = multiplayerMap.getPlayerByNumber(2);
 		/*

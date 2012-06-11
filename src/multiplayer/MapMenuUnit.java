@@ -17,16 +17,16 @@ import main.UnitState;
  * @author saber104
  * 
  */
-public class MapMenu extends GraphicalGameUnit {
+public class MapMenuUnit extends GraphicalGameUnit {
 
 	private Image background = new ImageIcon(GameConstants.MENU_IMAGES_DIR
-			+ "/MapChooserBG").getImage();
+			+ "/MapChooserBG.png").getImage();
 	private Image map1 = new ImageIcon(GameConstants.MENU_IMAGES_DIR
-			+ "/WoodwarsMenuPic").getImage();
+			+ "/WoodwarsMenuPic.png").getImage();
 	private Image select = new ImageIcon(GameConstants.MENU_IMAGES_DIR
-			+ "/SelectFrame").getImage();
+			+ "/SelectFrame.png").getImage();
 	private Image activeBack = new ImageIcon(GameConstants.MENU_IMAGES_DIR
-			+ "/ActiveBack").getImage();
+			+ "/ActiveBack.png").getImage();
 	private int startYPos = GameConstants.FRAME_SIZE_Y / 2;
 	private int startXPos = GameConstants.FRAME_SIZE_X / 2;
 
@@ -64,7 +64,8 @@ public class MapMenu extends GraphicalGameUnit {
 
 	@Override
 	public void drawComponent(Graphics g) {
-		g.drawImage(background, 0, 0, null);
+		g.drawImage(background, 0, 0, GameConstants.FRAME_SIZE_X,
+				GameConstants.FRAME_SIZE_Y, null);
 		g.drawImage(select, startXPos - (select.getWidth(null) / 2), startYPos
 				- (select.getHeight(null) / 2), null);
 		g.drawImage(map1, startXPos - (map1.getWidth(null) / 2), startYPos
