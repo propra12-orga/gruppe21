@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import main.GameConstants;
@@ -142,10 +143,21 @@ public class Campaign {
 		WorldMap worldMap = null;
 		File campaignFile = new File(GameConstants.CAMPAIGNS_DIR + filename);
 		Scanner sc = new Scanner(campaignFile);
+		boolean inMaps = false;
 		while (sc.hasNext()) {
 			String line = sc.nextLine();
 			if (line.startsWith("#"))
 				continue;
+			if (line.contains("MAPS") && inMaps) {
+				break;
+			}
+			if (line.contains("MAPS")) {
+				inMaps = true;
+				continue;
+			}
+			if (!inMaps)
+				continue;
+
 			String[] data = line.split(":");
 			if (data[0].startsWith(SEQUENCE_INDICATOR)) {
 				String[] prefix = data[0].split("\\.");
@@ -175,6 +187,40 @@ public class Campaign {
 			}
 		}
 		return new Campaign(mapSequences, worldMap);
+	}
+
+	/**
+	 * Reads campaign introduction (text in between INTRO and INTRO_END tags)
+	 * from file.
+	 * 
+	 * @param filename
+	 *            name of file that contains the campaign introduction.
+	 * @return campaign introduction.
+	 * @throws FileNotFoundException
+	 */
+	public static List<String> readMapIntro(String filename)
+			throws FileNotFoundException {
+		List<String> introLines = new ArrayList<String>();
+		File campaignFile = new File(GameConstants.CAMPAIGNS_DIR + filename);
+		Scanner sc = new Scanner(campaignFile);
+		boolean inIntro = false;
+		while (sc.hasNext()) {
+			String line = sc.nextLine();
+
+			if (line.startsWith("#"))
+				continue;
+			if (line.contains("INTRO") && inIntro) {
+				break;
+			}
+			if (line.contains("INTRO")) {
+				inIntro = true;
+				continue;
+			}
+			if (inIntro && !line.isEmpty()) {
+				introLines.add(line);
+			}
+		}
+		return introLines;
 	}
 
 	/**

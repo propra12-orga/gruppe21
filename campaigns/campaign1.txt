@@ -10,6 +10,15 @@
 # a coord consists of:
 #	<x>,<y>
 
+INTRO
+Stranded on the coast of a savage island, 
+equipped with nothing but an infinite amount
+of lethal explosives, our hero starts on a 
+dangerous journey into the unknown ...
+INTRO
+
+MAPS
 seq.0:long
 seq.1:testmap
 wm:11,10;10,8-campaign1worldmap
+MAPS
