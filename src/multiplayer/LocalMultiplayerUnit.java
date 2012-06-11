@@ -39,7 +39,7 @@ public class LocalMultiplayerUnit extends GraphicalGameUnit {
 	private int mapCanvasPosX = 0;
 	private int mapCanvasPosY = 0;
 
-	private String mapName = "multMap";
+	private String mapName = "MP-Woodwars";
 
 	/**
 	 * Some win messages one can randomly choose from.

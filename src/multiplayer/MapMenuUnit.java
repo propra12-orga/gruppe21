@@ -6,6 +6,7 @@ import java.awt.FontFormatException;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.geom.Rectangle2D;
 import java.io.File;
@@ -38,11 +39,17 @@ public class MapMenuUnit extends GraphicalGameUnit {
 			+ "/ActiveBack.png").getImage();
 	private Image map2 = new ImageIcon(GameConstants.MENU_IMAGES_DIR
 			+ "MultMapMenuPic.png").getImage();
+	private Image inactiveBack = new ImageIcon(GameConstants.MENU_IMAGES_DIR
+			+ "/InactiveBack.png").getImage();
 	private int startYPos = GameConstants.FRAME_SIZE_Y / 2;
 	private int startXPos = GameConstants.FRAME_SIZE_X / 2;
-
+	private int frameXPosition1 = startXPos - (map1.getWidth(null) + 24);
+	private int frameXPosition2 = startXPos + 16;
+	private int frameOutOfRange = -2000;
 	private int buttonWidth = activeBack.getWidth(null);
-
+	private Image currentImage = inactiveBack;
+	private Point selectorGhost = new Point(frameXPosition2, startYPos
+			- (map1.getHeight(null) / 2) - 3);
 	// to be replaced by FontManager
 	private Font font;
 
@@ -52,7 +59,8 @@ public class MapMenuUnit extends GraphicalGameUnit {
 
 	@Override
 	public void updateComponent() {
-		// TODO Auto-generated method stub
+		selectorGhost.setLocation(frameXPosition1,
+				startYPos - (map1.getHeight(null) / 2) - 3);
 
 	}
 
@@ -67,6 +75,24 @@ public class MapMenuUnit extends GraphicalGameUnit {
 		}
 		if (key == KeyEvent.VK_ESCAPE) {
 			UnitNavigator.getNavigator().set(UnitState.BASE_MENU_UNIT);
+		}
+		if (key == KeyEvent.VK_RIGHT) {
+			if (frameXPosition1 != frameOutOfRange) {
+				frameXPosition1 = frameXPosition2;
+			}
+		}
+		if (key == KeyEvent.VK_LEFT) {
+			if (frameXPosition1 != frameOutOfRange) {
+				frameXPosition1 = startXPos - (map1.getWidth(null) + 24);
+			}
+		}
+		if (key == KeyEvent.VK_UP) {
+			frameXPosition1 = startXPos - (map1.getWidth(null) + 24);
+			currentImage = inactiveBack;
+		}
+		if (key == KeyEvent.VK_DOWN) {
+			frameXPosition1 = -2000;
+			currentImage = activeBack;
 		}
 	}
 
@@ -91,13 +117,13 @@ public class MapMenuUnit extends GraphicalGameUnit {
 	public void drawComponent(Graphics g) {
 		g.drawImage(background, 0, 0, GameConstants.FRAME_SIZE_X,
 				GameConstants.FRAME_SIZE_Y, null);
-		g.drawImage(select, startXPos - (select.getWidth(null) + 16), startYPos
-				- (select.getHeight(null) / 2), null);
+		g.drawImage(select, (int) selectorGhost.getX(),
+				(int) selectorGhost.getY(), null);
 		g.drawImage(map1, startXPos - (map1.getWidth(null) + 20), startYPos
 				- (map1.getHeight(null) / 2), null);
 		g.drawImage(map2, startXPos + 20, startYPos
 				- (map1.getHeight(null) / 2), null);
-		g.drawImage(activeBack, startXPos - buttonWidth / 2, startYPos + 250,
+		g.drawImage(currentImage, startXPos - buttonWidth / 2, startYPos + 250,
 				null);
 
 		g.setFont(font);
