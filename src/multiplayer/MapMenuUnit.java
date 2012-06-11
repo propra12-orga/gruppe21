@@ -46,7 +46,7 @@ public class MapMenuUnit extends GraphicalGameUnit {
 			UnitNavigator.getNavigator().set(UnitState.LEVEL_MANAGER_UNIT);
 		}
 		if (key == KeyEvent.VK_ESCAPE) {
-			// zurück
+			UnitNavigator.getNavigator().set(UnitState.BASE_MENU_UNIT);
 		}
 	}
 

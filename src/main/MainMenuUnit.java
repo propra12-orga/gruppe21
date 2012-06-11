@@ -7,6 +7,8 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.ImageIcon;
 
+import singleplayer.LevelManagerUnit;
+
 import multiplayer.OptionMenuUnit;
 
 /**
