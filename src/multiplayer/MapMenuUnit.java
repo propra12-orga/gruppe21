@@ -46,17 +46,11 @@ public class MapMenuUnit extends GraphicalGameUnit {
 	private Image currentImage = inactiveBack;
 	private Point selectorGhost = new Point(frameXPosition2, startYPos
 			- (map1.getHeight(null) / 2) - 3);
-
-	private static String currentMap;
 	// to be replaced by FontManager
 	private Font font;
 
 	public MapMenuUnit() {
 		initComponent();
-	}
-
-	public static String getCurrentMap() {
-		return currentMap;
 	}
 
 	@Override
@@ -70,15 +64,15 @@ public class MapMenuUnit extends GraphicalGameUnit {
 	public void handleKeyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
 		if (key == KeyEvent.VK_ENTER && frameXPosition1 == frameXPos) {
-			currentMap = "MP-Woodwars";
-			LocalMultiplayerUnit levelmanager = new LocalMultiplayerUnit();
+			LocalMultiplayerUnit levelmanager = new LocalMultiplayerUnit(
+					"MP-Woodwars");
 			UnitNavigator.getNavigator().addGameUnit(levelmanager,
 					UnitState.LEVEL_MANAGER_UNIT);
 			UnitNavigator.getNavigator().set(UnitState.LEVEL_MANAGER_UNIT);
 		}
 		if (key == KeyEvent.VK_ENTER && frameXPosition1 == frameXPosition2) {
-			currentMap = "multMap";
-			LocalMultiplayerUnit levelmanager = new LocalMultiplayerUnit();
+			LocalMultiplayerUnit levelmanager = new LocalMultiplayerUnit(
+					"multMap");
 			UnitNavigator.getNavigator().addGameUnit(levelmanager,
 					UnitState.LEVEL_MANAGER_UNIT);
 			UnitNavigator.getNavigator().set(UnitState.LEVEL_MANAGER_UNIT);
