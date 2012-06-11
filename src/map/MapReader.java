@@ -20,6 +20,13 @@ import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 
+/**
+ * processes the xml file of the map reads graphics and writes them into an
+ * ImageLoader loads the map into the MapObjects object
+ * 
+ * @author eik
+ * 
+ */
 public class MapReader {
 	private Document mapXML;
 	private Element mapRoot;
@@ -43,12 +50,24 @@ public class MapReader {
 		mapRoot = mapXML.getRootElement();
 	}
 
-	// returns text of an headerelement with given name
+	/**
+	 * returns headerinformation
+	 * 
+	 * @param v
+	 *            name of the header attribute
+	 * @return headerinformation as string
+	 */
 	public String getHeader(String v) {
 		return mapRoot.getChild("header").getChildText(v);
 	}
 
-	// loads all graphic elements of the map into the given imageloader
+	/**
+	 * iterates over the xml document and adds graphics and animations to the
+	 * given ImageLoader
+	 * 
+	 * @param il
+	 *            the ImageLoader to add graphics
+	 */
 	public void loadGraphics(ImageLoader il) {
 		List<Element> levels = mapRoot.getChild("mapobjects").getChildren(
 				"level");
@@ -89,8 +108,14 @@ public class MapReader {
 		graphicisloaded = true;
 	}
 
-	// TODO ReadMap
-	// levels1
+	/**
+	 * iterates over the xml dom and adds the objects to the MapObject vector
+	 * 
+	 * @param mo
+	 *            the MapObject vector
+	 * @param gr
+	 *            the ImageLoader of the Map
+	 */
 
 	public void getMap(Vector<Vector<MapObject>> mo, ImageLoader gr) {
 		// until graphics have been loaded you can't get the map;
@@ -248,11 +273,18 @@ public class MapReader {
 		}
 	}
 
-	// returns number of levels to be drawn
+	/**
+	 * 
+	 * @return the number of levels to draw
+	 */
 	public int getDrawLevels() {
 		return mapRoot.getChild("mapobjects").getChildren().size();
 	}
 
+	/**
+	 * 
+	 * @return number of enemies on the map
+	 */
 	public int getEnemies() {
 		return enemies;
 	}
