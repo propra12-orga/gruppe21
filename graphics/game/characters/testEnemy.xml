@@ -1,7 +1,7 @@
 <animationset default="enemyDefault.png">
-<animation frames="2" stretch="15" name="enemyDying">enemyDying.png</animation>
-<animation frames="2" stretch="1" name="enemyLeft">enemyLEFT.png</animation>
-<animation frames="2" stretch="1" name="enemyRight">enemyRIGHT.png</animation>
-<animation frames="2" stretch="1" name="enemyUp">enemyBACK.png</animation>
-<animation frames="2" stretch="1" name="enemyDown">enemyFRONT.png</animation>
+<animation frames="2" stretch="5" name="enemyDying">enemyDying.png</animation>
+<animation frames="2" stretch="20" name="enemyLeft">enemyLEFT.png</animation>
+<animation frames="2" stretch="20" name="enemyRight">enemyRIGHT.png</animation>
+<animation frames="2" stretch="20" name="enemyUp">enemyBACK.png</animation>
+<animation frames="2" stretch="20" name="enemyDown">enemyFRONT.png</animation>
 </animationset>

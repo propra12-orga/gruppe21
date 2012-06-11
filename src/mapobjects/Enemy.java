@@ -10,7 +10,7 @@ public class Enemy extends MoveableObject {
 	private boolean hiddenObject = false;
 	private boolean UP, DOWN, RIGHT, LEFT;
 	private boolean dying;
-	private long beforeTime, dyingTime = 1000000000;
+	private long beforeTime, dyingTime = 800000000;
 
 	public Enemy(int x, int y, boolean v, boolean d, boolean c, String p,
 			ImageLoader gr) {
@@ -20,7 +20,6 @@ public class Enemy extends MoveableObject {
 		RIGHT = true;
 		LEFT = false;
 		speed = 1;
-		animation.start("testEnemy");
 	}
 
 	private void stop() {
@@ -37,10 +36,10 @@ public class Enemy extends MoveableObject {
 			if (hasObjectCollision(posX, posY - speed, map.getCollisionMap(),
 					"UP")) {
 				findPath();
+
 			} else {
 				posY -= speed;
 			}
-			animation.change("enemyUp");
 		}
 
 		if (DOWN) {
@@ -50,7 +49,6 @@ public class Enemy extends MoveableObject {
 			} else {
 				posY += speed;
 			}
-			animation.change("enemyDown");
 		}
 
 		if (LEFT) {
@@ -60,7 +58,6 @@ public class Enemy extends MoveableObject {
 			} else {
 				posX -= speed;
 			}
-			animation.change("enemyLeft");
 		}
 
 		if (RIGHT) {
@@ -70,7 +67,6 @@ public class Enemy extends MoveableObject {
 			} else {
 				posX += speed;
 			}
-			animation.change("enemyRight");
 		}
 	}
 
@@ -81,15 +77,19 @@ public class Enemy extends MoveableObject {
 		switch (choice) {
 		case 1:
 			UP = true;
+			animation.change("enemyUp");
 			break;
 		case 2:
 			DOWN = true;
+			animation.change("enemyDown");
 			break;
 		case 3:
 			LEFT = true;
+			animation.change("enemyLeft");
 			break;
 		case 4:
 			RIGHT = true;
+			animation.change("enemyRight");
 			break;
 		default:
 			findPath();
@@ -109,6 +109,7 @@ public class Enemy extends MoveableObject {
 		animation.animate();
 
 		if (dying) {
+
 			if (beforeTime + dyingTime <= System.nanoTime()) {
 				this.destroyed = true;
 				// this.map.decreaseEnemies();
@@ -123,9 +124,10 @@ public class Enemy extends MoveableObject {
 	}
 
 	public void die() {
-		stop();
 		dying = true;
+		animation.stop();
 		animation.change("enemyDying");
+		animation.start("enemyDying");
 		beforeTime = System.nanoTime();
 	}
 
