@@ -7,7 +7,7 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.ImageIcon;
 
-import multiplayer.LocalMultiplayerUnit;
+import multiplayer.OptionMenuUnit;
 
 /**
  * This class represents the main menu. It is used as the main hub, from where
@@ -118,10 +118,10 @@ public class MainMenuUnit extends GraphicalGameUnit {
 		}
 		if (key == KeyEvent.VK_ENTER && selectCounter == 1) {
 			// create new game
-			LocalMultiplayerUnit levelmanager = new LocalMultiplayerUnit();
-			UnitNavigator.getNavigator().addGameUnit(levelmanager,
-					UnitState.LEVEL_MANAGER_UNIT);
-			UnitNavigator.getNavigator().set(UnitState.LEVEL_MANAGER_UNIT);
+			OptionMenuUnit optionMenu = new OptionMenuUnit();
+			UnitNavigator.getNavigator().addGameUnit(optionMenu,
+					UnitState.TEMPORARY_UNIT);
+			UnitNavigator.getNavigator().set(UnitState.TEMPORARY_UNIT);
 		}
 		if (key == KeyEvent.VK_ENTER && selectCounter == 2) {
 			// end game
