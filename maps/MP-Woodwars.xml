@@ -7,7 +7,7 @@
 	</header>
 	<mapobjects>
 		<level>
-		<tile type="floor" animated="false">
+			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
@@ -15,7 +15,6 @@
 				<posx>0</posx>
 				<posy>0</posy>
 			</tile>
-			
 			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
@@ -3679,7 +3678,7 @@
 				<collision>true</collision>
 				<destroyable>true</destroyable>
 				<image rotation="0">DestructableBush.png</image>
-				<posx>150</posx>
+				<posx>200</posx>
 				<posy>50</posy>
 			</tile>
 			<tile type="wall" animated="false">
@@ -3799,7 +3798,7 @@
 				<collision>true</collision>
 				<destroyable>true</destroyable>
 				<image rotation="0">DestructableBush.png</image>
-				<posx>800</posx>
+				<posx>750</posx>
 				<posy>50</posy>
 			</tile>
 			<tile type="wall" animated="false">
@@ -3840,7 +3839,7 @@
 				<destroyable>true</destroyable>
 				<image rotation="0">DestructableBush.png</image>
 				<posx>900</posx>
-				<posy>150</posy>
+				<posy>200</posy>
 			</tile>
 			<tile type="wall" animated="false">
 				<visible>true</visible>
@@ -3919,7 +3918,7 @@
 				<collision>true</collision>
 				<destroyable>true</destroyable>
 				<image rotation="0">DestructableBush.png</image>
-				<posx>150</posx>
+				<posx>200</posx>
 				<posy>650</posy>
 			</tile>
 			<tile type="wall" animated="false">
@@ -3960,7 +3959,7 @@
 				<destroyable>true</destroyable>
 				<image rotation="0">DestructableBush.png</image>
 				<posx>50</posx>
-				<posy>550</posy>
+				<posy>500</posy>
 			</tile>
 			<tile type="wall" animated="false">
 				<visible>true</visible>
@@ -4039,7 +4038,7 @@
 				<collision>true</collision>
 				<destroyable>true</destroyable>
 				<image rotation="0">DestructableBush.png</image>
-				<posx>800</posx>
+				<posx>750</posx>
 				<posy>650</posy>
 			</tile>
 			<tile type="wall" animated="false">
