@@ -105,7 +105,8 @@ public class OptionMenuUnit extends GraphicalGameUnit {
 
 	@Override
 	public void drawComponent(Graphics g) {
-		g.drawImage(background, 0, 0, null);
+		g.drawImage(background, 0, 0, GameConstants.FRAME_SIZE_X,
+				GameConstants.FRAME_SIZE_Y, null);
 		g.drawImage(inactiveLocal, button1XPos, startYPos, null);
 		g.drawImage(inactiveNetwork, button2XPos, startYPos, null);
 		g.drawImage(inactiveBack, button3XPos, startYPos, null);
