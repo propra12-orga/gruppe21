@@ -147,7 +147,7 @@ public class OptionMenuUnit extends GraphicalGameUnit {
 		 * center heading
 		 */
 		Graphics2D g2d = (Graphics2D) g;
-		Rectangle2D rect = font.getStringBounds("Chose Multiplayer Mode:",
+		Rectangle2D rect = font.getStringBounds("Choose Multiplayer Mode:",
 				g2d.getFontRenderContext());
 		g2d.drawString("Chose Multiplayer Mode:",
 				(int) (GameConstants.FRAME_SIZE_X - rect.getWidth()) / 2,
