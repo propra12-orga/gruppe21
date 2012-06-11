@@ -265,6 +265,7 @@ public class LocalMultiplayerUnit extends GraphicalGameUnit {
 		return msg;
 	}
 
+	// to be replaced by FontManager
 	/**
 	 * Loads font from file (assuming it is located in the 'fonts' directory).
 	 * 

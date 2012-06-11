@@ -32,6 +32,7 @@ import mapobjects.Player;
 public class LevelManagerUnit extends GraphicalGameUnit {
 
 	private Campaign campaign;
+	private String campaignFile;
 	private Map currentMap;
 	/**
 	 * The WorldMapUnit is used to display the WorldMap in between different
@@ -57,6 +58,11 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 	private boolean unitRunning = false;
 
 	public LevelManagerUnit() {
+		initComponent();
+	}
+
+	public LevelManagerUnit(String campaignFile) {
+		this.campaignFile = campaignFile;
 		initComponent();
 	}
 
@@ -125,7 +131,7 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 	@Override
 	public void initComponent() {
 		try {
-			campaign = Campaign.readCampaignFromFile("campaign1.txt");
+			campaign = Campaign.readCampaignFromFile(campaignFile);
 			worldMapUnit = new WorldMapUnit(campaign.getWorldMap());
 
 		} catch (FileNotFoundException e) {
@@ -299,8 +305,6 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 				BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g2d = transitionImage.createGraphics();
 		g2d.setColor(Color.black);
-		g2d.drawRect(0, 0, transitionImage.getWidth(),
-				transitionImage.getHeight());
 		g2d.drawImage(mapCanvas, mapOffsetX, mapOffsetY, null);
 		g2d.drawImage(tmp, 0, transitionImage.getHeight() / 4,
 				transitionImage.getWidth(), transitionImage.getHeight() / 2,
