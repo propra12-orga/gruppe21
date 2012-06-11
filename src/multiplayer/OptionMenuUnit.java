@@ -2,17 +2,12 @@ package multiplayer;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.FontFormatException;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.geom.Rectangle2D;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 
 import javax.swing.ImageIcon;
 
@@ -60,9 +55,6 @@ public class OptionMenuUnit extends GraphicalGameUnit {
 	private Point selectorGhost = new Point(
 			button1XPos - select.getWidth(null), startYPos);
 	private int selectCounter;
-
-	// to be replaced by FontManager
-	private Font font;
 
 	public OptionMenuUnit() {
 		initComponent();
@@ -117,12 +109,15 @@ public class OptionMenuUnit extends GraphicalGameUnit {
 
 	@Override
 	public void initComponent() {
+		/*
+		 * load font
+		 */
 		try {
-			font = loadFont("font1.TTF").deriveFont(50f);
+			unitFont = loadFont("font1.TTF").deriveFont(50f);
 		} catch (Exception e) {
 			System.err.println("ERROR LOADING FONT: font1.TTF");
 			e.printStackTrace();
-			font = new Font("serif", Font.PLAIN, 24);
+			unitFont = new Font("serif", Font.PLAIN, 24);
 		}
 	}
 
@@ -140,19 +135,19 @@ public class OptionMenuUnit extends GraphicalGameUnit {
 		 * load game font
 		 */
 
-		g.setFont(font);
+		g.setFont(unitFont);
 		g.setColor(Color.white);
 
 		/*
 		 * center heading
 		 */
 		Graphics2D g2d = (Graphics2D) g;
-		Rectangle2D rect = font.getStringBounds("Choose Multiplayer Mode:",
+		Rectangle2D rect = unitFont.getStringBounds("Choose Multiplayer Mode:",
 				g2d.getFontRenderContext());
 		g2d.drawString("Choose Multiplayer Mode:",
 				(int) (GameConstants.FRAME_SIZE_X - rect.getWidth()) / 2,
 				(int) ((GameConstants.FRAME_SIZE_Y - rect.getHeight()) / 2)
-						- font.getSize() / 2);
+						- unitFont.getSize() / 2);
 
 		if (selectorGhost.getX() == button1XPos - select.getWidth(null))
 			g.drawImage(activeLocal, button1XPos, startYPos, null);
@@ -164,22 +159,4 @@ public class OptionMenuUnit extends GraphicalGameUnit {
 			g.drawImage(activeBack, button3XPos, startYPos, null);
 
 	}
-
-	// to be replaced by FontManager
-	/**
-	 * Loads font from file (assuming it is located in the 'fonts' directory).
-	 * 
-	 * @param filename
-	 *            font name
-	 * @return loaded font
-	 * @throws FontFormatException
-	 * @throws IOException
-	 */
-	private Font loadFont(String filename) throws FontFormatException,
-			IOException {
-		InputStream is = new FileInputStream(new File(GameConstants.FONTS_DIR
-				+ filename));
-		return Font.createFont(Font.TRUETYPE_FONT, is);
-	}
-
 }

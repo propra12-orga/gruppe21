@@ -46,21 +46,48 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 	 */
 	private Player player;
 
-	// OffsetVariablen für die zu Zeichnende Map
+	/**
+	 * X coordinate determining the location of the map canvas on screen.
+	 */
 	private int mapOffsetX = 0;
+	/**
+	 * Y coordinate determining the location of the map canvas on screen.
+	 */
 	private int mapOffsetY = 0;
-	// Booleans wenn map kleiner als bereich bei initalisierung auf true
+	/**
+	 * If a map's width is smaller than the panel, this flag will be set to true
+	 * by initOffset(). If neither mapXSmaller nor mapYSmaller are set, no
+	 * further calculation concerning the positioning of the mapCanvas is
+	 * needed.
+	 */
 	private boolean mapXSmaller = false;
+	/**
+	 * Like mapXSmaller; will be set if a map is shorter in height than the
+	 * surrounding panel.
+	 */
 	private boolean mapYSmaller = false;
-	BufferedImage mapCanvas;
+	/**
+	 * Maps are going to be drawn to this BufferedImage, thus allowing map
+	 * positioning to be achieved by just moving this image to the desired
+	 * location.
+	 */
+	private BufferedImage mapCanvas;
 
-	// Might be necessary to protect unit from KeyEvent inferno
+	/**
+	 * Might be necessary to protect unit from KeyEvent inferno
+	 */
 	private boolean unitRunning = false;
 
 	public LevelManagerUnit() {
 		initComponent();
 	}
 
+	/**
+	 * This constructor takes a campaign file (a .txt. file that can be used to
+	 * construct a campaign object) as an argument.
+	 * 
+	 * @param campaignFile
+	 */
 	public LevelManagerUnit(String campaignFile) {
 		this.campaignFile = campaignFile;
 		initComponent();
@@ -145,6 +172,9 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 		}
 	}
 
+	/**
+	 * Remove LevelManagerUnit and return to MainMenu.
+	 */
 	private void terminateLevelManager() {
 		UnitNavigator.getNavigator().set(UnitState.BASE_MENU_UNIT);
 		UnitNavigator.getNavigator().removeGameUnit(
@@ -163,9 +193,15 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 				if (currentMap.playerSucced()) {
 
 					BufferedImage message = createTransitionMessage("graphics/gui/YouWin.png");
-
+					/*
+					 * update campaign counters to see if there's a level
+					 * remaining
+					 */
 					if (!campaign.updateCounters()) {
 						if (campaign.isFinished()) {
+							/*
+							 * campaign finished, just show a win message
+							 */
 							TransitionUnit trans = new TransitionUnit(
 									UnitState.BASE_MENU_UNIT, message);
 							UnitNavigator.getNavigator().removeGameUnit(
@@ -175,7 +211,9 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 							UnitNavigator.getNavigator().set(
 									UnitState.TEMPORARY_UNIT);
 						} else {
-							// level completed, show world map
+							/*
+							 * level completed, show world map
+							 */
 							TransitionUnit trans = new TransitionUnit(
 									UnitState.TEMPORARY_UNIT, message,
 									worldMapUnit);
@@ -186,9 +224,10 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 						}
 					}
 				} else {
-
+					/*
+					 * player died, show lose message
+					 */
 					BufferedImage message = createTransitionMessage("graphics/gui/YouLose.png");
-
 					TransitionUnit trans = new TransitionUnit(
 							UnitState.LEVEL_MANAGER_UNIT, message);
 					UnitNavigator.getNavigator().addGameUnit(trans,
@@ -197,11 +236,18 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 				}
 			}
 		} else {
+			/*
+			 * in any case: get a new map object
+			 */
 			changeCurrentMap();
 			unitRunning = true;
 		}
 	}
 
+	/**
+	 * Used to request a new map object from the campaign and to update the
+	 * mapCanvas to its size.
+	 */
 	private void changeCurrentMap() {
 		currentMap = campaign.getCurrentMap();
 		mapCanvas = new BufferedImage(currentMap.getWidth(),
@@ -214,11 +260,12 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 		initOffset();
 	}
 
-	/*
-	 * initializes offset
+	/**
+	 * Calculates positioning of the mapCanvas (i.e. the part of the map to be
+	 * displayed) depending on the player's position and the size of the map. To
+	 * be called on a map change.
 	 */
-
-	public void initOffset() {
+	private void initOffset() {
 		if (currentMap.getWidth() < GameConstants.FRAME_SIZE_X) {
 			mapOffsetX = (GameConstants.FRAME_SIZE_X - currentMap.getWidth()) / 2;
 			mapXSmaller = true;
@@ -255,10 +302,11 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 		}
 	}
 
-	/*
-	 * updates the current Offset
+	/**
+	 * Updates positioning of the current map object. Very similar to
+	 * initOffset, but to be called on updateComponent().
 	 */
-	public void updateOffset() {
+	private void updateOffset() {
 		if (!mapXSmaller) {
 			if (player.getPosX() > GameConstants.FRAME_SIZE_X / 2 - 25) {
 				if (player.getPosX() - GameConstants.FRAME_SIZE_X / 2 + 25 < currentMap
