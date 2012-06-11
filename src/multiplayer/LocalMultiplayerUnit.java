@@ -77,46 +77,45 @@ public class LocalMultiplayerUnit extends GraphicalGameUnit {
 		/*
 		 * playerOne KeyEvents
 		 */
-		if (key == KeyEvent.VK_UP) {
+		if (key == KeyEvent.VK_W) {
 			playerOne.direction.setUp(true);
 		}
 
-		if (key == KeyEvent.VK_DOWN) {
+		if (key == KeyEvent.VK_S) {
 			playerOne.direction.setDown(true);
 		}
 
-		if (key == KeyEvent.VK_LEFT) {
+		if (key == KeyEvent.VK_A) {
 			playerOne.direction.setLeft(true);
 		}
 
-		if (key == KeyEvent.VK_RIGHT) {
+		if (key == KeyEvent.VK_D) {
 			playerOne.direction.setRight(true);
 		}
 
-		if (key == KeyEvent.VK_PLUS) {
+		if (key == KeyEvent.VK_SPACE) {
 			playerOne.layBomb(multiplayerMap.getCollisionMap());
 		}
-
 		/*
 		 * playerTwo KeyEvents
 		 */
-		if (key == KeyEvent.VK_W) {
+		if (key == KeyEvent.VK_UP) {
 			playerTwo.direction.setUp(true);
 		}
 
-		if (key == KeyEvent.VK_S) {
+		if (key == KeyEvent.VK_DOWN) {
 			playerTwo.direction.setDown(true);
 		}
 
-		if (key == KeyEvent.VK_A) {
+		if (key == KeyEvent.VK_LEFT) {
 			playerTwo.direction.setLeft(true);
 		}
 
-		if (key == KeyEvent.VK_D) {
+		if (key == KeyEvent.VK_RIGHT) {
 			playerTwo.direction.setRight(true);
 		}
 
-		if (key == KeyEvent.VK_SPACE) {
+		if (key == KeyEvent.VK_PLUS) {
 			playerTwo.layBomb(multiplayerMap.getCollisionMap());
 		}
 	}
@@ -127,38 +126,37 @@ public class LocalMultiplayerUnit extends GraphicalGameUnit {
 		/*
 		 * playerOne KeyEvents
 		 */
-		if (key == KeyEvent.VK_UP) {
+		if (key == KeyEvent.VK_W) {
 			playerOne.direction.setUp(false);
 		}
 
-		if (key == KeyEvent.VK_DOWN) {
+		if (key == KeyEvent.VK_S) {
 			playerOne.direction.setDown(false);
 		}
 
-		if (key == KeyEvent.VK_LEFT) {
+		if (key == KeyEvent.VK_A) {
 			playerOne.direction.setLeft(false);
 		}
 
-		if (key == KeyEvent.VK_RIGHT) {
+		if (key == KeyEvent.VK_D) {
 			playerOne.direction.setRight(false);
 		}
-
 		/*
 		 * playerTwo KeyEvents
 		 */
-		if (key == KeyEvent.VK_W) {
+		if (key == KeyEvent.VK_UP) {
 			playerTwo.direction.setUp(false);
 		}
 
-		if (key == KeyEvent.VK_S) {
+		if (key == KeyEvent.VK_DOWN) {
 			playerTwo.direction.setDown(false);
 		}
 
-		if (key == KeyEvent.VK_A) {
+		if (key == KeyEvent.VK_LEFT) {
 			playerTwo.direction.setLeft(false);
 		}
 
-		if (key == KeyEvent.VK_D) {
+		if (key == KeyEvent.VK_RIGHT) {
 			playerTwo.direction.setRight(false);
 		}
 	}
