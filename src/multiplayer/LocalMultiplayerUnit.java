@@ -1,10 +1,17 @@
 package multiplayer;
 
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 import main.GameConstants;
 import main.GraphicalGameUnit;
@@ -35,8 +42,12 @@ public class LocalMultiplayerUnit extends GraphicalGameUnit {
 	/**
 	 * Some win messages one can randomly choose from.
 	 */
-	private String[] winMessages = { " is bomb-happy!",
+	private final String[] winMessages = { " is bomb-happy!",
 			" achieves a blasting victory!", " leaves nothing but a crater!" };
+	/**
+	 * Message to be shown in case of a draw.
+	 */
+	private final String drawMessage = "Unbelieveable! It's a draw!";
 
 	public LocalMultiplayerUnit() {
 		initComponent();
@@ -50,11 +61,13 @@ public class LocalMultiplayerUnit extends GraphicalGameUnit {
 			/*
 			 * A player died: Generate the appropriate image ...
 			 */
-			BufferedImage transitionMsg = createDrawMessage();
+			BufferedImage transitionMsg = createTransitionMessage(drawMessage);
 			if (playerOne.isAlive()) {
-				transitionMsg = createWinMessage("Player One");
+				transitionMsg = createTransitionMessage("Player One"
+						+ winMessages[(int) (Math.random() * 3)]);
 			} else if (playerTwo.isAlive()) {
-				transitionMsg = createWinMessage("Player Two");
+				transitionMsg = createTransitionMessage("Player Two"
+						+ winMessages[(int) (Math.random() * 3)]);
 			}
 			/*
 			 * ... and pass it to a TransitionUnit
@@ -205,50 +218,60 @@ public class LocalMultiplayerUnit extends GraphicalGameUnit {
 	}
 
 	/**
-	 * Generates a message (i.e. a BufferedImage that displays a string)
-	 * containing the name of the player that succeeded.
+	 * Generates a BufferedImage to be passed to a TransitionUnit.
 	 * 
-	 * @param playerName
-	 *            the player's name
-	 * @return BufferedImage win message
+	 * @return BufferedImage message
 	 */
-	private BufferedImage createWinMessage(String playerName) {
-		multiplayerMap.drawMap((Graphics2D) mapCanvas.getGraphics());
-
+	private BufferedImage createTransitionMessage(String message) {
+		/*
+		 * create BufferedImage and paint map using its Graphics2D object
+		 */
+		multiplayerMap.drawMap(mapCanvas.createGraphics());
 		BufferedImage msg = new BufferedImage(GameConstants.FRAME_SIZE_X,
 				GameConstants.FRAME_SIZE_Y, BufferedImage.TYPE_INT_ARGB);
-		Graphics g = msg.getGraphics();
-		g.setColor(Color.black);
-		g.drawRect(0, 0, msg.getWidth(), msg.getHeight());
-		g.drawImage(mapCanvas, mapCanvasPosX, mapCanvasPosY,
+		Graphics2D g2d = msg.createGraphics();
+		g2d.setColor(Color.black);
+		g2d.drawRect(0, 0, msg.getWidth(), msg.getHeight());
+		g2d.drawImage(mapCanvas, mapCanvasPosX, mapCanvasPosY,
 				mapCanvas.getWidth(), mapCanvas.getHeight(), null);
-		g.setColor(Color.red);
-		String output = playerName
-				+ winMessages[(int) (Math.random() * winMessages.length)];
-		g.drawString(output, GameConstants.FRAME_SIZE_X / 4,
-				GameConstants.FRAME_SIZE_Y / 2);
+
+		/*
+		 * load game font
+		 */
+		Font font;
+		try {
+			font = loadFont("font1.TTF").deriveFont(50f);
+		} catch (Exception e) {
+			System.err.println("ERROR LOADING FONT: font1.TTF");
+			e.printStackTrace();
+			font = new Font("serif", Font.PLAIN, 24);
+		}
+		g2d.setFont(font);
+
+		/*
+		 * center text message
+		 */
+		Rectangle2D rect = font.getStringBounds(message,
+				g2d.getFontRenderContext());
+		g2d.drawString(message,
+				(int) (GameConstants.FRAME_SIZE_X - rect.getWidth()) / 2,
+				(int) (GameConstants.FRAME_SIZE_Y - rect.getHeight()) / 2);
 		return msg;
 	}
 
 	/**
-	 * Generates a BufferedImage indicating that the match has ended up in a
-	 * tie.
+	 * Loads font from file (assuming it is located in the 'fonts' directory).
 	 * 
-	 * @return BufferedImage draw message
+	 * @param filename
+	 *            font name
+	 * @return loaded font
+	 * @throws FontFormatException
+	 * @throws IOException
 	 */
-	private BufferedImage createDrawMessage() {
-		multiplayerMap.drawMap(mapCanvas.createGraphics());
-
-		BufferedImage msg = new BufferedImage(GameConstants.FRAME_SIZE_X,
-				GameConstants.FRAME_SIZE_Y, BufferedImage.TYPE_INT_ARGB);
-		Graphics g = msg.getGraphics();
-		g.setColor(Color.black);
-		g.drawRect(0, 0, msg.getWidth(), msg.getHeight());
-		g.drawImage(mapCanvas, mapCanvasPosX, mapCanvasPosY,
-				mapCanvas.getWidth(), mapCanvas.getHeight(), null);
-		g.setColor(Color.red);
-		g.drawString("Unbelieveable! It's a draw!",
-				GameConstants.FRAME_SIZE_X / 4, GameConstants.FRAME_SIZE_Y / 2);
-		return msg;
+	private Font loadFont(String filename) throws FontFormatException,
+			IOException {
+		InputStream is = new FileInputStream(new File(GameConstants.FONTS_DIR
+				+ filename));
+		return Font.createFont(Font.TRUETYPE_FONT, is);
 	}
 }
