@@ -36,11 +36,11 @@ public class OptionMenuUnit extends GraphicalGameUnit {
 	private Image inactiveNetwork = new ImageIcon(GameConstants.MENU_IMAGES_DIR
 			+ "/InactiveNetwork.png").getImage();
 	private Image activeBack = new ImageIcon(GameConstants.MENU_IMAGES_DIR
-			+ "/ActiveBack").getImage();
+			+ "/ActiveBack.png").getImage();
 	private Image inactiveBack = new ImageIcon(GameConstants.MENU_IMAGES_DIR
 			+ "/InactiveBack.png").getImage();
 
-	private int buttonSpace = 20;
+	private int buttonSpace = 40;
 	private int buttonWidth = activeLocal.getWidth(null);
 	private int startYPos = GameConstants.FRAME_SIZE_Y / 2;
 	private int startXPos = GameConstants.FRAME_SIZE_X / 2
@@ -54,9 +54,8 @@ public class OptionMenuUnit extends GraphicalGameUnit {
 
 	@Override
 	public void updateComponent() {
-		selectorGhost.setLocation(startXPos - (select.getWidth(null))
-				* selectCounter, startYPos);
-
+		selectorGhost.setLocation(startXPos - select.getWidth(null)
+				+ (buttonWidth + buttonSpace) * selectCounter, startYPos);
 	}
 
 	@Override
@@ -113,16 +112,16 @@ public class OptionMenuUnit extends GraphicalGameUnit {
 		g.drawImage(inactiveLocal, button1XPos, startYPos, null);
 		g.drawImage(inactiveNetwork, button2XPos, startYPos, null);
 		g.drawImage(inactiveBack, button3XPos, startYPos, null);
-		g.drawImage(select, (int) selectorGhost.getX() - buttonSpace,
+		g.drawImage(select, (int) selectorGhost.getX(),
 				(int) selectorGhost.getY(), null);
 
-		if (selectorGhost.getX() == button1XPos)
+		if (selectorGhost.getX() == button1XPos - select.getWidth(null))
 			g.drawImage(activeLocal, button1XPos, startYPos, null);
 
-		if (selectorGhost.getX() == button2XPos)
+		if (selectorGhost.getX() == button2XPos - select.getWidth(null))
 			g.drawImage(activeNetwork, button2XPos, startYPos, null);
 
-		if (selectorGhost.getX() == button3XPos)
+		if (selectorGhost.getX() == button3XPos - select.getWidth(null))
 			g.drawImage(activeBack, button3XPos, startYPos, null);
 
 	}
