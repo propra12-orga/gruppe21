@@ -45,6 +45,15 @@ public class TransitionUnit extends GraphicalGameUnit {
 	private GraphicalGameUnit nextUnit;
 
 	/**
+	 * Used to center the message.
+	 */
+	private int messagePosX;
+	/**
+	 * Used to center the message.
+	 */
+	private int messagePosY;
+
+	/**
 	 * Constructs a TransitionUnit.
 	 * 
 	 * @param nextUnitState
@@ -55,6 +64,7 @@ public class TransitionUnit extends GraphicalGameUnit {
 	public TransitionUnit(UnitState nextUnitState, BufferedImage message) {
 		this.message = message;
 		this.nextUnitState = nextUnitState;
+		initComponent();
 	}
 
 	/**
@@ -69,7 +79,7 @@ public class TransitionUnit extends GraphicalGameUnit {
 			GraphicalGameUnit nextUnit) {
 		this(nextUnitState, message);
 		this.nextUnit = nextUnit;
-
+		initComponent();
 	}
 
 	@Override
@@ -103,14 +113,16 @@ public class TransitionUnit extends GraphicalGameUnit {
 
 	@Override
 	public void initComponent() {
+		messagePosX = (GameConstants.FRAME_SIZE_X - message.getWidth()) / 2;
+		messagePosY = (GameConstants.FRAME_SIZE_Y - message.getHeight()) / 2;
 	}
 
 	@Override
 	public void drawComponent(Graphics g) {
 		g.setColor(Color.black);
 		g.fillRect(0, 0, GameConstants.FRAME_SIZE_X, GameConstants.FRAME_SIZE_Y);
-		g.drawImage(message, 0, 0, message.getWidth(), message.getHeight(),
-				null);
+		g.drawImage(message, messagePosX, messagePosY, message.getWidth(),
+				message.getHeight(), null);
 	}
 
 }

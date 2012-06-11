@@ -28,6 +28,7 @@ public class GameConstants {
 	public static final String MAP_GRAPHICS_DIR = "graphics/game/map/";
 	public static final String ANIMATION_FILES_DIR = "graphics/game/";
 	public static final String SOUNDS_DIR = "sounds/";
+	public static final String FONTS_DIR = "fonts/";
 
 	/**
 	 * Private Constructor prevents other classes from instantiating the

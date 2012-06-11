@@ -29,6 +29,9 @@ public class LocalMultiplayerUnit extends GraphicalGameUnit {
 	private Map multiplayerMap;
 	private BufferedImage mapCanvas;
 
+	private int mapCanvasPosX = 0;
+	private int mapCanvasPosY = 0;
+
 	/**
 	 * Some win messages one can randomly choose from.
 	 */
@@ -170,6 +173,13 @@ public class LocalMultiplayerUnit extends GraphicalGameUnit {
 		playerOne = multiplayerMap.getPlayerByNumber(1);
 		playerTwo = multiplayerMap.getPlayerByNumber(2);
 		/*
+		 * calculate mapCanvas position on panel
+		 */
+		mapCanvasPosX = (GameConstants.FRAME_SIZE_X - multiplayerMap.getWidth()) / 2;
+		mapCanvasPosY = (GameConstants.FRAME_SIZE_Y - multiplayerMap
+				.getHeight()) / 2;
+
+		/*
 		 * create mapcanvas (used to depict and center the map)
 		 */
 		mapCanvas = new BufferedImage(multiplayerMap.getWidth(),
@@ -190,10 +200,8 @@ public class LocalMultiplayerUnit extends GraphicalGameUnit {
 		/*
 		 * center mapcanvas on panel by using the Graphics parameter
 		 */
-		g.drawImage(mapCanvas,
-				(GameConstants.FRAME_SIZE_X - mapCanvas.getWidth()) / 2,
-				(GameConstants.FRAME_SIZE_Y - mapCanvas.getHeight()) / 2,
-				multiplayerMap.getWidth(), multiplayerMap.getHeight(), null);
+		g.drawImage(mapCanvas, mapCanvasPosX, mapCanvasPosY,
+				mapCanvas.getWidth(), mapCanvas.getHeight(), null);
 	}
 
 	/**
@@ -205,11 +213,15 @@ public class LocalMultiplayerUnit extends GraphicalGameUnit {
 	 * @return BufferedImage win message
 	 */
 	private BufferedImage createWinMessage(String playerName) {
+		multiplayerMap.drawMap((Graphics2D) mapCanvas.getGraphics());
+
 		BufferedImage msg = new BufferedImage(GameConstants.FRAME_SIZE_X,
 				GameConstants.FRAME_SIZE_Y, BufferedImage.TYPE_INT_ARGB);
 		Graphics g = msg.getGraphics();
 		g.setColor(Color.black);
 		g.drawRect(0, 0, msg.getWidth(), msg.getHeight());
+		g.drawImage(mapCanvas, mapCanvasPosX, mapCanvasPosY,
+				mapCanvas.getWidth(), mapCanvas.getHeight(), null);
 		g.setColor(Color.red);
 		String output = playerName
 				+ winMessages[(int) (Math.random() * winMessages.length)];
@@ -225,11 +237,15 @@ public class LocalMultiplayerUnit extends GraphicalGameUnit {
 	 * @return BufferedImage draw message
 	 */
 	private BufferedImage createDrawMessage() {
+		multiplayerMap.drawMap(mapCanvas.createGraphics());
+
 		BufferedImage msg = new BufferedImage(GameConstants.FRAME_SIZE_X,
 				GameConstants.FRAME_SIZE_Y, BufferedImage.TYPE_INT_ARGB);
 		Graphics g = msg.getGraphics();
 		g.setColor(Color.black);
 		g.drawRect(0, 0, msg.getWidth(), msg.getHeight());
+		g.drawImage(mapCanvas, mapCanvasPosX, mapCanvasPosY,
+				mapCanvas.getWidth(), mapCanvas.getHeight(), null);
 		g.setColor(Color.red);
 		g.drawString("Unbelieveable! It's a draw!",
 				GameConstants.FRAME_SIZE_X / 4, GameConstants.FRAME_SIZE_Y / 2);

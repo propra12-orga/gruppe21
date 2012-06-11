@@ -63,8 +63,6 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 			g.setColor(Color.black);
 			g.fillRect(0, 0, GameConstants.FRAME_SIZE_X,
 					GameConstants.FRAME_SIZE_Y);
-			mapCanvas = new BufferedImage(currentMap.getWidth(),
-					currentMap.getHeight(), BufferedImage.TYPE_INT_ARGB);
 			currentMap.drawMap((Graphics2D) mapCanvas.getGraphics());
 			g.drawImage(mapCanvas, this.mapOffsetX, this.mapOffsetY,
 					currentMap.getWidth(), currentMap.getHeight(), null);
@@ -155,16 +153,7 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 
 				if (currentMap.playerSucced()) {
 
-					BufferedImage message = new BufferedImage(
-							GameConstants.FRAME_SIZE_X,
-							GameConstants.FRAME_SIZE_X,
-							BufferedImage.TYPE_INT_ARGB);
-					Image tmp = new ImageIcon("graphics/gui/YouWin.png")
-							.getImage();
-					message.createGraphics().drawImage(tmp, 0,
-							GameConstants.FRAME_SIZE_X / 8,
-							GameConstants.FRAME_SIZE_X, tmp.getHeight(null),
-							null);
+					BufferedImage message = createTransitionMessage("graphics/gui/YouWin.png");
 
 					if (!campaign.updateCounters()) {
 						if (campaign.isFinished()) {
@@ -189,16 +178,7 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 					}
 				} else {
 
-					BufferedImage message = new BufferedImage(
-							GameConstants.FRAME_SIZE_X,
-							GameConstants.FRAME_SIZE_X,
-							BufferedImage.TYPE_INT_ARGB);
-					Image tmp = new ImageIcon("graphics/gui/YouLose.png")
-							.getImage();
-					message.createGraphics().drawImage(tmp, 0,
-							GameConstants.FRAME_SIZE_X / 8,
-							GameConstants.FRAME_SIZE_X, tmp.getHeight(null),
-							null);
+					BufferedImage message = createTransitionMessage("graphics/gui/YouLose.png");
 
 					TransitionUnit trans = new TransitionUnit(
 							UnitState.LEVEL_MANAGER_UNIT, message);
@@ -215,6 +195,8 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 
 	private void changeCurrentMap() {
 		currentMap = campaign.getCurrentMap();
+		mapCanvas = new BufferedImage(currentMap.getWidth(),
+				currentMap.getHeight(), BufferedImage.TYPE_INT_ARGB);
 		player = currentMap.getMapPlayer();
 		player.direction.setUp(false);
 		player.direction.setDown(false);
@@ -295,6 +277,32 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 				this.mapOffsetY = 0;
 			}
 		}
+	}
+
+	/**
+	 * Creates a BufferedImage to be passed to a TransitionUnit. The image will
+	 * consist of the mapCanvas (background) and a message (foreground).
+	 * 
+	 * @param filename
+	 *            of the message image
+	 * @return BufferedImage that shall be displayed by a TransitionUnit
+	 */
+	private BufferedImage createTransitionMessage(String filename) {
+		currentMap.drawMap(mapCanvas.createGraphics());
+		Image tmp = new ImageIcon(filename).getImage();
+
+		BufferedImage transitionImage = new BufferedImage(
+				GameConstants.FRAME_SIZE_X, GameConstants.FRAME_SIZE_Y,
+				BufferedImage.TYPE_INT_ARGB);
+		Graphics2D g2d = transitionImage.createGraphics();
+		g2d.setColor(Color.black);
+		g2d.drawRect(0, 0, transitionImage.getWidth(),
+				transitionImage.getHeight());
+		g2d.drawImage(mapCanvas, mapOffsetX, mapOffsetY, null);
+		g2d.drawImage(tmp, 0, transitionImage.getHeight() / 4,
+				transitionImage.getWidth(), transitionImage.getHeight() / 2,
+				null);
+		return transitionImage;
 	}
 
 }
