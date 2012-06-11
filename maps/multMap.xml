@@ -2989,17 +2989,17 @@
 			    <visible>true</visible>
 				<collision>true</collision>
 				<destroyable>false</destroyable>
-			 	<animationset>MPPlayer2</animationset>
-				<posx>850</posx>
-				<posy>300</posy>
+			 	<animationset>MPPlayer1</animationset>
+				<posx>100</posx>
+				<posy>250</posy>
 			</character>
 			<character type="player" animated="true">
 			    <visible>true</visible>
 				<collision>true</collision>
 				<destroyable>false</destroyable>
-			 	<animationset>MPPlayer1</animationset>
-				<posx>100</posx>
-				<posy>250</posy>
+			 	<animationset>MPPlayer2</animationset>
+				<posx>850</posx>
+				<posy>300</posy>
 			</character>
 
 		</level>
