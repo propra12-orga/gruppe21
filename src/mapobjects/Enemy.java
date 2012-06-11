@@ -9,6 +9,8 @@ import java.awt.image.BufferedImage;
 public class Enemy extends MoveableObject {
 	private boolean hiddenObject = false;
 	private boolean UP, DOWN, RIGHT, LEFT;
+	private boolean dying;
+	private long beforeTime, dyingTime = 1000000000;
 
 	public Enemy(int x, int y, boolean v, boolean d, boolean c, String p,
 			ImageLoader gr) {
@@ -17,7 +19,8 @@ public class Enemy extends MoveableObject {
 		DOWN = false;
 		RIGHT = true;
 		LEFT = false;
-		speed = 2;
+		speed = 1;
+		animation.start("testEnemy");
 	}
 
 	private void stop() {
@@ -33,7 +36,7 @@ public class Enemy extends MoveableObject {
 		if (UP) {
 			if (hasObjectCollision(posX, posY - speed, map.getCollisionMap(),
 					"UP")) {
-
+				findPath();
 			} else {
 				posY -= speed;
 			}
@@ -43,7 +46,7 @@ public class Enemy extends MoveableObject {
 		if (DOWN) {
 			if (hasObjectCollision(posX, posY + speed, map.getCollisionMap(),
 					"DOWN")) {
-
+				findPath();
 			} else {
 				posY += speed;
 			}
@@ -53,8 +56,7 @@ public class Enemy extends MoveableObject {
 		if (LEFT) {
 			if (hasObjectCollision(posX - speed, posY, map.getCollisionMap(),
 					"LEFT")) {
-				LEFT = false;
-				RIGHT = true;
+				findPath();
 			} else {
 				posX -= speed;
 			}
@@ -64,12 +66,33 @@ public class Enemy extends MoveableObject {
 		if (RIGHT) {
 			if (hasObjectCollision(posX + speed, posY, map.getCollisionMap(),
 					"RIGHT")) {
-				RIGHT = false;
-				LEFT = true;
+				findPath();
 			} else {
 				posX += speed;
 			}
 			animation.change("enemyRight");
+		}
+	}
+
+	private void findPath() {
+		int choice = (int) (Math.random() * 4 + 1);
+		stop();
+
+		switch (choice) {
+		case 1:
+			UP = true;
+			break;
+		case 2:
+			DOWN = true;
+			break;
+		case 3:
+			LEFT = true;
+			break;
+		case 4:
+			RIGHT = true;
+			break;
+		default:
+			findPath();
 		}
 	}
 
@@ -84,7 +107,15 @@ public class Enemy extends MoveableObject {
 	@Override
 	public void update(BufferedImage cm) {
 		animation.animate();
-		move();
+
+		if (dying) {
+			if (beforeTime + dyingTime <= System.nanoTime()) {
+				this.destroyed = true;
+				// this.map.decreaseEnemies();
+			}
+		} else {
+			move();
+		}
 	}
 
 	// hidden object released on die
@@ -93,8 +124,9 @@ public class Enemy extends MoveableObject {
 
 	public void die() {
 		stop();
-		this.setDestroyed(true);
-		// this.map.decreaseEnemies();
+		dying = true;
+		animation.change("enemyDying");
+		beforeTime = System.nanoTime();
 	}
 
 	@Override
