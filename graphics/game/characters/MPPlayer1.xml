@@ -1,0 +1,6 @@
+<animationset default="MPBM1default.png">
+<animation frames="1" stretch="1" name="playerUp">MPBM1up.png</animation>
+<animation frames="1" stretch="1" name="playerDown">MPBM1Front.png</animation>
+<animation frames="1" stretch="1" name="playerLeft">MPBM1Left.png</animation>
+<animation frames="1" stretch="1" name="playerRight">MPBM1Right.png</animation>
+</animationset>

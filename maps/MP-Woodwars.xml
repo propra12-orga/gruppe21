@@ -4159,17 +4159,17 @@
 			    <visible>true</visible>
 				<collision>true</collision>
 				<destroyable>false</destroyable>
-			 	<animationset>player2</animationset>
-				<posx>900</posx>
-				<posy>650</posy>
+			 	<animationset>MPPlayer1</animationset>
+				<posx>50</posx>
+				<posy>50</posy>
 			</character>
 			<character type="player" animated="true">
 			    <visible>true</visible>
 				<collision>true</collision>
 				<destroyable>false</destroyable>
-			 	<animationset>player1</animationset>
-				<posx>50</posx>
-				<posy>50</posy>
+			 	<animationset>MPPlayer2</animationset>
+				<posx>900</posx>
+				<posy>650</posy>
 			</character>
 					
 		</level>
