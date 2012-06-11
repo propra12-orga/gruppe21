@@ -1,8 +1,17 @@
 package multiplayer;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
+import java.awt.geom.Rectangle2D;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 import javax.swing.ImageIcon;
 
@@ -34,6 +43,13 @@ public class MapMenuUnit extends GraphicalGameUnit {
 
 	private int buttonWidth = activeBack.getWidth(null);
 
+	// to be replaced by FontManager
+	private Font font;
+
+	public MapMenuUnit() {
+		initComponent();
+	}
+
 	@Override
 	public void updateComponent() {
 		// TODO Auto-generated method stub
@@ -62,8 +78,13 @@ public class MapMenuUnit extends GraphicalGameUnit {
 
 	@Override
 	public void initComponent() {
-		// TODO Auto-generated method stub
-
+		try {
+			font = loadFont("font1.TTF").deriveFont(50f);
+		} catch (Exception e) {
+			System.err.println("ERROR LOADING FONT: font1.TTF");
+			e.printStackTrace();
+			font = new Font("serif", Font.PLAIN, 24);
+		}
 	}
 
 	@Override
@@ -79,6 +100,37 @@ public class MapMenuUnit extends GraphicalGameUnit {
 		g.drawImage(activeBack, startXPos - buttonWidth / 2, startYPos + 250,
 				null);
 
+		g.setFont(font);
+		g.setColor(Color.white);
+
+		/*
+		 * center heading
+		 */
+		Graphics2D g2d = (Graphics2D) g;
+		Rectangle2D rect = font.getStringBounds("Choose Multiplayer Map:",
+				g2d.getFontRenderContext());
+		g2d.drawString("Choose Multiplayer Map:",
+				(int) (GameConstants.FRAME_SIZE_X - rect.getWidth()) / 2,
+				(int) ((GameConstants.FRAME_SIZE_Y - rect.getHeight()) / 2) - 4
+						* font.getSize());
+
+	}
+
+	// to be replaced by FontManager
+	/**
+	 * Loads font from file (assuming it is located in the 'fonts' directory).
+	 * 
+	 * @param filename
+	 *            font name
+	 * @return loaded font
+	 * @throws FontFormatException
+	 * @throws IOException
+	 */
+	private Font loadFont(String filename) throws FontFormatException,
+			IOException {
+		InputStream is = new FileInputStream(new File(GameConstants.FONTS_DIR
+				+ filename));
+		return Font.createFont(Font.TRUETYPE_FONT, is);
 	}
 
 }
