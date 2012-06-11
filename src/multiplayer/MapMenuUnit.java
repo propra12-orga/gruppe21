@@ -27,8 +27,12 @@ public class MapMenuUnit extends GraphicalGameUnit {
 			+ "/SelectFrame.png").getImage();
 	private Image activeBack = new ImageIcon(GameConstants.MENU_IMAGES_DIR
 			+ "/ActiveBack.png").getImage();
+	private Image map2 = new ImageIcon(GameConstants.MENU_IMAGES_DIR
+			+ "MultMapMenuPic.png").getImage();
 	private int startYPos = GameConstants.FRAME_SIZE_Y / 2;
 	private int startXPos = GameConstants.FRAME_SIZE_X / 2;
+
+	private int buttonWidth = activeBack.getWidth(null);
 
 	@Override
 	public void updateComponent() {
@@ -66,11 +70,14 @@ public class MapMenuUnit extends GraphicalGameUnit {
 	public void drawComponent(Graphics g) {
 		g.drawImage(background, 0, 0, GameConstants.FRAME_SIZE_X,
 				GameConstants.FRAME_SIZE_Y, null);
-		g.drawImage(select, startXPos - (select.getWidth(null) / 2), startYPos
+		g.drawImage(select, startXPos - (select.getWidth(null) + 16), startYPos
 				- (select.getHeight(null) / 2), null);
-		g.drawImage(map1, startXPos - (map1.getWidth(null) / 2), startYPos
+		g.drawImage(map1, startXPos - (map1.getWidth(null) + 20), startYPos
 				- (map1.getHeight(null) / 2), null);
-		g.drawImage(activeBack, startXPos, startYPos + 200, null);
+		g.drawImage(map2, startXPos + 20, startYPos
+				- (map1.getHeight(null) / 2), null);
+		g.drawImage(activeBack, startXPos - buttonWidth / 2, startYPos + 250,
+				null);
 
 	}
 
