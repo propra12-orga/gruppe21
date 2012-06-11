@@ -88,6 +88,9 @@ public class OptionMenuUnit extends GraphicalGameUnit {
 		if (key == KeyEvent.VK_ENTER && selectCounter == 2) {
 			UnitNavigator.getNavigator().set(UnitState.BASE_MENU_UNIT);
 		}
+		if (key == KeyEvent.VK_ESCAPE) {
+			UnitNavigator.getNavigator().set(UnitState.BASE_MENU_UNIT);
+		}
 
 	}
 
