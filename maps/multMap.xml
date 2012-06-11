@@ -2989,7 +2989,7 @@
 			    <visible>true</visible>
 				<collision>true</collision>
 				<destroyable>false</destroyable>
-			 	<animationset>player2</animationset>
+			 	<animationset>MPPlayer2</animationset>
 				<posx>850</posx>
 				<posy>300</posy>
 			</character>
@@ -2997,7 +2997,7 @@
 			    <visible>true</visible>
 				<collision>true</collision>
 				<destroyable>false</destroyable>
-			 	<animationset>player1</animationset>
+			 	<animationset>MPPlayer1</animationset>
 				<posx>100</posx>
 				<posy>250</posy>
 			</character>
