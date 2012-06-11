@@ -1,7 +1,13 @@
 package main;
 
+import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * Abstract superclass of all GameUnits. A GameUnit acts as an interchangeable
@@ -12,6 +18,11 @@ import java.awt.event.KeyEvent;
  * @see main.UnitState
  */
 public abstract class GraphicalGameUnit {
+
+	/**
+	 * Can be used to define a unit's font.
+	 */
+	protected Font unitFont;
 
 	/**
 	 * A more general way of updating a GraphicalGameUnit's components.
@@ -48,4 +59,21 @@ public abstract class GraphicalGameUnit {
 	 *            Graphics object to be used for drawing.
 	 */
 	public abstract void drawComponent(Graphics g);
+
+	/**
+	 * May be used to load non-java fonts from file (assuming it is located in
+	 * the 'fonts' directory).
+	 * 
+	 * @param filename
+	 *            font name
+	 * @return loaded font
+	 * @throws FontFormatException
+	 * @throws IOException
+	 */
+	public static Font loadFont(String filename) throws FontFormatException,
+			IOException {
+		InputStream is = new FileInputStream(new File(GameConstants.FONTS_DIR
+				+ filename));
+		return Font.createFont(Font.TRUETYPE_FONT, is);
+	}
 }

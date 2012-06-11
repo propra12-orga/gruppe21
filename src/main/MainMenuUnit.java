@@ -2,18 +2,13 @@ package main;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.FontFormatException;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 
 import javax.swing.ImageIcon;
@@ -77,6 +72,10 @@ public class MainMenuUnit extends GraphicalGameUnit {
 	private Point selectorGhost = new Point(startXPos, startYPos);
 
 	private String campaign = "campaign1.txt";
+
+	public MainMenuUnit() {
+		initComponent();
+	}
 
 	@Override
 	public void drawComponent(Graphics g) {
@@ -154,7 +153,16 @@ public class MainMenuUnit extends GraphicalGameUnit {
 
 	@Override
 	public void initComponent() {
-
+		/*
+		 * load font
+		 */
+		try {
+			unitFont = loadFont("font1.TTF").deriveFont(30f);
+		} catch (Exception e) {
+			System.err.println("ERROR LOADING FONT: font1.TTF");
+			e.printStackTrace();
+			unitFont = new Font("serif", Font.PLAIN, 24);
+		}
 	}
 
 	@Override
@@ -198,18 +206,8 @@ public class MainMenuUnit extends GraphicalGameUnit {
 			Graphics2D g2d = transitionImage.createGraphics();
 			g2d.drawImage(tmp, 0, 0, transitionImage.getWidth(),
 					transitionImage.getHeight(), null);
-			/*
-			 * load game font
-			 */
-			Font font;
-			try {
-				font = loadFont("font1.TTF").deriveFont(30f);
-			} catch (Exception e) {
-				System.err.println("ERROR LOADING FONT: font1.TTF");
-				e.printStackTrace();
-				font = new Font("serif", Font.PLAIN, 24);
-			}
-			g2d.setFont(font);
+
+			g2d.setFont(unitFont);
 			g2d.setColor(Color.white);
 			/*
 			 * center text message
@@ -237,22 +235,5 @@ public class MainMenuUnit extends GraphicalGameUnit {
 			 */
 			UnitNavigator.getNavigator().set(UnitState.LEVEL_MANAGER_UNIT);
 		}
-	}
-
-	// to be replaced by FontManager
-	/**
-	 * Loads font from file (assuming it is located in the 'fonts' directory).
-	 * 
-	 * @param filename
-	 *            font name
-	 * @return loaded font
-	 * @throws FontFormatException
-	 * @throws IOException
-	 */
-	private Font loadFont(String filename) throws FontFormatException,
-			IOException {
-		InputStream is = new FileInputStream(new File(GameConstants.FONTS_DIR
-				+ filename));
-		return Font.createFont(Font.TRUETYPE_FONT, is);
 	}
 }

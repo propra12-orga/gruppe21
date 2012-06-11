@@ -2,16 +2,11 @@ package multiplayer;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.FontFormatException;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 
 import main.GameConstants;
 import main.GraphicalGameUnit;
@@ -80,6 +75,8 @@ public class LocalMultiplayerUnit extends GraphicalGameUnit {
 			 */
 			TransitionUnit trans = new TransitionUnit(UnitState.BASE_MENU_UNIT,
 					transitionMsg);
+			UnitNavigator.getNavigator().removeGameUnit(
+					UnitState.LEVEL_MANAGER_UNIT);
 			UnitNavigator.getNavigator().addGameUnit(trans,
 					UnitState.TEMPORARY_UNIT);
 			UnitNavigator.getNavigator().set(UnitState.TEMPORARY_UNIT);
@@ -197,12 +194,21 @@ public class LocalMultiplayerUnit extends GraphicalGameUnit {
 		mapCanvasPosX = (GameConstants.FRAME_SIZE_X - multiplayerMap.getWidth()) / 2;
 		mapCanvasPosY = (GameConstants.FRAME_SIZE_Y - multiplayerMap
 				.getHeight()) / 2;
-
 		/*
-		 * create mapcanvas (used to depict and center the map)
+		 * create mapCanvas (used to depict and center the map)
 		 */
 		mapCanvas = new BufferedImage(multiplayerMap.getWidth(),
 				multiplayerMap.getHeight(), BufferedImage.TYPE_INT_ARGB);
+		/*
+		 * load font
+		 */
+		try {
+			unitFont = loadFont("font1.TTF").deriveFont(50f);
+		} catch (Exception e) {
+			System.err.println("ERROR LOADING FONT: font1.TTF");
+			e.printStackTrace();
+			unitFont = new Font("serif", Font.PLAIN, 24);
+		}
 	}
 
 	@Override
@@ -240,45 +246,16 @@ public class LocalMultiplayerUnit extends GraphicalGameUnit {
 		g2d.drawRect(0, 0, msg.getWidth(), msg.getHeight());
 		g2d.drawImage(mapCanvas, mapCanvasPosX, mapCanvasPosY,
 				mapCanvas.getWidth(), mapCanvas.getHeight(), null);
-
-		/*
-		 * load game font
-		 */
-		Font font;
-		try {
-			font = loadFont("font1.TTF").deriveFont(50f);
-		} catch (Exception e) {
-			System.err.println("ERROR LOADING FONT: font1.TTF");
-			e.printStackTrace();
-			font = new Font("serif", Font.PLAIN, 24);
-		}
-		g2d.setFont(font);
+		g2d.setFont(unitFont);
 
 		/*
 		 * center text message
 		 */
-		Rectangle2D rect = font.getStringBounds(message,
+		Rectangle2D rect = unitFont.getStringBounds(message,
 				g2d.getFontRenderContext());
 		g2d.drawString(message,
 				(int) (GameConstants.FRAME_SIZE_X - rect.getWidth()) / 2,
 				(int) (GameConstants.FRAME_SIZE_Y - rect.getHeight()) / 2);
 		return msg;
-	}
-
-	// to be replaced by FontManager
-	/**
-	 * Loads font from file (assuming it is located in the 'fonts' directory).
-	 * 
-	 * @param filename
-	 *            font name
-	 * @return loaded font
-	 * @throws FontFormatException
-	 * @throws IOException
-	 */
-	private Font loadFont(String filename) throws FontFormatException,
-			IOException {
-		InputStream is = new FileInputStream(new File(GameConstants.FONTS_DIR
-				+ filename));
-		return Font.createFont(Font.TRUETYPE_FONT, is);
 	}
 }
