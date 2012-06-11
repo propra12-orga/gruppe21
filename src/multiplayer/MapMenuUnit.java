@@ -43,18 +43,24 @@ public class MapMenuUnit extends GraphicalGameUnit {
 			+ "/InactiveBack.png").getImage();
 	private int startYPos = GameConstants.FRAME_SIZE_Y / 2;
 	private int startXPos = GameConstants.FRAME_SIZE_X / 2;
-	private int frameXPosition1 = startXPos - (map1.getWidth(null) + 24);
+	private int frameXPos = startXPos - (map1.getWidth(null) + 24);
+	private int frameXPosition1 = frameXPos;
 	private int frameXPosition2 = startXPos + 16;
 	private int frameOutOfRange = -2000;
 	private int buttonWidth = activeBack.getWidth(null);
 	private Image currentImage = inactiveBack;
 	private Point selectorGhost = new Point(frameXPosition2, startYPos
 			- (map1.getHeight(null) / 2) - 3);
+	private static String currentMap;
 	// to be replaced by FontManager
 	private Font font;
 
 	public MapMenuUnit() {
 		initComponent();
+	}
+
+	public static String getCurrentMap() {
+		return currentMap;
 	}
 
 	@Override
@@ -67,12 +73,24 @@ public class MapMenuUnit extends GraphicalGameUnit {
 	@Override
 	public void handleKeyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
-		if (key == KeyEvent.VK_ENTER) {
+		if (key == KeyEvent.VK_ENTER && frameXPosition1 == frameXPos) {
+			currentMap = "MP-Woodwars";
 			LocalMultiplayerUnit levelmanager = new LocalMultiplayerUnit();
 			UnitNavigator.getNavigator().addGameUnit(levelmanager,
 					UnitState.LEVEL_MANAGER_UNIT);
 			UnitNavigator.getNavigator().set(UnitState.LEVEL_MANAGER_UNIT);
 		}
+		if (key == KeyEvent.VK_ENTER && frameXPosition1 == frameXPosition2) {
+			currentMap = "multMap";
+			LocalMultiplayerUnit levelmanager = new LocalMultiplayerUnit();
+			UnitNavigator.getNavigator().addGameUnit(levelmanager,
+					UnitState.LEVEL_MANAGER_UNIT);
+			UnitNavigator.getNavigator().set(UnitState.LEVEL_MANAGER_UNIT);
+		}
+		if (key == KeyEvent.VK_ENTER && frameXPosition1 == frameOutOfRange) {
+			UnitNavigator.getNavigator().set(UnitState.BASE_MENU_UNIT);
+		}
+
 		if (key == KeyEvent.VK_ESCAPE) {
 			UnitNavigator.getNavigator().set(UnitState.BASE_MENU_UNIT);
 		}
