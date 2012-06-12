@@ -7,6 +7,15 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
+/**
+ * mapobject for bombs
+ * 
+ * calculates the radius of the arms controls the animations
+ * 
+ * 
+ * @author eik
+ * 
+ */
 public class Bomb extends MapObject {
 
 	private int playerID;
@@ -19,6 +28,31 @@ public class Bomb extends MapObject {
 	private long countdownTime = 4000000000L, explosionTime = 500000000,
 			beforeTime;
 	private boolean exploding = false;
+
+	/**
+	 * constructor
+	 * 
+	 * @param x
+	 *            x coordinate
+	 * @param y
+	 *            y coordinate
+	 * @param v
+	 *            sets visibility
+	 * @param d
+	 *            sets destroyable
+	 * @param c
+	 *            sets collision
+	 * @param p
+	 *            image url for default
+	 * @param gr
+	 *            the ImageLoader of the map
+	 * @param r
+	 *            sets rotation of the image (0,1,2,3)
+	 * @param cm
+	 *            collision map of the current map
+	 * @param playerID
+	 *            id of the player who layed the bomb
+	 */
 
 	public Bomb(int x, int y, boolean v, boolean d, boolean c, String p,
 			ImageLoader gr, int r, BufferedImage cm, int playerID) {

@@ -8,11 +8,34 @@ import java.awt.image.BufferedImage;
 
 import main.GameConstants;
 
-// bei start deaktiviert , kaschierendes bild über map normal laden , und exit image items
+/**
+ * the exit mapobject
+ * 
+ * @author eik
+ * 
+ */
 
 public class Exit extends MapObject {
 	private boolean activated = false;
 
+	/**
+	 * constructor
+	 * 
+	 * @param x
+	 *            x position
+	 * @param y
+	 *            y position
+	 * @param r
+	 *            rotation of the graphic (0,1,2,3)
+	 * @param v
+	 *            sets visibility
+	 * @param d
+	 *            sets destroyable flag
+	 * @param c
+	 *            sets collision
+	 * @param p
+	 *            image url
+	 */
 	public Exit(int x, int y, int r, boolean v, boolean d, boolean c, String p) {
 		super(x, y, r, v, d, c, p);
 	}
