@@ -26,7 +26,9 @@ import main.UnitState;
  */
 
 public class OptionMenuUnit extends GraphicalGameUnit {
-
+	/*
+	 * loading all images needed
+	 */
 	private Image background = new ImageIcon(GameConstants.MENU_IMAGES_DIR
 			+ "/MultiplayerMenuBG.png").getImage();
 	private Image select = new ImageIcon(GameConstants.MENU_IMAGES_DIR
@@ -43,7 +45,9 @@ public class OptionMenuUnit extends GraphicalGameUnit {
 			+ "/ActiveBack.png").getImage();
 	private Image inactiveBack = new ImageIcon(GameConstants.MENU_IMAGES_DIR
 			+ "/InactiveBack.png").getImage();
-
+	/*
+	 * class variables for button positioning
+	 */
 	private int buttonSpace = 40;
 	private int buttonWidth = activeLocal.getWidth(null);
 	private int startYPos = GameConstants.FRAME_SIZE_Y / 2;
@@ -52,6 +56,9 @@ public class OptionMenuUnit extends GraphicalGameUnit {
 	private int button1XPos = startXPos;
 	private int button2XPos = startXPos + 1 * (buttonWidth + buttonSpace);
 	private int button3XPos = startXPos + 2 * (buttonWidth + buttonSpace);
+	/*
+	 * point for select positioning
+	 */
 	private Point selectorGhost = new Point(
 			button1XPos - select.getWidth(null), startYPos);
 	private int selectCounter;
@@ -60,12 +67,24 @@ public class OptionMenuUnit extends GraphicalGameUnit {
 		initComponent();
 	}
 
+	/*
+	 * sets the new position of select based on selectCounter value
+	 * (non-Javadoc)
+	 * 
+	 * @see main.GraphicalGameUnit#updateComponent()
+	 */
 	@Override
 	public void updateComponent() {
 		selectorGhost.setLocation(startXPos - select.getWidth(null)
 				+ (buttonWidth + buttonSpace) * selectCounter, startYPos);
 	}
 
+	/*
+	 * Left, RIght for switching, enter to accept map & escape to leave menu
+	 * (non-Javadoc)
+	 * 
+	 * @see main.GraphicalGameUnit#handleKeyPressed(java.awt.event.KeyEvent)
+	 */
 	@Override
 	public void handleKeyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
@@ -103,7 +122,6 @@ public class OptionMenuUnit extends GraphicalGameUnit {
 
 	@Override
 	public void handleKeyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -122,6 +140,11 @@ public class OptionMenuUnit extends GraphicalGameUnit {
 	}
 
 	@Override
+	/*
+	 * all opjects are drawn here (non-Javadoc)
+	 * 
+	 * @see main.GraphicalGameUnit#drawComponent(java.awt.Graphics)
+	 */
 	public void drawComponent(Graphics g) {
 		g.drawImage(background, 0, 0, GameConstants.FRAME_SIZE_X,
 				GameConstants.FRAME_SIZE_Y, null);
@@ -134,10 +157,8 @@ public class OptionMenuUnit extends GraphicalGameUnit {
 		/*
 		 * load game font
 		 */
-
 		g.setFont(unitFont);
 		g.setColor(Color.white);
-
 		/*
 		 * center heading
 		 */
@@ -148,7 +169,9 @@ public class OptionMenuUnit extends GraphicalGameUnit {
 				(int) (GameConstants.FRAME_SIZE_X - rect.getWidth()) / 2,
 				(int) ((GameConstants.FRAME_SIZE_Y - rect.getHeight()) / 2)
 						- unitFont.getSize() / 2);
-
+		/*
+		 * based on select position, determine if button is activ e or inactive
+		 */
 		if (selectorGhost.getX() == button1XPos - select.getWidth(null))
 			g.drawImage(activeLocal, button1XPos, startYPos, null);
 
