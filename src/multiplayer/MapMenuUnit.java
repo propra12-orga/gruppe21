@@ -23,7 +23,9 @@ import main.UnitState;
  * 
  */
 public class MapMenuUnit extends GraphicalGameUnit {
-
+	/*
+	 * loading all images needed
+	 */
 	private Image background = new ImageIcon(GameConstants.MENU_IMAGES_DIR
 			+ "/MapChooserBG.png").getImage();
 	private Image map1 = new ImageIcon(GameConstants.MENU_IMAGES_DIR
@@ -36,6 +38,10 @@ public class MapMenuUnit extends GraphicalGameUnit {
 			+ "MultMapMenuPic.png").getImage();
 	private Image inactiveBack = new ImageIcon(GameConstants.MENU_IMAGES_DIR
 			+ "/InactiveBack.png").getImage();
+	private Image currentImage = inactiveBack;
+	/*
+	 * class variables for object positioning
+	 */
 	private int startYPos = GameConstants.FRAME_SIZE_Y / 2;
 	private int startXPos = GameConstants.FRAME_SIZE_X / 2;
 	private int frameXPos = startXPos - (map1.getWidth(null) + 24);
@@ -43,16 +49,21 @@ public class MapMenuUnit extends GraphicalGameUnit {
 	private int frameXPosition2 = startXPos + 16;
 	private int frameOutOfRange = -2000;
 	private int buttonWidth = activeBack.getWidth(null);
-	private Image currentImage = inactiveBack;
+	/*
+	 * point for select positioning
+	 */
 	private Point selectorGhost = new Point(frameXPosition2, startYPos
 			- (map1.getHeight(null) / 2) - 3);
-	// to be replaced by FontManager
-	private Font font;
 
 	public MapMenuUnit() {
 		initComponent();
 	}
 
+	/*
+	 * sets the new position of select based on current position (non-Javadoc)
+	 * 
+	 * @see main.GraphicalGameUnit#updateComponent()
+	 */
 	@Override
 	public void updateComponent() {
 		selectorGhost.setLocation(frameXPosition1,
@@ -63,6 +74,7 @@ public class MapMenuUnit extends GraphicalGameUnit {
 	@Override
 	public void handleKeyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
+
 		if (key == KeyEvent.VK_ENTER && frameXPosition1 == frameXPos) {
 			LocalMultiplayerUnit levelmanager = new LocalMultiplayerUnit(
 					"MP-Woodwars");
@@ -80,7 +92,6 @@ public class MapMenuUnit extends GraphicalGameUnit {
 		if (key == KeyEvent.VK_ENTER && frameXPosition1 == frameOutOfRange) {
 			UnitNavigator.getNavigator().set(UnitState.BASE_MENU_UNIT);
 		}
-
 		if (key == KeyEvent.VK_ESCAPE) {
 			UnitNavigator.getNavigator().set(UnitState.BASE_MENU_UNIT);
 		}
@@ -91,15 +102,15 @@ public class MapMenuUnit extends GraphicalGameUnit {
 		}
 		if (key == KeyEvent.VK_LEFT) {
 			if (frameXPosition1 != frameOutOfRange) {
-				frameXPosition1 = startXPos - (map1.getWidth(null) + 24);
+				frameXPosition1 = frameXPos;
 			}
 		}
 		if (key == KeyEvent.VK_UP) {
-			frameXPosition1 = startXPos - (map1.getWidth(null) + 24);
+			frameXPosition1 = frameXPos;
 			currentImage = inactiveBack;
 		}
 		if (key == KeyEvent.VK_DOWN) {
-			frameXPosition1 = -2000;
+			frameXPosition1 = frameOutOfRange;
 			currentImage = activeBack;
 		}
 	}
@@ -123,6 +134,7 @@ public class MapMenuUnit extends GraphicalGameUnit {
 
 	@Override
 	public void drawComponent(Graphics g) {
+
 		g.drawImage(background, 0, 0, GameConstants.FRAME_SIZE_X,
 				GameConstants.FRAME_SIZE_Y, null);
 		g.drawImage(select, (int) selectorGhost.getX(),
