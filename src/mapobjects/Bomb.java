@@ -107,7 +107,6 @@ public class Bomb extends MapObject {
 		posX = (x + 25) / 50 * 50;
 		posY = (y + 25) / 50 * 50;
 		radius = r;
-		beforeTime = System.nanoTime();
 		animation.start("simplebomb");
 		armanimation = new Animation("simplebomb", gr);
 		endanimation = new Animation("simplebomb", gr);
@@ -314,6 +313,11 @@ public class Bomb extends MapObject {
 		}
 	}
 
+	/**
+	 * Check for playerID.
+	 * 
+	 * @return ID of the player who planted the bomb.
+	 */
 	public int getPlayerID() {
 		return playerID;
 	}
