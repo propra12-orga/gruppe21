@@ -43,7 +43,7 @@ public class Bomb extends MapObject {
 	 */
 	Animation endanimation;
 	/**
-	 * This array will be used by calcArms(). Its values states how far an
+	 * This array will be used by calcArms(). Its values state how far an
 	 * explosion may expand in every cardinal direction.
 	 */
 	int arms[] = new int[4];
@@ -71,6 +71,10 @@ public class Bomb extends MapObject {
 	 * Will be set to true as soon as the coundown time is over.
 	 */
 	private boolean exploding = false;
+	/**
+	 * Will be set to true on firing the bomb.
+	 */
+	private boolean activated = false;
 
 	/**
 	 * constructor
@@ -103,10 +107,6 @@ public class Bomb extends MapObject {
 		posX = (x + 25) / 50 * 50;
 		posY = (y + 25) / 50 * 50;
 		radius = r;
-		arms[0] = r;
-		arms[1] = r;
-		arms[2] = r;
-		arms[3] = r;
 		beforeTime = System.nanoTime();
 		animation.start("simplebomb");
 		armanimation = new Animation("simplebomb", gr);
@@ -114,7 +114,6 @@ public class Bomb extends MapObject {
 		armanimation.start("gerade");
 		endanimation.start("up");
 		this.playerID = playerID;
-		// calculate arms lengths just before explosion
 	}
 
 	/**
@@ -225,7 +224,8 @@ public class Bomb extends MapObject {
 	 */
 	private void calcArms(BufferedImage cm) {
 		for (int i = 0; i < arms.length; i++) {
-			for (int j = 0; j < arms[i]; j++) {
+			for (int j = 0; j < radius; j++) {
+				arms[i] = radius;
 				if (i == 0) {
 					if (simpleHasColl(posX, posY - ((j + 1) * 50), cm,
 							Color.black)) {
@@ -278,7 +278,7 @@ public class Bomb extends MapObject {
 		if (visible && !exploding) {
 			animation.animate();
 
-			if (beforeTime + countdownTime <= System.nanoTime()
+			if (activated && beforeTime + countdownTime <= System.nanoTime()
 					|| simpleHasColl(posX, posY, cm, Color.orange)) {
 				animation.stop();
 				animation.change("center");
@@ -316,6 +316,14 @@ public class Bomb extends MapObject {
 
 	public int getPlayerID() {
 		return playerID;
+	}
+
+	/**
+	 * Fire the bomb.
+	 */
+	public void activateBomb() {
+		activated = true;
+		beforeTime = System.nanoTime();
 	}
 
 }

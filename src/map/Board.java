@@ -70,7 +70,7 @@ public class Board extends JPanel {
 		}
 
 		if (key == KeyEvent.VK_SPACE)
-			map.getMapPlayer().layBomb(map.collisionMap);
+			map.getMapPlayer().plantBomb(map.collisionMap);
 	}
 
 	public void keyReleased(KeyEvent e) {
