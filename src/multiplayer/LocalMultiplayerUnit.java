@@ -114,7 +114,7 @@ public class LocalMultiplayerUnit extends GraphicalGameUnit {
 		}
 
 		if (key == KeyEvent.VK_SPACE) {
-			playerOne.layBomb(multiplayerMap.getCollisionMap());
+			playerOne.plantBomb(multiplayerMap.getCollisionMap());
 		}
 		/*
 		 * playerTwo KeyEvents
@@ -136,7 +136,7 @@ public class LocalMultiplayerUnit extends GraphicalGameUnit {
 		}
 
 		if (key == KeyEvent.VK_PLUS) {
-			playerTwo.layBomb(multiplayerMap.getCollisionMap());
+			playerTwo.plantBomb(multiplayerMap.getCollisionMap());
 		}
 	}
 

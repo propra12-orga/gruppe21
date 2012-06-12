@@ -129,7 +129,7 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 			}
 
 			if (key == KeyEvent.VK_SPACE) {
-				player.layBomb(currentMap.getCollisionMap());
+				player.plantBomb(currentMap.getCollisionMap());
 			}
 		}
 	}

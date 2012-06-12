@@ -8,26 +8,73 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 /**
- * mapobject for bombs
- * 
- * calculates the radius of the arms controls the animations
- * 
+ * A MapObject representing an explosive that may be dropped by the player. A
+ * bombs properties include countdown and explosion periods as well as a
+ * playerID To associate a Bomb object with its player (as it is important for
+ * multiplayer matches). <br>
+ * To dynamically calculate the explosion, a bomb checks for every cardinal
+ * direction. Solely indestructible objects will impede the expansion. All this
+ * is done in the calcArms() method. <br>
+ * The explosion itself consists of two individual animation objects, one
+ * representing the 'head' of the advancing detonation and one serving as a
+ * connecting segment in between center and head.
  * 
  * @author eik
- * 
  */
+
 public class Bomb extends MapObject {
 
+	/**
+	 * Necessary to identify the corresponding Player object.
+	 */
 	private int playerID;
+	/**
+	 * This variable determines how far the explosion will advance in every
+	 * direction.
+	 */
 	private int radius = 1;
+	/**
+	 * This animation will connect the center of an explosion with all four
+	 * heads, respectively.
+	 */
 	Animation armanimation;
+	/**
+	 * An animation object representing the 'head' of an explosion.
+	 */
 	Animation endanimation;
+	/**
+	 * This array will be used by calcArms(). Its values state how far an
+	 * explosion may expand in every cardinal direction.
+	 */
 	int arms[] = new int[4];
+	/**
+	 * This will be set to true as soon as the player moves away from the bomb.
+	 * Subsequently, a bomb's collision flag will be set to true as well.
+	 */
 	boolean playerleft = false;
-	/* countdown (4s), explosiontime (1s) in nanosecs */
-	private long countdownTime = 4000000000L, explosionTime = 500000000,
-			beforeTime;
+	/**
+	 * As soon as the coundown period is over, the bomb will explode (in
+	 * nanoseconds).
+	 */
+	private long countdownTime = 4000000000L;
+	/**
+	 * This variable determines for how long the explosion will pose a threat to
+	 * other MapObjects (in nanoseconds).
+	 */
+	private long explosionTime = 500000000;
+	/**
+	 * Will be initialized on creating a new bomb object (System time in
+	 * nanoseconds).
+	 */
+	private long beforeTime;
+	/**
+	 * Will be set to true as soon as the coundown time is over.
+	 */
 	private boolean exploding = false;
+	/**
+	 * Will be set to true on firing the bomb.
+	 */
+	private boolean activated = false;
 
 	/**
 	 * constructor
@@ -60,25 +107,26 @@ public class Bomb extends MapObject {
 		posX = (x + 25) / 50 * 50;
 		posY = (y + 25) / 50 * 50;
 		radius = r;
-		arms[0] = r;
-		arms[1] = r;
-		arms[2] = r;
-		arms[3] = r;
-		beforeTime = System.nanoTime();
 		animation.start("simplebomb");
 		armanimation = new Animation("simplebomb", gr);
 		endanimation = new Animation("simplebomb", gr);
 		armanimation.start("gerade");
 		endanimation.start("up");
 		this.playerID = playerID;
-		// calculate arms lengths just before explosion
 	}
 
 	/**
+<<<<<<< HEAD
 	 * sets the radius of the bomb
 	 * 
 	 * @param radius
 	 *            bomb radius
+=======
+	 * A bomb's explosion radius may be changed due to player upgrades.
+	 * 
+	 * @param radius
+	 *            new explosion radius.
+>>>>>>> ae0e39d559abbfefcd1bc0ce6b0fb70f201b5052
 	 */
 	public void setRadius(int radius) {
 		this.radius = radius;
@@ -174,9 +222,16 @@ public class Bomb extends MapObject {
 		}
 	}
 
+	/**
+	 * Calculates detonation expansion using the collision map.
+	 * 
+	 * @param cm
+	 *            collision map
+	 */
 	private void calcArms(BufferedImage cm) {
 		for (int i = 0; i < arms.length; i++) {
-			for (int j = 0; j < arms[i]; j++) {
+			for (int j = 0; j < radius; j++) {
+				arms[i] = radius;
 				if (i == 0) {
 					if (simpleHasColl(posX, posY - ((j + 1) * 50), cm,
 							Color.black)) {
@@ -229,7 +284,7 @@ public class Bomb extends MapObject {
 		if (visible && !exploding) {
 			animation.animate();
 
-			if (beforeTime + countdownTime <= System.nanoTime()
+			if (activated && beforeTime + countdownTime <= System.nanoTime()
 					|| simpleHasColl(posX, posY, cm, Color.orange)) {
 				animation.stop();
 				animation.change("center");
@@ -266,11 +321,25 @@ public class Bomb extends MapObject {
 	}
 
 	/**
+<<<<<<< HEAD
 	 * 
 	 * @return playerID as int
+=======
+	 * Check for playerID.
+	 * 
+	 * @return ID of the player who planted the bomb.
+>>>>>>> ae0e39d559abbfefcd1bc0ce6b0fb70f201b5052
 	 */
 	public int getPlayerID() {
 		return playerID;
+	}
+
+	/**
+	 * Fire the bomb.
+	 */
+	public void activateBomb() {
+		activated = true;
+		beforeTime = System.nanoTime();
 	}
 
 }

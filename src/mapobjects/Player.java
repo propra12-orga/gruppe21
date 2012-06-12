@@ -105,13 +105,14 @@ public class Player extends MoveableObject {
 	 * @param cm
 	 *            collision map
 	 */
-	public void layBomb(BufferedImage cm) {
+	public void plantBomb(BufferedImage cm) {
 		if (!reachedMaxBombs()) {
 			Bomb bomb = new Bomb(getPosX(), getPosY(), true, false, false,
 					"simplebomb", map.getGraphics(), bombradius, cm, ID);
 			bomb.setMap(getMap());
 			map.getMapObjects().get(1).add(bomb);
 			addBomb();
+			bomb.activateBomb();
 		}
 	}
 
