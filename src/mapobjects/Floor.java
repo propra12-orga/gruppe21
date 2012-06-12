@@ -37,6 +37,11 @@ public class Floor extends MapObject {
 		super(x, y, r, v, d, c, p);
 	}
 
+	/**
+	 * overrides super method
+	 * 
+	 * draws the image on the game canvas draws the collision map
+	 */
 	@Override
 	public void draw(Graphics2D g2d, ImageLoader gr, Graphics2D cm) {
 		g2d.drawImage(rotate(gr.getImage(imageUrl), rotation), posX, posY, null);

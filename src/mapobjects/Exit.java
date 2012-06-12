@@ -40,6 +40,11 @@ public class Exit extends MapObject {
 		super(x, y, r, v, d, c, p);
 	}
 
+	/**
+	 * overrides super method
+	 * 
+	 * draws the image on the game canvas draws the collision map
+	 */
 	@Override
 	public void draw(Graphics2D g2d, ImageLoader gr, Graphics2D cm) {
 		g2d.drawImage(gr.getImage(imageUrl), posX, posY, null);
@@ -62,10 +67,19 @@ public class Exit extends MapObject {
 		}
 	}
 
+	/**
+	 * overrides super method
+	 * 
+	 * 
+	 * @cm collision map
+	 */
 	@Override
 	public void update(BufferedImage cm) {
 	}
 
+	/**
+	 * activates the exit and makes it visible
+	 */
 	public void activate() {
 		imageUrl = GameConstants.MAP_GRAPHICS_DIR + "exit.png";
 		activated = true;

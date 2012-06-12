@@ -6,13 +6,52 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
+/**
+ * Player object is the player controlled by the player
+ * 
+ * @author eik
+ * 
+ */
 public class Player extends MoveableObject {
+	/**
+	 * player id , for multiplayer
+	 */
 	private int ID;
+	/**
+	 * maximal number of bombs that the player could use
+	 */
 	private int maxbombs = 3;
+	/**
+	 * number of active bombs on the playground
+	 */
 	private int actualbombs = 0;
+	/**
+	 * radius of the bomb
+	 */
 	private int bombradius = 2;
+	/**
+	 * set if player is alive
+	 */
 	private boolean alive;
 
+	/**
+	 * constructor
+	 * 
+	 * @param x
+	 *            x-position
+	 * @param y
+	 *            y-position
+	 * @param v
+	 *            set visibility
+	 * @param d
+	 *            set destroyable
+	 * @param c
+	 *            set collisionable
+	 * @param p
+	 *            image url
+	 * @param gr
+	 *            imageloader of the map
+	 */
 	public Player(int x, int y, boolean v, boolean d, boolean c, String p,
 			ImageLoader gr) {
 		super(x, y, v, d, c, p, gr);
@@ -60,6 +99,12 @@ public class Player extends MoveableObject {
 		}
 	}
 
+	/**
+	 * adds bomb to the mapobject
+	 * 
+	 * @param cm
+	 *            collision map
+	 */
 	public void layBomb(BufferedImage cm) {
 		if (!reachedMaxBombs()) {
 			Bomb bomb = new Bomb(getPosX(), getPosY(), true, false, false,
@@ -204,6 +249,11 @@ public class Player extends MoveableObject {
 		return false;
 	}
 
+	/**
+	 * checks for enemy/bomb collison , kills player if true
+	 * 
+	 * @cm collision map
+	 */
 	@Override
 	public void update(BufferedImage cm) {
 		if (simpleHasColl(posX, posY, map.getCollisionMap(), Color.orange,
@@ -223,14 +273,24 @@ public class Player extends MoveableObject {
 
 	}
 
+	/**
+	 * 
+	 * @return true if max bomb level is reached else false
+	 */
 	public boolean reachedMaxBombs() {
 		return (actualbombs + 1 > maxbombs);
 	}
 
+	/**
+	 * increase bombcounter
+	 */
 	public void addBomb() {
 		actualbombs++;
 	}
 
+	/**
+	 * decrease bombcounter
+	 */
 	public void removeBomb() {
 		actualbombs--;
 	}

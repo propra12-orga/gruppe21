@@ -74,7 +74,12 @@ public class Bomb extends MapObject {
 		// calculate arms lengths just before explosion
 	}
 
-	/* radius changes conditioned by upgrades */
+	/**
+	 * sets the radius of the bomb
+	 * 
+	 * @param radius
+	 *            bomb radius
+	 */
 	public void setRadius(int radius) {
 		this.radius = radius;
 	}
@@ -260,6 +265,10 @@ public class Bomb extends MapObject {
 		}
 	}
 
+	/**
+	 * 
+	 * @return playerID as int
+	 */
 	public int getPlayerID() {
 		return playerID;
 	}
