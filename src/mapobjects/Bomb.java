@@ -8,25 +8,68 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 /**
- * mapobject for bombs
- * 
- * calculates the radius of the arms controls the animations
- * 
+ * A MapObject representing an explosive that may be dropped by the player. A
+ * bombs properties include countdown and explosion periods as well as a
+ * playerID To associate a Bomb object with its player (as it is important for
+ * multiplayer matches). <br>
+ * To dynamically calculate the explosion, a bomb checks for every cardinal
+ * direction. Solely indestructible objects will impede the expansion. All this
+ * is done in the calcArms() method. <br>
+ * The explosion itself consists of two individual animation objects, one
+ * representing the 'head' of the advancing detonation and one serving as a
+ * connecting segment in between center and head.
  * 
  * @author eik
- * 
  */
+
 public class Bomb extends MapObject {
 
+	/**
+	 * Necessary to identify the corresponding Player object.
+	 */
 	private int playerID;
+	/**
+	 * This variable determines how far the explosion will advance in every
+	 * direction.
+	 */
 	private int radius = 1;
+	/**
+	 * This animation will connect the center of an explosion with all four
+	 * heads, respectively.
+	 */
 	Animation armanimation;
+	/**
+	 * An animation object representing the 'head' of an explosion.
+	 */
 	Animation endanimation;
+	/**
+	 * This array will be used by calcArms(). Its values states how far an
+	 * explosion may expand in every cardinal direction.
+	 */
 	int arms[] = new int[4];
+	/**
+	 * This will be set to true as soon as the player moves away from the bomb.
+	 * Subsequently, a bomb's collision flag will be set to true as well.
+	 */
 	boolean playerleft = false;
-	/* countdown (4s), explosiontime (1s) in nanosecs */
-	private long countdownTime = 4000000000L, explosionTime = 500000000,
-			beforeTime;
+	/**
+	 * As soon as the coundown period is over, the bomb will explode (in
+	 * nanoseconds).
+	 */
+	private long countdownTime = 4000000000L;
+	/**
+	 * This variable determines for how long the explosion will pose a threat to
+	 * other MapObjects (in nanoseconds).
+	 */
+	private long explosionTime = 500000000;
+	/**
+	 * Will be initialized on creating a new bomb object (System time in
+	 * nanoseconds).
+	 */
+	private long beforeTime;
+	/**
+	 * Will be set to true as soon as the coundown time is over.
+	 */
 	private boolean exploding = false;
 
 	/**
@@ -74,7 +117,12 @@ public class Bomb extends MapObject {
 		// calculate arms lengths just before explosion
 	}
 
-	/* radius changes conditioned by upgrades */
+	/**
+	 * A bomb's explosion radius may be changed due to player upgrades.
+	 * 
+	 * @param radius
+	 *            new explosion radius.
+	 */
 	public void setRadius(int radius) {
 		this.radius = radius;
 	}
@@ -169,6 +217,12 @@ public class Bomb extends MapObject {
 		}
 	}
 
+	/**
+	 * Calculates detonation expansion using the collision map.
+	 * 
+	 * @param cm
+	 *            collision map
+	 */
 	private void calcArms(BufferedImage cm) {
 		for (int i = 0; i < arms.length; i++) {
 			for (int j = 0; j < arms[i]; j++) {
