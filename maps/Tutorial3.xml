@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map>
 	<header>
-	    <mapname>Tutoriallevel 2</mapname>
+	    <mapname>Tutoriallevel 1</mapname>
 		<sizex>1505</sizex>
 		<sizey>600</sizey>
 	</header>
@@ -1188,6 +1188,14 @@
 				<visible>true</visible>
 				<collision>true</collision>
 				<destroyable>false</destroyable>
+				<image rotation="0">KanoneOben.png</image>
+				<posx>150</posx>
+				<posy>150</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
 				<image rotation="0">Wand2.png</image>
 				<posx>200</posx>
 				<posy>150</posy>
@@ -1220,15 +1228,23 @@
 				<visible>true</visible>
 				<collision>true</collision>
 				<destroyable>false</destroyable>
-				<image rotation="0">Wand2.png</image>
-				<posx>400</posx>
+				<image rotation="0">KanoneOben.png</image>
+				<posx>350</posx>
 				<posy>150</posy>
 			</tile>
 			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>true</collision>
 				<destroyable>false</destroyable>
-				<image rotation="0">Wand5.png</image>
+				<image rotation="0">Wand2.png</image>
+				<posx>400</posx>
+				<posy>150</posy>
+			</tile>
+			<tile type="animatedfloor" animated="true">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<animationset>fackel</animationset>
 				<posx>450</posx>
 				<posy>150</posy>
 			</tile>
@@ -1288,11 +1304,11 @@
 				<posx>800</posx>
 				<posy>150</posy>
 			</tile>
-			<tile type="floor" animated="false">
+			<tile type="animatedfloor" animated="true">
 				<visible>true</visible>
 				<collision>true</collision>
 				<destroyable>false</destroyable>
-				<image rotation="0">Wand5.png</image>
+				<animationset>fackel</animationset>
 				<posx>850</posx>
 				<posy>150</posy>
 			</tile>
@@ -1352,11 +1368,11 @@
 				<posx>1200</posx>
 				<posy>150</posy>
 			</tile>
-			<tile type="floor" animated="false">
+			<tile type="animatedfloor" animated="true">
 				<visible>true</visible>
 				<collision>true</collision>
 				<destroyable>false</destroyable>
-				<image rotation="0">Wand5.png</image>
+				<animationset>fackel</animationset>
 				<posx>1250</posx>
 				<posy>150</posy>
 			</tile>
@@ -1520,11 +1536,11 @@
 				<posx>400</posx>
 				<posy>450</posy>
 			</tile>
-			<tile type="floor" animated="false">
+			<tile type="animatedfloor" animated="true">
 				<visible>true</visible>
 				<collision>true</collision>
 				<destroyable>false</destroyable>
-				<image rotation="2">Wand5.png</image>
+				<animationset>fackel2</animationset>
 				<posx>450</posx>
 				<posy>450</posy>
 			</tile>
@@ -1584,11 +1600,11 @@
 				<posx>800</posx>
 				<posy>450</posy>
 			</tile>
-			<tile type="floor" animated="false">
+			<tile type="animatedfloor" animated="true">
 				<visible>true</visible>
 				<collision>true</collision>
 				<destroyable>false</destroyable>
-				<image rotation="2">Wand5.png</image>
+				<animationset>fackel2</animationset>
 				<posx>850</posx>
 				<posy>450</posy>
 			</tile>
@@ -1648,11 +1664,11 @@
 				<posx>1200</posx>
 				<posy>450</posy>
 			</tile>
-			<tile type="floor" animated="false">
+			<tile type="animatedfloor" animated="true">
 				<visible>true</visible>
 				<collision>true</collision>
 				<destroyable>false</destroyable>
-				<image rotation="2">Wand5.png</image>
+				<animationset>fackel2</animationset>
 				<posx>1250</posx>
 				<posy>450</posy>
 			</tile>
@@ -1704,7 +1720,7 @@
 				<destroyable>false</destroyable>
 				<image rotation="0">UndesBox.png</image>
 				<posx>200</posx>
-				<posy>250</posy>
+				<posy>300</posy>
 			</tile>
 			<tile type="wall" animated="false">
 				<visible>true</visible>
@@ -1727,16 +1743,16 @@
 				<collision>true</collision>
 				<destroyable>false</destroyable>
 				<image rotation="0">UndesBox.png</image>
-				<posx>400</posx>
-				<posy>200</posy>
+				<posx>300</posx>
+				<posy>300</posy>
 			</tile>
 			<tile type="wall" animated="false">
 				<visible>true</visible>
 				<collision>true</collision>
 				<destroyable>false</destroyable>
 				<image rotation="0">UndesBox.png</image>
-				<posx>400</posx>
-				<posy>250</posy>
+				<posx>350</posx>
+				<posy>300</posy>
 			</tile>
 			<tile type="wall" animated="false">
 				<visible>true</visible>
@@ -1751,23 +1767,7 @@
 				<collision>true</collision>
 				<destroyable>false</destroyable>
 				<image rotation="0">UndesBox.png</image>
-				<posx>400</posx>
-				<posy>350</posy>
-			</tile>
-			<tile type="wall" animated="false">
-				<visible>true</visible>
-				<collision>true</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">UndesBox.png</image>
-				<posx>600</posx>
-				<posy>250</posy>
-			</tile>
-			<tile type="wall" animated="false">
-				<visible>true</visible>
-				<collision>true</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">UndesBox.png</image>
-				<posx>600</posx>
+				<posx>450</posx>
 				<posy>300</posy>
 			</tile>
 			<tile type="wall" animated="false">
@@ -1775,31 +1775,7 @@
 				<collision>true</collision>
 				<destroyable>false</destroyable>
 				<image rotation="0">UndesBox.png</image>
-				<posx>600</posx>
-				<posy>350</posy>
-			</tile>
-			<tile type="wall" animated="false">
-				<visible>true</visible>
-				<collision>true</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">UndesBox.png</image>
-				<posx>600</posx>
-				<posy>400</posy>
-			</tile>
-			<tile type="wall" animated="false">
-				<visible>true</visible>
-				<collision>true</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">UndesBox.png</image>
-				<posx>800</posx>
-				<posy>200</posy>
-			</tile>
-			<tile type="wall" animated="false">
-				<visible>true</visible>
-				<collision>true</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">UndesBox.png</image>
-				<posx>800</posx>
+				<posx>450</posx>
 				<posy>250</posy>
 			</tile>
 			<tile type="wall" animated="false">
@@ -1807,7 +1783,7 @@
 				<collision>true</collision>
 				<destroyable>false</destroyable>
 				<image rotation="0">UndesBox.png</image>
-				<posx>800</posx>
+				<posx>450</posx>
 				<posy>350</posy>
 			</tile>
 			<tile type="wall" animated="false">
@@ -1815,15 +1791,7 @@
 				<collision>true</collision>
 				<destroyable>false</destroyable>
 				<image rotation="0">UndesBox.png</image>
-				<posx>800</posx>
-				<posy>400</posy>
-			</tile>
-			<tile type="wall" animated="false">
-				<visible>true</visible>
-				<collision>true</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">UndesBox.png</image>
-				<posx>900</posx>
+				<posx>550</posx>
 				<posy>250</posy>
 			</tile>
 			<tile type="wall" animated="false">
@@ -1831,7 +1799,23 @@
 				<collision>true</collision>
 				<destroyable>false</destroyable>
 				<image rotation="0">UndesBox.png</image>
-				<posx>900</posx>
+				<posx>550</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">UndesBox.png</image>
+				<posx>650</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">UndesBox.png</image>
+				<posx>650</posx>
 				<posy>300</posy>
 			</tile>
 			<tile type="wall" animated="false">
@@ -1839,7 +1823,39 @@
 				<collision>true</collision>
 				<destroyable>false</destroyable>
 				<image rotation="0">UndesBox.png</image>
-				<posx>900</posx>
+				<posx>650</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">UndesBox.png</image>
+				<posx>750</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">UndesBox.png</image>
+				<posx>850</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">UndesBox.png</image>
+				<posx>850</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">UndesBox.png</image>
+				<posx>850</posx>
 				<posy>350</posy>
 			</tile>
 			<tile type="wall" animated="false">
@@ -1848,15 +1864,23 @@
 				<destroyable>false</destroyable>
 				<image rotation="0">UndesBox.png</image>
 				<posx>950</posx>
-				<posy>300</posy>
+				<posy>250</posy>
 			</tile>
 			<tile type="wall" animated="false">
 				<visible>true</visible>
 				<collision>true</collision>
 				<destroyable>false</destroyable>
 				<image rotation="0">UndesBox.png</image>
-				<posx>1000</posx>
-				<posy>300</posy>
+				<posx>950</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">UndesBox.png</image>
+				<posx>1050</posx>
+				<posy>250</posy>
 			</tile>
 			<tile type="wall" animated="false">
 				<visible>true</visible>
@@ -1865,6 +1889,14 @@
 				<image rotation="0">UndesBox.png</image>
 				<posx>1050</posx>
 				<posy>300</posy>
+			</tile>
+			<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">UndesBox.png</image>
+				<posx>1050</posx>
+				<posy>350</posy>
 			</tile>
 			<tile type="wall" animated="false">
 				<visible>true</visible>
@@ -1880,14 +1912,6 @@
 				<destroyable>false</destroyable>
 				<image rotation="0">UndesBox.png</image>
 				<posx>1150</posx>
-				<posy>250</posy>
-			</tile>
-			<tile type="wall" animated="false">
-				<visible>true</visible>
-				<collision>true</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">UndesBox.png</image>
-				<posx>1150</posx>
 				<posy>300</posy>
 			</tile>
 			<tile type="wall" animated="false">
@@ -1895,7 +1919,31 @@
 				<collision>true</collision>
 				<destroyable>false</destroyable>
 				<image rotation="0">UndesBox.png</image>
-				<posx>1150</posx>
+				<posx>1200</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">UndesBox.png</image>
+				<posx>1300</posx>
+				<posy>200</posy>
+			</tile>
+			<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">UndesBox.png</image>
+				<posx>1300</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">UndesBox.png</image>
+				<posx>1300</posx>
 				<posy>350</posy>
 			</tile>
 			<tile type="wall" animated="false">
@@ -1903,63 +1951,7 @@
 				<collision>true</collision>
 				<destroyable>false</destroyable>
 				<image rotation="0">UndesBox.png</image>
-				<posx>1250</posx>
-				<posy>200</posy>
-			</tile>
-			<tile type="wall" animated="false">
-				<visible>true</visible>
-				<collision>true</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">UndesBox.png</image>
-				<posx>1250</posx>
-				<posy>250</posy>
-			</tile>
-			<tile type="wall" animated="false">
-				<visible>true</visible>
-				<collision>true</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">UndesBox.png</image>
-				<posx>1250</posx>
-				<posy>350</posy>
-			</tile>
-			<tile type="wall" animated="false">
-				<visible>true</visible>
-				<collision>true</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">UndesBox.png</image>
-				<posx>1250</posx>
-				<posy>400</posy>
-			</tile>
-			<tile type="wall" animated="false">
-				<visible>true</visible>
-				<collision>true</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">UndesBox.png</image>
-				<posx>1000</posx>
-				<posy>200</posy>
-			</tile>
-			<tile type="wall" animated="false">
-				<visible>true</visible>
-				<collision>true</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">UndesBox.png</image>
-				<posx>1050</posx>
-				<posy>200</posy>
-			</tile>
-			<tile type="wall" animated="false">
-				<visible>true</visible>
-				<collision>true</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">UndesBox.png</image>
-				<posx>1000</posx>
-				<posy>400</posy>
-			</tile>
-			<tile type="wall" animated="false">
-				<visible>true</visible>
-				<collision>true</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">UndesBox.png</image>
-				<posx>1050</posx>
+				<posx>1300</posx>
 				<posy>400</posy>
 			</tile>
 			<tile type="wall" animated="false">
@@ -1968,14 +1960,14 @@
 				<destroyable>true</destroyable>
 				<image rotation="0">DesBox.png</image>
 				<posx>200</posx>
-				<posy>300</posy>
+				<posy>250</posy>
 			</tile>
 			<tile type="wall" animated="false">
 				<visible>true</visible>
 				<collision>true</collision>
 				<destroyable>true</destroyable>
 				<image rotation="0">DesBox.png</image>
-				<posx>300</posx>
+				<posx>250</posx>
 				<posy>300</posy>
 			</tile>
 			<tile type="wall" animated="false">
@@ -1984,46 +1976,6 @@
 				<destroyable>true</destroyable>
 				<image rotation="0">DesBox.png</image>
 				<posx>350</posx>
-				<posy>300</posy>
-			</tile>
-			<tile type="wall" animated="false">
-				<visible>true</visible>
-				<collision>true</collision>
-				<destroyable>true</destroyable>
-				<image rotation="0">DesBox.png</image>
-				<posx>400</posx>
-				<posy>400</posy>
-			</tile>
-			<tile type="wall" animated="false">
-				<visible>true</visible>
-				<collision>true</collision>
-				<destroyable>true</destroyable>
-				<image rotation="0">DesBox.png</image>
-				<posx>450</posx>
-				<posy>300</posy>
-			</tile>
-			<tile type="wall" animated="false">
-				<visible>true</visible>
-				<collision>true</collision>
-				<destroyable>true</destroyable>
-				<image rotation="0">DesBox.png</image>
-				<posx>500</posx>
-				<posy>300</posy>
-			</tile>
-			<tile type="wall" animated="false">
-				<visible>true</visible>
-				<collision>true</collision>
-				<destroyable>true</destroyable>
-				<image rotation="0">DesBox.png</image>
-				<posx>550</posx>
-				<posy>300</posy>
-			</tile>
-			<tile type="wall" animated="false">
-				<visible>true</visible>
-				<collision>true</collision>
-				<destroyable>true</destroyable>
-				<image rotation="0">DesBox.png</image>
-				<posx>550</posx>
 				<posy>250</posy>
 			</tile>
 			<tile type="wall" animated="false">
@@ -2031,23 +1983,31 @@
 				<collision>true</collision>
 				<destroyable>true</destroyable>
 				<image rotation="0">DesBox.png</image>
+				<posx>350</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>true</destroyable>
+				<image rotation="0">DesBox.png</image>
+				<posx>450</posx>
+				<posy>200</posy>
+			</tile>
+			<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>true</destroyable>
+				<image rotation="0">DesBox.png</image>
+				<posx>450</posx>
+				<posy>400</posy>
+			</tile>
+			<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>true</destroyable>
+				<image rotation="0">DesBox.png</image>
 				<posx>550</posx>
-				<posy>200</posy>
-			</tile>
-			<tile type="wall" animated="false">
-				<visible>true</visible>
-				<collision>true</collision>
-				<destroyable>true</destroyable>
-				<image rotation="0">DesBox.png</image>
-				<posx>600</posx>
-				<posy>200</posy>
-			</tile>
-			<tile type="wall" animated="false">
-				<visible>true</visible>
-				<collision>true</collision>
-				<destroyable>true</destroyable>
-				<image rotation="0">DesBox.png</image>
-				<posx>700</posx>
 				<posy>300</posy>
 			</tile>
 			<tile type="wall" animated="false">
@@ -2055,7 +2015,39 @@
 				<collision>true</collision>
 				<destroyable>true</destroyable>
 				<image rotation="0">DesBox.png</image>
-				<posx>750</posx>
+				<posx>650</posx>
+				<posy>200</posy>
+			</tile>
+			<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>true</destroyable>
+				<image rotation="0">DesBox.png</image>
+				<posx>650</posx>
+				<posy>400</posy>
+			</tile>
+			<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>true</destroyable>
+				<image rotation="0">DesBox.png</image>
+				<posx>850</posx>
+				<posy>200</posy>
+			</tile>
+			<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>true</destroyable>
+				<image rotation="0">DesBox.png</image>
+				<posx>850</posx>
+				<posy>400</posy>
+			</tile>
+			<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>true</destroyable>
+				<image rotation="0">DesBox.png</image>
+				<posx>700</posx>
 				<posy>300</posy>
 			</tile>
 			<tile type="wall" animated="false">
@@ -2071,168 +2063,40 @@
 				<collision>true</collision>
 				<destroyable>true</destroyable>
 				<image rotation="0">DesBox.png</image>
-				<posx>650</posx>
-				<posy>250</posy>
-			</tile>
-			<tile type="wall" animated="false">
-				<visible>true</visible>
-				<collision>true</collision>
-				<destroyable>true</destroyable>
-				<image rotation="0">DesBox.png</image>
-				<posx>700</posx>
-				<posy>250</posy>
-			</tile>
-			<tile type="wall" animated="false">
-				<visible>true</visible>
-				<collision>true</collision>
-				<destroyable>true</destroyable>
-				<image rotation="0">DesBox.png</image>
-				<posx>650</posx>
-				<posy>350</posy>
-			</tile>
-			<tile type="wall" animated="false">
-				<visible>true</visible>
-				<collision>true</collision>
-				<destroyable>true</destroyable>
-				<image rotation="0">DesBox.png</image>
-				<posx>700</posx>
-				<posy>350</posy>
-			</tile>
-			<tile type="wall" animated="false">
-				<visible>true</visible>
-				<collision>true</collision>
-				<destroyable>true</destroyable>
-				<image rotation="0">DesBox.png</image>
-				<posx>900</posx>
-				<posy>200</posy>
-			</tile>
-			<tile type="wall" animated="false">
-				<visible>true</visible>
-				<collision>true</collision>
-				<destroyable>true</destroyable>
-				<image rotation="0">DesBox.png</image>
 				<posx>950</posx>
-				<posy>200</posy>
-			</tile>
-			<tile type="wall" animated="false">
-				<visible>true</visible>
-				<collision>true</collision>
-				<destroyable>true</destroyable>
-				<image rotation="0">DesBox.png</image>
-				<posx>900</posx>
-				<posy>400</posy>
-			</tile>
-			<tile type="wall" animated="false">
-				<visible>true</visible>
-				<collision>true</collision>
-				<destroyable>true</destroyable>
-				<image rotation="0">DesBox.png</image>
-				<posx>950</posx>
-				<posy>400</posy>
-			</tile>
-			<tile type="wall" animated="false">
-				<visible>true</visible>
-				<collision>true</collision>
-				<destroyable>true</destroyable>
-				<image rotation="0">DesBox.png</image>
-				<posx>950</posx>
-				<posy>250</posy>
-			</tile>
-			<tile type="wall" animated="false">
-				<visible>true</visible>
-				<collision>true</collision>
-				<destroyable>true</destroyable>
-				<image rotation="0">DesBox.png</image>
-				<posx>1000</posx>
-				<posy>250</posy>
-			</tile>
-			<tile type="wall" animated="false">
-				<visible>true</visible>
-				<collision>true</collision>
-				<destroyable>true</destroyable>
-				<image rotation="0">DesBox.png</image>
-				<posx>1050</posx>
-				<posy>250</posy>
-			</tile>
-			<tile type="wall" animated="false">
-				<visible>true</visible>
-				<collision>true</collision>
-				<destroyable>true</destroyable>
-				<image rotation="0">DesBox.png</image>
-				<posx>1100</posx>
-				<posy>250</posy>
-			</tile>
-			<tile type="wall" animated="false">
-				<visible>true</visible>
-				<collision>true</collision>
-				<destroyable>true</destroyable>
-				<image rotation="0">DesBox.png</image>
-				<posx>950</posx>
-				<posy>350</posy>
-			</tile>
-			<tile type="wall" animated="false">
-				<visible>true</visible>
-				<collision>true</collision>
-				<destroyable>true</destroyable>
-				<image rotation="0">DesBox.png</image>
-				<posx>1000</posx>
-				<posy>350</posy>
-			</tile>
-			<tile type="wall" animated="false">
-				<visible>true</visible>
-				<collision>true</collision>
-				<destroyable>true</destroyable>
-				<image rotation="0">DesBox.png</image>
-				<posx>1050</posx>
-				<posy>350</posy>
-			</tile>
-			<tile type="wall" animated="false">
-				<visible>true</visible>
-				<collision>true</collision>
-				<destroyable>true</destroyable>
-				<image rotation="0">DesBox.png</image>
-				<posx>1100</posx>
-				<posy>350</posy>
-			</tile>
-			<tile type="wall" animated="false">
-				<visible>true</visible>
-				<collision>true</collision>
-				<destroyable>true</destroyable>
-				<image rotation="0">DesBox.png</image>
-				<posx>1100</posx>
-				<posy>200</posy>
-			</tile>
-			<tile type="wall" animated="false">
-				<visible>true</visible>
-				<collision>true</collision>
-				<destroyable>true</destroyable>
-				<image rotation="0">DesBox.png</image>
-				<posx>1150</posx>
-				<posy>200</posy>
-			</tile>
-			<tile type="wall" animated="false">
-				<visible>true</visible>
-				<collision>true</collision>
-				<destroyable>true</destroyable>
-				<image rotation="0">DesBox.png</image>
-				<posx>1100</posx>
-				<posy>400</posy>
-			</tile>
-			<tile type="wall" animated="false">
-				<visible>true</visible>
-				<collision>true</collision>
-				<destroyable>true</destroyable>
-				<image rotation="0">DesBox.png</image>
-				<posx>1150</posx>
-				<posy>400</posy>
-			</tile>
-			<tile type="wall" animated="false">
-				<visible>true</visible>
-				<collision>true</collision>
-				<destroyable>true</destroyable>
-				<image rotation="0">DesBox.png</image>
-				<posx>1200</posx>
 				<posy>300</posy>
+			</tile>
+			<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>true</destroyable>
+				<image rotation="0">DesBox.png</image>
+				<posx>1050</posx>
+				<posy>200</posy>
+			</tile>
+			<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>true</destroyable>
+				<image rotation="0">DesBox.png</image>
+				<posx>1050</posx>
+				<posy>400</posy>
+			</tile>
+			<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>true</destroyable>
+				<image rotation="0">DesBox.png</image>
+				<posx>1150</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>true</destroyable>
+				<image rotation="0">DesBox.png</image>
+				<posx>1150</posx>
+				<posy>350</posy>
 			</tile>
 			<tile type="wall" animated="false">
 				<visible>true</visible>
@@ -2241,6 +2105,238 @@
 				<image rotation="0">DesBox.png</image>
 				<posx>1250</posx>
 				<posy>300</posy>
+			</tile>
+			<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>true</destroyable>
+				<image rotation="0">DesBox.png</image>
+				<posx>1300</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">KanoneOben.png</image>
+				<posx>150</posx>
+				<posy>150</posy>
+			</tile>
+			<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">KanoneUnten.png</image>
+				<posx>150</posx>
+				<posy>200</posy>
+			</tile>
+			<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">KanoneOben.png</image>
+				<posx>350</posx>
+				<posy>150</posy>
+			</tile>
+			<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">KanoneUnten.png</image>
+				<posx>350</posx>
+				<posy>200</posy>
+			</tile>
+	<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">KanoneOben.png</image>
+				<posx>550</posx>
+				<posy>150</posy>
+			</tile>
+			<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">KanoneUnten.png</image>
+				<posx>550</posx>
+				<posy>200</posy>
+			</tile>
+	<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">KanoneOben.png</image>
+				<posx>750</posx>
+				<posy>150</posy>
+			</tile>
+			<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">KanoneUnten.png</image>
+				<posx>750</posx>
+				<posy>200</posy>
+			</tile>
+	<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">KanoneOben.png</image>
+				<posx>950</posx>
+				<posy>150</posy>
+			</tile>
+			<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">KanoneUnten.png</image>
+				<posx>950</posx>
+				<posy>200</posy>
+			</tile>
+			<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">KanoneOben.png</image>
+				<posx>1150</posx>
+				<posy>150</posy>
+			</tile>
+			<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">KanoneUnten.png</image>
+				<posx>1150</posx>
+				<posy>200</posy>
+			</tile>
+			<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">KanoneOben.png</image>
+				<posx>1350</posx>
+				<posy>150</posy>
+			</tile>
+			<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">KanoneUnten.png</image>
+				<posx>1350</posx>
+				<posy>200</posy>
+			</tile>
+			<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">KanoneOben2.png</image>
+				<posx>150</posx>
+				<posy>450</posy>
+			</tile>
+			<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">KanoneUnten2.png</image>
+				<posx>150</posx>
+				<posy>400</posy>
+			</tile>
+			<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">KanoneOben2.png</image>
+				<posx>350</posx>
+				<posy>450</posy>
+			</tile>
+			<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">KanoneUnten2.png</image>
+				<posx>350</posx>
+				<posy>400</posy>
+			</tile>
+			<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">KanoneOben2.png</image>
+				<posx>550</posx>
+				<posy>450</posy>
+			</tile>
+			<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">KanoneUnten2.png</image>
+				<posx>550</posx>
+				<posy>400</posy>
+			</tile>
+			<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">KanoneOben2.png</image>
+				<posx>750</posx>
+				<posy>450</posy>
+			</tile>
+			<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">KanoneUnten2.png</image>
+				<posx>750</posx>
+				<posy>400</posy>
+			</tile>
+			<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">KanoneOben2.png</image>
+				<posx>950</posx>
+				<posy>450</posy>
+			</tile>
+			<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">KanoneUnten2.png</image>
+				<posx>950</posx>
+				<posy>400</posy>
+			</tile>
+			<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">KanoneOben2.png</image>
+				<posx>1150</posx>
+				<posy>450</posy>
+			</tile>
+			<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">KanoneUnten2.png</image>
+				<posx>1150</posx>
+				<posy>400</posy>
+			</tile>
+			<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">KanoneOben2.png</image>
+				<posx>1350</posx>
+				<posy>450</posy>
+			</tile>
+			<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">KanoneUnten2.png</image>
+				<posx>1350</posx>
+				<posy>400</posy>
 			</tile>
 		</level>
 		<level>
@@ -2251,7 +2347,31 @@
 			 	<animationset>MPPlayer1</animationset>
 				<posx>50</posx>
 				<posy>300</posy>
-			</character>				
+			</character>	
+			<character type="enemy" animated="true">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<animationset>testEnemy</animationset>
+				<posx>250</posx>
+				<posy>200</posy>
+			</character>	
+			<character type="enemy" animated="true">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<animationset>testEnemy</animationset>
+				<posx>700</posx>
+				<posy>400</posy>
+			</character>	
+			<character type="enemy" animated="true">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<animationset>testEnemy</animationset>
+				<posx>1250</posx>
+				<posy>200</posy>
+			</character>			
 		</level>
 		<level></level>
 		<level></level>
