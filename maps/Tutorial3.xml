@@ -2348,27 +2348,27 @@
 				<posx>50</posx>
 				<posy>300</posy>
 			</character>	
-			<character type="enemy" animated="true">
+			<character type="sillyEnemy" animated="true">
 			    <visible>true</visible>
 				<collision>true</collision>
 				<destroyable>false</destroyable>
-			 	<animationset>testEnemy</animationset>
+			 	<animationset>sillyEnemy</animationset>
 				<posx>250</posx>
 				<posy>200</posy>
 			</character>	
-			<character type="enemy" animated="true">
+			<character type="runningEnemy" animated="true">
 			    <visible>true</visible>
 				<collision>true</collision>
 				<destroyable>false</destroyable>
-			 	<animationset>testEnemy</animationset>
+			 	<animationset>runningEnemy</animationset>
 				<posx>700</posx>
 				<posy>400</posy>
 			</character>	
-			<character type="enemy" animated="true">
+			<character type="runningEnemy" animated="true">
 			    <visible>true</visible>
 				<collision>true</collision>
 				<destroyable>false</destroyable>
-			 	<animationset>testEnemy</animationset>
+			 	<animationset>runningEnemy</animationset>
 				<posx>1250</posx>
 				<posy>200</posy>
 			</character>			
@@ -2379,6 +2379,7 @@
 
 	<items>
 		<animationset>simplebomb</animationset>
+		<animationset>upgrades</animationset>
 		<image>exit.png</image>
 	</items>
 </map>
