@@ -2486,6 +2486,7 @@
 	
 	<items>
 		<animationset>simplebomb</animationset>
+		<animationset>upgrades</animationset>
 		<image>exit.png</image>
 	</items>
 </map>

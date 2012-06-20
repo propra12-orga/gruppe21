@@ -122,6 +122,7 @@ public class Campaign {
 				} else {
 					worldMap.setMaxLevelAccessible(worldMap
 							.getMaxLevelAccessible() + 1);
+					mapCounter = 0;
 				}
 			}
 			return false;

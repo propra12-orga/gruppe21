@@ -417,12 +417,13 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 		}
 
 		for (int i = 0; i < intro.length; i++) {
-			g2d.drawString(intro[i],
+			g2d.drawString(
+					intro[i],
 					(int) (GameConstants.FRAME_SIZE_X - maxLineLength
-							.getWidth()) / 4,
+							.getWidth()) / 2,
 					(int) (((GameConstants.FRAME_SIZE_Y - maxLineLength
-							.getHeight()) / 2) + maxLineLength.getHeight() * 2
-							* i));
+							.getHeight() * intro.length) / 2) + maxLineLength
+							.getHeight() * 2 * i));
 
 		}
 		return transitionImage;

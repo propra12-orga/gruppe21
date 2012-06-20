@@ -46,7 +46,11 @@ public class CampaignReader {
 		List<Element> maps = campaignRoot.getChild("maps").getChildren();
 
 		for (Element el : maps) {
-			String[] mapIntro = el.getChildText("intro").split("#");
+			String intro = el.getChildText("intro");
+			String[] mapIntro = null;
+			if (!intro.trim().isEmpty()) {
+				mapIntro = intro.split("#");
+			}
 			String mapName = el.getChildText("name");
 			int index = Integer.parseInt(el.getChildText("sequence"));
 			levels.get(index).add(
@@ -71,6 +75,7 @@ public class CampaignReader {
 	}
 
 	public static void main(String[] args) {
-		new CampaignReader("campaign1").readCampaignFromFile();
+		Campaign test = new CampaignReader("campaign1").readCampaignFromFile();
+
 	}
 }
