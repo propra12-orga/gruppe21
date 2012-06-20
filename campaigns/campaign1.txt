@@ -18,7 +18,7 @@ dangerous journey into the unknown ...
 INTRO
 
 MAPS
-seq.0:Tutorial3
+seq.0:Tutorial4
 seq.1:testmap
 wm:11,10;10,8-campaign1worldmap
 MAPS

@@ -2356,11 +2356,11 @@
 				<posx>250</posx>
 				<posy>200</posy>
 			</character>	
-			<character type="runningEnemy" animated="true">
+			<character type="sillyEnemy" animated="true">
 			    <visible>true</visible>
 				<collision>true</collision>
 				<destroyable>false</destroyable>
-			 	<animationset>runningEnemy</animationset>
+			 	<animationset>sillyEnemy</animationset>
 				<posx>700</posx>
 				<posy>400</posy>
 			</character>	
