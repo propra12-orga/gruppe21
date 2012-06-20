@@ -39,6 +39,8 @@ public class Map {
 	BufferedImage collisionMap;
 	MapReader mr;
 	private boolean exitActivated = false;
+	private int upgradeCounter;
+	private int maxUpgrades;
 
 	/**
 	 * constructor
@@ -53,8 +55,9 @@ public class Map {
 		mapName = mr.getHeader("mapname");
 		mapSizeX = Integer.parseInt(mr.getHeader("sizex"));
 		mapSizeY = Integer.parseInt(mr.getHeader("sizey"));
+		maxUpgrades = Integer.parseInt(mr.getHeader("maxUpgrades"));
 		drawLevels = mr.getDrawLevels();
-
+		upgradeCounter = 0;
 		mr.loadGraphics(graphics);
 		mr.getMap(mapObjects, graphics);
 		enemies = mr.getEnemies();
@@ -272,6 +275,14 @@ public class Map {
 	 */
 	public List<Player> getPlayers() {
 		return players;
+	}
+
+	public void incrementUpgradeCounter() {
+		upgradeCounter++;
+	}
+
+	public boolean hasReachedMaxUpgrades() {
+		return (upgradeCounter == maxUpgrades);
 	}
 
 }

@@ -142,9 +142,8 @@ public abstract class Enemy extends MoveableObject {
 	 * it.
 	 */
 	public void lookForUpgrades() {
-		// int i = (int) (Math.random() * 2 + 1);
-		int i = 1;
-		if (i == 1) {
+		int i = (int) (Math.random() * 2) + 1;
+		if (i == 1 && !map.hasReachedMaxUpgrades()) {
 			Random rnd = new Random();
 			ArrayList<Color> list = new ArrayList<Color>();
 
@@ -159,6 +158,7 @@ public abstract class Enemy extends MoveableObject {
 					"upgrades", map.getGraphics(), upgradeColor);
 			upgrade.setMap(getMap());
 			map.getMapObjects().get(1).add(upgrade);
+			map.incrementUpgradeCounter();
 		}
 	}
 

@@ -4,6 +4,7 @@
 	    <mapname>Tutoriallevel 4</mapname>
 		<sizex>1505</sizex>
 		<sizey>550</sizey>
+		<maxUpgrades>20</maxUpgrades>
 	</header>
 	<mapobjects>
 		<level>

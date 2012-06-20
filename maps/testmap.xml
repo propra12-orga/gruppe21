@@ -4,6 +4,7 @@
 	    <mapname>Test Map</mapname>
 		<sizex>800</sizex>
 		<sizey>650</sizey>
+		<maxUpgrades>5</maxUpgrades>
 	</header>
 	<mapobjects>
 		<level>
