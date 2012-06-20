@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<campaign>
+
+	<header>
+		<numOfLevels>2</numOfLevels>
+	</header>
+	
+	<maps>
+	
+		<map>
+			<intro>"BLABLA"</intro>
+			<name>long</name>
+			<sequence>0</sequence>
+		</map>
+		<map>
+			<intro>"BLABLA"</intro>
+			<name>testmap</name>
+			<sequence>1</sequence>
+		</map>
+		
+	</maps>
+	
+	
+	<worldmap>
+	
+		<name>campaign1worldmap</name>
+		
+		<coordinates>
+			<coord>
+				<cx>11</cx>
+				<cy>10</cy>
+			</coord>
+			<coord>
+				<cx>10</cx>
+				<cy>8</cy>
+			</coord>
+		</coordinates>
+		
+	</worldmap>
+	
+</campaign>

@@ -1,20 +1,14 @@
 package main;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
-import java.awt.image.BufferedImage;
-import java.io.FileNotFoundException;
-import java.util.List;
 
 import javax.swing.ImageIcon;
 
 import multiplayer.OptionMenuUnit;
-import singleplayer.Campaign;
 import singleplayer.LevelManagerUnit;
 
 /**
@@ -71,7 +65,7 @@ public class MainMenuUnit extends GraphicalGameUnit {
 	// point connected with the select image for optimal positioning
 	private Point selectorGhost = new Point(startXPos, startYPos);
 
-	private String campaign = "campaign1.txt";
+	private String campaign = "campaign1";
 
 	public MainMenuUnit() {
 		initComponent();
@@ -125,7 +119,11 @@ public class MainMenuUnit extends GraphicalGameUnit {
 		// what happens if Enter is pressed
 		if (key == KeyEvent.VK_ENTER && selectCounter == 0) {
 			// create new game
-			startNewSingeplayerCampaign(campaign);
+
+			LevelManagerUnit levelmanager = new LevelManagerUnit(campaign);
+			UnitNavigator.getNavigator().addGameUnit(levelmanager,
+					UnitState.LEVEL_MANAGER_UNIT);
+			UnitNavigator.getNavigator().set(UnitState.LEVEL_MANAGER_UNIT);
 		}
 		if (key == KeyEvent.VK_ENTER && selectCounter == 1) {
 			// create new game
@@ -170,70 +168,5 @@ public class MainMenuUnit extends GraphicalGameUnit {
 		// updates selectorPosition after keyevent
 		selectorGhost.setLocation(startXPos - (select.getWidth(null)),
 				startYPos + selectCounter * (buttonHeight + buttonSpace));
-	}
-
-	/**
-	 * Constructs BufferedImage containing an introduction to the given campaign
-	 * and creates a new TransitionUnit to display that message.
-	 * 
-	 * @param campaignFile
-	 *            file containing campaign introduction
-	 */
-	private void startNewSingeplayerCampaign(String campaignFile) {
-		/*
-		 * Create new LevelManager
-		 */
-		LevelManagerUnit levelmanager = new LevelManagerUnit(campaign);
-		UnitNavigator.getNavigator().addGameUnit(levelmanager,
-				UnitState.LEVEL_MANAGER_UNIT);
-		/*
-		 * If campaign starts with an introduction, start by creating a
-		 * TransitionUnit
-		 */
-		List<String> message = null;
-		try {
-			message = Campaign.readMapIntro(campaignFile);
-		} catch (FileNotFoundException e1) {
-			System.err.println("CAMPAIGN NOT FOUND: " + campaignFile);
-			e1.printStackTrace();
-		}
-		if (message.size() != 0) {
-			BufferedImage transitionImage = new BufferedImage(
-					GameConstants.FRAME_SIZE_X, GameConstants.FRAME_SIZE_Y,
-					BufferedImage.TYPE_INT_ARGB);
-			Image tmp = new ImageIcon(GameConstants.MENU_IMAGES_DIR
-					+ "MultiplayerMenuBG.png").getImage();
-			Graphics2D g2d = transitionImage.createGraphics();
-			g2d.drawImage(tmp, 0, 0, transitionImage.getWidth(),
-					transitionImage.getHeight(), null);
-
-			g2d.setFont(unitFont);
-			g2d.setColor(Color.white);
-			/*
-			 * center text message
-			 */
-			final int lineDistance = 30;
-			for (int i = 0; i < message.size(); i++) {
-				g2d.drawString(message.get(i),
-						(int) (GameConstants.FRAME_SIZE_X / 6),
-						(int) (GameConstants.FRAME_SIZE_Y / 2) + (i - 1)
-								* lineDistance);
-			}
-			g2d.drawString((" PRESS ENTER"),
-					(int) (GameConstants.FRAME_SIZE_X / 6),
-					(int) (GameConstants.FRAME_SIZE_Y / 2) + message.size()
-							* lineDistance);
-
-			TransitionUnit transUnit = new TransitionUnit(
-					UnitState.LEVEL_MANAGER_UNIT, transitionImage);
-			UnitNavigator.getNavigator().addGameUnit(transUnit,
-					UnitState.TEMPORARY_UNIT);
-			UnitNavigator.getNavigator().set(UnitState.TEMPORARY_UNIT);
-		} else {
-			/*
-			 * do not use TransitionUnit, proceed to LevelManagerUnit
-			 */
-			UnitNavigator.getNavigator().set(UnitState.LEVEL_MANAGER_UNIT);
-		}
 	}
 }

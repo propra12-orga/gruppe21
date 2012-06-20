@@ -6,8 +6,6 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 
 import javax.swing.ImageIcon;
 
@@ -161,19 +159,9 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 
 	@Override
 	public void initComponent() {
-		try {
-			campaign = Campaign.readCampaignFromFile(campaignFile);
-			worldMapUnit = new WorldMapUnit(campaign.getWorldMap());
 
-		} catch (FileNotFoundException e) {
-			System.err.println("Error loading Campaign: Campaign not found!");
-			e.printStackTrace();
-			terminateLevelManager();
-		} catch (IOException e) {
-			System.err.println("Error loading Campaign: IOException!");
-			e.printStackTrace();
-			terminateLevelManager();
-		}
+		campaign = new CampaignReader(campaignFile).readCampaignFromFile();
+		worldMapUnit = new WorldMapUnit(campaign.getWorldMap());
 	}
 
 	/**
