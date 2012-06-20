@@ -46,12 +46,11 @@ public class CampaignReader {
 		List<Element> maps = campaignRoot.getChild("maps").getChildren();
 
 		for (Element el : maps) {
-			String mapIntro = el.getChildText("intro");
+			String[] mapIntro = el.getChildText("intro").split("#");
 			String mapName = el.getChildText("name");
 			int index = Integer.parseInt(el.getChildText("sequence"));
-			levels.get(index)
-					.add(new Campaign.StoryMapContainer(mapName, mapIntro
-							.split("$")));
+			levels.get(index).add(
+					new Campaign.StoryMapContainer(mapName, mapIntro));
 		}
 
 		Element worldMapElement = campaignRoot.getChild("worldmap");

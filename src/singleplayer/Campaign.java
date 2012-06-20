@@ -23,6 +23,10 @@ public class Campaign {
 	 */
 	private static final String WORLDMAP_INDICATOR = "wm";
 
+	/**
+	 * An ArrayList of levels; each level being another ArrayList of
+	 * StoryMapContainers
+	 */
 	private ArrayList<ArrayList<StoryMapContainer>> levels;
 
 	/**
@@ -61,9 +65,29 @@ public class Campaign {
 		}
 	}
 
+	/**
+	 * Returns map object that is being referred to by the world map counters.
+	 * 
+	 * @return current map
+	 */
 	public Map getCurrentMap() {
 		return new Map(levels.get(worldMap.getSelectedLevel()).get(mapCounter)
 				.getMapName());
+	}
+
+	/**
+	 * Returns textual introduction to current map if there is one and if it has
+	 * not yet been displayed. Returns null otherwise.
+	 * 
+	 * @return textual introduction to current map
+	 */
+	public String[] getIntroToCurrentMap() {
+		StoryMapContainer currentMap = levels.get(worldMap.getSelectedLevel())
+				.get(mapCounter);
+		if (!currentMap.introWasShown()) {
+			return currentMap.getIntroMessage();
+		}
+		return null;
 	}
 
 	public WorldMap getWorldMap() {
@@ -111,13 +135,23 @@ public class Campaign {
 		return campaignFinished;
 	}
 
+	/**
+	 * Simple Container class storing a map name and an introductory text
+	 * message. Does also contain a boolean variable that may be used as a flag
+	 * to determine if the intro has been displayed yet.
+	 * 
+	 * @author tohei
+	 * 
+	 */
 	public static class StoryMapContainer {
 		private String mapName;
 		private String[] introMessage;
+		private boolean introShown;
 
 		public StoryMapContainer(String mapName, String[] introMessage) {
 			this.mapName = mapName;
 			this.introMessage = introMessage;
+			introShown = false;
 		}
 
 		public String getMapName() {
@@ -126,6 +160,14 @@ public class Campaign {
 
 		public String[] getIntroMessage() {
 			return introMessage;
+		}
+
+		public void setIntroShown(boolean introShown) {
+			this.introShown = introShown;
+		}
+
+		public boolean introWasShown() {
+			return introShown;
 		}
 	}
 }

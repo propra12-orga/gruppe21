@@ -1,10 +1,13 @@
 package singleplayer;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
@@ -162,6 +165,17 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 
 		campaign = new CampaignReader(campaignFile).readCampaignFromFile();
 		worldMapUnit = new WorldMapUnit(campaign.getWorldMap());
+
+		/*
+		 * load font
+		 */
+		try {
+			unitFont = loadFont("font1.TTF").deriveFont(20f);
+		} catch (Exception e) {
+			System.err.println("ERROR LOADING FONT: font1.TTF");
+			e.printStackTrace();
+			unitFont = new Font("serif", Font.PLAIN, 24);
+		}
 	}
 
 	/**
@@ -238,7 +252,8 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 
 	/**
 	 * Used to request a new map object from the campaign and to update the
-	 * mapCanvas to its size.
+	 * mapCanvas to its size. Does also create an introduction to a particular
+	 * map if necessary.
 	 */
 	private void changeCurrentMap() {
 		currentMap = campaign.getCurrentMap();
@@ -250,6 +265,16 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 		player.direction.setLeft(false);
 		player.direction.setRight(false);
 		initOffset();
+		String[] intro = campaign.getIntroToCurrentMap();
+		if (campaign.getIntroToCurrentMap() != null) {
+			BufferedImage message = loadMapIntro(GameConstants.MENU_IMAGES_DIR
+					+ "MultiplayerMenuBG.png", intro);
+			TransitionUnit trans = new TransitionUnit(
+					UnitState.LEVEL_MANAGER_UNIT, message);
+			UnitNavigator.getNavigator().addGameUnit(trans,
+					UnitState.TEMPORARY_UNIT);
+			UnitNavigator.getNavigator().set(UnitState.TEMPORARY_UNIT);
+		}
 	}
 
 	/**
@@ -352,4 +377,44 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 		return transitionImage;
 	}
 
+	/**
+	 * Creates a BufferedImage to be passed to a TransitionUnit. The image will
+	 * consist of a background image (filename) and a text message.
+	 * 
+	 * @param filename
+	 *            filename of the background image
+	 * @param intro
+	 *            a string array, with each cell representing a line of text
+	 * @return BufferedImage that shall be displayed by a TransitionUnit
+	 */
+	private BufferedImage loadMapIntro(String filename, String[] intro) {
+		Image tmp = new ImageIcon(filename).getImage();
+		BufferedImage transitionImage = new BufferedImage(
+				GameConstants.FRAME_SIZE_X, GameConstants.FRAME_SIZE_Y,
+				BufferedImage.TYPE_INT_ARGB);
+		Graphics2D g2d = transitionImage.createGraphics();
+		g2d.drawImage(tmp, 0, 0, transitionImage.getWidth(),
+				transitionImage.getHeight(), null);
+
+		g2d.setFont(unitFont);
+		Rectangle2D maxLineLength = new Rectangle(0, 0);
+		for (String line : intro) {
+			Rectangle2D rect = unitFont.getStringBounds(line,
+					g2d.getFontRenderContext());
+			if (rect.getWidth() > maxLineLength.getWidth()) {
+				maxLineLength = rect;
+			}
+		}
+
+		for (int i = 0; i < intro.length; i++) {
+			g2d.drawString(intro[i],
+					(int) (GameConstants.FRAME_SIZE_X - maxLineLength
+							.getWidth()) / 4,
+					(int) (((GameConstants.FRAME_SIZE_Y - maxLineLength
+							.getHeight()) / 2) + maxLineLength.getHeight() * 2
+							* i));
+
+		}
+		return transitionImage;
+	}
 }
