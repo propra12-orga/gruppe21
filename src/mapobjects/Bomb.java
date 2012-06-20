@@ -156,7 +156,7 @@ public class Bomb extends MapObject {
 		} else if (collides()) {
 			cm.setPaint(Color.gray);
 		}
-		cm.fillRect(posX, posY, 50, 50);
+		cm.fillRect(posX + 5, posY + 5, 40, 40);
 
 		if (exploding) {
 
@@ -173,7 +173,7 @@ public class Bomb extends MapObject {
 									posX, posY - (j + 1) * 50, null);
 						}
 						cm.setPaint(Color.orange);
-						cm.fillRect(posX, posY - (j + 1) * 50, 50, 50);
+						cm.fillRect(posX + 5, posY - (j + 1) * 50 + 5, 40, 40);
 					}
 					if (i == 1) {
 						if (j == arms[i] - 1) {
@@ -186,7 +186,7 @@ public class Bomb extends MapObject {
 									posX + (j + 1) * 50, posY, null);
 						}
 						cm.setPaint(Color.orange);
-						cm.fillRect(posX + (j + 1) * 50, posY, 50, 50);
+						cm.fillRect(posX + (j + 1) * 50 + 5, posY + 5, 40, 40);
 					}
 					if (i == 2) {
 						if (j == arms[i] - 1) {
@@ -199,7 +199,7 @@ public class Bomb extends MapObject {
 									posX, posY + (j + 1) * 50, null);
 						}
 						cm.setPaint(Color.orange);
-						cm.fillRect(posX, posY + (j + 1) * 50, 50, 50);
+						cm.fillRect(posX + 5, posY + (j + 1) * 50 + 5, 40, 40);
 					}
 					if (i == 3) {
 						if (j == arms[i] - 1) {
@@ -212,7 +212,7 @@ public class Bomb extends MapObject {
 									posX - (j + 1) * 50, posY, null);
 						}
 						cm.setPaint(Color.orange);
-						cm.fillRect(posX - (j + 1) * 50, posY, 50, 50);
+						cm.fillRect(posX - (j + 1) * 50 + 5, posY + 5, 40, 40);
 					}
 
 				}

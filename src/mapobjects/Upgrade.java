@@ -52,10 +52,10 @@ public class Upgrade extends MapObject {
 		if (!destroyed) {
 			g2d.drawImage(animation.getCurrentImage(), posX, posY, null);
 			cmg.setPaint(color);
-			cmg.fillRect(posX, posY, 50, 50);
+			cmg.fillRect(posX + 10, posY + 10, 30, 30);
 		} else {
 			cmg.setPaint(Color.white);
-			cmg.fillRect(posX, posY, 50, 50);
+			cmg.fillRect(posX + 10, posY + 10, 30, 30);
 		}
 	}
 }

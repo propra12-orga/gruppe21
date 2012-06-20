@@ -327,7 +327,7 @@ public class Player extends MoveableObject {
 		}
 		if (simpleHasColl(posX, posY, cm, Color.cyan) && !playerSpeed_used) {
 			if (speed < 5) {
-				speed++; // speed probleme wegen collision beachten
+				speed++;
 				playerSpeed_used = true;
 				System.out.printf("Speed: %d\n", speed);
 			}

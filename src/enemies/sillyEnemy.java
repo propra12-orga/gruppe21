@@ -82,7 +82,7 @@ public class sillyEnemy extends Enemy {
 	public void draw(Graphics2D g2d, ImageLoader gr, Graphics2D cm) {
 		g2d.drawImage(animation.getCurrentImage(), posX, posY, null);
 		cm.setPaint(Color.red);
-		cm.fillRect(posX, posY, 50, 50);
+		cm.fillRect(posX + 5, posY + 5, 40, 40);
 	}
 
 	@Override
