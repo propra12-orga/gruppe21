@@ -5,6 +5,7 @@ import imageloader.ImageLoader;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.util.Vector;
 
 /**
  * Player object is the player controlled by the player
@@ -20,7 +21,7 @@ public class Player extends MoveableObject {
 	/**
 	 * maximal number of bombs that the player could use
 	 */
-	private int maxbombs = 3;
+	private int maxbombs = 1;
 	/**
 	 * number of active bombs on the playground
 	 */
@@ -28,11 +29,24 @@ public class Player extends MoveableObject {
 	/**
 	 * radius of the bomb
 	 */
-	private int bombradius = 2;
+	private int bombradius = 1;
 	/**
 	 * set if player is alive
 	 */
 	private boolean alive;
+	/**
+	 * Set true if upgrade bomb remote has been collected.
+	 */
+	private boolean bombRemote = false;
+
+	private boolean immortal = false;
+	/**
+	 * List of the actual planted bombs
+	 */
+	private Vector<Bomb> remoteBombs = new Vector<Bomb>();
+
+	private boolean maxBombs_used = false, bombRadius_used = false,
+			playerSpeed_used = false;
 
 	/**
 	 * constructor
@@ -100,7 +114,8 @@ public class Player extends MoveableObject {
 	}
 
 	/**
-	 * adds bomb to the mapobject
+	 * Adds bomb to the mapObjects. If Upgrade bombRemote has been collected the
+	 * bomb object will be added to a list of actual planted bombs.
 	 * 
 	 * @param cm
 	 *            collision map
@@ -112,7 +127,12 @@ public class Player extends MoveableObject {
 			bomb.setMap(getMap());
 			map.getMapObjects().get(1).add(bomb);
 			addBomb();
-			bomb.activateBomb();
+
+			if (!bombRemote) {
+				bomb.activateBomb();
+			} else {
+				remoteBombs.add(bomb);
+			}
 		}
 	}
 
@@ -133,11 +153,19 @@ public class Player extends MoveableObject {
 				if (test.equals(Color.yellow)) {
 					map.finishMap();
 				} else if (test.equals(Color.orange)) {
-					this.die();
-					map.finishMap();
+					if (!immortal) {
+						this.die();
+						map.finishMap();
+					} else {
+						return true;
+					}
 				} else if (test.equals(Color.red)) {
-					this.die();
-					map.finishMap();
+					if (!immortal) {
+						this.die();
+						map.finishMap();
+					} else {
+						return true;
+					}
 				} else if (test.equals(Color.black) || test.equals(Color.gray)) {
 					if (i < t && j < t) {
 						upleft = true;
@@ -262,8 +290,72 @@ public class Player extends MoveableObject {
 			this.die();
 			map.finishMap();
 		}
+		checkUpgradeCollision();
 		animation.animate();
 		move();
+	}
+
+	/**
+	 * Causes all planted bombs to explode. Method is called by pressing a key,
+	 * but only if the Upgrade bombRemote has been collected.
+	 */
+	public void bombExplode() {
+		for (Bomb bomb : remoteBombs) {
+			bomb.explode(map.getCollisionMap());
+		}
+	}
+
+	/**
+	 * Checks for collision with Upgrades which are on the map. Changes the
+	 * corresponding attribute or activates the special effect if there is a
+	 * collision.
+	 */
+	private void checkUpgradeCollision() {
+		if (simpleHasColl(posX, posY, map.getCollisionMap(), Color.pink)
+				&& !maxBombs_used) {
+			if (maxbombs < 4) {
+				maxbombs++;
+				maxBombs_used = true;
+				System.out.printf("maxbombs: %d", maxbombs);
+			}
+		}
+		if (simpleHasColl(posX, posY, map.getCollisionMap(), Color.blue)
+				&& !bombRadius_used) {
+			if (bombradius < 3) {
+				bombradius++;
+				bombRadius_used = true;
+				System.out.printf("Radius: %d", bombradius);
+			}
+		}
+		if (simpleHasColl(posX, posY, map.getCollisionMap(), Color.cyan)
+				&& !playerSpeed_used) {
+			if (speed < 5) {
+				speed++; // speed probleme wegen collision beachten
+				playerSpeed_used = true;
+				System.out.printf("Speed: %d", speed);
+			}
+		}
+		if (simpleHasColl(posX, posY, map.getCollisionMap(), Color.magenta)) {
+			bombRemote = true;
+		}
+
+		if (maxBombs_used) {
+			if (!simpleHasColl(posX, posY, map.getCollisionMap(), Color.pink)) {
+				maxBombs_used = false;
+			}
+		}
+
+		if (bombRadius_used) {
+			if (!simpleHasColl(posX, posY, map.getCollisionMap(), Color.blue)) {
+				bombRadius_used = false;
+			}
+		}
+
+		if (playerSpeed_used) {
+			if (!simpleHasColl(posX, posY, map.getCollisionMap(), Color.cyan)) {
+				playerSpeed_used = false;
+			}
+		}
 	}
 
 	@Override

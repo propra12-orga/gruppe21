@@ -131,6 +131,10 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 			if (key == KeyEvent.VK_SPACE) {
 				player.plantBomb(currentMap.getCollisionMap());
 			}
+
+			if (key == KeyEvent.VK_C) {
+				player.bombExplode();
+			}
 		}
 	}
 

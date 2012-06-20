@@ -126,12 +126,13 @@ public class Map {
 							if (player.getID() == ((Bomb) mapObjects.get(i)
 									.get(j)).getPlayerID())
 								player.removeBomb();
-						}
+						}// TODO Auto-generated constructor stub
 					}
 					if (mapObjects.get(i).get(j) instanceof Enemy) {
 						this.decreaseEnemies();
 					}
 					mapObjects.get(i).remove(j);
+
 				} else {
 					mapObjects.get(i).get(j).update(collisionMap);
 				}
