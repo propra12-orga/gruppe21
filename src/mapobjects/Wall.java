@@ -80,8 +80,8 @@ public class Wall extends MapObject {
 	 * it.
 	 */
 	private void lookForUpgrades() {
-		int i = (int) (Math.random() * 2 + 1);
-		// int i = 1;
+		// int i = (int) (Math.random() * 2 + 1);
+		int i = 1;
 		if (i == 1) {
 			Random rnd = new Random();
 			ArrayList<Color> list = new ArrayList<Color>();

@@ -1,6 +1,5 @@
 package mapobjects;
 
-import imageloader.Animation;
 import imageloader.ImageLoader;
 
 import java.awt.Color;
@@ -15,7 +14,6 @@ public class Upgrade extends MapObject {
 			ImageLoader gr, Color col) {
 		super(x, y, v, d, c, p, gr);
 		color = col;
-		animation = new Animation(p, gr);
 		initAnimation(col);
 		colorCache = color;
 	}
@@ -34,7 +32,7 @@ public class Upgrade extends MapObject {
 		} else if (c.equals(Color.lightGray)) {
 			upgradeAnimation = "Bulletproof";
 		} else {
-			upgradeAnimation = "Bulletproof";
+			upgradeAnimation = "BombPlus";
 		}
 
 		animation.start(upgradeAnimation);
@@ -46,21 +44,18 @@ public class Upgrade extends MapObject {
 			animation.animate();
 		} else {
 			setDestroyed(true);
-			setVisible(false);
-			color = Color.white;
 		}
 	}
 
 	@Override
 	public void draw(Graphics2D g2d, ImageLoader gr, Graphics2D cmg) {
-		cmg.setPaint(color);
-
-		if (destroyed) {
-			color = Color.white;
-			System.out.println("draw white");
+		if (!destroyed) {
+			g2d.drawImage(animation.getCurrentImage(), posX, posY, null);
+			cmg.setPaint(color);
+			cmg.fillRect(posX, posY, 50, 50);
+		} else {
+			cmg.setPaint(Color.white);
+			cmg.fillRect(posX, posY, 50, 50);
 		}
-		g2d.drawImage(animation.getCurrentImage(), posX, posY, null);
-		cmg.fillRect(posX, posY, 50, 50);
-
 	}
 }

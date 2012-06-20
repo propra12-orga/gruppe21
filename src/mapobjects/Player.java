@@ -290,9 +290,9 @@ public class Player extends MoveableObject {
 			this.die();
 			map.finishMap();
 		}
-		checkUpgradeCollision();
 		animation.animate();
 		move();
+		checkUpgradeCollision(cm);
 	}
 
 	/**
@@ -310,49 +310,46 @@ public class Player extends MoveableObject {
 	 * corresponding attribute or activates the special effect if there is a
 	 * collision.
 	 */
-	private void checkUpgradeCollision() {
-		if (simpleHasColl(posX, posY, map.getCollisionMap(), Color.pink)
-				&& !maxBombs_used) {
+	private void checkUpgradeCollision(BufferedImage cm) {
+		if (simpleHasColl(posX, posY, cm, Color.pink) && !maxBombs_used) {
 			if (maxbombs < 4) {
 				maxbombs++;
 				maxBombs_used = true;
-				System.out.printf("maxbombs: %d", maxbombs);
+				System.out.printf("maxbombs: %d\n", maxbombs);
 			}
 		}
-		if (simpleHasColl(posX, posY, map.getCollisionMap(), Color.blue)
-				&& !bombRadius_used) {
+		if (simpleHasColl(posX, posY, cm, Color.blue) && !bombRadius_used) {
 			if (bombradius < 3) {
 				bombradius++;
 				bombRadius_used = true;
-				System.out.printf("Radius: %d", bombradius);
+				System.out.printf("Radius: %d\n", bombradius);
 			}
 		}
-		if (simpleHasColl(posX, posY, map.getCollisionMap(), Color.cyan)
-				&& !playerSpeed_used) {
+		if (simpleHasColl(posX, posY, cm, Color.cyan) && !playerSpeed_used) {
 			if (speed < 5) {
 				speed++; // speed probleme wegen collision beachten
 				playerSpeed_used = true;
-				System.out.printf("Speed: %d", speed);
+				System.out.printf("Speed: %d\n", speed);
 			}
 		}
-		if (simpleHasColl(posX, posY, map.getCollisionMap(), Color.magenta)) {
+		if (simpleHasColl(posX, posY, cm, Color.magenta)) {
 			bombRemote = true;
 		}
 
 		if (maxBombs_used) {
-			if (!simpleHasColl(posX, posY, map.getCollisionMap(), Color.pink)) {
+			if (!simpleHasColl(posX, posY, cm, Color.pink)) {
 				maxBombs_used = false;
 			}
 		}
 
 		if (bombRadius_used) {
-			if (!simpleHasColl(posX, posY, map.getCollisionMap(), Color.blue)) {
+			if (!simpleHasColl(posX, posY, cm, Color.blue)) {
 				bombRadius_used = false;
 			}
 		}
 
 		if (playerSpeed_used) {
-			if (!simpleHasColl(posX, posY, map.getCollisionMap(), Color.cyan)) {
+			if (!simpleHasColl(posX, posY, cm, Color.cyan)) {
 				playerSpeed_used = false;
 			}
 		}
