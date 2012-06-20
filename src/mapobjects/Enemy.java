@@ -156,7 +156,7 @@ public abstract class Enemy extends MoveableObject {
 			Color upgradeColor = list.get(rnd.nextInt(list.size()));
 
 			Upgrade upgrade = new Upgrade(posX, posY, true, true, true,
-					"simplebomb", map.getGraphics(), upgradeColor);
+					"upgrades", map.getGraphics(), upgradeColor);
 			upgrade.setMap(getMap());
 			map.getMapObjects().get(1).add(upgrade);
 		}
