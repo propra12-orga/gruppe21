@@ -294,6 +294,7 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 			mapOffsetX = (GameConstants.FRAME_SIZE_X - currentMap.getWidth()) / 2;
 			mapXSmaller = true;
 		} else {
+			mapXSmaller = false;
 			if (player.getPosX() - GameConstants.TILE_SIZE >= GameConstants.FRAME_SIZE_X) {
 				if (player.getPosX() >= currentMap.getWidth()
 						- GameConstants.FRAME_SIZE_X) {
@@ -316,6 +317,7 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 																					// setzen
 			mapYSmaller = true;
 		} else {
+			mapYSmaller = false;
 			if (player.getPosY() - GameConstants.TILE_SIZE >= GameConstants.FRAME_SIZE_Y) {
 				if (player.getPosY() >= currentMap.getWidth()
 						- GameConstants.FRAME_SIZE_Y) {
