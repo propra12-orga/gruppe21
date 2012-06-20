@@ -84,7 +84,9 @@ public class Campaign {
 	public String[] getIntroToCurrentMap() {
 		StoryMapContainer currentMap = levels.get(worldMap.getSelectedLevel())
 				.get(mapCounter);
+
 		if (!currentMap.introWasShown()) {
+			currentMap.setIntroShown(true);
 			return currentMap.getIntroMessage();
 		}
 		return null;

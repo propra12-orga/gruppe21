@@ -206,15 +206,14 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 					if (!campaign.updateCounters()) {
 						if (campaign.isFinished()) {
 							/*
-							 * campaign finished, just show a win message
+							 * campaign finished, show a win message and proceed
+							 * to main menu
 							 */
 							TransitionUnit trans = new TransitionUnit(
 									UnitState.BASE_MENU_UNIT, message);
 							UnitNavigator.getNavigator().removeGameUnit(
 									UnitState.LEVEL_MANAGER_UNIT);
 							UnitNavigator.getNavigator().addGameUnit(trans,
-									UnitState.TEMPORARY_UNIT);
-							UnitNavigator.getNavigator().set(
 									UnitState.TEMPORARY_UNIT);
 						} else {
 							/*
@@ -225,10 +224,17 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 									worldMapUnit);
 							UnitNavigator.getNavigator().addGameUnit(trans,
 									UnitState.TEMPORARY_UNIT);
-							UnitNavigator.getNavigator().set(
-									UnitState.TEMPORARY_UNIT);
 						}
+					} else {
+						/*
+						 * just show a win message
+						 */
+						TransitionUnit trans = new TransitionUnit(
+								UnitState.LEVEL_MANAGER_UNIT, message);
+						UnitNavigator.getNavigator().addGameUnit(trans,
+								UnitState.TEMPORARY_UNIT);
 					}
+					UnitNavigator.getNavigator().set(UnitState.TEMPORARY_UNIT);
 				} else {
 					/*
 					 * player died, show lose message
@@ -265,8 +271,9 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 		player.direction.setLeft(false);
 		player.direction.setRight(false);
 		initOffset();
+
 		String[] intro = campaign.getIntroToCurrentMap();
-		if (campaign.getIntroToCurrentMap() != null) {
+		if (intro != null) {
 			BufferedImage message = loadMapIntro(GameConstants.MENU_IMAGES_DIR
 					+ "MultiplayerMenuBG.png", intro);
 			TransitionUnit trans = new TransitionUnit(
@@ -298,6 +305,7 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 		}
 
 		if (currentMap.getHeight() < GameConstants.FRAME_SIZE_Y) {
+
 			mapOffsetY = (GameConstants.FRAME_SIZE_Y - currentMap.getHeight()) / 2; // wenn
 																					// Map
 																					// kleiner

@@ -38,6 +38,7 @@ public class Map {
 
 	BufferedImage collisionMap;
 	MapReader mr;
+	private boolean exitActivated = false;
 
 	/**
 	 * constructor
@@ -110,8 +111,9 @@ public class Map {
 	 * destroyed objects/enemies
 	 */
 	public void update() {
-		if (enemies <= 0 && exit != null) {
+		if (!exitActivated && enemies <= 0 && exit != null) {
 			this.exit.activate();
+			exitActivated = true;
 		}
 		for (int i = 0; i < drawLevels; i++) {
 			for (int j = 0; j < mapObjects.get(i).size(); j++) {

@@ -1128,19 +1128,19 @@
 				<posx>1400</posx>
 				<posy>200</posy>
 			</tile>
-			<tile type="exit" animated="false">
+			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>true</collision>
 				<destroyable>false</destroyable>
-				<image rotation="0">exit.png</image>
+				<image rotation="0">Boden1.png</image>
 				<posx>0</posx>
 				<posy>300</posy>
 			</tile>
-			<tile type="exit" animated="false">
+			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
 				<destroyable>false</destroyable>
-				<image rotation="0">exit.png</image>
+				<image rotation="0">Boden1.png</image>
 				<posx>1450</posx>
 				<posy>300</posy>
 			</tile>
@@ -1690,6 +1690,14 @@
 			</tile>
 		</level>
 		<level>
+			<tile type="exit" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">exit.png</image>
+				<posx>1450</posx>
+				<posy>300</posy>
+			</tile>
 			<tile type="wall" animated="false">
 				<visible>true</visible>
 				<collision>true</collision>
