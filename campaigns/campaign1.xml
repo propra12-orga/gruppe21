@@ -2,7 +2,7 @@
 <campaign>
 
 	<header>
-		<numOfLevels>2</numOfLevels>
+		<numOfLevels>3</numOfLevels>
 	</header>
 	
 	<maps>
@@ -54,12 +54,12 @@
 			explosives, our hero starts on a dangerous journey into the unknown ...#
 			</intro>
 			<name>long</name>
-			<sequence>0</sequence>
+			<sequence>1</sequence>
 		</map>
 		<map>
 			<intro></intro>
 			<name>testmap</name>
-			<sequence>1</sequence>
+			<sequence>2</sequence>
 		</map>
 		
 	</maps>
@@ -70,6 +70,10 @@
 		<name>campaign1worldmap</name>
 		
 		<coordinates>
+			<coord>
+				<cx>10</cx>
+				<cy>12</cy>
+			</coord>
 			<coord>
 				<cx>11</cx>
 				<cy>10</cy>

@@ -198,7 +198,7 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 
 				if (currentMap.playerSucced()) {
 
-					BufferedImage message = createTransitionMessage("graphics/gui/YouWin.png");
+					BufferedImage message = createTransitionMessage("graphics/gui/You Win.png");
 					/*
 					 * update campaign counters to see if there's a level
 					 * remaining
@@ -239,7 +239,7 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 					/*
 					 * player died, show lose message
 					 */
-					BufferedImage message = createTransitionMessage("graphics/gui/YouLose.png");
+					BufferedImage message = createTransitionMessage("graphics/gui/You Lose.png");
 					TransitionUnit trans = new TransitionUnit(
 							UnitState.LEVEL_MANAGER_UNIT, message);
 					UnitNavigator.getNavigator().addGameUnit(trans,
@@ -381,9 +381,11 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 		Graphics2D g2d = transitionImage.createGraphics();
 		g2d.setColor(Color.black);
 		g2d.drawImage(mapCanvas, mapOffsetX, mapOffsetY, null);
-		g2d.drawImage(tmp, 0, transitionImage.getHeight() / 4,
-				transitionImage.getWidth(), transitionImage.getHeight() / 2,
-				null);
+
+		g2d.drawImage(tmp,
+				(transitionImage.getWidth() - tmp.getWidth(null)) / 2,
+				(transitionImage.getHeight() - tmp.getHeight(null)) / 2,
+				tmp.getWidth(null), tmp.getHeight(null), null);
 		return transitionImage;
 	}
 

@@ -1,10 +1,12 @@
 package singleplayer;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
 import main.GameConstants;
@@ -38,7 +40,12 @@ public class WorldMapUnit extends GraphicalGameUnit {
 	 */
 	public WorldMapUnit(WorldMap worldMap) {
 		this.worldMap = worldMap;
+		initComponent();
 	}
+
+	private String[] infoMsg = {
+			"Use Up and Down Keys to switch the selected level",
+			"Press Enter to play!" };
 
 	@Override
 	public void drawComponent(Graphics g) {
@@ -54,6 +61,21 @@ public class WorldMapUnit extends GraphicalGameUnit {
 				(GameConstants.FRAME_SIZE_X - mapCanvas.getWidth()) / 2,
 				(GameConstants.FRAME_SIZE_Y - mapCanvas.getHeight()) / 2,
 				mapCanvas.getWidth(), mapCanvas.getHeight(), null);
+
+		Graphics2D g2d = (Graphics2D) g;
+		g2d.setFont(unitFont);
+		for (int i = 0; i < infoMsg.length; i++) {
+			Rectangle2D rect = unitFont.getStringBounds(infoMsg[i],
+					g2d.getFontRenderContext());
+			g2d.drawString(infoMsg[i],
+					(int) (GameConstants.FRAME_SIZE_X - rect.getWidth()) / 2,
+					(int) (((GameConstants.FRAME_SIZE_Y - rect.getHeight()
+							* infoMsg.length) / 4) + rect.getHeight() * 2 * i));
+		}
+
+		for (int i = 0; i < infoMsg.length; i++) {
+
+		}
 	}
 
 	@Override
@@ -62,14 +84,14 @@ public class WorldMapUnit extends GraphicalGameUnit {
 		 * User input will change the selectedLevel variable of the worldMap.
 		 */
 		int key = e.getKeyCode();
-		if (key == KeyEvent.VK_LEFT) {
+		if (key == KeyEvent.VK_UP) {
 			if (worldMap.getSelectedLevel() + 1 <= worldMap
 					.getMaxLevelAccessible()) {
 				worldMap.setSelectedLevel(worldMap.getSelectedLevel() + 1);
 				updatePlayerPosition();
 			}
 		}
-		if (key == KeyEvent.VK_RIGHT) {
+		if (key == KeyEvent.VK_DOWN) {
 			if (worldMap.getSelectedLevel() - 1 >= 0) {
 				worldMap.setSelectedLevel(worldMap.getSelectedLevel() - 1);
 				updatePlayerPosition();
@@ -101,6 +123,16 @@ public class WorldMapUnit extends GraphicalGameUnit {
 
 	@Override
 	public void initComponent() {
+		/*
+		 * load font
+		 */
+		try {
+			unitFont = loadFont("font1.TTF").deriveFont(25f);
+		} catch (Exception e) {
+			System.err.println("ERROR LOADING FONT: font1.TTF");
+			e.printStackTrace();
+			unitFont = new Font("serif", Font.PLAIN, 24);
+		}
 	}
 
 	@Override

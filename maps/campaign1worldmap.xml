@@ -2625,6 +2625,14 @@
 			    <visible>true</visible>
 				<collision>true</collision>
 				<destroyable>false</destroyable>
+			 	<image rotation="0">battleship.png</image>
+				<posx>450</posx>
+				<posy>550</posy>
+			</tile>
+			<tile type="wall" animated="false">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
 			 	<image rotation="0">hut.png</image>
 				<posx>350</posx>
 				<posy>400</posy>
@@ -2826,8 +2834,8 @@
 				<collision>true</collision>
 				<destroyable>false</destroyable>
 			 	<animationset>player1</animationset>
-				<posx>550</posx>
-				<posy>500</posy>
+				<posx>500</posx>
+				<posy>600</posy>
 			</character>			
 		</level>
 		<level></level>
