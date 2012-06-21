@@ -4,6 +4,7 @@
 	    <mapname>MP Wood Wars</mapname>
 		<sizex>1000</sizex>
 		<sizey>750</sizey>
+		<maxUpgrades>100</maxUpgrades>
 	</header>
 	<mapobjects>
 		<level>
@@ -4178,6 +4179,7 @@
 	</mapobjects>	
 
 	<items>
+		<animationset>upgrades</animationset>
 		<animationset>simplebomb</animationset>
 	</items>
 </map>

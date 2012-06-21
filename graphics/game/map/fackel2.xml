@@ -1,0 +1,3 @@
+<animationset  default="fackeldefault2.png">
+<animation frames="2" stretch="50" name="animation">fackel2.png</animation>
+</animationset>

@@ -5,6 +5,8 @@ import imageloader.ImageLoader;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * <b>public class Enemy extends MoveableObject</b>
@@ -16,27 +18,22 @@ import java.awt.image.BufferedImage;
  * 
  * @author masto104
  */
-public class Enemy extends MoveableObject {
-
-	/**
-	 * True, if Enemy drops some item after dying.
-	 */
-	private boolean hiddenObject = false;
+public abstract class Enemy extends MoveableObject {
 
 	/**
 	 * Direction variable.
 	 */
-	private boolean UP, DOWN, RIGHT, LEFT;
+	public boolean UP, DOWN, RIGHT, LEFT;
 
 	/**
-	 * It set to true when Enemy gets struck by a bomb.
+	 * Is set to true when Enemy gets struck by a bomb.
 	 */
-	private boolean dying;
+	public boolean dying;
 
 	/**
 	 * For the dying animation timer.
 	 */
-	private long beforeTime, dyingTime = 800000000;
+	public long beforeTime, dyingTime = 800000000;
 
 	/**
 	 * Enemy constructor.
@@ -67,11 +64,22 @@ public class Enemy extends MoveableObject {
 	}
 
 	/**
+	 * Destroy or revive a MapObject. Call lookForUpgrades().
+	 * 
+	 * @param destroyed
+	 *            new MapObject status.
+	 */
+	public void setDestroyed(boolean destroyed) {
+		this.destroyed = destroyed;
+		lookForUpgrades();
+	}
+
+	/**
 	 * <b>public void stop()</b>
 	 * <p>
 	 * Sets the four moving variables to false.
 	 */
-	private void stop() {
+	public void stop() {
 		UP = false;
 		DOWN = false;
 		LEFT = false;
@@ -85,46 +93,7 @@ public class Enemy extends MoveableObject {
 	 * the relevant direction. If ability is given the Enemy object will be
 	 * moved for a fixed number of pixels, if not findPath() will be called.
 	 */
-	@Override
-	public void move() {
-		// TODO also move hidden Object
-		if (UP) {
-			if (hasObjectCollision(posX, posY - speed, map.getCollisionMap(),
-					"UP")) {
-				findPath();
-
-			} else {
-				posY -= speed;
-			}
-		}
-
-		if (DOWN) {
-			if (hasObjectCollision(posX, posY + speed, map.getCollisionMap(),
-					"DOWN")) {
-				findPath();
-			} else {
-				posY += speed;
-			}
-		}
-
-		if (LEFT) {
-			if (hasObjectCollision(posX - speed, posY, map.getCollisionMap(),
-					"LEFT")) {
-				findPath();
-			} else {
-				posX -= speed;
-			}
-		}
-
-		if (RIGHT) {
-			if (hasObjectCollision(posX + speed, posY, map.getCollisionMap(),
-					"RIGHT")) {
-				findPath();
-			} else {
-				posX += speed;
-			}
-		}
-	}
+	public abstract void move();
 
 	/**
 	 * <b>public void findPath()</b>
@@ -133,57 +102,64 @@ public class Enemy extends MoveableObject {
 	 * moving variables is set to true. Additionally the animation which matches
 	 * to the moving direction is chosen.
 	 */
-	private void findPath() {
+	public void findPath(String up, String down, String left, String right) {
 		int choice = (int) (Math.random() * 4 + 1);
 		stop();
 
 		switch (choice) {
 		case 1:
 			UP = true;
-			animation.change("enemyUp");
+			animation.change(up);
 			break;
 		case 2:
 			DOWN = true;
-			animation.change("enemyDown");
+			animation.change(down);
 			break;
 		case 3:
 			LEFT = true;
-			animation.change("enemyLeft");
+			animation.change(left);
 			break;
 		case 4:
 			RIGHT = true;
-			animation.change("enemyRight");
+			animation.change(right);
 			break;
 		default:
-			findPath();
+			findPath(up, down, left, right);
 		}
 	}
 
 	@Override
-	public void draw(Graphics2D g2d, ImageLoader gr, Graphics2D cm) {
-		g2d.drawImage(animation.getCurrentImage(), posX, posY, null);
-		cm.setPaint(Color.red);
-		cm.fillRect(posX, posY, 50, 50);
-
-	}
+	public abstract void draw(Graphics2D g2d, ImageLoader gr, Graphics2D cm);
 
 	@Override
-	public void update(BufferedImage cm) {
-		animation.animate();
+	public abstract void update(BufferedImage cm);
 
-		if (dying) {
+	/**
+	 * <b>private void lookForUpgrades()</b>
+	 * <p>
+	 * Creates an random upgrade object with a probability of 50%. This happens
+	 * by putting all possible upgrades into a list and choosing a random one of
+	 * it.
+	 */
+	public void lookForUpgrades() {
+		int i = (int) (Math.random() * 2) + 1;
+		if (i == 1 && !map.hasReachedMaxUpgrades()) {
+			Random rnd = new Random();
+			ArrayList<Color> list = new ArrayList<Color>();
 
-			if (beforeTime + dyingTime <= System.nanoTime()) {
-				this.destroyed = true;
-				// this.map.decreaseEnemies();
-			}
-		} else {
-			move();
+			list.add(Color.pink);
+			list.add(Color.blue);
+			list.add(Color.cyan);
+			list.add(Color.magenta);
+
+			Color upgradeColor = list.get(rnd.nextInt(list.size()));
+
+			Upgrade upgrade = new Upgrade(posX, posY, true, true, true,
+					"upgrades", map.getGraphics(), upgradeColor);
+			upgrade.setMap(getMap());
+			map.getMapObjects().get(1).add(upgrade);
+			map.incrementUpgradeCounter();
 		}
-	}
-
-	// hidden object released on die
-	public void addHiddenObject() {
 	}
 
 	/**
@@ -193,15 +169,14 @@ public class Enemy extends MoveableObject {
 	 * The animation changes to the dying animation. The starting point of the
 	 * dying animation is set.
 	 */
-	public void die() {
+	public void die(String dyingAnimation) {
 		dying = true;
-		animation.change("enemyDying");
+		animation.change(dyingAnimation);
 		beforeTime = System.nanoTime();
 	}
 
 	/**
-	 * <b>public boolean hasObjectCollision(int x, int y, BufferedImage cm,
-	 * String dir)</b>
+	 * <b>public boolean hasObjectCollision(int x, int y, BufferedImage cm)</b>
 	 * <p>
 	 * Checks for frame border and object collision. Calls die() method if Enemy
 	 * object hit the bomb explosion. Kills of the player and finishes the map
@@ -213,13 +188,10 @@ public class Enemy extends MoveableObject {
 	 *            - y-coordinate
 	 * @param cm
 	 *            - CollisionMap
-	 * @param dir
-	 *            - Moving direction
 	 * @return True, if the Enemy object collides with the frame borders or
 	 *         fixed mapObjects. False, if there is no collision.
 	 */
-	@Override
-	public boolean hasObjectCollision(int x, int y, BufferedImage cm, String dir) {
+	public boolean hasObjectCollision(int x, int y, BufferedImage cm) {
 		if (x < 0 || y < 0 || x > cm.getWidth() - 50 || y > cm.getHeight() - 50) {
 			return true;
 		}
@@ -230,7 +202,7 @@ public class Enemy extends MoveableObject {
 				if (test.equals(Color.black) || test.equals(Color.gray)) {
 					return true;
 				} else if (test.equals(Color.orange)) {
-					die();
+					die("enemyDying");
 				} else if (test.equals(Color.green)) {
 					map.getMapPlayer().die();
 					map.finishMap();

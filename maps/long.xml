@@ -4,6 +4,7 @@
 	    <mapname>Long Map</mapname>
 		<sizex>400</sizex>
 		<sizey>1200</sizey>
+		<maxUpgrades>10</maxUpgrades>
 	</header>
 	<mapobjects>
 		<level>
@@ -2033,20 +2034,20 @@
 				<posy>950</posy>
 			</character>
 			
-			<character type="enemy" animated="true">
+			<character type="sillyEnemy" animated="true">
 			    <visible>true</visible>
 				<collision>true</collision>
 				<destroyable>false</destroyable>
-			 	<animationset>testEnemy</animationset>
+			 	<animationset>sillyEnemy</animationset>
 				<posx>50</posx>
 				<posy>350</posy>
 			</character>
 			
-			<character type="enemy" animated="true">
+			<character type="runningEnemy" animated="true">
 			    <visible>true</visible>
 				<collision>true</collision>
 				<destroyable>false</destroyable>
-			 	<animationset>testEnemy</animationset>
+			 	<animationset>runningEnemy</animationset>
 				<posx>50</posx>
 				<posy>50</posy>
 			</character>
@@ -2058,6 +2059,7 @@
 	
 	<items>
 		<animationset>simplebomb</animationset>
+		<animationset>upgrades</animationset>
 		<image>exit.png</image>
 	</items>
 </map>

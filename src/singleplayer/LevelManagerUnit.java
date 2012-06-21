@@ -1,13 +1,14 @@
 package singleplayer;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 
 import javax.swing.ImageIcon;
 
@@ -131,6 +132,18 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 			if (key == KeyEvent.VK_SPACE) {
 				player.plantBomb(currentMap.getCollisionMap());
 			}
+
+			if (key == KeyEvent.VK_C) {
+				player.bombExplode();
+			}
+			if (key == KeyEvent.VK_F1) {
+				TransitionUnit trans = new TransitionUnit(
+						UnitState.LEVEL_MANAGER_UNIT,
+						createTransitionMessage("graphics/gui/Helpscreen.png"));
+				UnitNavigator.getNavigator().addGameUnit(trans,
+						UnitState.TEMPORARY_UNIT);
+				UnitNavigator.getNavigator().set(UnitState.TEMPORARY_UNIT);
+			}
 		}
 	}
 
@@ -157,18 +170,19 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 
 	@Override
 	public void initComponent() {
-		try {
-			campaign = Campaign.readCampaignFromFile(campaignFile);
-			worldMapUnit = new WorldMapUnit(campaign.getWorldMap());
 
-		} catch (FileNotFoundException e) {
-			System.err.println("Error loading Campaign: Campaign not found!");
+		campaign = new CampaignReader(campaignFile).readCampaignFromFile();
+		worldMapUnit = new WorldMapUnit(campaign.getWorldMap());
+
+		/*
+		 * load font
+		 */
+		try {
+			unitFont = loadFont("font1.TTF").deriveFont(20f);
+		} catch (Exception e) {
+			System.err.println("ERROR LOADING FONT: font1.TTF");
 			e.printStackTrace();
-			terminateLevelManager();
-		} catch (IOException e) {
-			System.err.println("Error loading Campaign: IOException!");
-			e.printStackTrace();
-			terminateLevelManager();
+			unitFont = new Font("serif", Font.PLAIN, 24);
 		}
 	}
 
@@ -192,7 +206,7 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 
 				if (currentMap.playerSucced()) {
 
-					BufferedImage message = createTransitionMessage("graphics/gui/YouWin.png");
+					BufferedImage message = createTransitionMessage("graphics/gui/You Win.png");
 					/*
 					 * update campaign counters to see if there's a level
 					 * remaining
@@ -200,15 +214,14 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 					if (!campaign.updateCounters()) {
 						if (campaign.isFinished()) {
 							/*
-							 * campaign finished, just show a win message
+							 * campaign finished, show a win message and proceed
+							 * to main menu
 							 */
 							TransitionUnit trans = new TransitionUnit(
 									UnitState.BASE_MENU_UNIT, message);
 							UnitNavigator.getNavigator().removeGameUnit(
 									UnitState.LEVEL_MANAGER_UNIT);
 							UnitNavigator.getNavigator().addGameUnit(trans,
-									UnitState.TEMPORARY_UNIT);
-							UnitNavigator.getNavigator().set(
 									UnitState.TEMPORARY_UNIT);
 						} else {
 							/*
@@ -219,15 +232,22 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 									worldMapUnit);
 							UnitNavigator.getNavigator().addGameUnit(trans,
 									UnitState.TEMPORARY_UNIT);
-							UnitNavigator.getNavigator().set(
-									UnitState.TEMPORARY_UNIT);
 						}
+					} else {
+						/*
+						 * just show a win message
+						 */
+						TransitionUnit trans = new TransitionUnit(
+								UnitState.LEVEL_MANAGER_UNIT, message);
+						UnitNavigator.getNavigator().addGameUnit(trans,
+								UnitState.TEMPORARY_UNIT);
 					}
+					UnitNavigator.getNavigator().set(UnitState.TEMPORARY_UNIT);
 				} else {
 					/*
 					 * player died, show lose message
 					 */
-					BufferedImage message = createTransitionMessage("graphics/gui/YouLose.png");
+					BufferedImage message = createTransitionMessage("graphics/gui/You Lose.png");
 					TransitionUnit trans = new TransitionUnit(
 							UnitState.LEVEL_MANAGER_UNIT, message);
 					UnitNavigator.getNavigator().addGameUnit(trans,
@@ -246,7 +266,8 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 
 	/**
 	 * Used to request a new map object from the campaign and to update the
-	 * mapCanvas to its size.
+	 * mapCanvas to its size. Does also create an introduction to a particular
+	 * map if necessary.
 	 */
 	private void changeCurrentMap() {
 		currentMap = campaign.getCurrentMap();
@@ -258,6 +279,17 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 		player.direction.setLeft(false);
 		player.direction.setRight(false);
 		initOffset();
+
+		String[] intro = campaign.getIntroToCurrentMap();
+		if (intro != null) {
+			BufferedImage message = loadMapIntro(GameConstants.MENU_IMAGES_DIR
+					+ "MultiplayerMenuBG.png", intro);
+			TransitionUnit trans = new TransitionUnit(
+					UnitState.LEVEL_MANAGER_UNIT, message);
+			UnitNavigator.getNavigator().addGameUnit(trans,
+					UnitState.TEMPORARY_UNIT);
+			UnitNavigator.getNavigator().set(UnitState.TEMPORARY_UNIT);
+		}
 	}
 
 	/**
@@ -270,6 +302,7 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 			mapOffsetX = (GameConstants.FRAME_SIZE_X - currentMap.getWidth()) / 2;
 			mapXSmaller = true;
 		} else {
+			mapXSmaller = false;
 			if (player.getPosX() - GameConstants.TILE_SIZE >= GameConstants.FRAME_SIZE_X) {
 				if (player.getPosX() >= currentMap.getWidth()
 						- GameConstants.FRAME_SIZE_X) {
@@ -281,6 +314,7 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 		}
 
 		if (currentMap.getHeight() < GameConstants.FRAME_SIZE_Y) {
+
 			mapOffsetY = (GameConstants.FRAME_SIZE_Y - currentMap.getHeight()) / 2; // wenn
 																					// Map
 																					// kleiner
@@ -291,6 +325,7 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 																					// setzen
 			mapYSmaller = true;
 		} else {
+			mapYSmaller = false;
 			if (player.getPosY() - GameConstants.TILE_SIZE >= GameConstants.FRAME_SIZE_Y) {
 				if (player.getPosY() >= currentMap.getWidth()
 						- GameConstants.FRAME_SIZE_Y) {
@@ -354,10 +389,53 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 		Graphics2D g2d = transitionImage.createGraphics();
 		g2d.setColor(Color.black);
 		g2d.drawImage(mapCanvas, mapOffsetX, mapOffsetY, null);
-		g2d.drawImage(tmp, 0, transitionImage.getHeight() / 4,
-				transitionImage.getWidth(), transitionImage.getHeight() / 2,
-				null);
+
+		g2d.drawImage(tmp,
+				(transitionImage.getWidth() - tmp.getWidth(null)) / 2,
+				(transitionImage.getHeight() - tmp.getHeight(null)) / 2,
+				tmp.getWidth(null), tmp.getHeight(null), null);
 		return transitionImage;
 	}
 
+	/**
+	 * Creates a BufferedImage to be passed to a TransitionUnit. The image will
+	 * consist of a background image (filename) and a text message.
+	 * 
+	 * @param filename
+	 *            filename of the background image
+	 * @param intro
+	 *            a string array, with each cell representing a line of text
+	 * @return BufferedImage that shall be displayed by a TransitionUnit
+	 */
+	private BufferedImage loadMapIntro(String filename, String[] intro) {
+		Image tmp = new ImageIcon(filename).getImage();
+		BufferedImage transitionImage = new BufferedImage(
+				GameConstants.FRAME_SIZE_X, GameConstants.FRAME_SIZE_Y,
+				BufferedImage.TYPE_INT_ARGB);
+		Graphics2D g2d = transitionImage.createGraphics();
+		g2d.drawImage(tmp, 0, 0, transitionImage.getWidth(),
+				transitionImage.getHeight(), null);
+
+		g2d.setFont(unitFont);
+		Rectangle2D maxLineLength = new Rectangle(0, 0);
+		for (String line : intro) {
+			Rectangle2D rect = unitFont.getStringBounds(line,
+					g2d.getFontRenderContext());
+			if (rect.getWidth() > maxLineLength.getWidth()) {
+				maxLineLength = rect;
+			}
+		}
+
+		for (int i = 0; i < intro.length; i++) {
+			g2d.drawString(
+					intro[i],
+					(int) (GameConstants.FRAME_SIZE_X - maxLineLength
+							.getWidth()) / 2,
+					(int) (((GameConstants.FRAME_SIZE_Y - maxLineLength
+							.getHeight() * intro.length) / 2) + maxLineLength
+							.getHeight() * 2 * i));
+
+		}
+		return transitionImage;
+	}
 }

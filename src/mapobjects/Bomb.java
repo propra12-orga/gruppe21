@@ -116,17 +116,15 @@ public class Bomb extends MapObject {
 	}
 
 	/**
-<<<<<<< HEAD
-	 * sets the radius of the bomb
+	 * <<<<<<< HEAD sets the radius of the bomb
 	 * 
 	 * @param radius
-	 *            bomb radius
-=======
-	 * A bomb's explosion radius may be changed due to player upgrades.
+	 *            bomb radius ======= A bomb's explosion radius may be changed
+	 *            due to player upgrades.
 	 * 
 	 * @param radius
-	 *            new explosion radius.
->>>>>>> ae0e39d559abbfefcd1bc0ce6b0fb70f201b5052
+	 *            new explosion radius. >>>>>>>
+	 *            ae0e39d559abbfefcd1bc0ce6b0fb70f201b5052
 	 */
 	public void setRadius(int radius) {
 		this.radius = radius;
@@ -158,7 +156,7 @@ public class Bomb extends MapObject {
 		} else if (collides()) {
 			cm.setPaint(Color.gray);
 		}
-		cm.fillRect(posX, posY, 50, 50);
+		cm.fillRect(posX + 5, posY + 5, 40, 40);
 
 		if (exploding) {
 
@@ -175,7 +173,7 @@ public class Bomb extends MapObject {
 									posX, posY - (j + 1) * 50, null);
 						}
 						cm.setPaint(Color.orange);
-						cm.fillRect(posX, posY - (j + 1) * 50, 50, 50);
+						cm.fillRect(posX + 5, posY - (j + 1) * 50 + 5, 40, 40);
 					}
 					if (i == 1) {
 						if (j == arms[i] - 1) {
@@ -188,7 +186,7 @@ public class Bomb extends MapObject {
 									posX + (j + 1) * 50, posY, null);
 						}
 						cm.setPaint(Color.orange);
-						cm.fillRect(posX + (j + 1) * 50, posY, 50, 50);
+						cm.fillRect(posX + (j + 1) * 50 + 5, posY + 5, 40, 40);
 					}
 					if (i == 2) {
 						if (j == arms[i] - 1) {
@@ -201,7 +199,7 @@ public class Bomb extends MapObject {
 									posX, posY + (j + 1) * 50, null);
 						}
 						cm.setPaint(Color.orange);
-						cm.fillRect(posX, posY + (j + 1) * 50, 50, 50);
+						cm.fillRect(posX + 5, posY + (j + 1) * 50 + 5, 40, 40);
 					}
 					if (i == 3) {
 						if (j == arms[i] - 1) {
@@ -214,7 +212,7 @@ public class Bomb extends MapObject {
 									posX - (j + 1) * 50, posY, null);
 						}
 						cm.setPaint(Color.orange);
-						cm.fillRect(posX - (j + 1) * 50, posY, 50, 50);
+						cm.fillRect(posX - (j + 1) * 50 + 5, posY + 5, 40, 40);
 					}
 
 				}
@@ -286,18 +284,7 @@ public class Bomb extends MapObject {
 
 			if (activated && beforeTime + countdownTime <= System.nanoTime()
 					|| simpleHasColl(posX, posY, cm, Color.orange)) {
-				animation.stop();
-				animation.change("center");
-				exploding = true;
-				beforeTime = System.nanoTime();
-				animation.start("center");
-
-				// verschiebe Bombe bei explosion in höhere ebene, damit
-				// bombengrafik über player
-				this.map.getMapObjects().get(1).remove(this);
-				this.map.getMapObjects().get(3).add(this);
-				// armlängen berechnen
-				calcArms(cm);
+				this.explode(cm);
 			}
 		}
 
@@ -321,14 +308,36 @@ public class Bomb extends MapObject {
 	}
 
 	/**
-<<<<<<< HEAD
+	 * Changes the bomb's animation to an animation of the explosion. Sets the
+	 * start point the of explosion time. Calculates the arms of the explosion.
+	 * Shifts the object into a higher layer, so that the explosion will be
+	 * painted over the other objects.
 	 * 
-	 * @return playerID as int
-=======
-	 * Check for playerID.
+	 * @param cm
+	 *            collision map
+	 */
+	public void explode(BufferedImage cm) {
+		animation.stop();
+		animation.change("center");
+		exploding = true;
+		beforeTime = System.nanoTime();
+		animation.start("center");
+
+		// verschiebe Bombe bei explosion in höhere ebene, damit
+		// bombengrafik über player
+		this.map.getMapObjects().get(1).remove(this);
+		this.map.getMapObjects().get(3).add(this);
+		// armlängen berechnen
+		calcArms(cm);
+	}
+
+	/**
+	 * <<<<<<< HEAD
 	 * 
-	 * @return ID of the player who planted the bomb.
->>>>>>> ae0e39d559abbfefcd1bc0ce6b0fb70f201b5052
+	 * @return playerID as int ======= Check for playerID.
+	 * 
+	 * @return ID of the player who planted the bomb. >>>>>>>
+	 *         ae0e39d559abbfefcd1bc0ce6b0fb70f201b5052
 	 */
 	public int getPlayerID() {
 		return playerID;

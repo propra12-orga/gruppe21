@@ -38,6 +38,9 @@ public class Map {
 
 	BufferedImage collisionMap;
 	MapReader mr;
+	private boolean exitActivated = false;
+	private int upgradeCounter;
+	private int maxUpgrades;
 
 	/**
 	 * constructor
@@ -52,8 +55,9 @@ public class Map {
 		mapName = mr.getHeader("mapname");
 		mapSizeX = Integer.parseInt(mr.getHeader("sizex"));
 		mapSizeY = Integer.parseInt(mr.getHeader("sizey"));
+		maxUpgrades = Integer.parseInt(mr.getHeader("maxUpgrades"));
 		drawLevels = mr.getDrawLevels();
-
+		upgradeCounter = 0;
 		mr.loadGraphics(graphics);
 		mr.getMap(mapObjects, graphics);
 		enemies = mr.getEnemies();
@@ -110,8 +114,9 @@ public class Map {
 	 * destroyed objects/enemies
 	 */
 	public void update() {
-		if (enemies <= 0 && exit != null) {
+		if (!exitActivated && enemies <= 0 && exit != null) {
 			this.exit.activate();
+			exitActivated = true;
 		}
 		for (int i = 0; i < drawLevels; i++) {
 			for (int j = 0; j < mapObjects.get(i).size(); j++) {
@@ -126,12 +131,13 @@ public class Map {
 							if (player.getID() == ((Bomb) mapObjects.get(i)
 									.get(j)).getPlayerID())
 								player.removeBomb();
-						}
+						}// TODO Auto-generated constructor stub
 					}
 					if (mapObjects.get(i).get(j) instanceof Enemy) {
 						this.decreaseEnemies();
 					}
 					mapObjects.get(i).remove(j);
+
 				} else {
 					mapObjects.get(i).get(j).update(collisionMap);
 				}
@@ -269,6 +275,14 @@ public class Map {
 	 */
 	public List<Player> getPlayers() {
 		return players;
+	}
+
+	public void incrementUpgradeCounter() {
+		upgradeCounter++;
+	}
+
+	public boolean hasReachedMaxUpgrades() {
+		return (upgradeCounter == maxUpgrades);
 	}
 
 }

@@ -1,0 +1,3 @@
+<animationset  default="water1default.png">
+<animation frames="4" stretch="50" name="animation">wasser3.png</animation>
+</animationset>

@@ -5,6 +5,8 @@ import imageloader.ImageLoader;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * mapobject for simple walls
@@ -40,6 +42,17 @@ public class Wall extends MapObject {
 	}
 
 	/**
+	 * Destroy or revive a MapObject. Call lookForUgrades().
+	 * 
+	 * @param destroyed
+	 *            new MapObject status.
+	 */
+	public void setDestroyed(boolean destroyed) {
+		this.destroyed = destroyed;
+		lookForUpgrades();
+	}
+
+	/**
 	 * overrides super method
 	 * 
 	 * draws the image on the game canvas draws the collision map
@@ -62,6 +75,32 @@ public class Wall extends MapObject {
 	}
 
 	/**
+	 * Creates an random upgrade object with a probability of 50%. This happens
+	 * by putting all possible upgrades into a list and choosing a random one of
+	 * it.
+	 */
+	private void lookForUpgrades() {
+		int i = (int) (Math.random() * 2) + 1;
+		if (i == 1 && !map.hasReachedMaxUpgrades()) {
+			Random rnd = new Random();
+			ArrayList<Color> list = new ArrayList<Color>();
+
+			list.add(Color.pink);
+			list.add(Color.blue);
+			list.add(Color.cyan);
+			list.add(Color.magenta);
+
+			Color upgradeColor = list.get(rnd.nextInt(list.size()));
+
+			Upgrade upgrade = new Upgrade(getPosX(), getPosY(), true, true,
+					true, "upgrades", map.getGraphics(), upgradeColor);
+			upgrade.setMap(getMap());
+			map.getMapObjects().get(1).add(upgrade);
+			map.incrementUpgradeCounter();
+		}
+	}
+
+	/**
 	 * overrides super method
 	 * 
 	 * if the wall is destroyable , wall is checked for collision with bomb
@@ -73,8 +112,9 @@ public class Wall extends MapObject {
 	public void update(BufferedImage cm) {
 		if (isDestroyable()) {
 			if (simpleHasColl(posX, posY, cm, Color.orange)) {
-				destroyed = true;
+
 				visible = false;
+				setDestroyed(true);
 			}
 		}
 	}

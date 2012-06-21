@@ -1,14 +1,7 @@
 package singleplayer;
 
-import java.awt.Point;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
 
-import main.GameConstants;
 import map.Map;
 
 /**
@@ -31,9 +24,11 @@ public class Campaign {
 	private static final String WORLDMAP_INDICATOR = "wm";
 
 	/**
-	 * Stores MapSequences.
+	 * An ArrayList of levels; each level being another ArrayList of
+	 * StoryMapContainers
 	 */
-	private ArrayList<MapSequence> levels;
+	private ArrayList<ArrayList<StoryMapContainer>> levels;
+
 	/**
 	 * Flag indicating the status of a particular campaign object. If every
 	 * level has been activated and completed successfully, this flag will be
@@ -58,7 +53,8 @@ public class Campaign {
 	 * @param worldMap
 	 *            a WorldMap object.
 	 */
-	public Campaign(ArrayList<MapSequence> levels, WorldMap worldMap) {
+	public Campaign(ArrayList<ArrayList<StoryMapContainer>> levels,
+			WorldMap worldMap) {
 		if (levels == null || worldMap == null) {
 			throw new IllegalArgumentException();
 		} else {
@@ -70,14 +66,30 @@ public class Campaign {
 	}
 
 	/**
-	 * Creates a new MapObject from a string found in the current MapSequence
-	 * (level) at the index position represented by mapCounter.
+	 * Returns map object that is being referred to by the world map counters.
 	 * 
-	 * @return current Map.
+	 * @return current map
 	 */
 	public Map getCurrentMap() {
-		return new Map(levels.get(worldMap.getSelectedLevel()).getMap(
-				mapCounter));
+		return new Map(levels.get(worldMap.getSelectedLevel()).get(mapCounter)
+				.getMapName());
+	}
+
+	/**
+	 * Returns textual introduction to current map if there is one and if it has
+	 * not yet been displayed. Returns null otherwise.
+	 * 
+	 * @return textual introduction to current map
+	 */
+	public String[] getIntroToCurrentMap() {
+		StoryMapContainer currentMap = levels.get(worldMap.getSelectedLevel())
+				.get(mapCounter);
+
+		if (!currentMap.introWasShown()) {
+			currentMap.setIntroShown(true);
+			return currentMap.getIntroMessage();
+		}
+		return null;
 	}
 
 	public WorldMap getWorldMap() {
@@ -100,7 +112,7 @@ public class Campaign {
 	 * to ask for the next map or to initiate the WorldMap.
 	 */
 	public boolean updateCounters() {
-		if (mapCounter < levels.get(worldMap.getSelectedLevel()).getSize() - 1) {
+		if (mapCounter < levels.get(worldMap.getSelectedLevel()).size() - 1) {
 			mapCounter++;
 			return true;
 		} else {
@@ -110,6 +122,7 @@ public class Campaign {
 				} else {
 					worldMap.setMaxLevelAccessible(worldMap
 							.getMaxLevelAccessible() + 1);
+					mapCounter = 0;
 				}
 			}
 			return false;
@@ -126,135 +139,38 @@ public class Campaign {
 	}
 
 	/**
-	 * Reads a Campaign from a text file.
-	 * 
-	 * It is of vital importance to stick to the right format (as specified in
-	 * the standard 'campaign1.txt' file)
-	 * 
-	 * @param filename
-	 *            name of a text file to be used for loading the Campaign
-	 *            object.
-	 * @return new Campaign object consisting of all the maps that were listed
-	 *         in the corresponding text file.
-	 */
-	public static Campaign readCampaignFromFile(String filename)
-			throws IOException, FileNotFoundException {
-		ArrayList<MapSequence> mapSequences = new ArrayList<MapSequence>(10);
-		WorldMap worldMap = null;
-		File campaignFile = new File(GameConstants.CAMPAIGNS_DIR + filename);
-		Scanner sc = new Scanner(campaignFile);
-		boolean inMaps = false;
-		while (sc.hasNext()) {
-			String line = sc.nextLine();
-			if (line.startsWith("#"))
-				continue;
-			if (line.contains("MAPS") && inMaps) {
-				break;
-			}
-			if (line.contains("MAPS")) {
-				inMaps = true;
-				continue;
-			}
-			if (!inMaps)
-				continue;
-
-			String[] data = line.split(":");
-			if (data[0].startsWith(SEQUENCE_INDICATOR)) {
-				String[] prefix = data[0].split("\\.");
-				int index = Integer.parseInt(prefix[1]);
-				if (mapSequences.size() <= index) {
-					for (int i = mapSequences.size() - 1; i < index; i++) {
-						mapSequences.add(new MapSequence());
-					}
-					MapSequence mapSeq = new MapSequence();
-					mapSequences.add(index, mapSeq);
-				}
-				mapSequences.get(index).addMap(data[1]);
-			}
-			if (data[0].startsWith(WORLDMAP_INDICATOR)) {
-				String[] mapData = data[1].split("-");
-
-				String[] coordsData = mapData[0].split(";");
-				Point[] coords = new Point[coordsData.length];
-				for (int i = 0; i < coordsData.length; i++) {
-					String[] splitCoord = coordsData[i].split(",");
-					coords[i] = new Point(Integer.parseInt(splitCoord[0]),
-							Integer.parseInt(splitCoord[1]));
-				}
-				String worldmap = mapData[1];
-
-				worldMap = new WorldMap(coords, new Map(worldmap));
-			}
-		}
-		return new Campaign(mapSequences, worldMap);
-	}
-
-	/**
-	 * Reads campaign introduction (text in between INTRO and INTRO_END tags)
-	 * from file.
-	 * 
-	 * @param filename
-	 *            name of file that contains the campaign introduction.
-	 * @return campaign introduction.
-	 * @throws FileNotFoundException
-	 */
-	public static List<String> readMapIntro(String filename)
-			throws FileNotFoundException {
-		List<String> introLines = new ArrayList<String>();
-		File campaignFile = new File(GameConstants.CAMPAIGNS_DIR + filename);
-		Scanner sc = new Scanner(campaignFile);
-		boolean inIntro = false;
-		while (sc.hasNext()) {
-			String line = sc.nextLine();
-
-			if (line.startsWith("#"))
-				continue;
-			if (line.contains("INTRO") && inIntro) {
-				break;
-			}
-			if (line.contains("INTRO")) {
-				inIntro = true;
-				continue;
-			}
-			if (inIntro && !line.isEmpty()) {
-				introLines.add(line);
-			}
-		}
-		return introLines;
-	}
-
-	/**
-	 * Inner container class MapSequence semantically groups a sequence of map
-	 * names (strings).
+	 * Simple Container class storing a map name and an introductory text
+	 * message. Does also contain a boolean variable that may be used as a flag
+	 * to determine if the intro has been displayed yet.
 	 * 
 	 * @author tohei
+	 * 
 	 */
-	public static class MapSequence {
+	public static class StoryMapContainer {
+		private String mapName;
+		private String[] introMessage;
+		private boolean introShown;
 
-		private ArrayList<String> maps;
-
-		public MapSequence() {
-			maps = new ArrayList<String>();
+		public StoryMapContainer(String mapName, String[] introMessage) {
+			this.mapName = mapName;
+			this.introMessage = introMessage;
+			introShown = false;
 		}
 
-		public int getSize() {
-			return maps.size();
+		public String getMapName() {
+			return mapName;
 		}
 
-		public String getMap(int index) {
-			return maps.get(index);
+		public String[] getIntroMessage() {
+			return introMessage;
 		}
 
-		public void addMap(String newMap) {
-			if (newMap != null) {
-				maps.add(newMap);
-			}
+		public void setIntroShown(boolean introShown) {
+			this.introShown = introShown;
 		}
 
-		public void removeMap(String mapToRemove) {
-			if (mapToRemove != null) {
-				maps.remove(mapToRemove);
-			}
+		public boolean introWasShown() {
+			return introShown;
 		}
 	}
 }
