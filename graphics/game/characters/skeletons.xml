@@ -1,0 +1,7 @@
+<animationset default="enemyDefault.png">
+<animation frames="2" stretch="5" name="enemyDying">enemyDying.png</animation>
+<animation frames="2" stretch="20" name="enemyLeft">Skel_left.png</animation>
+<animation frames="2" stretch="20" name="enemyRight">Skel_right.png</animation>
+<animation frames="2" stretch="20" name="enemyUp">Skel_back.png</animation>
+<animation frames="2" stretch="20" name="enemyDown">Skel_front.png</animation>
+</animationset>
