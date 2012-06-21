@@ -28,9 +28,9 @@
 		</map>
 		<map>
 			<intro>Tutorial 3 - Intruders on the gun deck#
-			That was a child's play! But in the next level,#
-			there are some nasty villains waiting for you ... #
-			Protect the ship and get rid of them, before you leave the room!#
+			That was a child's play! But it seems like there's some rattling#
+			noise coming from the gun deck!#
+			Protect the ship and get rid of all enemies, before you leave the room!#
 			. . . . . . . . . . . .#  Press Enter
 			</intro>
 			<name>Tutorial3</name>
@@ -38,19 +38,20 @@
 		</map>
 		<map>
 			<intro>Tutorial 4 - All hands ahoy!#
-			Terrific! In this level, you are going to learn#
-			how to profit from different upgrades in the game#
+			The ship is being assaulted! Use the power of upgrades#
+			to beat off the attack!#
 			. . . . . . . . . . . .#  Press Enter
 			</intro>
 			<name>Tutorial4</name>
 			<sequence>0</sequence>
 		</map>
 		<map>
-			<intro>The Beach#
-			Stranded on the coast of a savage island,#
-			equipped with nothing but an infinite amount#
-			of lethal explosives, our hero starts on a#
-			dangerous journey into the unknown ...
+			<intro>The Beach - In the Presence of the Enemy#
+			After narrowly escaping death on the battleship,#
+			Bomberman lands on the nearby coast of a savage island,#
+			to find out more about the attackers.#
+			Equipped with nothing but an infinite amount of lethal#
+			explosives, our hero starts on a dangerous journey into the unknown ...#
 			</intro>
 			<name>long</name>
 			<sequence>0</sequence>
@@ -58,7 +59,7 @@
 		<map>
 			<intro></intro>
 			<name>testmap</name>
-			<sequence>0</sequence>
+			<sequence>1</sequence>
 		</map>
 		
 	</maps>
