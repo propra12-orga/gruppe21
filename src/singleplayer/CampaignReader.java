@@ -75,7 +75,8 @@ public class CampaignReader {
 	}
 
 	public static void main(String[] args) {
-		Campaign test = new CampaignReader("campaign1").readCampaignFromFile();
+		Campaign test = new CampaignReader("campaignTest")
+				.readCampaignFromFile();
 
 	}
 }
