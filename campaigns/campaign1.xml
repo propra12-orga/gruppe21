@@ -38,8 +38,9 @@
 		</map>
 		<map>
 			<intro>Tutorial 4 - All hands ahoy!#
-			The ship is being assaulted! Use the power of upgrades#
-			to beat off the attack!#
+			The ship is being assaulted! Destroy other objects to obtain upgrades#
+			that will help you defeat your enemies. Press F1 to see detailed information#
+			about every upgrade!#
 			. . . . . . . . . . . .#  Press Enter
 			</intro>
 			<name>Tutorial4</name>

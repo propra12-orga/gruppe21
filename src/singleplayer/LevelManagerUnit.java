@@ -136,6 +136,14 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 			if (key == KeyEvent.VK_C) {
 				player.bombExplode();
 			}
+			if (key == KeyEvent.VK_F1) {
+				TransitionUnit trans = new TransitionUnit(
+						UnitState.LEVEL_MANAGER_UNIT,
+						createTransitionMessage("graphics/gui/Helpscreen.png"));
+				UnitNavigator.getNavigator().addGameUnit(trans,
+						UnitState.TEMPORARY_UNIT);
+				UnitNavigator.getNavigator().set(UnitState.TEMPORARY_UNIT);
+			}
 		}
 	}
 
