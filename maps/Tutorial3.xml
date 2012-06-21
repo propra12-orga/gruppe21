@@ -1711,7 +1711,7 @@
 				<visible>true</visible>
 				<collision>true</collision>
 				<destroyable>false</destroyable>
-				<image rotation="0">exit.png</image>
+				<image rotation="0">Boden1.png</image>
 				<posx>1450</posx>
 				<posy>300</posy>
 			</tile>
