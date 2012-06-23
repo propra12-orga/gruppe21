@@ -14,11 +14,11 @@ import javax.swing.ImageIcon;
 
 import main.GameConstants;
 import main.GraphicalGameUnit;
-import main.TransitionUnit;
 import main.UnitNavigator;
 import main.UnitState;
 import map.Map;
 import mapobjects.Player;
+import unitTransitions.TransitionUnit;
 
 /**
  * The LevelManagerUnit controls all single-player related game content. It
@@ -139,7 +139,8 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 			if (key == KeyEvent.VK_F1) {
 				TransitionUnit trans = new TransitionUnit(
 						UnitState.LEVEL_MANAGER_UNIT,
-						createTransitionMessage("graphics/gui/Helpscreen.png"));
+						createTransitionMessage("graphics/gui/Helpscreen.png"),
+						false);
 				UnitNavigator.getNavigator().addGameUnit(trans,
 						UnitState.TEMPORARY_UNIT);
 				UnitNavigator.getNavigator().set(UnitState.TEMPORARY_UNIT);
@@ -218,7 +219,7 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 							 * to main menu
 							 */
 							TransitionUnit trans = new TransitionUnit(
-									UnitState.BASE_MENU_UNIT, message);
+									UnitState.BASE_MENU_UNIT, message, true);
 							UnitNavigator.getNavigator().removeGameUnit(
 									UnitState.LEVEL_MANAGER_UNIT);
 							UnitNavigator.getNavigator().addGameUnit(trans,
@@ -229,7 +230,7 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 							 */
 							TransitionUnit trans = new TransitionUnit(
 									UnitState.TEMPORARY_UNIT, message,
-									worldMapUnit);
+									worldMapUnit, true);
 							UnitNavigator.getNavigator().addGameUnit(trans,
 									UnitState.TEMPORARY_UNIT);
 						}
@@ -238,7 +239,7 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 						 * just show a win message
 						 */
 						TransitionUnit trans = new TransitionUnit(
-								UnitState.LEVEL_MANAGER_UNIT, message);
+								UnitState.LEVEL_MANAGER_UNIT, message, true);
 						UnitNavigator.getNavigator().addGameUnit(trans,
 								UnitState.TEMPORARY_UNIT);
 					}
@@ -249,7 +250,7 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 					 */
 					BufferedImage message = createTransitionMessage("graphics/gui/You Lose.png");
 					TransitionUnit trans = new TransitionUnit(
-							UnitState.LEVEL_MANAGER_UNIT, message);
+							UnitState.LEVEL_MANAGER_UNIT, message, true);
 					UnitNavigator.getNavigator().addGameUnit(trans,
 							UnitState.TEMPORARY_UNIT);
 					UnitNavigator.getNavigator().set(UnitState.TEMPORARY_UNIT);
@@ -285,7 +286,7 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 			BufferedImage message = loadMapIntro(GameConstants.MENU_IMAGES_DIR
 					+ "MultiplayerMenuBG.png", intro);
 			TransitionUnit trans = new TransitionUnit(
-					UnitState.LEVEL_MANAGER_UNIT, message);
+					UnitState.LEVEL_MANAGER_UNIT, message, false);
 			UnitNavigator.getNavigator().addGameUnit(trans,
 					UnitState.TEMPORARY_UNIT);
 			UnitNavigator.getNavigator().set(UnitState.TEMPORARY_UNIT);

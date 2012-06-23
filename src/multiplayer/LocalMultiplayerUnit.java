@@ -10,11 +10,11 @@ import java.awt.image.BufferedImage;
 
 import main.GameConstants;
 import main.GraphicalGameUnit;
-import main.TransitionUnit;
 import main.UnitNavigator;
 import main.UnitState;
 import map.Map;
 import mapobjects.Player;
+import unitTransitions.TransitionUnit;
 
 /**
  * Subclass of GraphicalGameUnit for simple "Two-Players-One-Keyboard"
@@ -75,7 +75,7 @@ public class LocalMultiplayerUnit extends GraphicalGameUnit {
 			 * ... and pass it to a TransitionUnit
 			 */
 			TransitionUnit trans = new TransitionUnit(UnitState.BASE_MENU_UNIT,
-					transitionMsg);
+					transitionMsg, false);
 			UnitNavigator.getNavigator().removeGameUnit(
 					UnitState.LEVEL_MANAGER_UNIT);
 			UnitNavigator.getNavigator().addGameUnit(trans,
