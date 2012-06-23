@@ -18,6 +18,7 @@ import main.UnitNavigator;
 import main.UnitState;
 import map.Map;
 import mapobjects.Player;
+import unitTransitions.CircularZoomEffect;
 import unitTransitions.TransitionUnit;
 
 /**
@@ -137,15 +138,25 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 				player.bombExplode();
 			}
 			if (key == KeyEvent.VK_F1) {
-				TransitionUnit trans = new TransitionUnit(
-						UnitState.LEVEL_MANAGER_UNIT,
-						createTransitionMessage("graphics/gui/Helpscreen.png"),
-						false);
-				UnitNavigator.getNavigator().addGameUnit(trans,
-						UnitState.TEMPORARY_UNIT);
-				UnitNavigator.getNavigator().set(UnitState.TEMPORARY_UNIT);
+				initHelpscreen();
+
 			}
 		}
+	}
+
+	/**
+	 * Loads helpscreen image and initializes a TransitionUnit.
+	 */
+	private void initHelpscreen() {
+		BufferedImage helpscreenImage = createGameSceenshot();
+		helpscreenImage.createGraphics().drawImage(
+				loadBufferedImageFromFile("graphics/gui/Helpscreen.png"), 0, 0,
+				null);
+		TransitionUnit trans = new TransitionUnit(UnitState.LEVEL_MANAGER_UNIT,
+				helpscreenImage, false);
+		UnitNavigator.getNavigator().addGameUnit(trans,
+				UnitState.TEMPORARY_UNIT);
+		UnitNavigator.getNavigator().set(UnitState.TEMPORARY_UNIT);
 	}
 
 	@Override
@@ -187,15 +198,6 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 		}
 	}
 
-	/**
-	 * Remove LevelManagerUnit and return to MainMenu.
-	 */
-	private void terminateLevelManager() {
-		UnitNavigator.getNavigator().set(UnitState.BASE_MENU_UNIT);
-		UnitNavigator.getNavigator().removeGameUnit(
-				UnitState.LEVEL_MANAGER_UNIT);
-	}
-
 	@Override
 	public void updateComponent() {
 		if (unitRunning) {
@@ -204,10 +206,8 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 				updateOffset();
 			} else {
 				unitRunning = false;
-
 				if (currentMap.playerSucced()) {
 
-					BufferedImage message = createTransitionMessage("graphics/gui/You Win.png");
 					/*
 					 * update campaign counters to see if there's a level
 					 * remaining
@@ -218,42 +218,45 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 							 * campaign finished, show a win message and proceed
 							 * to main menu
 							 */
-							TransitionUnit trans = new TransitionUnit(
-									UnitState.BASE_MENU_UNIT, message, true);
+							initTransition("You Win.png",
+									UnitState.BASE_MENU_UNIT);
 							UnitNavigator.getNavigator().removeGameUnit(
 									UnitState.LEVEL_MANAGER_UNIT);
-							UnitNavigator.getNavigator().addGameUnit(trans,
-									UnitState.TEMPORARY_UNIT);
 						} else {
 							/*
 							 * level completed, show world map
 							 */
 							TransitionUnit trans = new TransitionUnit(
-									UnitState.TEMPORARY_UNIT, message,
+									UnitState.TEMPORARY_UNIT,
+									new CircularZoomEffect(
+											player.getPosX() + mapOffsetX
+													+ GameConstants.TILE_SIZE
+													/ 2,
+											player.getPosY() + mapOffsetY
+													+ GameConstants.TILE_SIZE
+													/ 2,
+											7,
+											createGameSceenshot(),
+											loadBufferedImageFromFile("graphics/gui/You Win.png")),
 									worldMapUnit, true);
+							trans.setTransitionPeriod(1000);
 							UnitNavigator.getNavigator().addGameUnit(trans,
+									UnitState.TEMPORARY_UNIT);
+							UnitNavigator.getNavigator().set(
 									UnitState.TEMPORARY_UNIT);
 						}
 					} else {
 						/*
 						 * just show a win message
 						 */
-						TransitionUnit trans = new TransitionUnit(
-								UnitState.LEVEL_MANAGER_UNIT, message, true);
-						UnitNavigator.getNavigator().addGameUnit(trans,
-								UnitState.TEMPORARY_UNIT);
+						initTransition("You Win.png",
+								UnitState.LEVEL_MANAGER_UNIT);
 					}
-					UnitNavigator.getNavigator().set(UnitState.TEMPORARY_UNIT);
 				} else {
 					/*
 					 * player died, show lose message
 					 */
-					BufferedImage message = createTransitionMessage("graphics/gui/You Lose.png");
-					TransitionUnit trans = new TransitionUnit(
-							UnitState.LEVEL_MANAGER_UNIT, message, true);
-					UnitNavigator.getNavigator().addGameUnit(trans,
-							UnitState.TEMPORARY_UNIT);
-					UnitNavigator.getNavigator().set(UnitState.TEMPORARY_UNIT);
+					initTransition("You Lose.png", UnitState.LEVEL_MANAGER_UNIT);
 				}
 			}
 		} else {
@@ -373,29 +376,54 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 	}
 
 	/**
-	 * Creates a BufferedImage to be passed to a TransitionUnit. The image will
-	 * consist of the mapCanvas (background) and a message (foreground).
+	 * Initializes a TransitionUnit
 	 * 
 	 * @param filename
 	 *            of the message image
-	 * @return BufferedImage that shall be displayed by a TransitionUnit
 	 */
-	private BufferedImage createTransitionMessage(String filename) {
-		currentMap.drawMap(mapCanvas.createGraphics());
-		Image tmp = new ImageIcon(filename).getImage();
+	private void initTransition(String filename, UnitState nextUnit) {
+		TransitionUnit trans = new TransitionUnit(nextUnit,
+				new CircularZoomEffect(player.getPosX() + mapOffsetX
+						+ GameConstants.TILE_SIZE / 2, player.getPosY()
+						+ mapOffsetY + GameConstants.TILE_SIZE / 2, 7,
+						createGameSceenshot(),
+						loadBufferedImageFromFile("graphics/gui/" + filename)),
+				true);
+		trans.setTransitionPeriod(1000);
+		UnitNavigator.getNavigator().addGameUnit(trans,
+				UnitState.TEMPORARY_UNIT);
+		UnitNavigator.getNavigator().set(UnitState.TEMPORARY_UNIT);
+	}
 
-		BufferedImage transitionImage = new BufferedImage(
+	/**
+	 * Creates BufferedImage out of the mapCanvas and a black background.
+	 * 
+	 * @return BufferedImage depicting the current game screen.
+	 */
+	private BufferedImage createGameSceenshot() {
+		currentMap.drawMap(mapCanvas.createGraphics());
+		BufferedImage screenshot = new BufferedImage(
 				GameConstants.FRAME_SIZE_X, GameConstants.FRAME_SIZE_Y,
 				BufferedImage.TYPE_INT_ARGB);
-		Graphics2D g2d = transitionImage.createGraphics();
+		Graphics2D g2d = screenshot.createGraphics();
 		g2d.setColor(Color.black);
 		g2d.drawImage(mapCanvas, mapOffsetX, mapOffsetY, null);
+		return screenshot;
+	}
 
-		g2d.drawImage(tmp,
-				(transitionImage.getWidth() - tmp.getWidth(null)) / 2,
-				(transitionImage.getHeight() - tmp.getHeight(null)) / 2,
-				tmp.getWidth(null), tmp.getHeight(null), null);
-		return transitionImage;
+	/**
+	 * Allows loading an image from file.
+	 * 
+	 * @param filename
+	 * @return BufferedImage of image file
+	 */
+	private BufferedImage loadBufferedImageFromFile(String filename) {
+		Image tmp = new ImageIcon(filename).getImage();
+		BufferedImage bufferedImage = new BufferedImage(tmp.getWidth(null),
+				tmp.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+		bufferedImage.createGraphics().drawImage(tmp, 0, 0, tmp.getWidth(null),
+				tmp.getHeight(null), null);
+		return bufferedImage;
 	}
 
 	/**

@@ -37,7 +37,11 @@ public class CircularZoomEffect implements TransitionEffect {
 	/**
 	 * Background image.
 	 */
-	BufferedImage background;
+	private BufferedImage background;
+	/**
+	 * Will be shown on effect completion.
+	 */
+	private BufferedImage foreground;
 	/**
 	 * Indicates if the zoom finished.
 	 */
@@ -52,6 +56,13 @@ public class CircularZoomEffect implements TransitionEffect {
 		this.zoomCenterY = zoomCenterY;
 		this.zoomSpeed = zoomSpeed;
 		this.background = background;
+		circleDiameter = GameConstants.FRAME_SIZE_X;
+	}
+
+	public CircularZoomEffect(int zoomCenterX, int zoomCenterY, int zoomSpeed,
+			BufferedImage background, BufferedImage foreground) {
+		this(zoomCenterX, zoomCenterY, zoomSpeed, background);
+		this.foreground = foreground;
 	}
 
 	@Override
@@ -68,16 +79,21 @@ public class CircularZoomEffect implements TransitionEffect {
 					GameConstants.FRAME_SIZE_Y));
 			Ellipse2D circle = new Ellipse2D.Float(
 					zoomCenterX - circleDiameter, zoomCenterY - circleDiameter,
-					circleDiameter, circleDiameter);
+					2 * circleDiameter, 2 * circleDiameter);
 			area.subtract(new Area(circle));
 			g2d.fill(area);
+		} else if (foreground != null) {
+			g2d.drawImage(foreground,
+					(GameConstants.FRAME_SIZE_X - foreground.getWidth()) / 2,
+					(GameConstants.FRAME_SIZE_Y - foreground.getHeight()) / 2,
+					foreground.getWidth(), foreground.getHeight(), null);
 		}
 	}
 
 	@Override
 	public void updateEffectState() {
 		if (!effectFinished) {
-			circleDiameter -= zoomSpeed;
+			circleDiameter = circleDiameter - zoomSpeed;
 			if (circleDiameter <= 0) {
 				effectFinished = true;
 			}

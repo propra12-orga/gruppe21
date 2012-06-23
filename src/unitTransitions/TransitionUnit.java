@@ -196,8 +196,10 @@ public class TransitionUnit extends GraphicalGameUnit {
 
 	@Override
 	public void initComponent() {
-		messagePosX = (GameConstants.FRAME_SIZE_X - message.getWidth()) / 2;
-		messagePosY = (GameConstants.FRAME_SIZE_Y - message.getHeight()) / 2;
+		if (transitionEffect == null) {
+			messagePosX = (GameConstants.FRAME_SIZE_X - message.getWidth()) / 2;
+			messagePosY = (GameConstants.FRAME_SIZE_Y - message.getHeight()) / 2;
+		}
 	}
 
 	@Override
