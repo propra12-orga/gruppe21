@@ -211,8 +211,17 @@ public class Campaign {
 			campaign.getWorldMap().setSelectedLevel(selectedLevel);
 		}
 
-		public CampaignData extractDataFromString(String input) {
+		public static CampaignData extractDataFromString(String input) {
 			return null;
+		}
+
+		public String writeDataToString() {
+			StringBuilder sb = new StringBuilder();
+			sb.append("campaign_data:");
+			sb.append("id=").append(id);
+			sb.append(";sl=").append(selectedLevel);
+			sb.append(";ml=").append(maxLevelAccessible);
+			return sb.toString();
 		}
 	}
 }

@@ -490,8 +490,19 @@ public class Player extends MoveableObject {
 			player.setSpeed(speed);
 		}
 
-		public PlayerData extractDataFromString(String input) {
+		public static PlayerData extractDataFromString(String input) {
 			return null;
+		}
+
+		public String writeDataToString() {
+			StringBuilder sb = new StringBuilder();
+			sb.append("player_data:");
+			sb.append("id=").append(id);
+			sb.append(";mb=").append(maxbombs);
+			sb.append(";brad=").append(bombradius);
+			sb.append(";brem=").append(bombRemote);
+			sb.append(";ps=").append(speed);
+			return sb.toString();
 		}
 	}
 

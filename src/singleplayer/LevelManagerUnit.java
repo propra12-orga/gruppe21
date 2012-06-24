@@ -471,4 +471,8 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 		}
 		return transitionImage;
 	}
+
+	public Savegame createSavegame() {
+		return new Savegame(player.getPlayerData(), campaign.getCampaignData());
+	}
 }
