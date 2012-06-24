@@ -2016,32 +2016,8 @@
 				<collision>true</collision>
 				<destroyable>true</destroyable>
 				<image rotation="0">DesBox.png</image>
-				<posx>500</posx>
-				<posy>300</posy>
-			</tile>
-			<tile type="wall" animated="false">
-				<visible>true</visible>
-				<collision>true</collision>
-				<destroyable>true</destroyable>
-				<image rotation="0">DesBox.png</image>
 				<posx>550</posx>
 				<posy>300</posy>
-			</tile>
-			<tile type="wall" animated="false">
-				<visible>true</visible>
-				<collision>true</collision>
-				<destroyable>true</destroyable>
-				<image rotation="0">DesBox.png</image>
-				<posx>550</posx>
-				<posy>250</posy>
-			</tile>
-			<tile type="wall" animated="false">
-				<visible>true</visible>
-				<collision>true</collision>
-				<destroyable>true</destroyable>
-				<image rotation="0">DesBox.png</image>
-				<posx>550</posx>
-				<posy>200</posy>
 			</tile>
 			<tile type="wall" animated="false">
 				<visible>true</visible>
@@ -2057,14 +2033,6 @@
 				<destroyable>true</destroyable>
 				<image rotation="0">DesBox.png</image>
 				<posx>700</posx>
-				<posy>300</posy>
-			</tile>
-			<tile type="wall" animated="false">
-				<visible>true</visible>
-				<collision>true</collision>
-				<destroyable>true</destroyable>
-				<image rotation="0">DesBox.png</image>
-				<posx>750</posx>
 				<posy>300</posy>
 			</tile>
 			<tile type="wall" animated="false">
@@ -2120,14 +2088,6 @@
 				<collision>true</collision>
 				<destroyable>true</destroyable>
 				<image rotation="0">DesBox.png</image>
-				<posx>950</posx>
-				<posy>200</posy>
-			</tile>
-			<tile type="wall" animated="false">
-				<visible>true</visible>
-				<collision>true</collision>
-				<destroyable>true</destroyable>
-				<image rotation="0">DesBox.png</image>
 				<posx>900</posx>
 				<posy>400</posy>
 			</tile>
@@ -2136,86 +2096,6 @@
 				<collision>true</collision>
 				<destroyable>true</destroyable>
 				<image rotation="0">DesBox.png</image>
-				<posx>950</posx>
-				<posy>400</posy>
-			</tile>
-			<tile type="wall" animated="false">
-				<visible>true</visible>
-				<collision>true</collision>
-				<destroyable>true</destroyable>
-				<image rotation="0">DesBox.png</image>
-				<posx>950</posx>
-				<posy>250</posy>
-			</tile>
-			<tile type="wall" animated="false">
-				<visible>true</visible>
-				<collision>true</collision>
-				<destroyable>true</destroyable>
-				<image rotation="0">DesBox.png</image>
-				<posx>1000</posx>
-				<posy>250</posy>
-			</tile>
-			<tile type="wall" animated="false">
-				<visible>true</visible>
-				<collision>true</collision>
-				<destroyable>true</destroyable>
-				<image rotation="0">DesBox.png</image>
-				<posx>1050</posx>
-				<posy>250</posy>
-			</tile>
-			<tile type="wall" animated="false">
-				<visible>true</visible>
-				<collision>true</collision>
-				<destroyable>true</destroyable>
-				<image rotation="0">DesBox.png</image>
-				<posx>1100</posx>
-				<posy>250</posy>
-			</tile>
-			<tile type="wall" animated="false">
-				<visible>true</visible>
-				<collision>true</collision>
-				<destroyable>true</destroyable>
-				<image rotation="0">DesBox.png</image>
-				<posx>950</posx>
-				<posy>350</posy>
-			</tile>
-			<tile type="wall" animated="false">
-				<visible>true</visible>
-				<collision>true</collision>
-				<destroyable>true</destroyable>
-				<image rotation="0">DesBox.png</image>
-				<posx>1000</posx>
-				<posy>350</posy>
-			</tile>
-			<tile type="wall" animated="false">
-				<visible>true</visible>
-				<collision>true</collision>
-				<destroyable>true</destroyable>
-				<image rotation="0">DesBox.png</image>
-				<posx>1050</posx>
-				<posy>350</posy>
-			</tile>
-			<tile type="wall" animated="false">
-				<visible>true</visible>
-				<collision>true</collision>
-				<destroyable>true</destroyable>
-				<image rotation="0">DesBox.png</image>
-				<posx>1100</posx>
-				<posy>350</posy>
-			</tile>
-			<tile type="wall" animated="false">
-				<visible>true</visible>
-				<collision>true</collision>
-				<destroyable>true</destroyable>
-				<image rotation="0">DesBox.png</image>
-				<posx>1100</posx>
-				<posy>200</posy>
-			</tile>
-			<tile type="wall" animated="false">
-				<visible>true</visible>
-				<collision>true</collision>
-				<destroyable>true</destroyable>
-				<image rotation="0">DesBox.png</image>
 				<posx>1150</posx>
 				<posy>200</posy>
 			</tile>
@@ -2224,24 +2104,8 @@
 				<collision>true</collision>
 				<destroyable>true</destroyable>
 				<image rotation="0">DesBox.png</image>
-				<posx>1100</posx>
-				<posy>400</posy>
-			</tile>
-			<tile type="wall" animated="false">
-				<visible>true</visible>
-				<collision>true</collision>
-				<destroyable>true</destroyable>
-				<image rotation="0">DesBox.png</image>
 				<posx>1150</posx>
 				<posy>400</posy>
-			</tile>
-			<tile type="wall" animated="false">
-				<visible>true</visible>
-				<collision>true</collision>
-				<destroyable>true</destroyable>
-				<image rotation="0">DesBox.png</image>
-				<posx>1200</posx>
-				<posy>300</posy>
 			</tile>
 			<tile type="wall" animated="false">
 				<visible>true</visible>
