@@ -138,6 +138,14 @@ public class Campaign {
 		return campaignFinished;
 	}
 
+	public CampaignData getCampaignData() {
+		return CampaignData.extractData(this);
+	}
+
+	public void restoreCampaignToData(CampaignData data) {
+		data.restoreCampaign(this);
+	}
+
 	/**
 	 * Simple Container class storing a map name and an introductory text
 	 * message. Does also contain a boolean variable that may be used as a flag
@@ -171,6 +179,40 @@ public class Campaign {
 
 		public boolean introWasShown() {
 			return introShown;
+		}
+
+	}
+
+	/**
+	 * Data container for all important campaign status variables. Used to
+	 * create Savegames.
+	 * 
+	 * @author tohei
+	 * 
+	 */
+	public static class CampaignData {
+
+		private static final int id = 0;
+		private int selectedLevel;
+		private int maxLevelAccessible;
+
+		private CampaignData(int selectedLevel, int maxLevelAccessible) {
+			this.selectedLevel = selectedLevel;
+			this.maxLevelAccessible = maxLevelAccessible;
+		}
+
+		public static CampaignData extractData(Campaign campaign) {
+			return new CampaignData(campaign.getWorldMap().getSelectedLevel(),
+					campaign.getWorldMap().getMaxLevelAccessible());
+		}
+
+		public void restoreCampaign(Campaign campaign) {
+			campaign.getWorldMap().setMaxLevelAccessible(maxLevelAccessible);
+			campaign.getWorldMap().setSelectedLevel(selectedLevel);
+		}
+
+		public CampaignData extractDataFromString(String input) {
+			return null;
 		}
 	}
 }

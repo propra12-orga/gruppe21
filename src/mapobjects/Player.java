@@ -419,4 +419,80 @@ public class Player extends MoveableObject {
 	public void die() {
 		alive = false;
 	}
+
+	public boolean hasRemoteBombs() {
+		return bombRemote;
+	}
+
+	public int getBombRadius() {
+		return bombradius;
+	}
+
+	public int getMaxBombs() {
+		return maxbombs;
+	}
+
+	public void setMaxBombs(int maxbombs) {
+		this.maxbombs = maxbombs;
+
+	}
+
+	public void setBombRemote(boolean bombRemote) {
+		this.bombRemote = bombRemote;
+
+	}
+
+	public void setBombRadius(int bombradius) {
+		this.bombradius = bombradius;
+	}
+
+	public PlayerData getCampaignData() {
+		return PlayerData.extractData(this);
+	}
+
+	public void restorePlayerToData(PlayerData data) {
+		data.restorePlayer(this);
+	}
+
+	/**
+	 * Data container for all important player status variables. Used to create
+	 * Savegames.
+	 * 
+	 * @author tohei
+	 * 
+	 */
+	public static class PlayerData {
+
+		private static final int id = 0;
+		int maxbombs;
+		int bombradius;
+		boolean bombRemote;
+		int speed;
+
+		public PlayerData(int maxbombs, int bombradius, boolean remoteBombs,
+				int speed) {
+			super();
+			this.maxbombs = maxbombs;
+			this.bombradius = bombradius;
+			this.bombRemote = remoteBombs;
+			this.speed = speed;
+		}
+
+		public static PlayerData extractData(Player player) {
+			return new PlayerData(player.getMaxBombs(), player.getBombRadius(),
+					player.hasRemoteBombs(), player.getSpeed());
+		}
+
+		public void restorePlayer(Player player) {
+			player.setMaxBombs(maxbombs);
+			player.setBombRadius(bombradius);
+			player.setBombRemote(bombRemote);
+			player.setSpeed(speed);
+		}
+
+		public PlayerData extractDataFromString(String input) {
+			return null;
+		}
+	}
+
 }
