@@ -43,9 +43,15 @@ public class WorldMapUnit extends GraphicalGameUnit {
 		initComponent();
 	}
 
+	private boolean helpShown = false;
+
 	private String[] infoMsg = {
 			"Use Up and Down Keys to switch the selected level",
-			"Press Enter to play!" };
+			"Press 'Enter' to play, or 's' to save!" };
+	private String[] helpMsg = { "This is the WorldMap of Bomberman Island.",
+			"Here you can plan your journey and save your progress:",
+			"Use Up and Down Keys to switch the selected level",
+			"Press 'Enter' to play, or 'S' to save!" };
 
 	@Override
 	public void drawComponent(Graphics g) {
@@ -64,17 +70,18 @@ public class WorldMapUnit extends GraphicalGameUnit {
 
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setFont(unitFont);
-		for (int i = 0; i < infoMsg.length; i++) {
-			Rectangle2D rect = unitFont.getStringBounds(infoMsg[i],
-					g2d.getFontRenderContext());
-			g2d.drawString(infoMsg[i],
-					(int) (GameConstants.FRAME_SIZE_X - rect.getWidth()) / 2,
-					(int) (((GameConstants.FRAME_SIZE_Y - rect.getHeight()
-							* infoMsg.length) / 4) + rect.getHeight() * 2 * i));
+		String[] infoTxt;
+		if (helpShown) {
+			infoTxt = infoMsg;
+		} else {
+			infoTxt = helpMsg;
 		}
-
-		for (int i = 0; i < infoMsg.length; i++) {
-
+		for (int i = 0; i < infoTxt.length; i++) {
+			Rectangle2D rect = unitFont.getStringBounds(infoTxt[i],
+					g2d.getFontRenderContext());
+			g2d.drawString(infoTxt[i],
+					(int) (GameConstants.FRAME_SIZE_X - rect.getWidth()) / 2,
+					(int) ((80 + rect.getHeight() * 2 * i)));
 		}
 	}
 
@@ -88,14 +95,11 @@ public class WorldMapUnit extends GraphicalGameUnit {
 			if (worldMap.getSelectedLevel() + 1 <= worldMap
 					.getMaxLevelAccessible()) {
 				worldMap.setSelectedLevel(worldMap.getSelectedLevel() + 1);
-				updatePlayerPosition();
 			}
 		}
 		if (key == KeyEvent.VK_DOWN) {
 			if (worldMap.getSelectedLevel() - 1 >= 0) {
 				worldMap.setSelectedLevel(worldMap.getSelectedLevel() - 1);
-				updatePlayerPosition();
-
 			}
 		}
 		if (key == KeyEvent.VK_S) {
@@ -103,6 +107,7 @@ public class WorldMapUnit extends GraphicalGameUnit {
 					new SavegameManagerUnit(this, false),
 					UnitState.TEMPORARY_UNIT);
 			UnitNavigator.getNavigator().set(UnitState.TEMPORARY_UNIT);
+			helpShown = true;
 		}
 
 		/*
@@ -110,6 +115,7 @@ public class WorldMapUnit extends GraphicalGameUnit {
 		 */
 		if (key == KeyEvent.VK_ENTER) {
 			UnitNavigator.getNavigator().set(UnitState.LEVEL_MANAGER_UNIT);
+			helpShown = true;
 		}
 	}
 
@@ -134,7 +140,7 @@ public class WorldMapUnit extends GraphicalGameUnit {
 		 * load font
 		 */
 		try {
-			unitFont = loadFont("font1.TTF").deriveFont(25f);
+			unitFont = loadFont("font1.TTF").deriveFont(30f);
 		} catch (Exception e) {
 			System.err.println("ERROR LOADING FONT: font1.TTF");
 			e.printStackTrace();
@@ -150,6 +156,7 @@ public class WorldMapUnit extends GraphicalGameUnit {
 		player.direction.setLeft(false);
 		player.direction.setRight(false);
 		worldMap.getMap().update();
+		updatePlayerPosition();
 	}
 
 }

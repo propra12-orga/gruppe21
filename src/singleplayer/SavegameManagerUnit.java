@@ -86,6 +86,9 @@ public class SavegameManagerUnit extends GraphicalGameUnit {
 
 	}
 
+	/**
+	 * Load a game
+	 */
 	private void handleLoading() {
 		try {
 			Savegame save = Savegame.readSavegameSlot(selectorPos);
@@ -101,6 +104,9 @@ public class SavegameManagerUnit extends GraphicalGameUnit {
 		}
 	}
 
+	/**
+	 * Save current game
+	 */
 	private void handleSaving() {
 		GraphicalGameUnit tmp = UnitNavigator.getNavigator().getUnitAt(
 				UnitState.LEVEL_MANAGER_UNIT);
@@ -150,15 +156,14 @@ public class SavegameManagerUnit extends GraphicalGameUnit {
 		} catch (FileNotFoundException e) {
 			System.err.println("Error loading Savegame file");
 		}
-		for (String s : saveGameInfo) {
-			System.out.println(s);
-		}
-
 	}
 
 	@Override
 	public void drawComponent(Graphics g) {
 
+		/*
+		 * Draw selector and background
+		 */
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setFont(unitFont);
 		g2d.setColor(Color.white);
@@ -170,6 +175,9 @@ public class SavegameManagerUnit extends GraphicalGameUnit {
 				(int) (slotInfoAreaY - 3 * selectorPic.getHeight(null) / 4 + selectorPos
 						* 3 * (slotFontSize)), null);
 
+		/*
+		 * Draw title
+		 */
 		unitFont = unitFont.deriveFont(titleFontSize);
 		g2d.setFont(unitFont.deriveFont(titleFontSize));
 		Rectangle2D rect = unitFont.getStringBounds(title,
@@ -178,6 +186,9 @@ public class SavegameManagerUnit extends GraphicalGameUnit {
 				(int) ((GameConstants.FRAME_SIZE_X - rect.getWidth()) / 2),
 				titleAreaY);
 
+		/*
+		 * Draw slot info
+		 */
 		unitFont = unitFont.deriveFont(slotFontSize);
 		g2d.setFont(unitFont);
 		int extraSlotDistance = 0;
@@ -198,6 +209,9 @@ public class SavegameManagerUnit extends GraphicalGameUnit {
 
 			}
 		}
+		/*
+		 * Draw help message
+		 */
 		unitFont = unitFont.deriveFont(helpMsgSize);
 		g2d.setFont(unitFont);
 		rect = unitFont.getStringBounds(helpMsg1 + helpMsg2,

@@ -100,6 +100,7 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 		save.getCampaignData().restoreCampaign(campaign);
 		player = campaign.getCurrentMap().getMapPlayer();
 		save.getPlayerData().restorePlayer(player);
+		initComponent();
 	}
 
 	@Override
@@ -452,7 +453,6 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 		Graphics2D g2d = transitionImage.createGraphics();
 		g2d.drawImage(tmp, 0, 0, transitionImage.getWidth(),
 				transitionImage.getHeight(), null);
-		System.out.println("bla");
 		g2d.setFont(unitFont);
 		Rectangle2D maxLineLength = new Rectangle(0, 0);
 		for (String line : intro) {

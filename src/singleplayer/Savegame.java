@@ -119,13 +119,11 @@ public class Savegame {
 				// System.out.println(line);
 				line = decipherSavegame(line);
 				if (line.contains("campaign")) {
-					System.out.println(line);
 					String[] lineData = line.split(":");
 					String[] slotData = lineData[0].split("-");
 					CampaignData cData = CampaignData
 							.extractDataFromString(lineData[1]);
 					int slot = 2 * Integer.parseInt(slotData[1]);
-					System.out.println(slot);
 					slotStatus[slot] = "Selected Level: "
 							+ (cData.getSelectedLevel() + 1);
 					slotStatus[slot + 1] = "Level Progress: "
