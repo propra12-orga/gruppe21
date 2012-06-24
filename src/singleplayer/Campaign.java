@@ -267,6 +267,10 @@ public class Campaign {
 		public int getNumOfLevels() {
 			return numOfLevels;
 		}
+
+		public String getCampaignName() {
+			return campaignName;
+		}
 	}
 
 }

@@ -30,6 +30,14 @@ public class Savegame {
 		this.campaignData = campaignData;
 	}
 
+	public PlayerData getPlayerData() {
+		return playerData;
+	}
+
+	public CampaignData getCampaignData() {
+		return campaignData;
+	}
+
 	/**
 	 * Cipher a savegame to prevent the user from editing his savegames
 	 * manually.
@@ -100,25 +108,27 @@ public class Savegame {
 	 *         slots will remain null.
 	 * @throws FileNotFoundException
 	 */
-	public String[] readSavegameInfo() throws FileNotFoundException {
+	public static String[] readSavegameInfo() throws FileNotFoundException {
 		File file = new File(SAVEGAME_FILE);
-		Scanner sc = new Scanner(file);
-
 		String[] slotStatus = new String[8];
-		while (sc.hasNextLine()) {
-			String line = sc.nextLine();
-			line = decipherSavegame(line);
-			if (line.contains("campaign")) {
-				String[] lineData = line.split(":");
-				String[] slotData = lineData[0].split("-");
-				CampaignData cData = CampaignData
-						.extractDataFromString(lineData[1]);
-				int slot = Integer.parseInt(slotData[1]);
-				slotStatus[slot] = "Selected Level: "
-						+ (cData.getSelectedLevel() + 1);
-				slotStatus[slot + 1] = "Level Progress: "
-						+ cData.getMaxLevelAccessible() + " / "
-						+ cData.getNumOfLevels();
+
+		if (file.exists()) {
+			Scanner sc = new Scanner(file);
+			while (sc.hasNextLine()) {
+				String line = sc.nextLine();
+				line = decipherSavegame(line);
+				if (line.contains("campaign")) {
+					String[] lineData = line.split(":");
+					String[] slotData = lineData[0].split("-");
+					CampaignData cData = CampaignData
+							.extractDataFromString(lineData[1]);
+					int slot = Integer.parseInt(slotData[1]);
+					slotStatus[slot] = "Selected Level: "
+							+ (cData.getSelectedLevel() + 1);
+					slotStatus[slot + 1] = "Level Progress: "
+							+ cData.getMaxLevelAccessible() + " / "
+							+ cData.getNumOfLevels();
+				}
 			}
 		}
 		return slotStatus;

@@ -80,10 +80,6 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 	 */
 	private boolean unitRunning = false;
 
-	public LevelManagerUnit() {
-		initComponent();
-	}
-
 	/**
 	 * This constructor takes a campaign file (a .txt. file that can be used to
 	 * construct a campaign object) as an argument.
@@ -92,7 +88,18 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 	 */
 	public LevelManagerUnit(String campaignFile) {
 		this.campaignFile = campaignFile;
+		campaign = new CampaignReader(campaignFile).readCampaignFromFile();
+		worldMapUnit = new WorldMapUnit(campaign.getWorldMap());
 		initComponent();
+	}
+
+	public LevelManagerUnit(Savegame save) {
+		this.campaignFile = save.getCampaignData().getCampaignName();
+		campaign = new CampaignReader(campaignFile).readCampaignFromFile();
+		worldMapUnit = new WorldMapUnit(campaign.getWorldMap());
+		save.getCampaignData().restoreCampaign(campaign);
+		player = campaign.getCurrentMap().getMapPlayer();
+		save.getPlayerData().restorePlayer(player);
 	}
 
 	@Override
@@ -182,9 +189,6 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 
 	@Override
 	public void initComponent() {
-
-		campaign = new CampaignReader(campaignFile).readCampaignFromFile();
-		worldMapUnit = new WorldMapUnit(campaign.getWorldMap());
 
 		/*
 		 * load font

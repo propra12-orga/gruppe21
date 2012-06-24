@@ -10,6 +10,7 @@ import javax.swing.ImageIcon;
 
 import multiplayer.OptionMenuUnit;
 import singleplayer.LevelManagerUnit;
+import singleplayer.SavegameManagerUnit;
 
 /**
  * This class represents the main menu. It is used as the main hub, from where
@@ -142,8 +143,9 @@ public class MainMenuUnit extends GraphicalGameUnit {
 			UnitNavigator.getNavigator().set(UnitState.TEMPORARY_UNIT);
 		}
 		if (key == KeyEvent.VK_ENTER && selectCounter == 2) {
-			// To be replaced
-			System.out.println("Game saved");
+			UnitNavigator.getNavigator().addGameUnit(
+					new SavegameManagerUnit(true), UnitState.TEMPORARY_UNIT);
+			UnitNavigator.getNavigator().set(UnitState.TEMPORARY_UNIT);
 		}
 		if (key == KeyEvent.VK_ENTER && selectCounter == 3) {
 			// end game

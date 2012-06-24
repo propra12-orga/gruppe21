@@ -98,19 +98,13 @@ public class WorldMapUnit extends GraphicalGameUnit {
 
 			}
 		}
-		// if (key == KeyEvent.VK_S) {
-		// GraphicalGameUnit tmp = UnitNavigator.getNavigator().getUnitAt(
-		// UnitState.LEVEL_MANAGER_UNIT);
-		// if (tmp != null && tmp instanceof LevelManagerUnit) {
-		// LevelManagerUnit levelManager = (LevelManagerUnit) tmp;
-		// try {
-		// levelManager.createSavegame().storeToFile("SAVEGAME.txt");
-		// } catch (FileNotFoundException e1) {
-		// e1.printStackTrace();
-		// }
-		// }
-		//
-		// }
+		if (key == KeyEvent.VK_S) {
+			UnitNavigator.getNavigator().addGameUnit(
+					new SavegameManagerUnit(this, false),
+					UnitState.TEMPORARY_UNIT);
+			UnitNavigator.getNavigator().set(UnitState.TEMPORARY_UNIT);
+		}
+
 		/*
 		 * Return to the LevelManagerUnit and start a new map.
 		 */
