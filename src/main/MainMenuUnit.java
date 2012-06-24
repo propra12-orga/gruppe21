@@ -37,6 +37,8 @@ public class MainMenuUnit extends GraphicalGameUnit {
 			+ "/QuitActive.png").getImage();
 	private Image ccontinueActive = new ImageIcon(GameConstants.MENU_IMAGES_DIR
 			+ "/ContinueActive.png").getImage();
+	private Image loadGameActive = new ImageIcon(GameConstants.MENU_IMAGES_DIR
+			+ "/LoadGameActive.png").getImage();
 	private Image singlePlayerInactive = new ImageIcon(
 			GameConstants.MENU_IMAGES_DIR + "/SinglePlayerInactive.png")
 			.getImage();
@@ -47,6 +49,8 @@ public class MainMenuUnit extends GraphicalGameUnit {
 			+ "/QuitInactive.png").getImage();
 	private Image ccontinueInactive = new ImageIcon(
 			GameConstants.MENU_IMAGES_DIR + "/ContinueInactive.png").getImage();
+	private Image loadGameInactive = new ImageIcon(
+			GameConstants.MENU_IMAGES_DIR + "/LoadGameInactive.png").getImage();
 	private Image toolTip = new ImageIcon(GameConstants.MENU_IMAGES_DIR
 			+ "/Help.png").getImage();
 
@@ -55,12 +59,13 @@ public class MainMenuUnit extends GraphicalGameUnit {
 	private int buttonWidth = singlePlayerActive.getWidth(null);
 	// using GameConstants for exact Buttonplacing on screen
 	private int startXPos = GameConstants.FRAME_SIZE_X / 2 - buttonWidth / 2;
-	private int startYPos = GameConstants.FRAME_SIZE_Y - 300;
+	private int startYPos = GameConstants.FRAME_SIZE_Y - 350;
 	// sets the space between all buttons and their positions
 	private int button1YPos = startYPos;
 	private int button2YPos = startYPos + 1 * (buttonHeight + buttonSpace);
 	private int button3YPos = startYPos + 2 * (buttonHeight + buttonSpace);
 	private int button4YPos = startYPos + 3 * (buttonHeight + buttonSpace);
+	private int button5YPos = startYPos + 4 * (buttonHeight + buttonSpace);
 	private int selectCounter;
 	// point connected with the select image for optimal positioning
 	private Point selectorGhost = new Point(startXPos, startYPos);
@@ -78,8 +83,9 @@ public class MainMenuUnit extends GraphicalGameUnit {
 		g.drawImage(toolTip, 140, GameConstants.FRAME_SIZE_Y - 60, null);
 		g.drawImage(singlePlayerInactive, startXPos, button1YPos, null);
 		g.drawImage(multiplayerInactive, startXPos, button2YPos, null);
-		g.drawImage(quitInactive, startXPos, button3YPos, null);
-		g.drawImage(ccontinueInactive, startXPos, button4YPos, null);
+		g.drawImage(loadGameInactive, startXPos, button3YPos, null);
+		g.drawImage(quitInactive, startXPos, button4YPos, null);
+		g.drawImage(ccontinueInactive, startXPos, button5YPos, null);
 		g.drawImage(select, (int) selectorGhost.getX() - buttonSpace,
 				(int) selectorGhost.getY(), null);
 		/*
@@ -93,10 +99,13 @@ public class MainMenuUnit extends GraphicalGameUnit {
 			g.drawImage(multiplayerActive, startXPos, button2YPos, null);
 
 		if (selectorGhost.getY() == button3YPos)
-			g.drawImage(quitActive, startXPos, button3YPos, null);
+			g.drawImage(loadGameActive, startXPos, button3YPos, null);
 
 		if (selectorGhost.getY() == button4YPos)
-			g.drawImage(ccontinueActive, startXPos, button4YPos, null);
+			g.drawImage(quitActive, startXPos, button4YPos, null);
+
+		if (selectorGhost.getY() == button5YPos)
+			g.drawImage(ccontinueActive, startXPos, button5YPos, null);
 	}
 
 	// MainMenu Navigation
@@ -110,11 +119,11 @@ public class MainMenuUnit extends GraphicalGameUnit {
 		if (key == KeyEvent.VK_DOWN || key == KeyEvent.VK_RIGHT) {
 			selectCounter++;
 		}
-		if (selectCounter > 3) {
+		if (selectCounter > 4) {
 			selectCounter = 0;
 		}
 		if (selectCounter < 0) {
-			selectCounter = 3;
+			selectCounter = 4;
 		}
 		// what happens if Enter is pressed
 		if (key == KeyEvent.VK_ENTER && selectCounter == 0) {
@@ -133,10 +142,14 @@ public class MainMenuUnit extends GraphicalGameUnit {
 			UnitNavigator.getNavigator().set(UnitState.TEMPORARY_UNIT);
 		}
 		if (key == KeyEvent.VK_ENTER && selectCounter == 2) {
+			// To be replaced
+			System.out.println("Game saved");
+		}
+		if (key == KeyEvent.VK_ENTER && selectCounter == 3) {
 			// end game
 			UnitNavigator.getNavigator().terminateGame();
 		}
-		if (key == KeyEvent.VK_ENTER && selectCounter == 3) {
+		if (key == KeyEvent.VK_ENTER && selectCounter == 4) {
 			// continue game
 			if (UnitNavigator.getNavigator().getUnitAt(
 					UnitState.LEVEL_MANAGER_UNIT) != null) {
