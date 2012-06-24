@@ -277,7 +277,11 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 		currentMap = campaign.getCurrentMap();
 		mapCanvas = new BufferedImage(currentMap.getWidth(),
 				currentMap.getHeight(), BufferedImage.TYPE_INT_ARGB);
+		Player tmpPlayer = player;
 		player = currentMap.getMapPlayer();
+		if (tmpPlayer != null && tmpPlayer.isAlive()) {
+			player.restorePlayerToData(tmpPlayer.getPlayerData());
+		}
 		player.direction.setUp(false);
 		player.direction.setDown(false);
 		player.direction.setLeft(false);

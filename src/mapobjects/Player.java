@@ -446,7 +446,7 @@ public class Player extends MoveableObject {
 		this.bombradius = bombradius;
 	}
 
-	public PlayerData getCampaignData() {
+	public PlayerData getPlayerData() {
 		return PlayerData.extractData(this);
 	}
 
