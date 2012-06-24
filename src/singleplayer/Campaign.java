@@ -14,6 +14,7 @@ import map.Map;
  */
 public class Campaign {
 
+	private String campaignName;
 	/**
 	 * Constant needed for the parsing process.
 	 */
@@ -54,12 +55,13 @@ public class Campaign {
 	 *            a WorldMap object.
 	 */
 	public Campaign(ArrayList<ArrayList<StoryMapContainer>> levels,
-			WorldMap worldMap) {
+			WorldMap worldMap, String campaignName) {
 		if (levels == null || worldMap == null) {
 			throw new IllegalArgumentException();
 		} else {
 			this.levels = levels;
 			this.worldMap = worldMap;
+			this.campaignName = campaignName;
 			campaignFinished = false;
 			mapCounter = 0;
 		}
@@ -146,6 +148,10 @@ public class Campaign {
 		data.restoreCampaign(this);
 	}
 
+	public String getName() {
+		return campaignName;
+	}
+
 	/**
 	 * Simple Container class storing a map name and an introductory text
 	 * message. Does also contain a boolean variable that may be used as a flag
@@ -195,15 +201,21 @@ public class Campaign {
 		private static final int id = 0;
 		private int selectedLevel;
 		private int maxLevelAccessible;
+		private String campaignName;
+		private int numOfLevels;
 
-		private CampaignData(int selectedLevel, int maxLevelAccessible) {
+		private CampaignData(int selectedLevel, int maxLevelAccessible,
+				String campaignName, int numOfLevels) {
 			this.selectedLevel = selectedLevel;
 			this.maxLevelAccessible = maxLevelAccessible;
+			this.campaignName = campaignName;
+			this.numOfLevels = numOfLevels;
 		}
 
 		public static CampaignData extractData(Campaign campaign) {
 			return new CampaignData(campaign.getWorldMap().getSelectedLevel(),
-					campaign.getWorldMap().getMaxLevelAccessible());
+					campaign.getWorldMap().getMaxLevelAccessible(),
+					campaign.getName(), campaign.getWorldMap().getNumOfLevels());
 		}
 
 		public void restoreCampaign(Campaign campaign) {
@@ -212,16 +224,49 @@ public class Campaign {
 		}
 
 		public static CampaignData extractDataFromString(String input) {
-			return null;
+			String[] inputData = input.split(";");
+			int sLevel = 0, mLevel = 0, lnum = 0;
+			String name = null;
+			for (int i = 1; i < inputData.length; i++) {
+				String[] data = inputData[i].split("=");
+				if (data[0].equals("sl")) {
+					sLevel = Integer.parseInt(data[1]);
+				}
+				if (data[0].equals("ml")) {
+					mLevel = Integer.parseInt(data[1]);
+				}
+				if (data[0].equals("name")) {
+					name = data[1];
+				}
+				if (data[0].equals("lnum")) {
+					lnum = Integer.parseInt(data[1]);
+				}
+			}
+			return new CampaignData(sLevel, mLevel, name, lnum);
 		}
 
 		public String writeDataToString() {
 			StringBuilder sb = new StringBuilder();
-			sb.append("campaign_data:");
-			sb.append("id=").append(id);
+			sb.append("campaign_data");
+			sb.append(";id=").append(id);
 			sb.append(";sl=").append(selectedLevel);
 			sb.append(";ml=").append(maxLevelAccessible);
+			sb.append(";name=").append(campaignName);
+			sb.append(";lnum=").append(numOfLevels);
 			return sb.toString();
 		}
+
+		public int getSelectedLevel() {
+			return selectedLevel;
+		}
+
+		public int getMaxLevelAccessible() {
+			return maxLevelAccessible;
+		}
+
+		public int getNumOfLevels() {
+			return numOfLevels;
+		}
 	}
+
 }

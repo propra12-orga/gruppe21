@@ -2,7 +2,10 @@ package singleplayer;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import mapobjects.Player;
@@ -16,6 +19,8 @@ import singleplayer.Campaign.CampaignData;
  * 
  */
 public class Savegame {
+
+	private static final String SAVEGAME_FILE = "savegames.txt";
 
 	private PlayerData playerData;
 	private CampaignData campaignData;
@@ -49,32 +54,36 @@ public class Savegame {
 	}
 
 	/**
-	 * Reads Savegame from text file.
+	 * Reads Savegame slot from savegame text file.
 	 * 
-	 * @param filename
-	 *            Filename and path of old savegame.
+	 * @param slot
+	 *            Savegame slot (0 - 3).
 	 * @return Savegame object consisting of saved player and campaign data.
 	 * @throws FileNotFoundException
 	 */
-	public static Savegame readSavegameFromFile(String filename)
+	public static Savegame readSavegameSlot(int slot)
 			throws FileNotFoundException {
-		File file = new File(filename);
+		if (slot < 0 || slot > 3)
+			throw new IllegalArgumentException("Unknown Savegame Slot:" + slot);
+		File file = new File(SAVEGAME_FILE);
 		Scanner sc = new Scanner(file);
 
 		PlayerData pData = null;
 		CampaignData cData = null;
 
-		while (sc.nextLine() != null) {
+		while (sc.hasNextLine()) {
 			String line = sc.nextLine();
 			line = decipherSavegame(line);
-			if (line.startsWith("player")) {
-				pData = Player.PlayerData.extractDataFromString(line);
-			} else if (line.startsWith("campaign")) {
-				cData = Campaign.CampaignData.extractDataFromString(line);
+			if (line.startsWith("slot-" + slot) && line.contains("player")) {
+				pData = Player.PlayerData
+						.extractDataFromString(line.split(":")[1]);
+			} else if (line.startsWith("slot-" + slot)
+					&& line.contains("campaign")) {
+				cData = Campaign.CampaignData.extractDataFromString(line
+						.split(":")[1]);
 			}
 		}
 		if (pData == null || cData == null) {
-			System.err.println("CORRUPTED SAVEGAME: " + filename);
 			return null;
 		} else {
 			return new Savegame(pData, cData);
@@ -82,22 +91,104 @@ public class Savegame {
 	}
 
 	/**
-	 * Stores Savegame to file.
+	 * Generates strings that can be used to display some sort of information
+	 * about every Savegame slot. Faster than analyzing each slot individually.
 	 * 
-	 * @param filename
-	 *            File used to store Savegame
+	 * @return Array containing two lines per slot, one containing information
+	 *         about the selected level, and the other representing the level
+	 *         progress. If a Savegame slot has not been used yet, its array
+	 *         slots will remain null.
+	 * @throws FileNotFoundException
 	 */
-	public void storeToFile(String filename) throws FileNotFoundException {
-		File file = new File(filename);
+	public String[] readSavegameInfo() throws FileNotFoundException {
+		File file = new File(SAVEGAME_FILE);
+		Scanner sc = new Scanner(file);
+
+		String[] slotStatus = new String[8];
+		while (sc.hasNextLine()) {
+			String line = sc.nextLine();
+			line = decipherSavegame(line);
+			if (line.contains("campaign")) {
+				String[] lineData = line.split(":");
+				String[] slotData = lineData[0].split("-");
+				CampaignData cData = CampaignData
+						.extractDataFromString(lineData[1]);
+				int slot = Integer.parseInt(slotData[1]);
+				slotStatus[slot] = "Selected Level: "
+						+ (cData.getSelectedLevel() + 1);
+				slotStatus[slot + 1] = "Level Progress: "
+						+ cData.getMaxLevelAccessible() + " / "
+						+ cData.getNumOfLevels();
+			}
+		}
+		return slotStatus;
+	}
+
+	/**
+	 * Stores Savegame to savegame file.
+	 * 
+	 * @param slot
+	 *            Savegame slot (0 - 3)
+	 * @throws IOException
+	 */
+	public void storeToFile(int slot) throws IOException {
+		if (slot < 0 || slot > 3)
+			throw new IllegalArgumentException("Unknown Savegame Slot:" + slot);
+		File file = new File(SAVEGAME_FILE);
+
+		if (!file.exists())
+			file.createNewFile();
+
 		String encodedPlayerData = cipherSavegame(playerData
 				.writeDataToString());
 		String encodedCampaignData = cipherSavegame(campaignData
 				.writeDataToString());
+		/*
+		 * Used to "clean file": All other slots will be kept, old input slot
+		 * will be overwritten
+		 */
+		List<String> fileContent = new ArrayList<String>();
+		Scanner sc = new Scanner(file);
+		while (sc.hasNextLine()) {
+			String line = sc.nextLine();
+			if (!line.isEmpty() && !line.startsWith("slot-" + slot))
+				fileContent.add(line);
+		}
+		file.delete();
+		file = new File(SAVEGAME_FILE);
 		PrintWriter writer = new PrintWriter(file);
+		for (String s : fileContent) {
+			writer.println(s);
+		}
+		writer.print("slot-" + slot + ":");
 		writer.println(encodedPlayerData);
+		writer.print("slot-" + slot + ":");
 		writer.println(encodedCampaignData);
 		writer.flush();
 		writer.close();
+	}
+
+	public static void main(String[] args) throws IOException {
+		Campaign campaign = new CampaignReader("campaign1")
+				.readCampaignFromFile();
+		Player player = campaign.getCurrentMap().getMapPlayer();
+		Savegame save = new Savegame(player.getPlayerData(),
+				campaign.getCampaignData());
+		save.storeToFile(0);
+		String[] bla = save.readSavegameInfo();
+		for (int i = 0; i < bla.length; i += 2) {
+			if (bla[i] == null || bla[i + 1] == null) {
+				System.out.println();
+				System.out.println("UNUSED");
+				System.out.println();
+
+			} else {
+				System.out.println();
+				System.out.println(bla[i]);
+				System.out.println(bla[i + 1]);
+				System.out.println();
+			}
+		}
 	}
 
 }
