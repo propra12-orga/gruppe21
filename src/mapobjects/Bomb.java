@@ -326,7 +326,7 @@ public class Bomb extends MapObject {
 		// verschiebe Bombe bei explosion in höhere ebene, damit
 		// bombengrafik über player
 		this.map.getMapObjects().get(1).remove(this);
-		this.map.getMapObjects().get(3).add(this);
+		this.map.getMapObjects().get(4).add(this);
 		// armlängen berechnen
 		calcArms(cm);
 	}

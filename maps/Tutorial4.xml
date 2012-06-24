@@ -4007,6 +4007,9 @@
 				<posx>50</posx>
 				<posy>250</posy>
 			</character>	
+					
+		</level>
+		<level>
 			<character type="sillyEnemy" animated="true">
 			    <visible>true</visible>
 				<collision>true</collision>
@@ -4054,9 +4057,8 @@
 			 	<animationset>runningEnemy</animationset>
 				<posx>1100</posx>
 				<posy>400</posy>
-			</character>		
+			</character>
 		</level>
-		<level></level>
 		<level></level>
 	</mapobjects>	
 
