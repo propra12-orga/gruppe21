@@ -4,15 +4,14 @@
 	<header>
 		<numOfLevels>3</numOfLevels>
 	</header>
-	
+
 	<maps>
-	
 		
 		<map>
 			<intro>Tutorial 4 - All hands ahoy!#
 			The ship is being assaulted! Destroy other objects to obtain upgrades#
-			that will help you defeat your enemies. Press F1 to see detailed information#
-			about every upgrade!#
+			that will help you defeat your enemies.#
+			Press F1 to see detailed information about every upgrade!#
 			. . . . . . . . . . . .#  Press Enter
 			</intro>
 			<name>Tutorial4</name>
@@ -34,14 +33,14 @@
 			<name>testmap</name>
 			<sequence>2</sequence>
 		</map>
-		
+
 	</maps>
-	
-	
+
+
 	<worldmap>
-	
+
 		<name>campaign1worldmap</name>
-		
+
 		<coordinates>
 			<coord>
 				<cx>10</cx>
@@ -56,7 +55,7 @@
 				<cy>8</cy>
 			</coord>
 		</coordinates>
-		
+
 	</worldmap>
-	
+
 </campaign>

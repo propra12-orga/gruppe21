@@ -16,11 +16,13 @@ import org.jdom2.input.SAXBuilder;
 public class CampaignReader {
 	private Document campaignXML;
 	private Element campaignRoot;
+	private String filename;
 
-	public CampaignReader(String mn) {
+	public CampaignReader(String filename) {
+		this.filename = filename;
 		try {
 			campaignXML = new SAXBuilder().build(GameConstants.CAMPAIGNS_DIR
-					+ mn + ".xml");
+					+ filename + ".xml");
 		} catch (JDOMException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -70,7 +72,7 @@ public class CampaignReader {
 		}
 
 		WorldMap worldMap = new WorldMap(coordinates, new Map(worldMapName));
-		Campaign campaign = new Campaign(levels, worldMap);
+		Campaign campaign = new Campaign(levels, worldMap, filename);
 		return campaign;
 	}
 

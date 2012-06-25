@@ -563,13 +563,33 @@ public class Player extends MoveableObject {
 		}
 
 		public static PlayerData extractDataFromString(String input) {
-			return null;
+			String[] inputData = input.split(";");
+			int mbombs = 0, bombr = 0, mvSpeed = 0;
+			boolean remote = false;
+
+			String name = null;
+			for (int i = 1; i < inputData.length; i++) {
+				String[] data = inputData[i].split("=");
+				if (data[0].equals("mb")) {
+					mbombs = Integer.parseInt(data[1]);
+				}
+				if (data[0].equals("brad")) {
+					bombr = Integer.parseInt(data[1]);
+				}
+				if (data[0].equals("brem")) {
+					remote = Boolean.parseBoolean(data[1]);
+				}
+				if (data[0].equals("ps")) {
+					mvSpeed = Integer.parseInt(data[1]);
+				}
+			}
+			return new PlayerData(mbombs, bombr, remote, mvSpeed);
 		}
 
 		public String writeDataToString() {
 			StringBuilder sb = new StringBuilder();
-			sb.append("player_data:");
-			sb.append("id=").append(id);
+			sb.append("player_data");
+			sb.append(";id=").append(id);
 			sb.append(";mb=").append(maxbombs);
 			sb.append(";brad=").append(bombradius);
 			sb.append(";brem=").append(bombRemote);

@@ -210,9 +210,7 @@ public class TransitionUnit extends GraphicalGameUnit {
 			g.setColor(Color.black);
 			g.fillRect(0, 0, GameConstants.FRAME_SIZE_X,
 					GameConstants.FRAME_SIZE_Y);
-			g.drawImage(message, messagePosX, messagePosY, message.getWidth(),
-					message.getHeight(), null);
+			g.drawImage(message, messagePosX, messagePosY, null);
 		}
 	}
-
 }
