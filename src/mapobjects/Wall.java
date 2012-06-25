@@ -89,6 +89,7 @@ public class Wall extends MapObject {
 			list.add(Color.blue);
 			list.add(Color.cyan);
 			list.add(Color.magenta);
+			list.add(Color.lightGray);
 
 			Color upgradeColor = list.get(rnd.nextInt(list.size()));
 

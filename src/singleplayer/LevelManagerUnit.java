@@ -161,6 +161,11 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 			if (key == KeyEvent.VK_C) {
 				player.bombExplode();
 			}
+
+			if (key == KeyEvent.VK_S) {
+				player.activateShield();
+			}
+
 			if (key == KeyEvent.VK_F1) {
 				initHelpscreen();
 

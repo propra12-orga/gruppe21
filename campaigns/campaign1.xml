@@ -6,36 +6,7 @@
 	</header>
 
 	<maps>
-
-		<map>
-			<intro>Tutorial 1 - Under full sail#
-			Welcome to Bomberman Island! Use the arrow keys to move your#
-			character to the exit on the other side.#
-			. . . . . . . . . . . .#  Press Enter
-			</intro>
-			<name>Tutorial1</name>
-			<sequence>0</sequence>
-		</map>
-		<map>
-			<intro>Tutorial 2 - Scrubbing the tween deck#
-			There are different kinds of objects in Bomberman Island,#
-			some of them that can be destroyed, and others that can't.#
-			Use the Space key to plant a bomb and try to advance to the other side!#
-			. . . . . . . . . . . .#  Press Enter
-			</intro>
-			<name>Tutorial2</name>
-			<sequence>0</sequence>
-		</map>
-		<map>
-			<intro>Tutorial 3 - Intruders on the gun deck#
-			That was a child's play! But it seems like there's some rattling#
-			noise coming from the gun deck!#
-			Protect the ship and get rid of all enemies, before you leave the room!#
-			. . . . . . . . . . . .#  Press Enter
-			</intro>
-			<name>Tutorial3</name>
-			<sequence>0</sequence>
-		</map>
+		
 		<map>
 			<intro>Tutorial 4 - All hands ahoy!#
 			The ship is being assaulted! Destroy other objects to obtain upgrades#

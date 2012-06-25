@@ -39,7 +39,7 @@ public class Player extends MoveableObject {
 	 */
 	private boolean bombRemote = false;
 
-	private boolean immortal = false;
+	private boolean shieldProtection = false, immortal = false;
 	/**
 	 * List of the actual planted bombs
 	 */
@@ -47,6 +47,11 @@ public class Player extends MoveableObject {
 
 	private boolean maxBombs_used = false, bombRadius_used = false,
 			playerSpeed_used = false;
+
+	private boolean shieldEqu = false, shieldHit = false;
+
+	private double shieldStartTime, shieldTime = 500000000, immortalStartTime,
+			immortalTime = 6000000000L;
 
 	/**
 	 * constructor
@@ -82,7 +87,13 @@ public class Player extends MoveableObject {
 			} else {
 				posY -= speed;
 			}
-			animation.change("playerUp");
+			if (shieldProtection) {
+				animation.change("playerUp_bubble");
+			} else if (immortal) {
+				animation.change("playerUp_immortal");
+			} else {
+				animation.change("playerUp");
+			}
 		}
 
 		if (direction.isDown()) {
@@ -91,7 +102,13 @@ public class Player extends MoveableObject {
 			} else {
 				posY += speed;
 			}
-			animation.change("playerDown");
+			if (shieldProtection) {
+				animation.change("playerDown_bubble");
+			} else if (immortal) {
+				animation.change("playerDown_immortal");
+			} else {
+				animation.change("playerDown");
+			}
 		}
 
 		if (direction.isLeft()) {
@@ -100,7 +117,13 @@ public class Player extends MoveableObject {
 			} else {
 				posX -= speed;
 			}
-			animation.change("playerLeft");
+			if (shieldProtection) {
+				animation.change("playerLeft_bubble");
+			} else if (immortal) {
+				animation.change("playerLeft_immortal");
+			} else {
+				animation.change("playerLeft");
+			}
 		}
 
 		if (direction.isRight()) {
@@ -109,7 +132,13 @@ public class Player extends MoveableObject {
 			} else {
 				posX += speed;
 			}
-			animation.change("playerRight");
+			if (shieldProtection) {
+				animation.change("playerRight_bubble");
+			} else if (immortal) {
+				animation.change("playerRight_immortal");
+			} else {
+				animation.change("playerRight");
+			}
 		}
 	}
 
@@ -152,20 +181,11 @@ public class Player extends MoveableObject {
 				Color test = new Color(collTest.getRGB(i, j));
 				if (test.equals(Color.yellow)) {
 					map.finishMap();
-				} else if (test.equals(Color.orange)) {
-					if (!immortal) {
-						this.die();
-						map.finishMap();
-					} else {
-						return true;
-					}
-				} else if (test.equals(Color.red)) {
-					if (!immortal) {
-						this.die();
-						map.finishMap();
-					} else {
-						return true;
-					}
+					/*
+					 * } else if (test.equals(Color.orange)) { this.die();
+					 * map.finishMap(); } else if (test.equals(Color.red)) {
+					 * this.die(); map.finishMap(); }
+					 */
 				} else if (test.equals(Color.black) || test.equals(Color.gray)) {
 					if (i < t && j < t) {
 						upleft = true;
@@ -287,8 +307,36 @@ public class Player extends MoveableObject {
 	public void update(BufferedImage cm) {
 		if (simpleHasColl(posX, posY, map.getCollisionMap(), Color.orange,
 				Color.red)) {
-			this.die();
-			map.finishMap();
+			if (!immortal) {
+				if (!shieldProtection) {
+					this.die();
+					map.finishMap();
+				} else {
+					if (!shieldHit) {
+						shieldStartTime = System.nanoTime();
+						shieldHit = true;
+						shieldEqu = false;
+						System.out.println("Shield hit");
+					}
+				}
+			} else {
+				System.out.println("Hit, but immortal. Muhaha");
+			}
+		}
+		if (shieldHit) {
+			if (shieldStartTime + shieldTime <= System.nanoTime()) {
+				shieldProtection = false;
+				shieldHit = false;
+				animation.setCurrentAnimation(animation.getCurrentImagePath());
+				System.out.println("Shield off");
+			}
+		}
+		if (immortal) {
+			if (immortalStartTime + immortalTime <= System.nanoTime()) {
+				immortal = false;
+				animation.setCurrentAnimation(animation.getCurrentImagePath());
+				System.out.println("Now you are not immortal anymore");
+			}
 		}
 		animation.animate();
 		move();
@@ -297,7 +345,7 @@ public class Player extends MoveableObject {
 
 	/**
 	 * Causes all planted bombs to explode. Method is called by pressing a key,
-	 * but only if the Upgrade bombRemote has been collected.
+	 * but only if the upgrade bombRemote has been collected.
 	 */
 	public void bombExplode() {
 		for (Bomb bomb : remoteBombs) {
@@ -325,15 +373,24 @@ public class Player extends MoveableObject {
 				System.out.printf("Radius: %d\n", bombradius);
 			}
 		}
-		if (simpleHasColl(posX, posY, cm, Color.cyan) && !playerSpeed_used) {
-			if (speed < 5) {
-				speed++;
-				playerSpeed_used = true;
-				System.out.printf("Speed: %d\n", speed);
+		if (simpleHasColl(posX, posY, cm, Color.cyan)) {
+			if (!shieldEqu) {
+				shieldEqu = true;
+				System.out.println("Shield equipped\n");
 			}
 		}
 		if (simpleHasColl(posX, posY, cm, Color.magenta)) {
 			bombRemote = true;
+			System.out.println("remoteBomb");
+		}
+		if (simpleHasColl(posX, posY, cm, Color.lightGray)) {
+			if (!immortal) {
+				immortal = true;
+				shieldProtection = false;
+				animation.setCurrentAnimation("playerDown_immortal");
+				immortalStartTime = System.nanoTime();
+				System.out.println("You are immortal for 5 secs");
+			}
 		}
 
 		if (maxBombs_used) {
@@ -347,20 +404,27 @@ public class Player extends MoveableObject {
 				bombRadius_used = false;
 			}
 		}
+	}
 
-		if (playerSpeed_used) {
-			if (!simpleHasColl(posX, posY, cm, Color.cyan)) {
-				playerSpeed_used = false;
-			}
+	public void activateShield() {
+		if (shieldEqu && !shieldProtection) {
+			shieldProtection = true;
+			animation.setCurrentAnimation("playerDown_bubble");
+			System.out.println("Shield activated");
 		}
 	}
 
 	@Override
 	public void draw(Graphics2D g2d, ImageLoader gr, Graphics2D cm) {
 		g2d.drawImage(animation.getCurrentImage(), posX, posY, null);
-		cm.setPaint(Color.green);
-		cm.fillRect(posX, posY, 50, 50);
 
+		if (!immortal) {
+			cm.setPaint(Color.green);
+			cm.fillRect(posX, posY, 50, 50);
+		} else {
+			cm.setPaint(Color.darkGray);
+			cm.fillRect(posX, posY, 50, 50);
+		}
 	}
 
 	/**
@@ -446,6 +510,14 @@ public class Player extends MoveableObject {
 		this.bombradius = bombradius;
 	}
 
+	public boolean isShieldEqu() {
+		return shieldEqu;
+	}
+
+	public void setShieldEqu(boolean shieldEqu) {
+		this.shieldEqu = shieldEqu;
+	}
+
 	public PlayerData getPlayerData() {
 		return PlayerData.extractData(this);
 	}
@@ -467,7 +539,7 @@ public class Player extends MoveableObject {
 		int maxbombs;
 		int bombradius;
 		boolean bombRemote;
-		int speed;
+		int speed; // Shield
 
 		public PlayerData(int maxbombs, int bombradius, boolean remoteBombs,
 				int speed) {
@@ -475,7 +547,7 @@ public class Player extends MoveableObject {
 			this.maxbombs = maxbombs;
 			this.bombradius = bombradius;
 			this.bombRemote = remoteBombs;
-			this.speed = speed;
+			this.speed = speed; // TODO Shield
 		}
 
 		public static PlayerData extractData(Player player) {
@@ -487,7 +559,7 @@ public class Player extends MoveableObject {
 			player.setMaxBombs(maxbombs);
 			player.setBombRadius(bombradius);
 			player.setBombRemote(bombRemote);
-			player.setSpeed(speed);
+			player.setSpeed(speed); // TODO Shield
 		}
 
 		public static PlayerData extractDataFromString(String input) {
@@ -521,7 +593,7 @@ public class Player extends MoveableObject {
 			sb.append(";mb=").append(maxbombs);
 			sb.append(";brad=").append(bombradius);
 			sb.append(";brem=").append(bombRemote);
-			sb.append(";ps=").append(speed);
+			sb.append(";ps=").append(speed); // TODO Shield
 			return sb.toString();
 		}
 	}

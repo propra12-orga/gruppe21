@@ -151,6 +151,7 @@ public abstract class Enemy extends MoveableObject {
 			list.add(Color.blue);
 			list.add(Color.cyan);
 			list.add(Color.magenta);
+			list.add(Color.lightGray);
 
 			Color upgradeColor = list.get(rnd.nextInt(list.size()));
 
@@ -203,6 +204,11 @@ public abstract class Enemy extends MoveableObject {
 					return true;
 				} else if (test.equals(Color.orange)) {
 					die("enemyDying");
+				} else if (test.equals(Color.darkGray)) {
+					die("enemyDying");
+				} else if (test.equals(Color.green)) {
+					map.getMapPlayer().die();
+					map.finishMap();
 				}
 			}
 		}

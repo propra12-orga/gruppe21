@@ -8,14 +8,13 @@ import java.awt.image.BufferedImage;
 
 public class Upgrade extends MapObject {
 
-	private Color color, colorCache;
+	private Color color;
 
 	public Upgrade(int x, int y, boolean v, boolean d, boolean c, String p,
 			ImageLoader gr, Color col) {
 		super(x, y, v, d, c, p, gr);
 		color = col;
 		initAnimation(col);
-		colorCache = color;
 	}
 
 	private void initAnimation(Color c) {
@@ -26,7 +25,7 @@ public class Upgrade extends MapObject {
 		} else if (c.equals(Color.blue)) {
 			upgradeAnimation = "BombRange";
 		} else if (c.equals(Color.cyan)) {
-			upgradeAnimation = "PlayerSpeed";
+			upgradeAnimation = "Shield";
 		} else if (c.equals(Color.magenta)) {
 			upgradeAnimation = "BombRemote";
 		} else if (c.equals(Color.lightGray)) {
@@ -40,7 +39,8 @@ public class Upgrade extends MapObject {
 
 	@Override
 	public void update(BufferedImage collisionMap) {
-		if (!simpleHasColl(posX, posY, collisionMap, Color.green)) {
+		if (!simpleHasColl(posX, posY, collisionMap, Color.green,
+				Color.darkGray)) {
 			animation.animate();
 		} else {
 			setDestroyed(true);
