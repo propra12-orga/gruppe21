@@ -11,10 +11,9 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class Server extends Thread {
 
-	public boolean gamestarted = false;
+	public static boolean gamestarted = false;
 	// Socket Classvars
 	private ServerSocket hostSocket = null;
-	private Socket toclientSocket = null;
 	private DataOutputStream os = null;
 	private DataInputStream is = null;
 	// Player Array
@@ -85,7 +84,7 @@ public class Server extends Thread {
 		private void initializePlayerSlot() {
 			try {
 				writeLock.lock();
-				os.writeUTF("Welcome Player " + playerIndex);
+				os.writeUTF("Welcome Player:" + playerIndex);
 				writeLock.unlock();
 			} catch (IOException e) {
 				e.printStackTrace();
