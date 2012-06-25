@@ -1,6 +1,5 @@
 package imageloader;
 
-
 /**
  * Holds an Image
  * 
@@ -22,6 +21,12 @@ public class GameImage extends GameGraphic {
 	 */
 	public GameImage(String p, String n) {
 		super(p);
+		path = p;
+		name = n;
+	}
+
+	public GameImage(String p, String n, int rotation) {
+		super(p, rotation);
 		path = p;
 		name = n;
 	}

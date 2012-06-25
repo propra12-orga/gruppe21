@@ -1,6 +1,7 @@
 package mapobjects;
 
 import imageloader.Animation;
+import imageloader.GameGraphic;
 import imageloader.ImageLoader;
 
 import java.awt.Color;
@@ -94,7 +95,7 @@ public class Bomb extends MapObject {
 	 * @param gr
 	 *            the ImageLoader of the map
 	 * @param r
-	 *            sets rotation of the image (0,1,2,3)
+	 *            sets bomb radius
 	 * @param cm
 	 *            collision map of the current map
 	 * @param playerID
@@ -165,11 +166,13 @@ public class Bomb extends MapObject {
 					if (i == 0) {
 						if (j == arms[i] - 1) {
 							g2d.drawImage(
-									rotate(endanimation.getCurrentImage(), i),
+									GameGraphic.rotate(
+											endanimation.getCurrentImage(), i),
 									posX, posY - (j + 1) * 50, null);
 						} else {
 							g2d.drawImage(
-									rotate(armanimation.getCurrentImage(), i),
+									GameGraphic.rotate(
+											armanimation.getCurrentImage(), i),
 									posX, posY - (j + 1) * 50, null);
 						}
 						cm.setPaint(Color.orange);
@@ -178,11 +181,13 @@ public class Bomb extends MapObject {
 					if (i == 1) {
 						if (j == arms[i] - 1) {
 							g2d.drawImage(
-									rotate(endanimation.getCurrentImage(), i),
+									GameGraphic.rotate(
+											endanimation.getCurrentImage(), i),
 									posX + (j + 1) * 50, posY, null);
 						} else {
 							g2d.drawImage(
-									rotate(armanimation.getCurrentImage(), i),
+									GameGraphic.rotate(
+											armanimation.getCurrentImage(), i),
 									posX + (j + 1) * 50, posY, null);
 						}
 						cm.setPaint(Color.orange);
@@ -191,11 +196,13 @@ public class Bomb extends MapObject {
 					if (i == 2) {
 						if (j == arms[i] - 1) {
 							g2d.drawImage(
-									rotate(endanimation.getCurrentImage(), i),
+									GameGraphic.rotate(
+											endanimation.getCurrentImage(), i),
 									posX, posY + (j + 1) * 50, null);
 						} else {
 							g2d.drawImage(
-									rotate(armanimation.getCurrentImage(), i),
+									GameGraphic.rotate(
+											armanimation.getCurrentImage(), i),
 									posX, posY + (j + 1) * 50, null);
 						}
 						cm.setPaint(Color.orange);
@@ -204,11 +211,13 @@ public class Bomb extends MapObject {
 					if (i == 3) {
 						if (j == arms[i] - 1) {
 							g2d.drawImage(
-									rotate(endanimation.getCurrentImage(), i),
+									GameGraphic.rotate(
+											endanimation.getCurrentImage(), i),
 									posX - (j + 1) * 50, posY, null);
 						} else {
 							g2d.drawImage(
-									rotate(armanimation.getCurrentImage(), i),
+									GameGraphic.rotate(
+											armanimation.getCurrentImage(), i),
 									posX - (j + 1) * 50, posY, null);
 						}
 						cm.setPaint(Color.orange);
