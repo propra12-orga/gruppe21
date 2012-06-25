@@ -32,7 +32,7 @@ public class Server extends Thread {
 	public void run() {
 		while (gamestarted == false) {
 			try {
-				toClientSockets[playerCount] = new toClientSocket(playerCount,
+				toClientSockets[playerCount] = new ToClientSocket(playerCount,
 						hostSocket.accept());
 				playerCount += 1;
 				if (playerCount == 2)
@@ -51,16 +51,16 @@ public class Server extends Thread {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
+	} // evtl stoppe den Thread, nachdem das Spiel startet
 
-	public class toClientSocket extends Thread implements Runnable {
+	public class ToClientSocket extends Thread implements Runnable {
 		private int playerIndex;
 		private Socket clientSocket;
-		private String incoming = null;
+		protected String incoming = null;
 		private Lock writeLock = new ReentrantLock();
 
 		// Constructor
-		public toClientSocket(int playerIndex, Socket clientSocket) {
+		public ToClientSocket(int playerIndex, Socket clientSocket) {
 			this.playerIndex = playerIndex;
 			this.clientSocket = clientSocket;
 			try {
@@ -85,6 +85,7 @@ public class Server extends Thread {
 			try {
 				writeLock.lock();
 				os.writeUTF("Welcome Player:" + playerIndex);
+				System.out.println("check");
 				writeLock.unlock();
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -95,16 +96,34 @@ public class Server extends Thread {
 			while (gamestarted == true) {
 				try {
 					incoming = is.readUTF();
-					for (int i = 1; i < 3; i++) {
-						toClientSocket tmp = (toClientSocket) toClientSockets[i];
-						Lock tmpLock = tmp.getToClientWriteLock();
-						tmpLock.lock();
-						tmp.getToClientSocketOS().writeUTF(incoming);
-						tmpLock.unlock();
-					}
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
+			}
+		}
+	}
+
+	public class TCSWrite extends ToClientSocket implements Runnable {
+
+		public TCSWrite(int playerIndex, Socket clientSocket) {
+			super(playerIndex, clientSocket);
+		}
+
+		@Override
+		public void run() {
+			while (incoming != null) {
+				for (int i = 1; i < 3; i++) {
+					ToClientSocket tmp = (ToClientSocket) toClientSockets[i];
+					Lock tmpLock = tmp.getToClientWriteLock();
+					tmpLock.lock();
+					try {
+						tmp.getToClientSocketOS().writeUTF(incoming);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					tmpLock.unlock();
+				}
+
 			}
 		}
 	}

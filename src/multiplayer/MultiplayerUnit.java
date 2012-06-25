@@ -233,15 +233,18 @@ public class MultiplayerUnit extends GraphicalGameUnit {
 			this.toHostSocket = toHostSocket;
 			this.os = os;
 			this.is = is;
+			this.start();
 		}
 
 		public void run() {
-			try {
-				incomingMsg = is.readUTF();
-				System.out.println(incomingMsg);
-				analizeIncoming(incomingMsg);
-			} catch (IOException e) {
-				System.out.println("Failed to read message");
+			while (true) {
+				try {
+					incomingMsg = is.readUTF();
+					System.out.println(incomingMsg);
+					analizeIncoming(incomingMsg);
+				} catch (IOException e) {
+					System.out.println("Failed to read message");
+				}
 			}
 
 		}
