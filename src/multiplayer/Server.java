@@ -19,7 +19,7 @@ public class Server extends Thread {
 	// Player Array
 	private int playerCount = 1;
 	// Socket Management
-	public Object[] toClientSockets = new Object[3];
+	private ToClientSocket[] toClientSockets = new ToClientSocket[2]; // Change
 
 	// Constructor
 	public Server(int port) throws IOException {
@@ -35,9 +35,15 @@ public class Server extends Thread {
 				toClientSockets[playerCount] = new ToClientSocket(playerCount,
 						hostSocket.accept());
 				playerCount += 1;
-				if (playerCount == 2)
+				if (playerCount == 2) { // Change
 					gamestarted = true;
-				// Initialisiere den Krieg!
+					try {
+						Thread.sleep(10);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					distributeMessage("Start!");
+				}
 			} catch (SocketTimeoutException s) {
 				System.out.println("Socket T/O");
 				break;
@@ -46,12 +52,31 @@ public class Server extends Thread {
 				break;
 			}
 		}
-		try {
-			hostSocket.close();
-		} catch (IOException e) {
-			e.printStackTrace();
+		while (true) {
+			try {
+				Thread.sleep(2);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		}
-	} // evtl stoppe den Thread, nachdem das Spiel startet
+	}
+
+	public void distributeMessage(String incoming) {
+		for (int i = 1; i < 2; i++) { // Change
+			try {
+				ToClientSocket tmp = toClientSockets[i];
+				Lock tmpLock = tmp.getToClientWriteLock();
+				tmpLock.lock();
+				tmp.getToClientSocketOS().writeUTF(incoming);
+				tmpLock.unlock();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		incoming = null;
+	}
+
+	// evtl stoppe den Thread, nachdem das Spiel startet
 
 	public class ToClientSocket extends Thread implements Runnable {
 		private int playerIndex;
@@ -84,8 +109,7 @@ public class Server extends Thread {
 		private void initializePlayerSlot() {
 			try {
 				writeLock.lock();
-				os.writeUTF("Welcome Player:" + playerIndex);
-				System.out.println("check");
+				os.writeUTF("Welcome Player " + playerIndex);
 				writeLock.unlock();
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -96,36 +120,16 @@ public class Server extends Thread {
 			while (gamestarted == true) {
 				try {
 					incoming = is.readUTF();
+					distributeMessage(incoming);
 				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				try {
+					Thread.sleep(2);
+				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
 			}
 		}
 	}
-
-	public class TCSWrite extends ToClientSocket implements Runnable {
-
-		public TCSWrite(int playerIndex, Socket clientSocket) {
-			super(playerIndex, clientSocket);
-		}
-
-		@Override
-		public void run() {
-			while (incoming != null) {
-				for (int i = 1; i < 3; i++) {
-					ToClientSocket tmp = (ToClientSocket) toClientSockets[i];
-					Lock tmpLock = tmp.getToClientWriteLock();
-					tmpLock.lock();
-					try {
-						tmp.getToClientSocketOS().writeUTF(incoming);
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-					tmpLock.unlock();
-				}
-
-			}
-		}
-	}
-
 }

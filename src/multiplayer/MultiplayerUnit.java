@@ -1,13 +1,15 @@
 package multiplayer;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
@@ -17,6 +19,7 @@ import main.UnitNavigator;
 import main.UnitState;
 import map.Map;
 import mapobjects.Player;
+import unitTransitions.TransitionUnit;
 
 public class MultiplayerUnit extends GraphicalGameUnit {
 
@@ -36,11 +39,21 @@ public class MultiplayerUnit extends GraphicalGameUnit {
 	private Player playerTwo;
 	private int myPlayerIndex;
 
+	/**
+	 * Some win messages one can randomly choose from.
+	 */
+	private final String[] winMessages = { " is bomb-happy!",
+			" achieves a blasting victory!", " leaves nothing but a crater!" };
+	/**
+	 * Message to be shown in case of a draw.
+	 */
+	private final String drawMessage = "Unbelieveable! It's a draw!";
+
 	// Constructor
 	public MultiplayerUnit() {
 		// to do: hole dir die Adresse und evtl den Port vom Nutzer
 		try {
-			toHostSocket = new Socket(InetAddress.getLocalHost(), 5555);
+			toHostSocket = new Socket("127.0.0.1", 5555);
 			os = new DataOutputStream(toHostSocket.getOutputStream());
 			is = new DataInputStream(toHostSocket.getInputStream());
 			fromHost = new ReadFromHost(toHostSocket, os, is);
@@ -54,7 +67,7 @@ public class MultiplayerUnit extends GraphicalGameUnit {
 	public MultiplayerUnit(String mapName) {
 		// to do: hole dir die Adresse und evtl den Port vom Nutzer
 		try {
-			toHostSocket = new Socket("127.0.0.1", 55555);
+			toHostSocket = new Socket("127.0.0.1", 5555);
 			os = new DataOutputStream(toHostSocket.getOutputStream());
 			is = new DataInputStream(toHostSocket.getInputStream());
 			fromHost = new ReadFromHost(toHostSocket, os, is);
@@ -64,12 +77,35 @@ public class MultiplayerUnit extends GraphicalGameUnit {
 			e.printStackTrace();
 		}
 		this.mapName = mapName;
-		initComponent();
 	}
 
 	@Override
 	public void updateComponent() {
-		// TODO Auto-generated method stub
+		if (!multiplayerMap.isFinished()) {
+			multiplayerMap.update();
+		} else {
+			/*
+			 * A player died: Generate the appropriate image ...
+			 */
+			BufferedImage transitionMsg = createTransitionMessage(drawMessage);
+			if (playerOne.isAlive()) {
+				transitionMsg = createTransitionMessage("Player One"
+						+ winMessages[(int) (Math.random() * 3)]);
+			} else if (playerTwo.isAlive()) {
+				transitionMsg = createTransitionMessage("Player Two"
+						+ winMessages[(int) (Math.random() * 3)]);
+			}
+			/*
+			 * ... and pass it to a TransitionUnit
+			 */
+			TransitionUnit trans = new TransitionUnit(UnitState.BASE_MENU_UNIT,
+					transitionMsg, false);
+			UnitNavigator.getNavigator().removeGameUnit(
+					UnitState.LEVEL_MANAGER_UNIT);
+			UnitNavigator.getNavigator().addGameUnit(trans,
+					UnitState.TEMPORARY_UNIT);
+			UnitNavigator.getNavigator().set(UnitState.TEMPORARY_UNIT);
+		}
 
 	}
 
@@ -87,7 +123,7 @@ public class MultiplayerUnit extends GraphicalGameUnit {
 		 */
 		if (key == KeyEvent.VK_W) {
 			try {
-				os.writeUTF("Player" + myPlayerIndex + ";" + "Up" + ";"
+				os.writeUTF("Player:" + myPlayerIndex + ";" + "Up" + ";"
 						+ "Pressed");
 			} catch (IOException e1) {
 				e1.printStackTrace();
@@ -96,7 +132,7 @@ public class MultiplayerUnit extends GraphicalGameUnit {
 
 		if (key == KeyEvent.VK_S) {
 			try {
-				os.writeUTF("Player" + myPlayerIndex + ";" + "Down" + ";"
+				os.writeUTF("Player:" + myPlayerIndex + ";" + "Down" + ";"
 						+ "Pressed");
 			} catch (IOException e1) {
 				e1.printStackTrace();
@@ -105,7 +141,7 @@ public class MultiplayerUnit extends GraphicalGameUnit {
 
 		if (key == KeyEvent.VK_A) {
 			try {
-				os.writeUTF("Player" + myPlayerIndex + ";" + "Left" + ";"
+				os.writeUTF("Player:" + myPlayerIndex + ";" + "Left" + ";"
 						+ "Pressed");
 			} catch (IOException e1) {
 				e1.printStackTrace();
@@ -114,7 +150,7 @@ public class MultiplayerUnit extends GraphicalGameUnit {
 
 		if (key == KeyEvent.VK_D) {
 			try {
-				os.writeUTF("Player" + myPlayerIndex + ";" + "Right" + ";"
+				os.writeUTF("Player:" + myPlayerIndex + ";" + "Right" + ";"
 						+ "Pressed");
 			} catch (IOException e1) {
 				e1.printStackTrace();
@@ -123,7 +159,7 @@ public class MultiplayerUnit extends GraphicalGameUnit {
 
 		if (key == KeyEvent.VK_SPACE) {
 			try {
-				os.writeUTF("Player" + myPlayerIndex + ";" + "Bomb");
+				os.writeUTF("Player:" + myPlayerIndex + ";" + "Bomb");
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
@@ -138,7 +174,7 @@ public class MultiplayerUnit extends GraphicalGameUnit {
 		 */
 		if (key == KeyEvent.VK_W) {
 			try {
-				os.writeUTF("Player" + myPlayerIndex + ";" + "Up" + ";"
+				os.writeUTF("Player:" + myPlayerIndex + ";" + "Up" + ";"
 						+ "Released");
 			} catch (IOException e1) {
 				e1.printStackTrace();
@@ -147,7 +183,7 @@ public class MultiplayerUnit extends GraphicalGameUnit {
 
 		if (key == KeyEvent.VK_S) {
 			try {
-				os.writeUTF("Player" + myPlayerIndex + ";" + "Down" + ";"
+				os.writeUTF("Player:" + myPlayerIndex + ";" + "Down" + ";"
 						+ "Released");
 			} catch (IOException e1) {
 				e1.printStackTrace();
@@ -156,7 +192,7 @@ public class MultiplayerUnit extends GraphicalGameUnit {
 
 		if (key == KeyEvent.VK_A) {
 			try {
-				os.writeUTF("Player" + myPlayerIndex + ";" + "Left" + ";"
+				os.writeUTF("Player:" + myPlayerIndex + ";" + "Left" + ";"
 						+ "Released");
 			} catch (IOException e1) {
 				e1.printStackTrace();
@@ -165,7 +201,7 @@ public class MultiplayerUnit extends GraphicalGameUnit {
 
 		if (key == KeyEvent.VK_D) {
 			try {
-				os.writeUTF("Player" + myPlayerIndex + ";" + "Right" + ";"
+				os.writeUTF("Player:" + myPlayerIndex + ";" + "Right" + ";"
 						+ "Released");
 			} catch (IOException e1) {
 				e1.printStackTrace();
@@ -207,18 +243,119 @@ public class MultiplayerUnit extends GraphicalGameUnit {
 
 	@Override
 	public void drawComponent(Graphics g) {
-		// TODO Auto-generated method stub
-
+		/*
+		 * Black background color
+		 */
+		g.setColor(Color.black);
+		g.fillRect(0, 0, GameConstants.FRAME_SIZE_X, GameConstants.FRAME_SIZE_Y);
+		/*
+		 * draw map onto the mapcanvas
+		 */
+		multiplayerMap.drawMap((Graphics2D) mapCanvas.getGraphics());
+		/*
+		 * center mapcanvas on panel by using the Graphics parameter
+		 */
+		g.drawImage(mapCanvas, mapCanvasPosX, mapCanvasPosY,
+				mapCanvas.getWidth(), mapCanvas.getHeight(), null);
 	}
 
 	public void analizeIncoming(String incomingMsg) {
-		if (incomingMsg.indexOf("Welcome Player ") != -1) {
+		if (incomingMsg.indexOf("Player:") != -1) {
 			String[] parts = incomingMsg.split(":");
-			myPlayerIndex = Integer.parseInt(parts[1]);
+			int playerIndex = Integer.parseInt(parts[1].substring(0, 1));
+			handlePlayerEvents(playerIndex, parts[1].substring(2));
+		}
+		if (incomingMsg.indexOf("Welcome Player ") != -1) {
+			myPlayerIndex = Integer.parseInt(incomingMsg.substring(15, 16));
 			return;
 		}
-		if (incomingMsg.indexOf("Start!") != -1)
+		if (incomingMsg.indexOf("Start!") != -1) {
+			System.out.println("Success!");
 			initComponent();
+		}
+	}
+
+	private void handlePlayerEvents(int playerIndex, String incoming) {
+		if (incoming.indexOf("Pressed") != -1) {
+			handlePlayerMovementOnPress(playerIndex, incoming);
+			return;
+		}
+		if (incoming.indexOf("Released") != -1) {
+			handlePlayerMovementOnRelease(playerIndex, incoming);
+			return;
+		}
+	}
+
+	private void handlePlayerMovementOnPress(int playerIndex, String incoming) {
+		Player tmpPlayer = multiplayerMap.getPlayerByNumber(playerIndex);
+		if (incoming.indexOf("Up") != -1) {
+			tmpPlayer.direction.setUp(true);
+			return;
+		}
+		if (incoming.indexOf("Down") != -1) {
+			tmpPlayer.direction.setDown(true);
+			return;
+		}
+		if (incoming.indexOf("Left") != -1) {
+			tmpPlayer.direction.setLeft(true);
+			return;
+		}
+		if (incoming.indexOf("Right") != -1) {
+			tmpPlayer.direction.setRight(true);
+			return;
+		}
+		if (incoming.indexOf("Bomb") != -1) {
+			tmpPlayer.plantBomb(multiplayerMap.getCollisionMap());
+		}
+	}
+
+	private void handlePlayerMovementOnRelease(int playerIndex, String incoming) {
+		Player tmpPlayer = multiplayerMap.getPlayerByNumber(playerIndex);
+		if (incoming.indexOf("Up") != -1) {
+			tmpPlayer.direction.setUp(false);
+			return;
+		}
+		if (incoming.indexOf("Down") != -1) {
+			tmpPlayer.direction.setDown(false);
+			return;
+		}
+		if (incoming.indexOf("Left") != -1) {
+			tmpPlayer.direction.setLeft(false);
+			return;
+		}
+		if (incoming.indexOf("Right") != -1) {
+			tmpPlayer.direction.setRight(false);
+		}
+	}
+
+	/**
+	 * Generates a BufferedImage to be passed to a TransitionUnit.
+	 * 
+	 * @return BufferedImage message
+	 */
+	private BufferedImage createTransitionMessage(String message) {
+		/*
+		 * create BufferedImage and paint map using its Graphics2D object
+		 */
+		multiplayerMap.drawMap(mapCanvas.createGraphics());
+		BufferedImage msg = new BufferedImage(GameConstants.FRAME_SIZE_X,
+				GameConstants.FRAME_SIZE_Y, BufferedImage.TYPE_INT_ARGB);
+		Graphics2D g2d = msg.createGraphics();
+		g2d.setColor(Color.black);
+		g2d.drawRect(0, 0, msg.getWidth(), msg.getHeight());
+		g2d.drawImage(mapCanvas, mapCanvasPosX, mapCanvasPosY,
+				mapCanvas.getWidth(), mapCanvas.getHeight(), null);
+		g2d.setFont(unitFont);
+
+		/*
+		 * center text message
+		 */
+		Rectangle2D rect = unitFont.getStringBounds(message,
+				g2d.getFontRenderContext());
+		g2d.drawString(message,
+				(int) (GameConstants.FRAME_SIZE_X - rect.getWidth()) / 2,
+				(int) (GameConstants.FRAME_SIZE_Y - rect.getHeight()) / 2);
+		return msg;
 	}
 
 	public class ReadFromHost extends Thread implements Runnable {
@@ -240,13 +377,11 @@ public class MultiplayerUnit extends GraphicalGameUnit {
 			while (true) {
 				try {
 					incomingMsg = is.readUTF();
-					System.out.println(incomingMsg);
 					analizeIncoming(incomingMsg);
 				} catch (IOException e) {
 					System.out.println("Failed to read message");
 				}
 			}
-
 		}
 	}
 
