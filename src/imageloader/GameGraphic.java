@@ -1,6 +1,8 @@
 package imageloader;
 
 import java.awt.Graphics2D;
+import java.awt.GraphicsConfiguration;
+import java.awt.GraphicsEnvironment;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 
@@ -44,7 +46,35 @@ public class GameGraphic {
 		b.drawImage(image, 0, 0, null);
 		b.dispose();
 
-		return buff;
+		return toCompatibleImage(buff);
+		// return buff;
+	}
+
+	/**
+	 * Try optimizing image.
+	 * 
+	 * @param image
+	 * @return
+	 */
+	private BufferedImage toCompatibleImage(BufferedImage image) {
+		GraphicsConfiguration graphicsConfig = GraphicsEnvironment
+				.getLocalGraphicsEnvironment().getDefaultScreenDevice()
+				.getDefaultConfiguration();
+
+		if (image.getColorModel().equals(graphicsConfig.getColorModel()))
+			return image;
+
+		BufferedImage new_image = graphicsConfig.createCompatibleImage(
+				image.getWidth(), image.getHeight(), image.getTransparency());
+		Graphics2D g2d = (Graphics2D) new_image.getGraphics();
+
+		g2d.drawImage(image, 0, 0, null);
+		g2d.dispose();
+		return new_image;
+	}
+
+	public BufferedImage getImage() {
+		return image;
 	}
 
 }

@@ -1,5 +1,7 @@
 package singleplayer;
 
+import imageloader.GameGraphic;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -80,6 +82,10 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 	 */
 	private boolean unitRunning = false;
 
+	private GameGraphic helpMenu;
+	private GameGraphic youWinMsg;
+	private GameGraphic youLoseMsg;
+
 	/**
 	 * This constructor takes a campaign file (a .txt. file that can be used to
 	 * construct a campaign object) as an argument.
@@ -157,9 +163,8 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 	 */
 	private void initHelpscreen() {
 		BufferedImage helpscreenImage = createGameSceenshot();
-		helpscreenImage.createGraphics().drawImage(
-				loadBufferedImageFromFile("graphics/gui/Helpscreen.png"), 0, 0,
-				null);
+		helpscreenImage.createGraphics().drawImage(helpMenu.getImage(), null,
+				0, 0);
 		TransitionUnit trans = new TransitionUnit(UnitState.LEVEL_MANAGER_UNIT,
 				helpscreenImage, false);
 		UnitNavigator.getNavigator().addGameUnit(trans,
@@ -201,6 +206,9 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 			e.printStackTrace();
 			unitFont = new Font("serif", Font.PLAIN, 24);
 		}
+		helpMenu = new GameGraphic("graphics/gui/Helpscreen.png");
+		youLoseMsg = new GameGraphic("graphics/gui/You Lose.png");
+		youWinMsg = new GameGraphic("graphics/gui/You Win.png");
 	}
 
 	@Override
@@ -223,7 +231,7 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 							 * campaign finished, show a win message and proceed
 							 * to main menu
 							 */
-							initTransition("You Win.png",
+							initTransition(youWinMsg.getImage(),
 									UnitState.BASE_MENU_UNIT);
 							UnitNavigator.getNavigator().removeGameUnit(
 									UnitState.LEVEL_MANAGER_UNIT);
@@ -233,16 +241,14 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 							 */
 							TransitionUnit trans = new TransitionUnit(
 									UnitState.TEMPORARY_UNIT,
-									new CircularZoomEffect(
-											player.getPosX() + mapOffsetX
-													+ GameConstants.TILE_SIZE
-													/ 2,
+									new CircularZoomEffect(player.getPosX()
+											+ mapOffsetX
+											+ GameConstants.TILE_SIZE / 2,
 											player.getPosY() + mapOffsetY
 													+ GameConstants.TILE_SIZE
-													/ 2,
-											7,
-											createGameSceenshot(),
-											loadBufferedImageFromFile("graphics/gui/You Win.png")),
+													/ 2, 7,
+											createGameSceenshot(), youWinMsg
+													.getImage()),
 									worldMapUnit, true);
 							trans.setTransitionPeriod(1000);
 							UnitNavigator.getNavigator().addGameUnit(trans,
@@ -254,14 +260,15 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 						/*
 						 * just show a win message
 						 */
-						initTransition("You Win.png",
+						initTransition(youWinMsg.getImage(),
 								UnitState.LEVEL_MANAGER_UNIT);
 					}
 				} else {
 					/*
 					 * player died, show lose message
 					 */
-					initTransition("You Lose.png", UnitState.LEVEL_MANAGER_UNIT);
+					initTransition(youLoseMsg.getImage(),
+							UnitState.LEVEL_MANAGER_UNIT);
 				}
 			}
 		} else {
@@ -387,17 +394,15 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 	/**
 	 * Initializes a TransitionUnit
 	 * 
-	 * @param filename
-	 *            of the message image
+	 * @param image
+	 *            the image to use in the transition
 	 */
-	private void initTransition(String filename, UnitState nextUnit) {
+	private void initTransition(BufferedImage image, UnitState nextUnit) {
 		TransitionUnit trans = new TransitionUnit(nextUnit,
 				new CircularZoomEffect(player.getPosX() + mapOffsetX
 						+ GameConstants.TILE_SIZE / 2, player.getPosY()
 						+ mapOffsetY + GameConstants.TILE_SIZE / 2, 7,
-						createGameSceenshot(),
-						loadBufferedImageFromFile("graphics/gui/" + filename)),
-				true);
+						createGameSceenshot(), image), true);
 		trans.setTransitionPeriod(1000);
 		UnitNavigator.getNavigator().addGameUnit(trans,
 				UnitState.TEMPORARY_UNIT);
@@ -418,21 +423,6 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 		g2d.setColor(Color.black);
 		g2d.drawImage(mapCanvas, mapOffsetX, mapOffsetY, null);
 		return screenshot;
-	}
-
-	/**
-	 * Allows loading an image from file.
-	 * 
-	 * @param filename
-	 * @return BufferedImage of image file
-	 */
-	private BufferedImage loadBufferedImageFromFile(String filename) {
-		Image tmp = new ImageIcon(filename).getImage();
-		BufferedImage bufferedImage = new BufferedImage(tmp.getWidth(null),
-				tmp.getHeight(null), BufferedImage.TYPE_INT_ARGB);
-		bufferedImage.createGraphics().drawImage(tmp, 0, 0, tmp.getWidth(null),
-				tmp.getHeight(null), null);
-		return bufferedImage;
 	}
 
 	/**
