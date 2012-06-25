@@ -15,14 +15,6 @@ import map.Map;
 public class Campaign {
 
 	private String campaignName;
-	/**
-	 * Constant needed for the parsing process.
-	 */
-	private static final String SEQUENCE_INDICATOR = "seq";
-	/**
-	 * Constant needed for the parsing process.
-	 */
-	private static final String WORLDMAP_INDICATOR = "wm";
 
 	/**
 	 * An ArrayList of levels; each level being another ArrayList of
@@ -140,6 +132,11 @@ public class Campaign {
 		return campaignFinished;
 	}
 
+	/**
+	 * Get relevant data for saving.
+	 * 
+	 * @return
+	 */
 	public CampaignData getCampaignData() {
 		return CampaignData.extractData(this);
 	}

@@ -40,7 +40,6 @@ public class MapReader {
 
 	public MapReader(String mn) {
 
-		System.out.println(mn);
 		// read XML map with given name
 		try {
 			mapXML = new SAXBuilder().build(GameConstants.MAP_FILES_DIR + mn
