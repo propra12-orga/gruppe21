@@ -3,4 +3,12 @@
 <animation frames="1" stretch="1" name="playerDown">MPBM1Front.png</animation>
 <animation frames="1" stretch="1" name="playerLeft">MPBM1Left.png</animation>
 <animation frames="1" stretch="1" name="playerRight">MPBM1Right.png</animation>
+<animation frames="1" stretch="1" name="playerUp_bubble">MPBM1up_bubble.png</animation>
+<animation frames="1" stretch="1" name="playerDown_bubble">MPBM1Front_bubble.png</animation>
+<animation frames="1" stretch="1" name="playerLeft_bubble">MPBM1Left_bubble.png</animation>
+<animation frames="1" stretch="1" name="playerRight_bubble">MPBM1Right_bubble.png</animation>
+<animation frames="1" stretch="1" name="playerUp_immortal">MPBM1up_immortal.png</animation>
+<animation frames="1" stretch="1" name="playerDown_immortal">MPBM1Front_immortal.png</animation>
+<animation frames="1" stretch="1" name="playerLeft_immortal">MPBM1Left_immortal.png</animation>
+<animation frames="1" stretch="1" name="playerRight_immortal">MPBM1Right_immortal.png</animation>
 </animationset>

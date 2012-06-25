@@ -1,7 +1,7 @@
 <animationset default="testUpgrade.png">
 <animation frames="1" stretch="1" name="BombPlus">Upgrade_BombPlus.png</animation>
 <animation frames="1" stretch="1" name="BombRange">Upgrade_BombRangePlus.png</animation>
-<animation frames="1" stretch="1" name="PlayerSpeed">Upgrade_PlayerSpeedPlus.png</animation>
+<animation frames="1" stretch="1" name="Shield">Upgrade-Shield.png</animation>
 <animation frames="1" stretch="1" name="BombRemote">Upgrade_BombRemote.png</animation>
 <animation frames="1" stretch="1" name="Bulletproof">Upgrade_Bulletproof.png</animation>
 </animationset>
