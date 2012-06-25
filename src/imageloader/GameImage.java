@@ -1,7 +1,5 @@
 package imageloader;
 
-import java.awt.image.BufferedImage;
-
 /**
  * Holds an Image
  * 
@@ -27,13 +25,10 @@ public class GameImage extends GameGraphic {
 		name = n;
 	}
 
-	/**
-	 * returns the image
-	 * 
-	 * @return BufferdImage
-	 */
-	public BufferedImage getImage() {
-		return image;
+	public GameImage(String p, String n, int rotation) {
+		super(p, rotation);
+		path = p;
+		name = n;
 	}
 
 	/**

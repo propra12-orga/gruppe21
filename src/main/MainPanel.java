@@ -61,7 +61,7 @@ public class MainPanel extends JPanel implements Runnable {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_UP)
-					System.out.println(""); // this somehow helps avoiding nasty
+					System.out.print(""); // this somehow helps avoiding nasty
 											// keyListener bugs
 				UnitNavigator.getNavigator().getActiveUnit()
 						.handleKeyPressed(e);

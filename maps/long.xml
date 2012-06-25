@@ -2034,6 +2034,9 @@
 				<posy>950</posy>
 			</character>
 			
+			
+		</level>
+		<level>
 			<character type="sillyEnemy" animated="true">
 			    <visible>true</visible>
 				<collision>true</collision>
@@ -2051,9 +2054,7 @@
 				<posx>50</posx>
 				<posy>50</posy>
 			</character>
-			
 		</level>
-		<level></level>
 		<level></level>
 	</mapobjects>
 	

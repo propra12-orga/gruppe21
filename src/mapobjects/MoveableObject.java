@@ -87,4 +87,14 @@ public abstract class MoveableObject extends MapObject {
 	public int getSpeed() {
 		return speed;
 	}
+
+	/**
+	 * Sets moving speed value.
+	 * 
+	 * @param speed
+	 *            new speed value.
+	 */
+	public void setSpeed(int speed) {
+		this.speed = speed;
+	}
 }

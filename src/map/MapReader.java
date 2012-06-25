@@ -83,8 +83,11 @@ public class MapReader {
 					il.addAnimationSet(
 							tile.get(j).getChildText("animationset"), "map");
 				} else {
-					il.addImage(GameConstants.MAP_GRAPHICS_DIR
-							+ tile.get(j).getChildText("image"));
+					il.addImage(
+							GameConstants.MAP_GRAPHICS_DIR
+									+ tile.get(j).getChildText("image"),
+							Integer.parseInt(tile.get(j).getChild("image")
+									.getAttributeValue("rotation")));
 				}
 			}
 		}
@@ -105,7 +108,8 @@ public class MapReader {
 
 		items = mapRoot.getChild("items").getChildren("image");
 		for (int i = 0; i < items.size(); i++) {
-			il.addImage(GameConstants.MAP_GRAPHICS_DIR + items.get(i).getText());
+			il.addImage(
+					GameConstants.MAP_GRAPHICS_DIR + items.get(i).getText(), 0);
 		}
 
 		graphicisloaded = true;

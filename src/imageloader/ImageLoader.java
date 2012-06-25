@@ -42,18 +42,21 @@ public class ImageLoader {
 	 *            url of the image
 	 */
 
-	public void addImage(String imagePath) {
+	public void addImage(String imagePath, int rotation) {
 		boolean gameimageexists = false;
 		// is Image already in stack
 		for (int i = 0; i < imageStack.size(); i++) {
-			if (imageStack.get(i).pathEquals(imagePath)) {
+			if (imageStack.get(i).pathEquals(imagePath)
+					&& imageStack.get(i).getRotation() == rotation) {
 				gameimageexists = true;
 				break;
 			}
 		}
 		// add if not
 		if (!gameimageexists) {
-			imageStack.add(new GameImage(imagePath, nameFromPath(imagePath)));
+
+			imageStack.add(new GameImage(imagePath, nameFromPath(imagePath),
+					rotation));
 		}
 	}
 
@@ -91,6 +94,26 @@ public class ImageLoader {
 	public BufferedImage getImage(String imagePath) {
 		for (int i = 0; i < imageStack.size(); i++) {
 			if (imageStack.get(i).pathEquals(imagePath)) {
+				return imageStack.get(i).getImage();
+			}
+		}
+		return placeholder;
+	}
+
+	/**
+	 * gets an image from the imagevector
+	 * 
+	 * @param imagePath
+	 *            url of the image
+	 * @param rotation
+	 *            image rotation
+	 * @return Buffered Image
+	 */
+
+	public BufferedImage getImage(String imagePath, int rotation) {
+		for (int i = 0; i < imageStack.size(); i++) {
+			if (imageStack.get(i).pathEquals(imagePath)
+					&& imageStack.get(i).getRotation() == rotation) {
 				return imageStack.get(i).getImage();
 			}
 		}

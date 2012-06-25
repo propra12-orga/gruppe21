@@ -44,7 +44,7 @@ public class Floor extends MapObject {
 	 */
 	@Override
 	public void draw(Graphics2D g2d, ImageLoader gr, Graphics2D cm) {
-		g2d.drawImage(rotate(gr.getImage(imageUrl), rotation), posX, posY, null);
+		g2d.drawImage(gr.getImage(imageUrl, rotation), posX, posY, null);
 
 		if (collides()) {
 			cm.setPaint(Color.black);
