@@ -55,7 +55,14 @@ public class MapMenuUnit extends GraphicalGameUnit {
 	private Point selectorGhost = new Point(frameXPosition2, startYPos
 			- (map1.getHeight(null) / 2) - 3);
 
+	boolean local = true;
+
 	public MapMenuUnit() {
+		initComponent();
+	}
+
+	public MapMenuUnit(boolean local) {
+		this.local = local;
 		initComponent();
 	}
 
@@ -76,15 +83,23 @@ public class MapMenuUnit extends GraphicalGameUnit {
 		int key = e.getKeyCode();
 
 		if (key == KeyEvent.VK_ENTER && frameXPosition1 == frameXPos) {
-			LocalMultiplayerUnit levelmanager = new LocalMultiplayerUnit(
-					"MP-Woodwars");
+			GraphicalGameUnit levelmanager;
+			if (local) {
+				levelmanager = new LocalMultiplayerUnit("MP-Woodwars");
+			} else {
+				levelmanager = new MultiplayerUnit("MP-Woodwars");
+			}
 			UnitNavigator.getNavigator().addGameUnit(levelmanager,
 					UnitState.LEVEL_MANAGER_UNIT);
 			UnitNavigator.getNavigator().set(UnitState.LEVEL_MANAGER_UNIT);
 		}
 		if (key == KeyEvent.VK_ENTER && frameXPosition1 == frameXPosition2) {
-			LocalMultiplayerUnit levelmanager = new LocalMultiplayerUnit(
-					"multMap");
+			GraphicalGameUnit levelmanager;
+			if (local) {
+				levelmanager = new LocalMultiplayerUnit("multMap");
+			} else {
+				levelmanager = new MultiplayerUnit("multMap");
+			}
 			UnitNavigator.getNavigator().addGameUnit(levelmanager,
 					UnitState.LEVEL_MANAGER_UNIT);
 			UnitNavigator.getNavigator().set(UnitState.LEVEL_MANAGER_UNIT);

@@ -106,10 +106,12 @@ public class OptionMenuUnit extends GraphicalGameUnit {
 			UnitNavigator.getNavigator().addGameUnit(mapMenu,
 					UnitState.TEMPORARY_UNIT);
 			UnitNavigator.getNavigator().set(UnitState.TEMPORARY_UNIT);
-
 		}
 		if (key == KeyEvent.VK_ENTER && selectCounter == 1) {
-			new MultiplayerUnit();
+			MapMenuUnit mapMenu = new MapMenuUnit(false);
+			UnitNavigator.getNavigator().addGameUnit(mapMenu,
+					UnitState.TEMPORARY_UNIT);
+			UnitNavigator.getNavigator().set(UnitState.TEMPORARY_UNIT);
 		}
 		if (key == KeyEvent.VK_ENTER && selectCounter == 2) {
 			UnitNavigator.getNavigator().set(UnitState.BASE_MENU_UNIT);
