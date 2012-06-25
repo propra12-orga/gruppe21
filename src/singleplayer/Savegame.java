@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import map.Map;
 import mapobjects.Player;
 import mapobjects.Player.PlayerData;
 import singleplayer.Campaign.CampaignData;
@@ -182,7 +183,7 @@ public class Savegame {
 	public static void main(String[] args) throws IOException {
 		Campaign campaign = new CampaignReader("campaign1")
 				.readCampaignFromFile();
-		Player player = campaign.getCurrentMap().getMapPlayer();
+		Player player = new Map(campaign.getCurrentMap()).getMapPlayer();
 		Savegame save = new Savegame(player.getPlayerData(),
 				campaign.getCampaignData());
 		save.storeToFile(0);

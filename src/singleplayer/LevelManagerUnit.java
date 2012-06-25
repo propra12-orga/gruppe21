@@ -1,6 +1,7 @@
 package singleplayer;
 
 import imageloader.GameGraphic;
+import imageloader.ImageLoader;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -87,6 +88,12 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 	private GameGraphic youLoseMsg;
 
 	/**
+	 * By using this ImageLoader during one level, it is possible to avoid
+	 * loading all map graphics again and again.
+	 */
+	private ImageLoader levelGraphics;
+
+	/**
 	 * This constructor takes a campaign file (a .txt. file that can be used to
 	 * construct a campaign object) as an argument.
 	 * 
@@ -96,6 +103,7 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 		this.campaignFile = campaignFile;
 		campaign = new CampaignReader(campaignFile).readCampaignFromFile();
 		worldMapUnit = new WorldMapUnit(campaign.getWorldMap());
+		levelGraphics = new ImageLoader();
 		initComponent();
 	}
 
@@ -104,7 +112,9 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 		campaign = new CampaignReader(campaignFile).readCampaignFromFile();
 		worldMapUnit = new WorldMapUnit(campaign.getWorldMap());
 		save.getCampaignData().restoreCampaign(campaign);
-		player = campaign.getCurrentMap().getMapPlayer();
+		levelGraphics = new ImageLoader();
+		player = new Map(campaign.getCurrentMap(), levelGraphics)
+				.getMapPlayer();
 		save.getPlayerData().restorePlayer(player);
 		initComponent();
 	}
@@ -209,6 +219,7 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 		helpMenu = new GameGraphic("graphics/gui/Helpscreen.png");
 		youLoseMsg = new GameGraphic("graphics/gui/You Lose.png");
 		youWinMsg = new GameGraphic("graphics/gui/You Win.png");
+
 	}
 
 	@Override
@@ -237,8 +248,10 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 									UnitState.LEVEL_MANAGER_UNIT);
 						} else {
 							/*
-							 * level completed, show world map
+							 * level completed, show world map and delete level
+							 * graphics
 							 */
+							levelGraphics = new ImageLoader();
 							TransitionUnit trans = new TransitionUnit(
 									UnitState.TEMPORARY_UNIT,
 									new CircularZoomEffect(player.getPosX()
@@ -286,7 +299,7 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 	 * map if necessary.
 	 */
 	private void changeCurrentMap() {
-		currentMap = campaign.getCurrentMap();
+		currentMap = new Map(campaign.getCurrentMap(), levelGraphics);
 		mapCanvas = new BufferedImage(currentMap.getWidth(),
 				currentMap.getHeight(), BufferedImage.TYPE_INT_ARGB);
 		Player tmpPlayer = player;

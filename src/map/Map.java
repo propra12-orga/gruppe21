@@ -50,7 +50,25 @@ public class Map {
 	 */
 	public Map(String mn) {
 		mr = new MapReader(mn);
+		prepareMap();
+	}
 
+	/**
+	 * Create a Map Object using its name and an ImageLoader. Useful if two or
+	 * more Maps share the same graphics.
+	 * 
+	 * @param mn
+	 *            map name
+	 * @param levelGraphics
+	 *            map images
+	 */
+	public Map(String mn, ImageLoader levelGraphics) {
+		this.graphics = levelGraphics;
+		mr = new MapReader(mn);
+		prepareMap();
+	}
+
+	private void prepareMap() {
 		// read Mapheader
 		mapName = mr.getHeader("mapname");
 		mapSizeX = Integer.parseInt(mr.getHeader("sizex"));
@@ -84,6 +102,7 @@ public class Map {
 				}
 			}
 		}
+
 	}
 
 	/**

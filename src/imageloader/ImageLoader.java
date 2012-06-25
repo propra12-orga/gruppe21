@@ -54,6 +54,7 @@ public class ImageLoader {
 		}
 		// add if not
 		if (!gameimageexists) {
+
 			imageStack.add(new GameImage(imagePath, nameFromPath(imagePath),
 					rotation));
 		}

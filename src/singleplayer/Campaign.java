@@ -2,8 +2,6 @@ package singleplayer;
 
 import java.util.ArrayList;
 
-import map.Map;
-
 /**
  * Stores sequences of map names ( = level) and the corresponding world map.
  * Offers static method readCampaignFromFile to load previously stored campaign
@@ -60,13 +58,13 @@ public class Campaign {
 	}
 
 	/**
-	 * Returns map object that is being referred to by the world map counters.
+	 * Returns name of map that is being referred to by the world map counters.
 	 * 
-	 * @return current map
+	 * @return current map name
 	 */
-	public Map getCurrentMap() {
-		return new Map(levels.get(worldMap.getSelectedLevel()).get(mapCounter)
-				.getMapName());
+	public String getCurrentMap() {
+		return levels.get(worldMap.getSelectedLevel()).get(mapCounter)
+				.getMapName();
 	}
 
 	/**
