@@ -45,8 +45,7 @@ public class Player extends MoveableObject {
 	 */
 	private Vector<Bomb> remoteBombs = new Vector<Bomb>();
 
-	private boolean maxBombs_used = false, bombRadius_used = false,
-			playerSpeed_used = false;
+	private boolean maxBombs_used = false, bombRadius_used = false;
 
 	private boolean shieldEqu = false, shieldHit = false;
 
