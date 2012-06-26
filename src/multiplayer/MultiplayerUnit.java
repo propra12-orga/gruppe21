@@ -37,6 +37,7 @@ public class MultiplayerUnit extends GraphicalGameUnit {
 	private DataInputStream is = null;
 	private Player playerOne;
 	private Player playerTwo;
+	private Player myPlayer;
 	private int myPlayerIndex;
 
 	/**
@@ -51,6 +52,7 @@ public class MultiplayerUnit extends GraphicalGameUnit {
 
 	// Constructor
 	public MultiplayerUnit() {
+		initComponent();
 		// to do: hole dir die Adresse und evtl den Port vom Nutzer
 		try {
 			toHostSocket = new Socket("127.0.0.1", 5555);
@@ -65,6 +67,8 @@ public class MultiplayerUnit extends GraphicalGameUnit {
 	}
 
 	public MultiplayerUnit(String mapName) {
+		this.mapName = mapName;
+		initComponent();
 		// to do: hole dir die Adresse und evtl den Port vom Nutzer
 		try {
 			toHostSocket = new Socket("127.0.0.1", 5555);
@@ -76,7 +80,6 @@ public class MultiplayerUnit extends GraphicalGameUnit {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		this.mapName = mapName;
 	}
 
 	@Override
@@ -117,49 +120,69 @@ public class MultiplayerUnit extends GraphicalGameUnit {
 		 */
 		if (key == KeyEvent.VK_ESCAPE) {
 			UnitNavigator.getNavigator().set(UnitState.BASE_MENU_UNIT);
+			return;
 		}
 		/*
-		 * playerOne KeyEvents
+		 * Player KeyEvents
 		 */
 		if (key == KeyEvent.VK_W) {
-			try {
-				os.writeUTF("Player:" + myPlayerIndex + ";" + "Up" + ";"
-						+ "Pressed");
-			} catch (IOException e1) {
-				e1.printStackTrace();
+			if (!myPlayer.direction.isUp()) {
+				try {
+					int tmpPosX = myPlayer.getPosX();
+					int tmpPosY = myPlayer.getPosY();
+					os.writeUTF("Player:" + myPlayerIndex + ";" + "Up" + ";"
+							+ "Pressed" + "/" + tmpPosX + "/" + tmpPosY);
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
 			}
+			return;
 		}
 
 		if (key == KeyEvent.VK_S) {
-			try {
-				os.writeUTF("Player:" + myPlayerIndex + ";" + "Down" + ";"
-						+ "Pressed");
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
+			if (!myPlayer.direction.isDown())
+				try {
+					int tmpPosX = myPlayer.getPosX();
+					int tmpPosY = myPlayer.getPosY();
+					os.writeUTF("Player:" + myPlayerIndex + ";" + "Down" + ";"
+							+ "Pressed" + "/" + tmpPosX + "/" + tmpPosY);
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+			return;
 		}
 
 		if (key == KeyEvent.VK_A) {
-			try {
-				os.writeUTF("Player:" + myPlayerIndex + ";" + "Left" + ";"
-						+ "Pressed");
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
+			if (!myPlayer.direction.isLeft())
+				try {
+					int tmpPosX = myPlayer.getPosX();
+					int tmpPosY = myPlayer.getPosY();
+					os.writeUTF("Player:" + myPlayerIndex + ";" + "Left" + ";"
+							+ "Pressed" + "/" + tmpPosX + "/" + tmpPosY);
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+			return;
 		}
 
 		if (key == KeyEvent.VK_D) {
-			try {
-				os.writeUTF("Player:" + myPlayerIndex + ";" + "Right" + ";"
-						+ "Pressed");
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
+			if (!myPlayer.direction.isRight())
+				try {
+					int tmpPosX = myPlayer.getPosX();
+					int tmpPosY = myPlayer.getPosY();
+					os.writeUTF("Player:" + myPlayerIndex + ";" + "Right" + ";"
+							+ "Pressed" + "/" + tmpPosX + "/" + tmpPosY);
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+			return;
 		}
 
 		if (key == KeyEvent.VK_SPACE) {
+			// Prüfe, ob die Anzahl maximaler Bomben erreicht ist
 			try {
-				os.writeUTF("Player:" + myPlayerIndex + ";" + "Bomb");
+				os.writeUTF("Player:" + myPlayerIndex + ";" + "Bomb" + ";"
+						+ "Pressed");
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
@@ -174,35 +197,46 @@ public class MultiplayerUnit extends GraphicalGameUnit {
 		 */
 		if (key == KeyEvent.VK_W) {
 			try {
+				int tmpPosX = myPlayer.getPosX();
+				int tmpPosY = myPlayer.getPosY();
 				os.writeUTF("Player:" + myPlayerIndex + ";" + "Up" + ";"
-						+ "Released");
+						+ "Released" + "/" + tmpPosX + "/" + tmpPosY);
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
+			return;
 		}
 
 		if (key == KeyEvent.VK_S) {
 			try {
+				int tmpPosX = myPlayer.getPosX();
+				int tmpPosY = myPlayer.getPosY();
 				os.writeUTF("Player:" + myPlayerIndex + ";" + "Down" + ";"
-						+ "Released");
+						+ "Released" + "/" + tmpPosX + "/" + tmpPosY);
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
+			return;
 		}
 
 		if (key == KeyEvent.VK_A) {
 			try {
+				int tmpPosX = myPlayer.getPosX();
+				int tmpPosY = myPlayer.getPosY();
 				os.writeUTF("Player:" + myPlayerIndex + ";" + "Left" + ";"
-						+ "Released");
+						+ "Released" + "/" + tmpPosX + "/" + tmpPosY);
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
+			return;
 		}
 
 		if (key == KeyEvent.VK_D) {
 			try {
+				int tmpPosX = myPlayer.getPosX();
+				int tmpPosY = myPlayer.getPosY();
 				os.writeUTF("Player:" + myPlayerIndex + ";" + "Right" + ";"
-						+ "Released");
+						+ "Released" + "/" + tmpPosX + "/" + tmpPosY);
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
@@ -264,14 +298,17 @@ public class MultiplayerUnit extends GraphicalGameUnit {
 			String[] parts = incomingMsg.split(":");
 			int playerIndex = Integer.parseInt(parts[1].substring(0, 1));
 			handlePlayerEvents(playerIndex, parts[1].substring(2));
+			return;
 		}
 		if (incomingMsg.indexOf("Welcome Player ") != -1) {
 			myPlayerIndex = Integer.parseInt(incomingMsg.substring(15, 16));
+			myPlayer = multiplayerMap.getPlayerByNumber(myPlayerIndex);
+			System.out.println(myPlayer);
 			return;
 		}
 		if (incomingMsg.indexOf("Start!") != -1) {
 			System.out.println("Success!");
-			initComponent();
+			// initComponent();
 		}
 	}
 
@@ -288,19 +325,28 @@ public class MultiplayerUnit extends GraphicalGameUnit {
 
 	private void handlePlayerMovementOnPress(int playerIndex, String incoming) {
 		Player tmpPlayer = multiplayerMap.getPlayerByNumber(playerIndex);
+		String[] parts = incoming.split("/");
 		if (incoming.indexOf("Up") != -1) {
+			tmpPlayer.setPosX(Integer.parseInt(parts[1]));
+			tmpPlayer.setPosY(Integer.parseInt(parts[2]));
 			tmpPlayer.direction.setUp(true);
 			return;
 		}
 		if (incoming.indexOf("Down") != -1) {
+			tmpPlayer.setPosX(Integer.parseInt(parts[1]));
+			tmpPlayer.setPosY(Integer.parseInt(parts[2]));
 			tmpPlayer.direction.setDown(true);
 			return;
 		}
 		if (incoming.indexOf("Left") != -1) {
+			tmpPlayer.setPosX(Integer.parseInt(parts[1]));
+			tmpPlayer.setPosY(Integer.parseInt(parts[2]));
 			tmpPlayer.direction.setLeft(true);
 			return;
 		}
 		if (incoming.indexOf("Right") != -1) {
+			tmpPlayer.setPosX(Integer.parseInt(parts[1]));
+			tmpPlayer.setPosY(Integer.parseInt(parts[2]));
 			tmpPlayer.direction.setRight(true);
 			return;
 		}
@@ -311,19 +357,28 @@ public class MultiplayerUnit extends GraphicalGameUnit {
 
 	private void handlePlayerMovementOnRelease(int playerIndex, String incoming) {
 		Player tmpPlayer = multiplayerMap.getPlayerByNumber(playerIndex);
+		String[] parts = incoming.split("/");
 		if (incoming.indexOf("Up") != -1) {
+			tmpPlayer.setPosX(Integer.parseInt(parts[1]));
+			tmpPlayer.setPosY(Integer.parseInt(parts[2]));
 			tmpPlayer.direction.setUp(false);
 			return;
 		}
 		if (incoming.indexOf("Down") != -1) {
+			tmpPlayer.setPosX(Integer.parseInt(parts[1]));
+			tmpPlayer.setPosY(Integer.parseInt(parts[2]));
 			tmpPlayer.direction.setDown(false);
 			return;
 		}
 		if (incoming.indexOf("Left") != -1) {
+			tmpPlayer.setPosX(Integer.parseInt(parts[1]));
+			tmpPlayer.setPosY(Integer.parseInt(parts[2]));
 			tmpPlayer.direction.setLeft(false);
 			return;
 		}
 		if (incoming.indexOf("Right") != -1) {
+			tmpPlayer.setPosX(Integer.parseInt(parts[1]));
+			tmpPlayer.setPosY(Integer.parseInt(parts[2]));
 			tmpPlayer.direction.setRight(false);
 		}
 	}
@@ -377,6 +432,7 @@ public class MultiplayerUnit extends GraphicalGameUnit {
 			while (true) {
 				try {
 					incomingMsg = is.readUTF();
+					System.out.println(incomingMsg);
 					analizeIncoming(incomingMsg);
 				} catch (IOException e) {
 					System.out.println("Failed to read message");
