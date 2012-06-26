@@ -150,11 +150,4 @@ public class Skeleton extends Enemy {
 		}
 	}
 
-	@Override
-	/* weg damit */
-	public boolean hasObjectCollision(int x, int y, BufferedImage cm, String dir) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 }

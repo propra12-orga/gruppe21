@@ -8,46 +8,22 @@ import java.awt.image.BufferedImage;
 
 import mapobjects.Enemy;
 
-/**
- * <b>public class Enemy extends MoveableObject</b>
- * <p>
- * The Enemy class defines the structure of an enemy object. It includes all the
- * methods which are called by the map, like update() an draw(), and some other
- * methods, e.g. those which are responsible for moving the Enemy object or
- * checking for collision.
- * 
- * @author masto104
- */
-public class sillyEnemy extends Enemy {
+public class Ghost extends Enemy {
 
-	/**
-	 * sillyEnemy constructor.
-	 * 
-	 * @param x
-	 *            - x-coordinate.
-	 * @param y
-	 *            - y-coordinate.
-	 * @param v
-	 *            - sets visibility.
-	 * @param d
-	 *            - sets 'destructible' flag.
-	 * @param c
-	 *            - sets 'collision' flag
-	 * @param p
-	 *            - AnimationSet filename
-	 * @param gr
-	 *            - ImageLoader
-	 */
-	public sillyEnemy(int x, int y, boolean v, boolean d, boolean c, String p,
+	private int walkdelay;
+	private boolean wallWalking = false;
+
+	public Ghost(int x, int y, boolean v, boolean d, boolean c, String p,
 			ImageLoader gr) {
 		super(x, y, v, d, c, p, gr);
 	}
 
 	@Override
 	public void move() {
+
 		if (UP) {
 			if (simpleHasColl(posX, posY - speed, map.getCollisionMap(),
-					Color.black, Color.gray)) {
+					Color.black)) {
 				findPath("enemyUp", "enemyDown", "enemyLeft", "enemyRight");
 			} else {
 				posY -= speed;
@@ -56,7 +32,7 @@ public class sillyEnemy extends Enemy {
 
 		if (DOWN) {
 			if (simpleHasColl(posX, posY + speed, map.getCollisionMap(),
-					Color.black, Color.gray)) {
+					Color.black)) {
 				findPath("enemyUp", "enemyDown", "enemyLeft", "enemyRight");
 			} else {
 				posY += speed;
@@ -65,7 +41,7 @@ public class sillyEnemy extends Enemy {
 
 		if (LEFT) {
 			if (simpleHasColl(posX - speed, posY, map.getCollisionMap(),
-					Color.black, Color.gray)) {
+					Color.black)) {
 				findPath("enemyUp", "enemyDown", "enemyLeft", "enemyRight");
 			} else {
 				posX -= speed;
@@ -74,11 +50,39 @@ public class sillyEnemy extends Enemy {
 
 		if (RIGHT) {
 			if (simpleHasColl(posX + speed, posY, map.getCollisionMap(),
-					Color.black, Color.gray)) {
+					Color.black)) {
 				findPath("enemyUp", "enemyDown", "enemyLeft", "enemyRight");
 			} else {
 				posX += speed;
 			}
+		}
+
+	}
+
+	@Override
+	public void findPath(String up, String down, String left, String right) {
+		int choice = (int) (Math.random() * 4 + 1);
+		stop();
+
+		switch (choice) {
+		case 1:
+			UP = true;
+			animation.change(up);
+			break;
+		case 2:
+			DOWN = true;
+			animation.change(down);
+			break;
+		case 3:
+			LEFT = true;
+			animation.change(left);
+			break;
+		case 4:
+			RIGHT = true;
+			animation.change(right);
+			break;
+		default:
+			findPath(up, down, left, right);
 		}
 	}
 
@@ -96,15 +100,29 @@ public class sillyEnemy extends Enemy {
 		if (simpleHasColl(posX, posY, cm, Color.orange, Color.darkGray)) {
 			die("enemyDying");
 		}
+		if (simpleHasColl(posX, posY, cm, Color.gray)) {
+			wallWalking = true;
+		} else {
+			wallWalking = false;
+		}
 
 		if (dying) {
 
 			if (beforeTime + dyingTime <= System.nanoTime()) {
 				setDestroyed(true);
 			}
+		} else if (wallWalking) {
+			if (walkdelay > 2) {
+				walkdelay = 0;
+			}
+			if (walkdelay == 0) {
+				move();
+			}
+			walkdelay++;
 		} else {
 			move();
 		}
+
 	}
 
 }
