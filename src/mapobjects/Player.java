@@ -164,7 +164,19 @@ public class Player extends MoveableObject {
 		}
 	}
 
-	@Override
+	/**
+	 * abstract method to check for collisions
+	 * 
+	 * @param x
+	 *            current x position
+	 * @param y
+	 *            current y position
+	 * @param cm
+	 *            current collisionmap
+	 * @param dir
+	 *            current direction
+	 * @return returns true if object has a collision else false
+	 */
 	public boolean hasObjectCollision(int x, int y, BufferedImage cm, String dir) {
 		if (x < 0 || y < 0 || x > cm.getWidth() - 50 || y > cm.getHeight() - 50) {
 			return true;
