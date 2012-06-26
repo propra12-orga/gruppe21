@@ -7,6 +7,7 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -16,6 +17,7 @@ import main.GameConstants;
 import main.GraphicalGameUnit;
 import main.UnitNavigator;
 import main.UnitState;
+import unitTransitions.TransitionUnit;
 
 public class SavegameManagerUnit extends GraphicalGameUnit {
 
@@ -91,17 +93,56 @@ public class SavegameManagerUnit extends GraphicalGameUnit {
 	 */
 	private void handleLoading() {
 		try {
-			Savegame save = Savegame.readSavegameSlot(selectorPos);
+			final Savegame save = Savegame.readSavegameSlot(selectorPos);
 			if (save != null) {
-				LevelManagerUnit levelmanager = new LevelManagerUnit(save);
-				UnitNavigator.getNavigator().addGameUnit(levelmanager,
-						UnitState.LEVEL_MANAGER_UNIT);
-				UnitNavigator.getNavigator().set(UnitState.LEVEL_MANAGER_UNIT);
+				final TransitionUnit toolTipUnit = new TransitionUnit(
+						UnitState.LEVEL_MANAGER_UNIT, createTooltip(), true);
+				toolTipUnit.disableKeyEventControlledProgression();
+				toolTipUnit.setWaitForNotification(true);
+				toolTipUnit.setTransitionPeriod(300);
+				new Thread(new Runnable() {
+					@Override
+					public void run() {
+						LevelManagerUnit levelmanager = new LevelManagerUnit(
+								save);
+						UnitNavigator.getNavigator().addGameUnit(levelmanager,
+								UnitState.LEVEL_MANAGER_UNIT);
+						toolTipUnit.authorizeProgression();
+					}
+				}).start();
+				UnitNavigator.getNavigator().addGameUnit(toolTipUnit,
+						UnitState.TEMPORARY_UNIT);
+				UnitNavigator.getNavigator().set(UnitState.TEMPORARY_UNIT);
 			}
 		} catch (FileNotFoundException e1) {
 			System.err.println("Error loading Savegame slot " + selectorPos
 					+ "!");
 		}
+	}
+
+	private BufferedImage createTooltip() {
+		Image tmp = new ImageIcon(GameConstants.MENU_IMAGES_DIR
+				+ "MultiplayerMenuBG.png").getImage();
+		BufferedImage transitionImage = new BufferedImage(
+				GameConstants.FRAME_SIZE_X, GameConstants.FRAME_SIZE_Y,
+				BufferedImage.TYPE_INT_ARGB);
+		Graphics2D g2d = transitionImage.createGraphics();
+		g2d.drawImage(tmp, 0, 0, transitionImage.getWidth(),
+				transitionImage.getHeight(), null);
+		g2d.setFont(unitFont);
+
+		String toolTip = GameConstants.TOOL_TIPS[(int) (Math.random() * GameConstants.TOOL_TIPS.length)];
+		Rectangle2D rect = unitFont.getStringBounds(toolTip,
+				g2d.getFontRenderContext());
+		g2d.drawString("loading...",
+				(int) (GameConstants.FRAME_SIZE_X - rect.getWidth()) / 2,
+				(int) (GameConstants.FRAME_SIZE_Y / 2 - rect.getHeight()));
+
+		g2d.drawString(toolTip,
+				(int) (GameConstants.FRAME_SIZE_X - rect.getWidth()) / 2,
+				(int) (GameConstants.FRAME_SIZE_Y / 2 + rect.getHeight()));
+
+		return transitionImage;
 	}
 
 	/**

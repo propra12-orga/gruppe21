@@ -50,6 +50,7 @@ public class Map {
 	 */
 	public Map(String mn) {
 		mr = new MapReader(mn);
+		System.out.println("READ MAP: " + mn);
 		prepareMap();
 	}
 
@@ -65,6 +66,7 @@ public class Map {
 	public Map(String mn, ImageLoader levelGraphics) {
 		this.graphics = levelGraphics;
 		mr = new MapReader(mn);
+		System.out.println("READ MAP: " + mn);
 		prepareMap();
 	}
 
