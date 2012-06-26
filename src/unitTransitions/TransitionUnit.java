@@ -73,6 +73,8 @@ public class TransitionUnit extends GraphicalGameUnit {
 	private int transitionPeriod = 500;
 
 	private TransitionEffect transitionEffect;
+	private boolean disableKeys = false;
+	private boolean waitForNotification = false;
 
 	/**
 	 * Constructs a TransitionUnit.
@@ -155,7 +157,8 @@ public class TransitionUnit extends GraphicalGameUnit {
 		if (proceedAutomatically) {
 			transitionPeriod--;
 			if (transitionPeriod <= 0) {
-				initTransition();
+				if (!waitForNotification)
+					initTransition();
 			}
 		}
 		if (transitionEffect != null) {
@@ -165,6 +168,8 @@ public class TransitionUnit extends GraphicalGameUnit {
 
 	@Override
 	public void handleKeyPressed(KeyEvent e) {
+		if (disableKeys)
+			return;
 		int key = e.getKeyCode();
 		if (key == KeyEvent.VK_ESCAPE) {
 			/*
@@ -213,4 +218,18 @@ public class TransitionUnit extends GraphicalGameUnit {
 			g.drawImage(message, messagePosX, messagePosY, null);
 		}
 	}
+
+	public void disableKeyEventControlledProgression() {
+		disableKeys = true;
+	}
+
+	public void setWaitForNotification(boolean waitForNotification) {
+		this.waitForNotification = waitForNotification;
+	}
+
+	public void authorizeProgression() {
+		disableKeys = false;
+		waitForNotification = false;
+	}
+
 }

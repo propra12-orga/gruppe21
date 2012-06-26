@@ -94,8 +94,8 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 	private ImageLoader levelGraphics;
 
 	/**
-	 * This constructor takes a campaign file (a .txt. file that can be used to
-	 * construct a campaign object) as an argument.
+	 * This constructor takes a campaign file (that can be used to construct a
+	 * campaign object) as an argument.
 	 * 
 	 * @param campaignFile
 	 */
