@@ -1,25 +1,28 @@
 package multiplayer;
 
+import java.io.BufferedInputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
+import java.util.Scanner;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class Server extends Thread {
 
 	public static boolean gamestarted = false;
-	// Socket Classvars
+	// Host Socket
 	private ServerSocket hostSocket = null;
-	private DataOutputStream os = null;
-	private DataInputStream is = null;
-	// Player Array
+	// Player Management
 	private int playerCount = 1;
 	// Socket Management
-	private ToClientSocket[] toClientSockets = new ToClientSocket[2]; // Change
+	private ToClientSocket[] toClientSockets = new ToClientSocket[3]; // Change
+	// Console Input
+	private Scanner scanner = new Scanner(new BufferedInputStream(System.in),
+			"UTF-8");
 
 	// Constructor
 	public Server(int port) throws IOException {
@@ -35,7 +38,7 @@ public class Server extends Thread {
 				toClientSockets[playerCount] = new ToClientSocket(playerCount,
 						hostSocket.accept());
 				playerCount += 1;
-				if (playerCount == 2) { // Change
+				if (playerCount == 3) { // Change
 					gamestarted = true;
 					try {
 						Thread.sleep(10);
@@ -52,36 +55,36 @@ public class Server extends Thread {
 				break;
 			}
 		}
+		System.out.println("Bomberman Server v1.0:");
+		String consoleInput = null;
 		while (true) {
-			try {
-				Thread.sleep(2);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+			consoleInput = scanner.next();
+			if (consoleInput.equals("stop")) // schlieﬂe Sockets
+				break;
 		}
 	}
 
 	public void distributeMessage(String incoming) {
-		for (int i = 1; i < 2; i++) { // Change
+		for (int i = 1; i < 3; i++) { // Change
 			try {
-				ToClientSocket tmp = toClientSockets[i];
-				Lock tmpLock = tmp.getToClientWriteLock();
+				System.out.println(incoming);
+				Lock tmpLock = toClientSockets[i].getWriteLock();
 				tmpLock.lock();
-				tmp.getToClientSocketOS().writeUTF(incoming);
+				toClientSockets[i].getOS().writeUTF(incoming);
 				tmpLock.unlock();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
-		incoming = null;
 	}
 
 	// evtl stoppe den Thread, nachdem das Spiel startet
 
 	public class ToClientSocket extends Thread implements Runnable {
+		private DataOutputStream os = null;
+		private DataInputStream is = null;
 		private int playerIndex;
 		private Socket clientSocket;
-		protected String incoming = null;
 		private Lock writeLock = new ReentrantLock();
 
 		// Constructor
@@ -98,11 +101,11 @@ public class Server extends Thread {
 			initializePlayerSlot();
 		}
 
-		public DataOutputStream getToClientSocketOS() {
+		public DataOutputStream getOS() {
 			return os;
 		}
 
-		public Lock getToClientWriteLock() {
+		public Lock getWriteLock() {
 			return writeLock;
 		}
 
@@ -117,17 +120,17 @@ public class Server extends Thread {
 		}
 
 		public void run() {
-			while (gamestarted == true) {
+			while (true) {
 				try {
-					incoming = is.readUTF();
+					String incoming = is.readUTF();
 					distributeMessage(incoming);
 				} catch (IOException e) {
 					e.printStackTrace();
-				}
-				try {
-					Thread.sleep(2);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
+					try {
+						Thread.sleep(10);
+					} catch (InterruptedException e1) {
+						e1.printStackTrace();
+					}
 				}
 			}
 		}

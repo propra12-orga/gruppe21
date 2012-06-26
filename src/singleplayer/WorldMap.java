@@ -25,6 +25,7 @@ public class WorldMap {
 	 * Coordinates of locations (levels) on the map object.
 	 */
 	private Point[] levelCoords;
+	private String[] coordLabels;
 	/**
 	 * The maximum level accessible by the player. On successfully completing
 	 * the current max level, this counter will be increased, allowing the user
@@ -44,8 +45,9 @@ public class WorldMap {
 	 * @param worldmap
 	 *            map object representing the WorldMap.
 	 */
-	public WorldMap(Point[] levelCoords, Map worldmap) {
+	public WorldMap(Point[] levelCoords, String[] coordLabels, Map worldmap) {
 		this.levelCoords = levelCoords;
+		this.coordLabels = coordLabels;
 		this.worldmap = worldmap;
 		maxLevelAccessible = 0;
 		selectedLevel = 0;
@@ -96,6 +98,15 @@ public class WorldMap {
 	 */
 	public Point getPlayerCoord() {
 		return levelCoords[selectedLevel];
+	}
+
+	/**
+	 * Returns description of selected level
+	 * 
+	 * @return coord label of selected level
+	 */
+	public String getSelectedCoordLabel() {
+		return coordLabels[selectedLevel];
 	}
 
 	/**

@@ -72,14 +72,17 @@
 
 		<coordinates>
 			<coord>
+				<label>Tutorial: The Battleship</label>
 				<cx>10</cx>
 				<cy>12</cy>
 			</coord>
 			<coord>
+				<label>The Beach 1</label>
 				<cx>11</cx>
 				<cy>10</cy>
 			</coord>
 			<coord>
+				<label>The Beach 2</label>
 				<cx>10</cx>
 				<cy>8</cy>
 			</coord>

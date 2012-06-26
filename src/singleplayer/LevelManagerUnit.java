@@ -81,7 +81,7 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 	/**
 	 * Might be necessary to protect unit from KeyEvent inferno
 	 */
-	private boolean unitRunning = false;
+	private boolean mapActive = false;
 
 	private GameGraphic helpMenu;
 	private GameGraphic youWinMsg;
@@ -92,10 +92,11 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 	 * loading all map graphics again and again.
 	 */
 	private ImageLoader levelGraphics;
+	private boolean unitRunning = false;
 
 	/**
-	 * This constructor takes a campaign file (a .txt. file that can be used to
-	 * construct a campaign object) as an argument.
+	 * This constructor takes a campaign file (that can be used to construct a
+	 * campaign object) as an argument.
 	 * 
 	 * @param campaignFile
 	 */
@@ -105,12 +106,14 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 		worldMapUnit = new WorldMapUnit(campaign.getWorldMap());
 		levelGraphics = new ImageLoader();
 		initComponent();
+		unitRunning = true;
 	}
 
 	public LevelManagerUnit(Savegame save) {
 		this.campaignFile = save.getCampaignData().getCampaignName();
 		campaign = new CampaignReader(campaignFile).readCampaignFromFile();
 		worldMapUnit = new WorldMapUnit(campaign.getWorldMap());
+		worldMapUnit.setHelpShown(true);
 		save.getCampaignData().restoreCampaign(campaign);
 		levelGraphics = new ImageLoader();
 		player = new Map(campaign.getCurrentMap(), levelGraphics)
@@ -121,7 +124,7 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 
 	@Override
 	public void drawComponent(Graphics g) {
-		if (unitRunning) {
+		if (mapActive) {
 			g.setColor(Color.black);
 			g.fillRect(0, 0, GameConstants.FRAME_SIZE_X,
 					GameConstants.FRAME_SIZE_Y);
@@ -133,10 +136,14 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 
 	@Override
 	public void handleKeyPressed(KeyEvent e) {
-		if (unitRunning) {
+		if (mapActive) {
 			int key = e.getKeyCode();
 			if (key == KeyEvent.VK_ESCAPE) {
-				UnitNavigator.getNavigator().set(UnitState.BASE_MENU_UNIT);
+				if (campaign.getWorldMap().getMaxLevelAccessible() > 0)
+					unitRunning = false;
+				else {
+					UnitNavigator.getNavigator().set(UnitState.BASE_MENU_UNIT);
+				}
 			}
 			if (key == KeyEvent.VK_UP) {
 				player.direction.setUp(true);
@@ -168,9 +175,29 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 
 			if (key == KeyEvent.VK_F1) {
 				initHelpscreen();
-
+			}
+			if (key == KeyEvent.VK_P) {
+				pause();
 			}
 		}
+	}
+
+	private void pause() {
+		BufferedImage pauseImage = createGameSceenshot();
+		Graphics2D g2d = pauseImage.createGraphics();
+		g2d.setFont(unitFont.deriveFont(50f));
+		Rectangle2D rect = unitFont.deriveFont(50f).getStringBounds("PAUSED",
+				g2d.getFontRenderContext());
+
+		g2d.drawString("PAUSED",
+				(int) (GameConstants.FRAME_SIZE_X - rect.getWidth()) / 2,
+				(int) (((GameConstants.FRAME_SIZE_Y / 4))));
+		TransitionUnit trans = new TransitionUnit(UnitState.LEVEL_MANAGER_UNIT,
+				pauseImage, false);
+		trans.setProgressionKey(KeyEvent.VK_P);
+		UnitNavigator.getNavigator().addGameUnit(trans,
+				UnitState.TEMPORARY_UNIT);
+		UnitNavigator.getNavigator().set(UnitState.TEMPORARY_UNIT);
 	}
 
 	/**
@@ -182,6 +209,7 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 				0, 0);
 		TransitionUnit trans = new TransitionUnit(UnitState.LEVEL_MANAGER_UNIT,
 				helpscreenImage, false);
+		trans.setProgressionKey(KeyEvent.VK_F1);
 		UnitNavigator.getNavigator().addGameUnit(trans,
 				UnitState.TEMPORARY_UNIT);
 		UnitNavigator.getNavigator().set(UnitState.TEMPORARY_UNIT);
@@ -229,72 +257,82 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 
 	@Override
 	public void updateComponent() {
-		if (unitRunning) {
-			if (!currentMap.isFinished()) {
-				currentMap.update();
-				updateOffset();
-			} else {
-				unitRunning = false;
-				if (currentMap.playerSucced()) {
+		if (!unitRunning) {
+			levelGraphics = new ImageLoader();
+			UnitNavigator.getNavigator().addGameUnit(worldMapUnit,
+					UnitState.TEMPORARY_UNIT);
+			UnitNavigator.getNavigator().set(UnitState.TEMPORARY_UNIT);
+		} else {
+			if (mapActive) {
+				if (!currentMap.isFinished()) {
+					currentMap.update();
+					updateOffset();
+				} else {
+					mapActive = false;
+					if (currentMap.playerSucced()) {
 
-					/*
-					 * update campaign counters to see if there's a level
-					 * remaining
-					 */
-					if (!campaign.updateCounters()) {
-						if (campaign.isFinished()) {
-							/*
-							 * campaign finished, show a win message and proceed
-							 * to main menu
-							 */
-							initTransition(youWinMsg.getImage(),
-									UnitState.BASE_MENU_UNIT);
-							UnitNavigator.getNavigator().removeGameUnit(
-									UnitState.LEVEL_MANAGER_UNIT);
+						/*
+						 * update campaign counters to see if there's a level
+						 * remaining
+						 */
+						if (!campaign.updateCounters()) {
+							if (campaign.isFinished()) {
+								/*
+								 * campaign finished, show a win message and
+								 * proceed to main menu
+								 */
+								initTransition(youWinMsg.getImage(),
+										UnitState.BASE_MENU_UNIT);
+								UnitNavigator.getNavigator().removeGameUnit(
+										UnitState.LEVEL_MANAGER_UNIT);
+							} else {
+								/*
+								 * level completed, show world map and delete
+								 * level graphics
+								 */
+								levelGraphics = new ImageLoader();
+								TransitionUnit trans = new TransitionUnit(
+										UnitState.TEMPORARY_UNIT,
+										new CircularZoomEffect(
+												player.getPosX()
+														+ mapOffsetX
+														+ GameConstants.TILE_SIZE
+														/ 2,
+												player.getPosY()
+														+ mapOffsetY
+														+ GameConstants.TILE_SIZE
+														/ 2, 7,
+												createGameSceenshot(),
+												youWinMsg.getImage()),
+										worldMapUnit, true);
+								trans.setTransitionPeriod(1000);
+								UnitNavigator.getNavigator().addGameUnit(trans,
+										UnitState.TEMPORARY_UNIT);
+								UnitNavigator.getNavigator().set(
+										UnitState.TEMPORARY_UNIT);
+							}
 						} else {
 							/*
-							 * level completed, show world map and delete level
-							 * graphics
+							 * just show a win message
 							 */
-							levelGraphics = new ImageLoader();
-							TransitionUnit trans = new TransitionUnit(
-									UnitState.TEMPORARY_UNIT,
-									new CircularZoomEffect(player.getPosX()
-											+ mapOffsetX
-											+ GameConstants.TILE_SIZE / 2,
-											player.getPosY() + mapOffsetY
-													+ GameConstants.TILE_SIZE
-													/ 2, 7,
-											createGameSceenshot(), youWinMsg
-													.getImage()),
-									worldMapUnit, true);
-							trans.setTransitionPeriod(1000);
-							UnitNavigator.getNavigator().addGameUnit(trans,
-									UnitState.TEMPORARY_UNIT);
-							UnitNavigator.getNavigator().set(
-									UnitState.TEMPORARY_UNIT);
+							initTransition(youWinMsg.getImage(),
+									UnitState.LEVEL_MANAGER_UNIT);
 						}
 					} else {
 						/*
-						 * just show a win message
+						 * player died, show lose message
 						 */
-						initTransition(youWinMsg.getImage(),
+						initTransition(youLoseMsg.getImage(),
 								UnitState.LEVEL_MANAGER_UNIT);
 					}
-				} else {
-					/*
-					 * player died, show lose message
-					 */
-					initTransition(youLoseMsg.getImage(),
-							UnitState.LEVEL_MANAGER_UNIT);
 				}
+			} else {
+				/*
+				 * in any case: get a new map object
+				 */
+				changeCurrentMap();
+				mapActive = true;
 			}
-		} else {
-			/*
-			 * in any case: get a new map object
-			 */
-			changeCurrentMap();
-			unitRunning = true;
 		}
 	}
 
@@ -486,5 +524,9 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 
 	public Savegame createSavegame() {
 		return new Savegame(player.getPlayerData(), campaign.getCampaignData());
+	}
+
+	public void activateUnit() {
+		unitRunning = true;
 	}
 }

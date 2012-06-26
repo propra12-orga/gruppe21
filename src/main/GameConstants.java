@@ -30,6 +30,12 @@ public class GameConstants {
 	public static final String SOUNDS_DIR = "sounds/";
 	public static final String FONTS_DIR = "fonts/";
 
+	public static final String[] TOOL_TIPS = {
+			"Tipp: You may always return to the World Map by pressing 'Escape'",
+			"Tipp: Immortal Bomberman destroys his enemies at a touch!",
+			"Tipp: Saving your progress will also save your characters upgrades.",
+			"Tipp: You may pause the game by pressing 'p'." };
+
 	/**
 	 * Private Constructor prevents other classes from instantiating the
 	 * GameConstans class
