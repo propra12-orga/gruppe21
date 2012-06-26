@@ -206,9 +206,6 @@ public abstract class Enemy extends MoveableObject {
 					die("enemyDying");
 				} else if (test.equals(Color.darkGray)) {
 					die("enemyDying");
-				} else if (test.equals(Color.green)) {
-					map.getMapPlayer().die();
-					map.finishMap();
 				}
 			}
 		}
