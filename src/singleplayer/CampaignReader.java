@@ -64,21 +64,19 @@ public class CampaignReader {
 		List<Element> coords = campaignRoot.getChild("worldmap")
 				.getChild("coordinates").getChildren();
 		Point[] coordinates = new Point[coords.size()];
+		String[] coordLabel = new String[coords.size()];
 		for (int i = 0; i < coords.size(); i++) {
 			Element el = coords.get(i);
 			int x = Integer.parseInt(el.getChildText("cx"));
 			int y = Integer.parseInt(el.getChildText("cy"));
+			coordLabel[i] = el.getChildText("label");
 			coordinates[i] = new Point(x, y);
 		}
 
-		WorldMap worldMap = new WorldMap(coordinates, new Map(worldMapName));
+		WorldMap worldMap = new WorldMap(coordinates, coordLabel, new Map(
+				worldMapName));
 		Campaign campaign = new Campaign(levels, worldMap, filename);
 		return campaign;
 	}
 
-	public static void main(String[] args) {
-		Campaign test = new CampaignReader("campaignTest")
-				.readCampaignFromFile();
-
-	}
 }

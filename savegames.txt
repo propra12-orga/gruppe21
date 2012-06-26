@@ -1,8 +1,8 @@
-slot-1:player_data;id=0;mb=3;brad=2;brem=true;ps=5
-slot-1:campaign_data;id=0;sl=2;ml=2;name=campaign1;lnum=3
-slot-2:player_data;id=0;mb=3;brad=2;brem=true;ps=5
-slot-2:campaign_data;id=0;sl=2;ml=2;name=campaign1;lnum=3
-slot-0:player_data;id=0;mb=1;brad=1;brem=false;ps=3
+slot-0:player_data;id=0;mb=1;brad=1;brem=true;ps=3
 slot-0:campaign_data;id=0;sl=1;ml=2;name=campaign1;lnum=3
+slot-1:player_data;id=0;mb=1;brad=1;brem=true;ps=3
+slot-1:campaign_data;id=0;sl=1;ml=2;name=campaign1;lnum=3
+slot-2:player_data;id=0;mb=1;brad=1;brem=true;ps=3
+slot-2:campaign_data;id=0;sl=1;ml=2;name=campaign1;lnum=3
 slot-3:player_data;id=0;mb=1;brad=1;brem=true;ps=3
-slot-3:campaign_data;id=0;sl=1;ml=2;name=campaign1;lnum=3
+slot-3:campaign_data;id=0;sl=2;ml=2;name=campaign1;lnum=3

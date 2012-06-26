@@ -70,8 +70,18 @@ public class TransitionUnit extends GraphicalGameUnit {
 	private int transitionPeriod = 500;
 
 	private TransitionEffect transitionEffect;
+
+	/**
+	 * Prevents the user from initializing the transition by himself
+	 */
 	private boolean disableKeys = false;
+	/**
+	 * Tells the unit to wait for notification before proceeding
+	 */
 	private boolean waitForNotification = false;
+	/**
+	 * Standard key for initializing the transition
+	 */
 	private int progressionKey = KeyEvent.VK_ENTER;
 
 	/**
@@ -212,19 +222,37 @@ public class TransitionUnit extends GraphicalGameUnit {
 		}
 	}
 
+	/**
+	 * Disable KeyEvent control.
+	 */
 	public void disableKeyEventControlledProgression() {
 		disableKeys = true;
 	}
 
+	/**
+	 * If set to true, the thread will wait for 'authorizeProgression() to be
+	 * called in order to proceed to the next unit.
+	 * 
+	 * @param waitForNotification
+	 */
 	public void setWaitForNotification(boolean waitForNotification) {
 		this.waitForNotification = waitForNotification;
 	}
 
+	/**
+	 * Notify TransitionUnit; enables transition process. Important for laoding
+	 * screens.
+	 */
 	public void authorizeProgression() {
 		disableKeys = false;
 		waitForNotification = false;
 	}
 
+	/**
+	 * Sets KeyEvent to listen for to initialize transition
+	 * 
+	 * @param keyEvent
+	 */
 	public void setProgressionKey(int keyEvent) {
 		this.progressionKey = keyEvent;
 	}

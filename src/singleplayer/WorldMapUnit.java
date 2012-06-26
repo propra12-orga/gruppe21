@@ -68,6 +68,9 @@ public class WorldMapUnit extends GraphicalGameUnit {
 				(GameConstants.FRAME_SIZE_Y - mapCanvas.getHeight()) / 2,
 				mapCanvas.getWidth(), mapCanvas.getHeight(), null);
 
+		/*
+		 * draw info message
+		 */
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setFont(unitFont);
 		String[] infoTxt;
@@ -83,6 +86,17 @@ public class WorldMapUnit extends GraphicalGameUnit {
 					(int) (GameConstants.FRAME_SIZE_X - rect.getWidth()) / 2,
 					(int) ((80 + rect.getHeight() * 2 * i)));
 		}
+		/*
+		 * draw level info
+		 */
+		String s = worldMap.getSelectedCoordLabel();
+		if (worldMap.getMaxLevelAccessible() > worldMap.getSelectedLevel())
+			s = s + " - Completed";
+		Rectangle2D rect = unitFont.getStringBounds(s,
+				g2d.getFontRenderContext());
+		g2d.drawString(s,
+				(int) (GameConstants.FRAME_SIZE_X - rect.getWidth()) / 2,
+				GameConstants.FRAME_SIZE_Y - 60);
 	}
 
 	public void setHelpShown(boolean helpShown) {
