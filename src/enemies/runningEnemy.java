@@ -118,9 +118,4 @@ public class runningEnemy extends Enemy {
 		}
 	}
 
-	/* weg damit */
-	public boolean hasObjectCollision(int x, int y, BufferedImage cm, String dir) {
-		return false;
-	}
-
 }

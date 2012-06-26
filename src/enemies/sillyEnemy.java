@@ -46,7 +46,10 @@ public class sillyEnemy extends Enemy {
 	@Override
 	public void move() {
 		if (UP) {
-			if (hasObjectCollision(posX, posY - speed, map.getCollisionMap())) {
+			// if (hasObjectCollision(posX, posY - speed,
+			// map.getCollisionMap())) {
+			if (simpleHasColl(posX, posY - speed, map.getCollisionMap(),
+					Color.black, Color.gray)) {
 				findPath("enemyUp", "enemyDown", "enemyLeft", "enemyRight");
 			} else {
 				posY -= speed;
@@ -54,7 +57,10 @@ public class sillyEnemy extends Enemy {
 		}
 
 		if (DOWN) {
-			if (hasObjectCollision(posX, posY + speed, map.getCollisionMap())) {
+			// if (hasObjectCollision(posX, posY + speed,
+			// map.getCollisionMap())) {
+			if (simpleHasColl(posX, posY + speed, map.getCollisionMap(),
+					Color.black, Color.gray)) {
 				findPath("enemyUp", "enemyDown", "enemyLeft", "enemyRight");
 			} else {
 				posY += speed;
@@ -62,7 +68,10 @@ public class sillyEnemy extends Enemy {
 		}
 
 		if (LEFT) {
-			if (hasObjectCollision(posX - speed, posY, map.getCollisionMap())) {
+			// if (hasObjectCollision(posX - speed, posY,
+			// map.getCollisionMap())) {
+			if (simpleHasColl(posX - speed, posY, map.getCollisionMap(),
+					Color.black, Color.gray)) {
 				findPath("enemyUp", "enemyDown", "enemyLeft", "enemyRight");
 			} else {
 				posX -= speed;
@@ -70,7 +79,10 @@ public class sillyEnemy extends Enemy {
 		}
 
 		if (RIGHT) {
-			if (hasObjectCollision(posX + speed, posY, map.getCollisionMap())) {
+			// if (hasObjectCollision(posX + speed, posY,
+			// map.getCollisionMap())) {
+			if (simpleHasColl(posX + speed, posY, map.getCollisionMap(),
+					Color.black, Color.gray)) {
 				findPath("enemyUp", "enemyDown", "enemyLeft", "enemyRight");
 			} else {
 				posX += speed;
@@ -89,6 +101,10 @@ public class sillyEnemy extends Enemy {
 	public void update(BufferedImage cm) {
 		animation.animate();
 
+		if (simpleHasColl(posX, posY, cm, Color.orange, Color.darkGray)) {
+			die("enemyDying");
+		}
+
 		if (dying) {
 
 			if (beforeTime + dyingTime <= System.nanoTime()) {
@@ -97,11 +113,6 @@ public class sillyEnemy extends Enemy {
 		} else {
 			move();
 		}
-	}
-
-	/* weg damit */
-	public boolean hasObjectCollision(int x, int y, BufferedImage cm, String dir) {
-		return false;
 	}
 
 }

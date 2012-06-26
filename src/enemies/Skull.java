@@ -97,10 +97,4 @@ public class Skull extends Enemy {
 		this.destroyed = destroyed;
 	}
 
-	@Override
-	public boolean hasObjectCollision(int x, int y, BufferedImage cm, String dir) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 }
