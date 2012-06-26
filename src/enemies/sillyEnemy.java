@@ -46,8 +46,6 @@ public class sillyEnemy extends Enemy {
 	@Override
 	public void move() {
 		if (UP) {
-			// if (hasObjectCollision(posX, posY - speed,
-			// map.getCollisionMap())) {
 			if (simpleHasColl(posX, posY - speed, map.getCollisionMap(),
 					Color.black, Color.gray)) {
 				findPath("enemyUp", "enemyDown", "enemyLeft", "enemyRight");
@@ -57,8 +55,6 @@ public class sillyEnemy extends Enemy {
 		}
 
 		if (DOWN) {
-			// if (hasObjectCollision(posX, posY + speed,
-			// map.getCollisionMap())) {
 			if (simpleHasColl(posX, posY + speed, map.getCollisionMap(),
 					Color.black, Color.gray)) {
 				findPath("enemyUp", "enemyDown", "enemyLeft", "enemyRight");
@@ -68,8 +64,6 @@ public class sillyEnemy extends Enemy {
 		}
 
 		if (LEFT) {
-			// if (hasObjectCollision(posX - speed, posY,
-			// map.getCollisionMap())) {
 			if (simpleHasColl(posX - speed, posY, map.getCollisionMap(),
 					Color.black, Color.gray)) {
 				findPath("enemyUp", "enemyDown", "enemyLeft", "enemyRight");
@@ -79,8 +73,6 @@ public class sillyEnemy extends Enemy {
 		}
 
 		if (RIGHT) {
-			// if (hasObjectCollision(posX + speed, posY,
-			// map.getCollisionMap())) {
 			if (simpleHasColl(posX + speed, posY, map.getCollisionMap(),
 					Color.black, Color.gray)) {
 				findPath("enemyUp", "enemyDown", "enemyLeft", "enemyRight");

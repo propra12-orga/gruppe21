@@ -20,6 +20,7 @@ public class Ghost extends Enemy {
 
 	@Override
 	public void move() {
+
 		if (UP) {
 			if (simpleHasColl(posX, posY - speed, map.getCollisionMap(),
 					Color.black)) {
@@ -55,6 +56,7 @@ public class Ghost extends Enemy {
 				posX += speed;
 			}
 		}
+
 	}
 
 	@Override
@@ -66,34 +68,18 @@ public class Ghost extends Enemy {
 		case 1:
 			UP = true;
 			animation.change(up);
-			if (simpleHasColl(posX, posY - speed, map.getCollisionMap(),
-					Color.gray)) {
-				wallWalking = true;
-			}
 			break;
 		case 2:
 			DOWN = true;
 			animation.change(down);
-			if (simpleHasColl(posX, posY + speed, map.getCollisionMap(),
-					Color.gray)) {
-				wallWalking = true;
-			}
 			break;
 		case 3:
 			LEFT = true;
 			animation.change(left);
-			if (simpleHasColl(posX - speed, posY, map.getCollisionMap(),
-					Color.gray)) {
-				wallWalking = true;
-			}
 			break;
 		case 4:
 			RIGHT = true;
 			animation.change(right);
-			if (simpleHasColl(posX + speed, posY, map.getCollisionMap(),
-					Color.gray)) {
-				wallWalking = true;
-			}
 			break;
 		default:
 			findPath(up, down, left, right);
