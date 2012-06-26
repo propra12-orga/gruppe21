@@ -327,26 +327,26 @@ public class MultiplayerUnit extends GraphicalGameUnit {
 		Player tmpPlayer = multiplayerMap.getPlayerByNumber(playerIndex);
 		String[] parts = incoming.split("/");
 		if (incoming.indexOf("Up") != -1) {
-			tmpPlayer.setPosX(Integer.parseInt(parts[1]));
-			tmpPlayer.setPosY(Integer.parseInt(parts[2]));
+			// tmpPlayer.setPosX(Integer.parseInt(parts[1]));
+			// tmpPlayer.setPosY(Integer.parseInt(parts[2]));
 			tmpPlayer.direction.setUp(true);
 			return;
 		}
 		if (incoming.indexOf("Down") != -1) {
-			tmpPlayer.setPosX(Integer.parseInt(parts[1]));
-			tmpPlayer.setPosY(Integer.parseInt(parts[2]));
+			// tmpPlayer.setPosX(Integer.parseInt(parts[1]));
+			// tmpPlayer.setPosY(Integer.parseInt(parts[2]));
 			tmpPlayer.direction.setDown(true);
 			return;
 		}
 		if (incoming.indexOf("Left") != -1) {
-			tmpPlayer.setPosX(Integer.parseInt(parts[1]));
-			tmpPlayer.setPosY(Integer.parseInt(parts[2]));
+			// tmpPlayer.setPosX(Integer.parseInt(parts[1]));
+			// tmpPlayer.setPosY(Integer.parseInt(parts[2]));
 			tmpPlayer.direction.setLeft(true);
 			return;
 		}
 		if (incoming.indexOf("Right") != -1) {
-			tmpPlayer.setPosX(Integer.parseInt(parts[1]));
-			tmpPlayer.setPosY(Integer.parseInt(parts[2]));
+			// tmpPlayer.setPosX(Integer.parseInt(parts[1]));
+			// tmpPlayer.setPosY(Integer.parseInt(parts[2]));
 			tmpPlayer.direction.setRight(true);
 			return;
 		}
