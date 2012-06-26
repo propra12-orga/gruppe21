@@ -24,9 +24,6 @@ import main.UnitState;
  * In order to determine the next GraphicalGameUnit to move to, one has to pass
  * its UnitState (and optionally the unit itself) to the TransitionUnit's
  * constructor.<br>
- * Note that pressing the 'Escape' key will lead to a transition to the
- * GraphicalGameUnit located at UnitState.BASE_MENU_UNIT (normally this will be
- * the MainMenuUnit).
  * 
  * @author tohei
  * 
@@ -75,6 +72,7 @@ public class TransitionUnit extends GraphicalGameUnit {
 	private TransitionEffect transitionEffect;
 	private boolean disableKeys = false;
 	private boolean waitForNotification = false;
+	private int progressionKey = KeyEvent.VK_ENTER;
 
 	/**
 	 * Constructs a TransitionUnit.
@@ -171,13 +169,8 @@ public class TransitionUnit extends GraphicalGameUnit {
 		if (disableKeys)
 			return;
 		int key = e.getKeyCode();
-		if (key == KeyEvent.VK_ESCAPE) {
-			/*
-			 * return to MainMenu
-			 */
-			UnitNavigator.getNavigator().set(UnitState.BASE_MENU_UNIT);
-		}
-		if (key == KeyEvent.VK_ENTER) {
+
+		if (key == progressionKey) {
 			/*
 			 * proceed to next unit
 			 */
@@ -230,6 +223,10 @@ public class TransitionUnit extends GraphicalGameUnit {
 	public void authorizeProgression() {
 		disableKeys = false;
 		waitForNotification = false;
+	}
+
+	public void setProgressionKey(int keyEvent) {
+		this.progressionKey = keyEvent;
 	}
 
 }

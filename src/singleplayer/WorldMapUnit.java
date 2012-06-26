@@ -85,6 +85,10 @@ public class WorldMapUnit extends GraphicalGameUnit {
 		}
 	}
 
+	public void setHelpShown(boolean helpShown) {
+		this.helpShown = helpShown;
+	}
+
 	@Override
 	public void handleKeyPressed(KeyEvent e) {
 		/*
@@ -115,7 +119,14 @@ public class WorldMapUnit extends GraphicalGameUnit {
 		 */
 		if (key == KeyEvent.VK_ENTER) {
 			UnitNavigator.getNavigator().set(UnitState.LEVEL_MANAGER_UNIT);
+			LevelManagerUnit tmp = (LevelManagerUnit) UnitNavigator
+					.getNavigator().getActiveUnit();
+			tmp.activateUnit();
 			helpShown = true;
+		}
+
+		if (key == KeyEvent.VK_ESCAPE) {
+			UnitNavigator.getNavigator().set(UnitState.BASE_MENU_UNIT);
 		}
 	}
 
