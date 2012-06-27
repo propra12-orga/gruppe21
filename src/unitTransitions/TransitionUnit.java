@@ -240,7 +240,7 @@ public class TransitionUnit extends GraphicalGameUnit {
 	}
 
 	/**
-	 * Notify TransitionUnit; enables transition process. Important for laoding
+	 * Notify TransitionUnit; enables transition process. Important for loading
 	 * screens.
 	 */
 	public void authorizeProgression() {

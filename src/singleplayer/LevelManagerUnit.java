@@ -258,6 +258,7 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 	@Override
 	public void updateComponent() {
 		if (!unitRunning) {
+			mapActive = false;
 			levelGraphics = new ImageLoader();
 			UnitNavigator.getNavigator().addGameUnit(worldMapUnit,
 					UnitState.TEMPORARY_UNIT);
