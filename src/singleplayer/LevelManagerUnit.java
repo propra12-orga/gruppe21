@@ -458,8 +458,7 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 				new CircularZoomEffect(player.getPosX() + mapOffsetX
 						+ GameConstants.TILE_SIZE / 2, player.getPosY()
 						+ mapOffsetY + GameConstants.TILE_SIZE / 2, 7,
-						createGameSceenshot(), image), true);
-		trans.setTransitionPeriod(1000);
+						createGameSceenshot(), image), false);
 		UnitNavigator.getNavigator().addGameUnit(trans,
 				UnitState.TEMPORARY_UNIT);
 		UnitNavigator.getNavigator().set(UnitState.TEMPORARY_UNIT);

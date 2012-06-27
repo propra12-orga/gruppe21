@@ -244,7 +244,6 @@ public class TransitionUnit extends GraphicalGameUnit {
 	 * screens.
 	 */
 	public void authorizeProgression() {
-		disableKeys = false;
 		waitForNotification = false;
 	}
 
