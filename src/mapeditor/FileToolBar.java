@@ -7,11 +7,14 @@ import java.awt.event.MouseListener;
 import javax.swing.JPanel;
 
 public class FileToolBar extends JPanel implements MouseListener {
+	Button newButton;
 
 	public FileToolBar() {
 		this.setSize(200, 50);
 		this.setBackground(Color.yellow);
 		addMouseListener(this);
+
+		add(newButton = new Button(50, 50, "new.png"));
 	}
 
 	@Override

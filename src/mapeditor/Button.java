@@ -24,6 +24,7 @@ public class Button extends JPanel {
 	@Override
 	protected void paintComponent(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
-		g2d.drawImage(image, width, height, 0, 0, null);
+		g2d.drawImage(image, 0, 0, width, height, null);
+		System.out.print("button draw");
 	}
 }

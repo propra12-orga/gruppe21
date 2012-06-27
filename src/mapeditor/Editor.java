@@ -30,6 +30,7 @@ public class Editor extends JFrame implements KeyListener, MouseListener {
 		addMouseListener(this);
 
 		add(fileBar);
+		fileBar.add(new Button(50, 50, "new.png"));
 		add(toolBar);
 	}
 
