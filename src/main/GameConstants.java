@@ -30,6 +30,11 @@ public class GameConstants {
 	public static final String SOUNDS_DIR = "sounds/";
 	public static final String FONTS_DIR = "fonts/";
 
+	/**
+	 * Editor paths
+	 */
+	public static final String EDITOR_BUTTONS = "graphics/editor/buttons/";
+
 	public static final String[] TOOL_TIPS = {
 			"Tipp: You may always return to the World Map by pressing 'Escape'",
 			"Tipp: Immortal Bomberman destroys his enemies at a touch!",

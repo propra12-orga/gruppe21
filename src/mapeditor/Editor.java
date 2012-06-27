@@ -1,15 +1,11 @@
 package mapeditor;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 /**
  * Main Class for the Level Editor
@@ -19,15 +15,10 @@ import javax.swing.JPanel;
  * 
  */
 public class Editor extends JFrame implements KeyListener, MouseListener {
-	JPanel mainPanel = new JPanel();
-	Graphics g;
-	Graphics2D canvas = (Graphics2D) g;
+	FileToolBar fileBar = new FileToolBar();
+	ToolBar toolBar = new ToolBar();
 
 	public Editor() {
-
-		add(mainPanel);
-		canvas.setBackground(Color.black);
-		mainPanel.paint(canvas);
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(800, 600);
@@ -37,6 +28,9 @@ public class Editor extends JFrame implements KeyListener, MouseListener {
 		setVisible(true);
 		addKeyListener(this);
 		addMouseListener(this);
+
+		add(fileBar);
+		add(toolBar);
 	}
 
 	public static void main(String args[]) {
