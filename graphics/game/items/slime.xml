@@ -1,0 +1,6 @@
+<animationset default="slime_default.png">
+<animation frames="2" stretch="40" name="vertical">slime_senk.png</animation>
+<animation frames="2" stretch="40" name="horizontal">slime_waag.png</animation>
+<animation frames="4" stretch="25" name="disappear_vertical">slime_disappearing_vertical.png</animation>
+<animation frames="4" stretch="25" name="disappear_horizontal">slime_disappearing_horizontal.png</animation>
+</animationset>
