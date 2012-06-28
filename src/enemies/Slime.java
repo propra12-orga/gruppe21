@@ -17,22 +17,28 @@ public class Slime extends MapObject {
 	private boolean disappearing = false;
 
 	public Slime(int x, int y, boolean v, boolean d, boolean c, String p,
-			ImageLoader gr, String or) {
+			ImageLoader gr, String dir) {
 		super(x, y, v, d, c, p, gr);
 		beforeTime = System.nanoTime();
-		initAnimation(or);
+		animation.start("slime");
+		initDirection(dir);
 	}
 
-	private void initAnimation(String or) {
-		if (or.equals("horizontal")) {
-			animation.start("horizontal");
-			dyingAnimation = "disappear_horizontal";
-		} else if (or.equals("vertical")) {
-			animation.start("vertical");
-			dyingAnimation = "disappear_vertical";
+	private void initDirection(String dir) {
+		if (dir.equals("up")) {
+			animation.start("up");
+			dyingAnimation = "disappear_up";
+		} else if (dir.equals("down")) {
+			animation.start("down");
+			dyingAnimation = "disappear_down";
+		} else if (dir.equals("left")) {
+			animation.start("left");
+			dyingAnimation = "disappear_left";
+		} else if (dir.equals("right")) {
+			animation.start("right");
+			dyingAnimation = "disappear_right";
 		} else {
-			System.out
-					.println("Slime#initOrientation(): Fehlerhafte Orientierung");
+			System.out.println("Slime#initDirection(): Fehlerhafte Richtung");
 		}
 	}
 
@@ -42,7 +48,7 @@ public class Slime extends MapObject {
 
 		if (simpleHasColl(posX, posY, collisionMap, Color.orange,
 				Color.darkGray)) {
-			die(dyingAnimation);
+			destroyed = true;
 		}
 
 		if (disappearing) {
