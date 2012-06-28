@@ -106,7 +106,10 @@ public class MapMenuUnit extends GraphicalGameUnit {
 			UnitNavigator.getNavigator().set(UnitState.LEVEL_MANAGER_UNIT);
 		}
 		if (key == KeyEvent.VK_ENTER && frameXPosition1 == frameOutOfRange) {
-			UnitNavigator.getNavigator().set(UnitState.BASE_MENU_UNIT);
+			UnitNavigator.getNavigator().addGameUnit(
+					OptionMenuUnit.loadLocalNetworkOptionMenu(),
+					UnitState.TEMPORARY_UNIT);
+			UnitNavigator.getNavigator().set(UnitState.TEMPORARY_UNIT);
 		}
 		if (key == KeyEvent.VK_ESCAPE) {
 			UnitNavigator.getNavigator().set(UnitState.BASE_MENU_UNIT);

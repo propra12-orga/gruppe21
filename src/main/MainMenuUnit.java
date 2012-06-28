@@ -13,9 +13,7 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 
-import multiplayer.MapMenuUnit;
 import multiplayer.OptionMenuUnit;
-import multiplayer.OptionMenuUnit.MenuOption;
 import singleplayer.LevelManagerUnit;
 import singleplayer.SavegameManagerUnit;
 import unitTransitions.TransitionUnit;
@@ -147,8 +145,10 @@ public class MainMenuUnit extends GraphicalGameUnit {
 			UnitNavigator.getNavigator().set(UnitState.TEMPORARY_UNIT);
 		}
 		if (key == KeyEvent.VK_ENTER && selectCounter == 1) {
-			// create new game
-			loadOptionMenu();
+			UnitNavigator.getNavigator().addGameUnit(
+					OptionMenuUnit.loadLocalNetworkOptionMenu(),
+					UnitState.TEMPORARY_UNIT);
+			UnitNavigator.getNavigator().set(UnitState.TEMPORARY_UNIT);
 
 		}
 		if (key == KeyEvent.VK_ENTER && selectCounter == 2) {
@@ -167,33 +167,6 @@ public class MainMenuUnit extends GraphicalGameUnit {
 				UnitNavigator.getNavigator().set(UnitState.LEVEL_MANAGER_UNIT);
 			}
 		}
-	}
-
-	private void loadOptionMenu() {
-		GameGraphic aLocal = new GameGraphic(GameConstants.MENU_IMAGES_DIR
-				+ "ActiveLocal.png");
-		GameGraphic iaLocal = new GameGraphic(GameConstants.MENU_IMAGES_DIR
-				+ "InactiveLocal.png");
-		MenuOption option1 = new MenuOption(UnitState.TEMPORARY_UNIT,
-				new MapMenuUnit.LocalMapMenuCreator(), aLocal, iaLocal);
-		GameGraphic aNetwork = new GameGraphic(GameConstants.MENU_IMAGES_DIR
-				+ "ActiveNetwork.png");
-		GameGraphic iaNetwork = new GameGraphic(GameConstants.MENU_IMAGES_DIR
-				+ "InactiveNetwork.png");
-		MenuOption option2 = new MenuOption(UnitState.TEMPORARY_UNIT,
-				new MapMenuUnit.NetworkMapMenuCreator(), aNetwork, iaNetwork);
-		GameGraphic aBack = new GameGraphic(GameConstants.MENU_IMAGES_DIR
-				+ "ActiveBack.png");
-		GameGraphic iaBack = new GameGraphic(GameConstants.MENU_IMAGES_DIR
-				+ "InactiveBack.png");
-		MenuOption option3 = new MenuOption(UnitState.BASE_MENU_UNIT, aBack,
-				iaBack);
-		OptionMenuUnit optionMenu = new OptionMenuUnit(
-				"Choose multiplayer mode", option1, option2, option3);
-		UnitNavigator.getNavigator().addGameUnit(optionMenu,
-				UnitState.TEMPORARY_UNIT);
-		UnitNavigator.getNavigator().set(UnitState.TEMPORARY_UNIT);
-
 	}
 
 	@Override

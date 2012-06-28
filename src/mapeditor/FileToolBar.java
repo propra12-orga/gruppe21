@@ -20,34 +20,42 @@ public class FileToolBar extends JPanel implements MouseListener {
 	/**
 	 * Buttons
 	 */
-	Button newButton, saveButton, openButton;
+	private Button newButton, saveButton, openButton;
 	/**
 	 * a Vector list for the buttons to manage drawing etc.
 	 */
-	Vector<Button> buttonList = new Vector<Button>();
+	private Vector<Button> buttonList = new Vector<Button>();
+
+	private int buttonSize;
+	private int padding;
 
 	/**
 	 * FileToolBar constructor
 	 * 
 	 * sets up the Jpanel, adds Buttons
 	 */
-	public FileToolBar() {
+	public FileToolBar(int bSize, int padd) {
 		this.setBackground(Color.gray);
 		this.setSize(200, 50);
 		this.setDoubleBuffered(true);
 		setFocusable(true);
 		addMouseListener(this);
+		buttonSize = bSize;
+		padding = padd;
 
-		buttonList.add(newButton = new Button(50, 50, "new.png"));
-		buttonList.add(saveButton = new Button(50, 50, "save.png"));
-		buttonList.add(openButton = new Button(50, 50, "open.png"));
+		buttonList.add(newButton = new Button(bSize, bSize, "new.png",
+				"newFile"));
+		buttonList.add(saveButton = new Button(bSize, bSize, "save.png",
+				"saveFile"));
+		buttonList.add(openButton = new Button(bSize, bSize, "open.png",
+				"openFile"));
 	}
 
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		for (int i = 0; i < buttonList.size(); i++) {
-			buttonList.get(i).draw((i * 50), 0, g);
+			buttonList.get(i).draw((i * 50) + padding, 0 + padding, g);
 		}
 
 	}
@@ -55,7 +63,17 @@ public class FileToolBar extends JPanel implements MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		System.out.print("FileToolbar clicked");
+		if (e.getButton() == MouseEvent.BUTTON1) {
+			for (int i = 0; i < buttonList.size(); i++) {
+				if (Mouse.isInRegion(e.getX(), e.getY(), buttonList.get(i)
+						.getPosX(), buttonList.get(i).getPosY(), buttonList
+						.get(i).getPosX() + buttonList.get(i).getWidth(),
+						buttonList.get(i).getPosY()
+								+ buttonList.get(i).getHeight())) {
+					FileActions.perform(buttonList.get(i).getAction());
+				}
+			}
+		}
 	}
 
 	@Override

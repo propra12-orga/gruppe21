@@ -40,7 +40,7 @@ public class OptionMenuUnit extends GraphicalGameUnit {
 	/**
 	 * Counter variable determining the selected button.
 	 */
-	private int selectCounter;
+	private int selectCounter = 0;
 
 	/**
 	 * The startX variable will be initialized to a value depending on the total
@@ -95,6 +95,11 @@ public class OptionMenuUnit extends GraphicalGameUnit {
 
 		if (key == KeyEvent.VK_ESCAPE) {
 			UnitNavigator.getNavigator().set(UnitState.BASE_MENU_UNIT);
+			System.gc();
+			/*
+			 * suggest running the garbage collector (might be useful if a lot
+			 * of different sub menus have been used)
+			 */
 		}
 
 	}
@@ -219,6 +224,92 @@ public class OptionMenuUnit extends GraphicalGameUnit {
 			}
 			UnitNavigator.getNavigator().set(nextUnitState);
 		}
+
+	}
+
+	/**
+	 * Creates an option menu that lets you choose between local and network
+	 * based multiplayer.
+	 * 
+	 * @return
+	 */
+	public static OptionMenuUnit loadLocalNetworkOptionMenu() {
+		GameGraphic aLocal = new GameGraphic(GameConstants.MENU_IMAGES_DIR
+				+ "ActiveLocal.png");
+		GameGraphic iaLocal = new GameGraphic(GameConstants.MENU_IMAGES_DIR
+				+ "InactiveLocal.png");
+		MenuOption option1 = new MenuOption(UnitState.TEMPORARY_UNIT,
+				new MapMenuUnit.LocalMapMenuCreator(), aLocal, iaLocal);
+		GameGraphic aNetwork = new GameGraphic(GameConstants.MENU_IMAGES_DIR
+				+ "ActiveNetwork.png");
+		GameGraphic iaNetwork = new GameGraphic(GameConstants.MENU_IMAGES_DIR
+				+ "InactiveNetwork.png");
+		MenuOption option2 = new MenuOption(UnitState.TEMPORARY_UNIT,
+				new UnitCreator() {
+
+					@Override
+					public GraphicalGameUnit createUnit() {
+						return loadHostClientOptionMenu();
+					}
+				}, aNetwork, iaNetwork);
+		GameGraphic aBack = new GameGraphic(GameConstants.MENU_IMAGES_DIR
+				+ "ActiveBack.png");
+		GameGraphic iaBack = new GameGraphic(GameConstants.MENU_IMAGES_DIR
+				+ "InactiveBack.png");
+		MenuOption option3 = new MenuOption(UnitState.BASE_MENU_UNIT, aBack,
+				iaBack);
+		return new OptionMenuUnit("Choose multiplayer mode", option1, option2,
+				option3);
+
+	}
+
+	/**
+	 * Creates an option menu that lets you pick a multiplayer role (host /
+	 * client).
+	 * 
+	 * @return
+	 */
+	public static OptionMenuUnit loadHostClientOptionMenu() {
+		GameGraphic aJoin = new GameGraphic(GameConstants.MENU_IMAGES_DIR
+				+ "JoinGameActive.png");
+		GameGraphic iaJoin = new GameGraphic(GameConstants.MENU_IMAGES_DIR
+				+ "JoinGameInactive.png");
+		MenuOption option1 = new MenuOption(UnitState.TEMPORARY_UNIT,
+				new UnitCreator() {
+
+					@Override
+					public GraphicalGameUnit createUnit() {
+						return new IPChooserUnit(false);
+					}
+				}, aJoin, iaJoin);
+
+		GameGraphic aHost = new GameGraphic(GameConstants.MENU_IMAGES_DIR
+				+ "HostGameActive.png");
+		GameGraphic iaHost = new GameGraphic(GameConstants.MENU_IMAGES_DIR
+				+ "HostGameInactive.png");
+		MenuOption option2 = new MenuOption(UnitState.TEMPORARY_UNIT,
+				new UnitCreator() {
+
+					@Override
+					public GraphicalGameUnit createUnit() {
+						return new IPChooserUnit(true);
+					}
+				}, aHost, iaHost);
+
+		GameGraphic aBack = new GameGraphic(GameConstants.MENU_IMAGES_DIR
+				+ "ActiveBack.png");
+		GameGraphic iaBack = new GameGraphic(GameConstants.MENU_IMAGES_DIR
+				+ "InactiveBack.png");
+		MenuOption option3 = new MenuOption(UnitState.TEMPORARY_UNIT,
+				new UnitCreator() {
+
+					@Override
+					public GraphicalGameUnit createUnit() {
+						return loadLocalNetworkOptionMenu();
+					}
+				}, aBack, iaBack);
+		return new OptionMenuUnit("Join or host a new Game?", option1, option2,
+				option3);
 
 	}
 }

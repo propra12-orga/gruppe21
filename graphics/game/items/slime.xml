@@ -1,6 +1,10 @@
 <animationset default="slime_default.png">
-<animation frames="2" stretch="40" name="vertical">slime_senk.png</animation>
-<animation frames="2" stretch="40" name="horizontal">slime_waag.png</animation>
-<animation frames="4" stretch="25" name="disappear_vertical">slime_disappearing_vertical.png</animation>
-<animation frames="4" stretch="25" name="disappear_horizontal">slime_disappearing_horizontal.png</animation>
+<animation frames="1" stretch="40" name="up">slime_up.png</animation>
+<animation frames="1" stretch="40" name="down">slime_down.png</animation>
+<animation frames="1" stretch="40" name="left">slime_left.png</animation>
+<animation frames="1" stretch="40" name="right">slime_right.png</animation>
+<animation frames="4" stretch="25" name="disappear_up">slime_disappearing_up.png</animation>
+<animation frames="4" stretch="25" name="disappear_down">slime_disappearing_down.png</animation>
+<animation frames="4" stretch="25" name="disappear_left">slime_disappearing_left.png</animation>
+<animation frames="4" stretch="25" name="disappear_right">slime_disappearing_right.png</animation>
 </animationset>
