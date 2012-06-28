@@ -9,7 +9,6 @@ import javax.swing.JPanel;
 public class ToolBar extends JPanel implements MouseListener {
 
 	public ToolBar() {
-		this.setSize(400, 50);
 		this.setBackground(Color.green);
 	}
 
