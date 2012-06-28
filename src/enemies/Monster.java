@@ -13,7 +13,6 @@ public class Monster extends Enemy {
 	private int waitingCounter;
 	private int walkdelay;
 	private int x, y;
-	private int slimeX, slimeY;
 
 	/**
 	 * Monster constructor.
@@ -54,8 +53,6 @@ public class Monster extends Enemy {
 					y += speed;
 
 					if (y >= 5) {
-						// slimeX = (posX + 25) / 50 * 50;
-						// slimeY = (posY + 25) / 50 * 50;
 						Slime slime = new Slime(posX, posY, true, true, false,
 								"slime", map.getGraphics(), "up");
 						slime.setMap(getMap());
@@ -77,8 +74,6 @@ public class Monster extends Enemy {
 					y += speed;
 
 					if (y >= 5) {
-						// slimeX = (posX + 25) / 50 * 50;
-						// slimeY = (posY + 25) / 50 * 50;
 						Slime slime = new Slime(posX, posY, true, true, false,
 								"slime", map.getGraphics(), "down");
 						slime.setMap(getMap());
@@ -100,8 +95,6 @@ public class Monster extends Enemy {
 					x += speed;
 
 					if (x >= 5) {
-						// slimeX = (posX + 25) / 50 * 50;
-						// slimeY = (posY + 25) / 50 * 50;
 						Slime slime = new Slime(posX, posY, true, true, false,
 								"slime", map.getGraphics(), "left");
 						slime.setMap(getMap());
@@ -123,8 +116,6 @@ public class Monster extends Enemy {
 					x += speed;
 
 					if (x >= 5) {
-						// slimeX = (posX + 25) / 50 * 50;
-						// slimeY = (posY + 25) / 50 * 50;
 						Slime slime = new Slime(posX, posY, true, true, false,
 								"slime", map.getGraphics(), "right");
 						slime.setMap(getMap());
