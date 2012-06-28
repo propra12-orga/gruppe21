@@ -8,7 +8,7 @@ public class Start_MP_Host {
 
 	public static void main(String[] args) {
 		try {
-			hostThread = new Server(5555);
+			hostThread = new Server(2, 5555);
 		} catch (IOException e) {
 			System.out.println("Sry, couldn't establish server");
 		}

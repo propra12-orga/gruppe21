@@ -81,7 +81,7 @@ public class IPChooserUnit extends GraphicalGameUnit {
 			} else if (selectionCounter == numOfElements - 2) {
 				if (asHost) {
 					try {
-						Server server = new Server(Integer.parseInt(port));
+						Server server = new Server(2, Integer.parseInt(port));
 						UnitNavigator.getNavigator().addGameUnit(
 								new MultiplayerUnit(server),
 								UnitState.LEVEL_MANAGER_UNIT);
