@@ -87,6 +87,8 @@ public class MultiplayerUnit extends GraphicalGameUnit {
 		if (!multiplayerMap.isFinished()) {
 			multiplayerMap.update();
 		} else {
+			if (!myPlayer.isAlive())
+				writeToHost("Player:" + myPlayerIndex + "died");
 			/*
 			 * A player died: Generate the appropriate image ...
 			 */
@@ -120,6 +122,8 @@ public class MultiplayerUnit extends GraphicalGameUnit {
 		 */
 		if (key == KeyEvent.VK_ESCAPE) {
 			UnitNavigator.getNavigator().set(UnitState.BASE_MENU_UNIT);
+			// schicke dem server eine stop-nachricht. dieser echot die
+			// nachricht zurück und meldet den entsprechenden socket/thread ab
 			return;
 		}
 		/*
@@ -127,130 +131,97 @@ public class MultiplayerUnit extends GraphicalGameUnit {
 		 */
 		if (key == KeyEvent.VK_UP) {
 			if (!myPlayer.direction.isUp()) {
-				try {
-					int tmpPosX = myPlayer.getPosX();
-					int tmpPosY = myPlayer.getPosY();
-					os.writeUTF("Player:" + myPlayerIndex + ";" + "Up" + ";"
-							+ "Pressed" + "/" + tmpPosX + "/" + tmpPosY);
-					myPlayer.direction.setUp(true);
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
+				int tmpPosX = myPlayer.getPosX();
+				int tmpPosY = myPlayer.getPosY();
+				writeToHost("Player:" + myPlayerIndex + ";" + "Up" + ";"
+						+ "Pressed" + "/" + tmpPosX + "/" + tmpPosY);
+				myPlayer.direction.setUp(true);
 			}
 			return;
 		}
 
 		if (key == KeyEvent.VK_DOWN) {
-			if (!myPlayer.direction.isDown())
-				try {
-					int tmpPosX = myPlayer.getPosX();
-					int tmpPosY = myPlayer.getPosY();
-					os.writeUTF("Player:" + myPlayerIndex + ";" + "Down" + ";"
-							+ "Pressed" + "/" + tmpPosX + "/" + tmpPosY);
-					myPlayer.direction.setDown(true);
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
+			if (!myPlayer.direction.isDown()) {
+				int tmpPosX = myPlayer.getPosX();
+				int tmpPosY = myPlayer.getPosY();
+				writeToHost("Player:" + myPlayerIndex + ";" + "Down" + ";"
+						+ "Pressed" + "/" + tmpPosX + "/" + tmpPosY);
+				myPlayer.direction.setDown(true);
+
+			}
 			return;
 		}
 
 		if (key == KeyEvent.VK_LEFT) {
-			if (!myPlayer.direction.isLeft())
-				try {
-					int tmpPosX = myPlayer.getPosX();
-					int tmpPosY = myPlayer.getPosY();
-					os.writeUTF("Player:" + myPlayerIndex + ";" + "Left" + ";"
-							+ "Pressed" + "/" + tmpPosX + "/" + tmpPosY);
-					myPlayer.direction.setLeft(true);
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
+			if (!myPlayer.direction.isLeft()) {
+				int tmpPosX = myPlayer.getPosX();
+				int tmpPosY = myPlayer.getPosY();
+				writeToHost("Player:" + myPlayerIndex + ";" + "Left" + ";"
+						+ "Pressed" + "/" + tmpPosX + "/" + tmpPosY);
+				myPlayer.direction.setLeft(true);
+
+			}
 			return;
 		}
 
 		if (key == KeyEvent.VK_RIGHT) {
-			if (!myPlayer.direction.isRight())
-				try {
-					int tmpPosX = myPlayer.getPosX();
-					int tmpPosY = myPlayer.getPosY();
-					os.writeUTF("Player:" + myPlayerIndex + ";" + "Right" + ";"
-							+ "Pressed" + "/" + tmpPosX + "/" + tmpPosY);
-					myPlayer.direction.setRight(true);
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
+			if (!myPlayer.direction.isRight()) {
+				int tmpPosX = myPlayer.getPosX();
+				int tmpPosY = myPlayer.getPosY();
+				writeToHost("Player:" + myPlayerIndex + ";" + "Right" + ";"
+						+ "Pressed" + "/" + tmpPosX + "/" + tmpPosY);
+				myPlayer.direction.setRight(true);
+
+			}
 			return;
 		}
 
 		if (key == KeyEvent.VK_SPACE) {
 			// Prüfe, ob die Anzahl maximaler Bomben erreicht ist
-			try {
-				os.writeUTF("Player:" + myPlayerIndex + ";" + "Bomb" + ";"
-						+ "Pressed");
-				myPlayer.plantBomb(multiplayerMap.getCollisionMap());
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
+			writeToHost("Player:" + myPlayerIndex + ";" + "Bomb" + ";"
+					+ "Pressed");
+			myPlayer.plantBomb(multiplayerMap.getCollisionMap());
 		}
 	}
 
 	@Override
 	public void handleKeyReleased(KeyEvent e) {
 		int key = e.getKeyCode();
-		/*
-		 * playerOne KeyEvents
-		 */
+
 		if (key == KeyEvent.VK_UP) {
-			try {
-				int tmpPosX = myPlayer.getPosX();
-				int tmpPosY = myPlayer.getPosY();
-				os.writeUTF("Player:" + myPlayerIndex + ";" + "Up" + ";"
-						+ "Released" + "/" + tmpPosX + "/" + tmpPosY);
-				myPlayer.direction.setUp(false);
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
+			int tmpPosX = myPlayer.getPosX();
+			int tmpPosY = myPlayer.getPosY();
+			writeToHost("Player:" + myPlayerIndex + ";" + "Up" + ";"
+					+ "Released" + "/" + tmpPosX + "/" + tmpPosY);
+			myPlayer.direction.setUp(false);
 			return;
 		}
 
 		if (key == KeyEvent.VK_DOWN) {
-			try {
-				int tmpPosX = myPlayer.getPosX();
-				int tmpPosY = myPlayer.getPosY();
-				os.writeUTF("Player:" + myPlayerIndex + ";" + "Down" + ";"
-						+ "Released" + "/" + tmpPosX + "/" + tmpPosY);
-				myPlayer.direction.setDown(false);
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
+			int tmpPosX = myPlayer.getPosX();
+			int tmpPosY = myPlayer.getPosY();
+			writeToHost("Player:" + myPlayerIndex + ";" + "Down" + ";"
+					+ "Released" + "/" + tmpPosX + "/" + tmpPosY);
+			myPlayer.direction.setDown(false);
 			return;
 		}
 
 		if (key == KeyEvent.VK_LEFT) {
-			try {
-				int tmpPosX = myPlayer.getPosX();
-				int tmpPosY = myPlayer.getPosY();
-				os.writeUTF("Player:" + myPlayerIndex + ";" + "Left" + ";"
-						+ "Released" + "/" + tmpPosX + "/" + tmpPosY);
-				myPlayer.direction.setLeft(false);
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
+			int tmpPosX = myPlayer.getPosX();
+			int tmpPosY = myPlayer.getPosY();
+			writeToHost("Player:" + myPlayerIndex + ";" + "Left" + ";"
+					+ "Released" + "/" + tmpPosX + "/" + tmpPosY);
+			myPlayer.direction.setLeft(false);
 			return;
 		}
 
 		if (key == KeyEvent.VK_RIGHT) {
-			try {
-				int tmpPosX = myPlayer.getPosX();
-				int tmpPosY = myPlayer.getPosY();
-				os.writeUTF("Player:" + myPlayerIndex + ";" + "Right" + ";"
-						+ "Released" + "/" + tmpPosX + "/" + tmpPosY);
-				myPlayer.direction.setRight(false);
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
+			int tmpPosX = myPlayer.getPosX();
+			int tmpPosY = myPlayer.getPosY();
+			writeToHost("Player:" + myPlayerIndex + ";" + "Right" + ";"
+					+ "Released" + "/" + tmpPosX + "/" + tmpPosY);
+			myPlayer.direction.setRight(false);
 		}
-
 	}
 
 	@Override
@@ -303,7 +274,19 @@ public class MultiplayerUnit extends GraphicalGameUnit {
 	}
 
 	/*
-	 * Section which deals with incoming server-messages
+	 * The following Method handles any toHost communication
+	 */
+
+	public void writeToHost(String outgoing) {
+		try {
+			os.writeUTF(outgoing);
+		} catch (IOException e) {
+			System.out.println("Failed to write Message!");
+		}
+	}
+
+	/*
+	 * The following section deals with incoming server-messages
 	 */
 
 	public void analizeIncoming(String incomingMsg) {
@@ -316,7 +299,11 @@ public class MultiplayerUnit extends GraphicalGameUnit {
 		if (incomingMsg.indexOf("Welcome Player ") != -1) {
 			myPlayerIndex = Integer.parseInt(incomingMsg.substring(15, 16));
 			myPlayer = multiplayerMap.getPlayerByNumber(myPlayerIndex);
-			System.out.println(myPlayer);
+			// make all non self controlled players invulnerable
+			for (int i = 1; i < 3; i++) {
+				if (!(i == myPlayerIndex))
+					multiplayerMap.getPlayerByNumber(i).setDestroyable(false);
+			}
 			return;
 		}
 		if (incomingMsg.indexOf("Start!") != -1) {
@@ -333,6 +320,9 @@ public class MultiplayerUnit extends GraphicalGameUnit {
 		if (incoming.indexOf("Released") != -1) {
 			handlePlayerMovementOnRelease(playerIndex, incoming);
 			return;
+		}
+		if (incoming.indexOf("died") != -1) {
+			multiplayerMap.getPlayerByNumber(playerIndex).die();
 		}
 	}
 
@@ -448,10 +438,15 @@ public class MultiplayerUnit extends GraphicalGameUnit {
 					System.out.println(incomingMsg);
 					analizeIncoming(incomingMsg);
 				} catch (IOException e) {
-					System.out.println("Failed to read message");
+					System.out.println("Connetion to host lost!");
+					try {
+						toHostSocket.close();
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					}
+					break;
 				}
 			}
 		}
 	}
-
 }
