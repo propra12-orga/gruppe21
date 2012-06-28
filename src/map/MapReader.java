@@ -20,6 +20,7 @@ import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 
 import enemies.Ghost;
+import enemies.Monster;
 import enemies.Skeleton;
 import enemies.runningEnemy;
 import enemies.sillyEnemy;
@@ -36,8 +37,8 @@ public class MapReader {
 	private Element mapRoot;
 	private boolean graphicisloaded = false;
 	private String[] moList = { "floor", "animatedfloor", "bomb", "effect",
-			"sillyEnemy", "runningEnemy", "skeleton", "ghost", "exit",
-			"player", "wall" };
+			"sillyEnemy", "runningEnemy", "skeleton", "monster", "ghost",
+			"exit", "player", "wall" };
 	private int enemies = 0;
 
 	public MapReader(String mn) {
@@ -315,6 +316,25 @@ public class MapReader {
 									new Ghost(Integer.parseInt(templist.get(c)
 											.getChildText("posx")), Integer
 											.parseInt(templist.get(c)
+													.getChildText("posy")),
+											Boolean.parseBoolean(templist
+													.get(c).getChildText(
+															"visible")),
+											Boolean.parseBoolean(templist
+													.get(c).getChildText(
+															"destroyable")),
+											Boolean.parseBoolean(templist
+													.get(c).getChildText(
+															"collision")),
+											templist.get(c).getChildText(
+													"animationset"), gr));
+							enemies++;
+						}
+						if (moList[j].equals("monster")) {
+							mo.get(i).add(
+									new Monster(Integer.parseInt(templist
+											.get(c).getChildText("posx")),
+											Integer.parseInt(templist.get(c)
 													.getChildText("posy")),
 											Boolean.parseBoolean(templist
 													.get(c).getChildText(

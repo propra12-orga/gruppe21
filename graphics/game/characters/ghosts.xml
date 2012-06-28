@@ -1,0 +1,11 @@
+<animationset default="ghost_default.png">
+<animation frames="4" stretch="30" name="enemyUp">ghost_back.png</animation>
+<animation frames="4" stretch="30" name="enemyDown">ghost_front.png</animation>
+<animation frames="4" stretch="30" name="enemyLeft">ghost_left.png</animation>
+<animation frames="4" stretch="30" name="enemyRight">ghost_right.png</animation>
+<animation frames="4" stretch="30" name="enemyUp_wall">ghost_wall_back.png</animation>
+<animation frames="4" stretch="30" name="enemyDown_wall">ghost_wall_front.png</animation>
+<animation frames="4" stretch="30" name="enemyLeft_wall">ghost_wall_left.png</animation>
+<animation frames="4" stretch="30" name="enemyRight_wall">ghost_wall_right.png</animation>
+<animation frames="2" stretch="5" name="enemyDying">ghost_dying.png</animation>
+</animationset>

@@ -4,12 +4,21 @@ import imageloader.GameGraphic;
 
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
+import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
 
+import javax.swing.ImageIcon;
+
+import multiplayer.MapMenuUnit;
 import multiplayer.OptionMenuUnit;
+import multiplayer.OptionMenuUnit.MenuOption;
 import singleplayer.LevelManagerUnit;
 import singleplayer.SavegameManagerUnit;
+import unitTransitions.TransitionUnit;
 
 /**
  * This class represents the main menu. It is used as the main hub, from where
@@ -117,19 +126,30 @@ public class MainMenuUnit extends GraphicalGameUnit {
 		}
 		// what happens if Enter is pressed
 		if (key == KeyEvent.VK_ENTER && selectCounter == 0) {
-			// create new game
-
-			LevelManagerUnit levelmanager = new LevelManagerUnit(campaign);
-			UnitNavigator.getNavigator().addGameUnit(levelmanager,
-					UnitState.LEVEL_MANAGER_UNIT);
-			UnitNavigator.getNavigator().set(UnitState.LEVEL_MANAGER_UNIT);
+			final TransitionUnit toolTipUnit = new TransitionUnit(
+					UnitState.LEVEL_MANAGER_UNIT,
+					createLoadingScreen("loading ..."), true);
+			toolTipUnit.disableKeyEventControlledProgression();
+			toolTipUnit.setWaitForNotification(true);
+			toolTipUnit.setTransitionPeriod(100);
+			new Thread(new Runnable() {
+				@Override
+				public void run() {
+					LevelManagerUnit levelmanager = new LevelManagerUnit(
+							campaign);
+					UnitNavigator.getNavigator().addGameUnit(levelmanager,
+							UnitState.LEVEL_MANAGER_UNIT);
+					toolTipUnit.authorizeProgression();
+				}
+			}).start();
+			UnitNavigator.getNavigator().addGameUnit(toolTipUnit,
+					UnitState.TEMPORARY_UNIT);
+			UnitNavigator.getNavigator().set(UnitState.TEMPORARY_UNIT);
 		}
 		if (key == KeyEvent.VK_ENTER && selectCounter == 1) {
 			// create new game
-			OptionMenuUnit optionMenu = new OptionMenuUnit();
-			UnitNavigator.getNavigator().addGameUnit(optionMenu,
-					UnitState.TEMPORARY_UNIT);
-			UnitNavigator.getNavigator().set(UnitState.TEMPORARY_UNIT);
+			loadOptionMenu();
+
 		}
 		if (key == KeyEvent.VK_ENTER && selectCounter == 2) {
 			UnitNavigator.getNavigator().addGameUnit(
@@ -147,6 +167,33 @@ public class MainMenuUnit extends GraphicalGameUnit {
 				UnitNavigator.getNavigator().set(UnitState.LEVEL_MANAGER_UNIT);
 			}
 		}
+	}
+
+	private void loadOptionMenu() {
+		GameGraphic aLocal = new GameGraphic(GameConstants.MENU_IMAGES_DIR
+				+ "ActiveLocal.png");
+		GameGraphic iaLocal = new GameGraphic(GameConstants.MENU_IMAGES_DIR
+				+ "InactiveLocal.png");
+		MenuOption option1 = new MenuOption(UnitState.TEMPORARY_UNIT,
+				new MapMenuUnit.LocalMapMenuCreator(), aLocal, iaLocal);
+		GameGraphic aNetwork = new GameGraphic(GameConstants.MENU_IMAGES_DIR
+				+ "ActiveNetwork.png");
+		GameGraphic iaNetwork = new GameGraphic(GameConstants.MENU_IMAGES_DIR
+				+ "InactiveNetwork.png");
+		MenuOption option2 = new MenuOption(UnitState.TEMPORARY_UNIT,
+				new MapMenuUnit.NetworkMapMenuCreator(), aNetwork, iaNetwork);
+		GameGraphic aBack = new GameGraphic(GameConstants.MENU_IMAGES_DIR
+				+ "ActiveBack.png");
+		GameGraphic iaBack = new GameGraphic(GameConstants.MENU_IMAGES_DIR
+				+ "InactiveBack.png");
+		MenuOption option3 = new MenuOption(UnitState.BASE_MENU_UNIT, aBack,
+				iaBack);
+		OptionMenuUnit optionMenu = new OptionMenuUnit(
+				"Choose multiplayer mode", option1, option2, option3);
+		UnitNavigator.getNavigator().addGameUnit(optionMenu,
+				UnitState.TEMPORARY_UNIT);
+		UnitNavigator.getNavigator().set(UnitState.TEMPORARY_UNIT);
+
 	}
 
 	@Override
@@ -211,5 +258,23 @@ public class MainMenuUnit extends GraphicalGameUnit {
 		// updates selectorPosition after keyevent
 		selectorGhost.setLocation(startXPos - (select.getImage().getWidth()),
 				startYPos + selectCounter * (buttonHeight + buttonSpace));
+	}
+
+	private BufferedImage createLoadingScreen(String msg) {
+		Image tmp = new ImageIcon(GameConstants.MENU_IMAGES_DIR
+				+ "MultiplayerMenuBG.png").getImage();
+		BufferedImage transitionImage = new BufferedImage(
+				GameConstants.FRAME_SIZE_X, GameConstants.FRAME_SIZE_Y,
+				BufferedImage.TYPE_INT_ARGB);
+		Graphics2D g2d = transitionImage.createGraphics();
+		g2d.drawImage(tmp, 0, 0, transitionImage.getWidth(),
+				transitionImage.getHeight(), null);
+		g2d.setFont(unitFont);
+		Rectangle2D rect = unitFont.getStringBounds(msg,
+				g2d.getFontRenderContext());
+		g2d.drawString(msg,
+				(int) (GameConstants.FRAME_SIZE_X - rect.getWidth()) / 2,
+				(int) (GameConstants.FRAME_SIZE_Y / 2 - rect.getHeight()));
+		return transitionImage;
 	}
 }

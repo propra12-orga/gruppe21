@@ -1,15 +1,14 @@
 package multiplayer;
 
+import imageloader.GameGraphic;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.geom.Rectangle2D;
-
-import javax.swing.ImageIcon;
+import java.awt.image.BufferedImage;
 
 import main.GameConstants;
 import main.GraphicalGameUnit;
@@ -17,74 +16,63 @@ import main.UnitNavigator;
 import main.UnitState;
 
 /**
- * The OptionMenu class gives the user the oportunity to choose to play local
- * multiplayer or network-based multiplayer. It is extanded from the
- * GraphicalGameUnit class.
+ * The OptionMenu class gives the user the opportunity to choose between
+ * different options represented by buttons.
  * 
  * @author saber104
  * 
  */
 
 public class OptionMenuUnit extends GraphicalGameUnit {
-	/*
-	 * loading all images needed
+
+	/**
+	 * Contains all options that will be displayed.
 	 */
-	private Image background = new ImageIcon(GameConstants.MENU_IMAGES_DIR
-			+ "/MultiplayerMenuBG.png").getImage();
-	private Image select = new ImageIcon(GameConstants.MENU_IMAGES_DIR
-			+ "/Select.png").getImage();
-	private Image activeLocal = new ImageIcon(GameConstants.MENU_IMAGES_DIR
-			+ "/ActiveLocal.png").getImage();
-	private Image inactiveLocal = new ImageIcon(GameConstants.MENU_IMAGES_DIR
-			+ "/InactiveLocal.png").getImage();
-	private Image activeNetwork = new ImageIcon(GameConstants.MENU_IMAGES_DIR
-			+ "/ActiveNetwork.png").getImage();
-	private Image inactiveNetwork = new ImageIcon(GameConstants.MENU_IMAGES_DIR
-			+ "/InactiveNetwork.png").getImage();
-	private Image activeBack = new ImageIcon(GameConstants.MENU_IMAGES_DIR
-			+ "/ActiveBack.png").getImage();
-	private Image inactiveBack = new ImageIcon(GameConstants.MENU_IMAGES_DIR
-			+ "/InactiveBack.png").getImage();
-	/*
-	 * class variables for button positioning
+	private MenuOption[] options;
+	/**
+	 * Standard background image.
 	 */
-	private int buttonSpace = 40;
-	private int buttonWidth = activeLocal.getWidth(null);
-	private int startYPos = GameConstants.FRAME_SIZE_Y / 2;
-	private int startXPos = GameConstants.FRAME_SIZE_X / 2
-			- (buttonWidth + buttonWidth / 2 + buttonSpace);
-	private int button1XPos = startXPos;
-	private int button2XPos = startXPos + 1 * (buttonWidth + buttonSpace);
-	private int button3XPos = startXPos + 2 * (buttonWidth + buttonSpace);
-	/*
-	 * point for select positioning
+	private GameGraphic background;
+	/**
+	 * Will be centered above the button bar.
 	 */
-	private Point selectorGhost = new Point(
-			button1XPos - select.getWidth(null), startYPos);
+	private String heading;
+	/**
+	 * Counter variable determining the selected button.
+	 */
 	private int selectCounter;
 
-	public OptionMenuUnit() {
+	/**
+	 * The startX variable will be initialized to a value depending on the total
+	 * number of buttons and their individual width.
+	 */
+	private int startX;
+
+	private int startY = (GameConstants.FRAME_SIZE_Y) / 2;
+
+	/**
+	 * Space in between buttons.
+	 */
+	private int buttonSpace = 40;
+
+	/**
+	 * Create a new OptionMenuUnit out of a heading and a variable amount of
+	 * buttons.
+	 * 
+	 * @param heading
+	 * @param option
+	 */
+	public OptionMenuUnit(String heading, MenuOption... option) {
+		this.options = option;
+		this.heading = heading;
 		initComponent();
 	}
 
-	/*
-	 * sets the new position of select based on selectCounter value
-	 * (non-Javadoc)
-	 * 
-	 * @see main.GraphicalGameUnit#updateComponent()
-	 */
 	@Override
 	public void updateComponent() {
-		selectorGhost.setLocation(startXPos - select.getWidth(null)
-				+ (buttonWidth + buttonSpace) * selectCounter, startYPos);
+
 	}
 
-	/*
-	 * Left, RIght for switching, enter to accept map & escape to leave menu
-	 * (non-Javadoc)
-	 * 
-	 * @see main.GraphicalGameUnit#handleKeyPressed(java.awt.event.KeyEvent)
-	 */
 	@Override
 	public void handleKeyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
@@ -95,27 +83,16 @@ public class OptionMenuUnit extends GraphicalGameUnit {
 		if (key == KeyEvent.VK_RIGHT) {
 			selectCounter++;
 		}
-		if (selectCounter > 2) {
+		if (selectCounter >= options.length) {
 			selectCounter = 0;
 		}
 		if (selectCounter < 0) {
-			selectCounter = 2;
+			selectCounter = options.length - 1;
 		}
-		if (key == KeyEvent.VK_ENTER && selectCounter == 0) {
-			MapMenuUnit mapMenu = new MapMenuUnit();
-			UnitNavigator.getNavigator().addGameUnit(mapMenu,
-					UnitState.TEMPORARY_UNIT);
-			UnitNavigator.getNavigator().set(UnitState.TEMPORARY_UNIT);
+		if (key == KeyEvent.VK_ENTER) {
+			options[selectCounter].initOptionUnit();
 		}
-		if (key == KeyEvent.VK_ENTER && selectCounter == 1) {
-			MapMenuUnit mapMenu = new MapMenuUnit(false);
-			UnitNavigator.getNavigator().addGameUnit(mapMenu,
-					UnitState.TEMPORARY_UNIT);
-			UnitNavigator.getNavigator().set(UnitState.TEMPORARY_UNIT);
-		}
-		if (key == KeyEvent.VK_ENTER && selectCounter == 2) {
-			UnitNavigator.getNavigator().set(UnitState.BASE_MENU_UNIT);
-		}
+
 		if (key == KeyEvent.VK_ESCAPE) {
 			UnitNavigator.getNavigator().set(UnitState.BASE_MENU_UNIT);
 		}
@@ -139,23 +116,22 @@ public class OptionMenuUnit extends GraphicalGameUnit {
 			e.printStackTrace();
 			unitFont = new Font("serif", Font.PLAIN, 24);
 		}
+		background = new GameGraphic(GameConstants.MENU_IMAGES_DIR
+				+ "/MultiplayerMenuBG.png");
+
+		int buttonBarLength = 0;
+		for (MenuOption option : options) {
+			buttonBarLength = buttonBarLength
+					+ option.getInactiveButtonImage().getWidth() + 40;
+		}
+		buttonBarLength -= 40;
+		startX = (GameConstants.FRAME_SIZE_X - buttonBarLength) / 2;
+
 	}
 
-	@Override
-	/*
-	 * all opjects are drawn here (non-Javadoc)
-	 * 
-	 * @see main.GraphicalGameUnit#drawComponent(java.awt.Graphics)
-	 */
 	public void drawComponent(Graphics g) {
-		g.drawImage(background, 0, 0, GameConstants.FRAME_SIZE_X,
+		g.drawImage(background.getImage(), 0, 0, GameConstants.FRAME_SIZE_X,
 				GameConstants.FRAME_SIZE_Y, null);
-		g.drawImage(inactiveLocal, button1XPos, startYPos, null);
-		g.drawImage(inactiveNetwork, button2XPos, startYPos, null);
-		g.drawImage(inactiveBack, button3XPos, startYPos, null);
-		g.drawImage(select, (int) selectorGhost.getX(),
-				(int) selectorGhost.getY(), null);
-
 		/*
 		 * load game font
 		 */
@@ -165,23 +141,84 @@ public class OptionMenuUnit extends GraphicalGameUnit {
 		 * center heading
 		 */
 		Graphics2D g2d = (Graphics2D) g;
-		Rectangle2D rect = unitFont.getStringBounds("Choose Multiplayer Mode:",
+		Rectangle2D rect = unitFont.getStringBounds(heading,
 				g2d.getFontRenderContext());
-		g2d.drawString("Choose Multiplayer Mode:",
+		g2d.drawString(heading,
 				(int) (GameConstants.FRAME_SIZE_X - rect.getWidth()) / 2,
 				(int) ((GameConstants.FRAME_SIZE_Y - rect.getHeight()) / 2)
 						- unitFont.getSize() / 2);
 		/*
-		 * based on select position, determine if button is activ e or inactive
+		 * based on select position, determine if button is active or inactive
 		 */
-		if (selectorGhost.getX() == button1XPos - select.getWidth(null))
-			g.drawImage(activeLocal, button1XPos, startYPos, null);
+		int buttonX = startX;
+		for (int i = 0; i < options.length; i++) {
+			BufferedImage button = null;
+			if (i == selectCounter) {
+				button = options[i].getActiveButtonImage();
+			} else {
+				button = options[i].getInactiveButtonImage();
+			}
+			g2d.drawImage(button, buttonX, startY, null);
+			buttonX = buttonX + button.getWidth() + buttonSpace;
+		}
+	}
 
-		if (selectorGhost.getX() == button2XPos - select.getWidth(null))
-			g.drawImage(activeNetwork, button2XPos, startYPos, null);
+	/**
+	 * Using a UnitCreator allows creating a particular unit when its needed.
+	 * This avoids creating all possible subsequent units when using a new
+	 * OptionMenuUnit. Instead, on can pass it a UnitCreator that has the power
+	 * to create a new Unit on demand.
+	 * 
+	 * @author tohei
+	 * 
+	 */
+	public interface UnitCreator {
+		public GraphicalGameUnit createUnit();
+	}
 
-		if (selectorGhost.getX() == button3XPos - select.getWidth(null))
-			g.drawImage(activeBack, button3XPos, startYPos, null);
+	/**
+	 * Data container for the individual options.
+	 * 
+	 * @author tohei
+	 * 
+	 */
+	public static class MenuOption {
+		private UnitState nextUnitState;
+		private UnitCreator nextUnit;
+		private GameGraphic buttonActive;
+		private GameGraphic buttonInactive;
+
+		public MenuOption(UnitState nextUnitState, UnitCreator nextUnit,
+				GameGraphic buttonActive, GameGraphic buttonInactive) {
+			this.nextUnitState = nextUnitState;
+			this.nextUnit = nextUnit;
+			this.buttonActive = buttonActive;
+			this.buttonInactive = buttonInactive;
+		}
+
+		public MenuOption(UnitState nextUnitState, GameGraphic buttonActive,
+				GameGraphic buttonInactive) {
+			this.nextUnitState = nextUnitState;
+			this.buttonActive = buttonActive;
+			this.buttonInactive = buttonInactive;
+		}
+
+		public BufferedImage getActiveButtonImage() {
+			return buttonActive.getImage();
+		}
+
+		public BufferedImage getInactiveButtonImage() {
+			return buttonInactive.getImage();
+		}
+
+		public void initOptionUnit() {
+			if (nextUnit != null) {
+				GraphicalGameUnit newUnit = nextUnit.createUnit();
+				UnitNavigator.getNavigator()
+						.addGameUnit(newUnit, nextUnitState);
+			}
+			UnitNavigator.getNavigator().set(nextUnitState);
+		}
 
 	}
 }

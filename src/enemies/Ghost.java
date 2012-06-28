@@ -10,8 +10,10 @@ import mapobjects.Enemy;
 
 public class Ghost extends Enemy {
 
+	private int walldelay;
 	private int walkdelay;
 	private boolean wallWalking = false;
+	private boolean comingOutOfWall = false;
 
 	public Ghost(int x, int y, boolean v, boolean d, boolean c, String p,
 			ImageLoader gr) {
@@ -20,13 +22,17 @@ public class Ghost extends Enemy {
 
 	@Override
 	public void move() {
-
 		if (UP) {
 			if (simpleHasColl(posX, posY - speed, map.getCollisionMap(),
 					Color.black)) {
 				findPath("enemyUp", "enemyDown", "enemyLeft", "enemyRight");
 			} else {
 				posY -= speed;
+			}
+			if (wallWalking) {
+				animation.change("enemyUp_wall");
+			} else {
+				animation.change("enemyUp");
 			}
 		}
 
@@ -37,6 +43,11 @@ public class Ghost extends Enemy {
 			} else {
 				posY += speed;
 			}
+			if (wallWalking) {
+				animation.change("enemyDown_wall");
+			} else {
+				animation.change("enemyDown");
+			}
 		}
 
 		if (LEFT) {
@@ -45,6 +56,11 @@ public class Ghost extends Enemy {
 				findPath("enemyUp", "enemyDown", "enemyLeft", "enemyRight");
 			} else {
 				posX -= speed;
+			}
+			if (wallWalking) {
+				animation.change("enemyLeft_wall");
+			} else {
+				animation.change("enemyLeft");
 			}
 		}
 
@@ -55,8 +71,12 @@ public class Ghost extends Enemy {
 			} else {
 				posX += speed;
 			}
+			if (wallWalking) {
+				animation.change("enemyRight_wall");
+			} else {
+				animation.change("enemyRight");
+			}
 		}
-
 	}
 
 	@Override
@@ -102,8 +122,13 @@ public class Ghost extends Enemy {
 		}
 		if (simpleHasColl(posX, posY, cm, Color.gray)) {
 			wallWalking = true;
+			comingOutOfWall = true;
 		} else {
 			wallWalking = false;
+			if (comingOutOfWall) {
+				findPath("enemyUp", "enemyDown", "enemyLeft", "enemyRight");
+				comingOutOfWall = false;
+			}
 		}
 
 		if (dying) {
@@ -112,15 +137,21 @@ public class Ghost extends Enemy {
 				setDestroyed(true);
 			}
 		} else if (wallWalking) {
-			if (walkdelay > 2) {
+			if (walldelay > 4) {
+				walldelay = 0;
+			}
+			if (walldelay == 0) {
+				move();
+			}
+			walldelay++;
+		} else {
+			if (walkdelay > 1) {
 				walkdelay = 0;
 			}
 			if (walkdelay == 0) {
 				move();
 			}
 			walkdelay++;
-		} else {
-			move();
 		}
 
 	}

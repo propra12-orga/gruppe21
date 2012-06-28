@@ -1,15 +1,11 @@
 package mapeditor;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 /**
  * Main Class for the Level Editor
@@ -19,24 +15,39 @@ import javax.swing.JPanel;
  * 
  */
 public class Editor extends JFrame implements KeyListener, MouseListener {
-	JPanel mainPanel = new JPanel();
-	Graphics g;
-	Graphics2D canvas = (Graphics2D) g;
+	/**
+	 * Editor Components
+	 */
+	FileToolBar fileBar = new FileToolBar();
+	ToolBar toolBar = new ToolBar();
+	/**
+	 * status of the map changes
+	 */
+	Boolean mapChanged = false;
+
+	/**
+	 * Constructor
+	 * 
+	 * sets up the window adds Components
+	 */
 
 	public Editor() {
 
-		add(mainPanel);
-		canvas.setBackground(Color.black);
-		mainPanel.paint(canvas);
-
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLayout(null);
 		setSize(800, 600);
 		setFocusable(true);
+		setResizable(false);
 		setLocationRelativeTo(null);
 		setTitle("Mapeditor Bomberman Island");
 		setVisible(true);
 		addKeyListener(this);
 		addMouseListener(this);
+
+		fileBar.setBounds(0, 0, 200, 50);
+		toolBar.setBounds(200, 0, 400, 50);
+		add(fileBar);
+		add(toolBar);
 	}
 
 	public static void main(String args[]) {

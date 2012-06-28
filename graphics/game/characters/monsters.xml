@@ -1,0 +1,7 @@
+<animationset default="monster_default.png">
+<animation frames="3" stretch="30" name="enemyUp">monster_back.png</animation>
+<animation frames="3" stretch="30" name="enemyDown">monster_front.png</animation>
+<animation frames="3" stretch="30" name="enemyLeft">monster_left.png</animation>
+<animation frames="3" stretch="30" name="enemyRight">monster_right.png</animation>
+<animation frames="2" stretch="5" name="enemyDying">monster_dying.png</animation>
+</animationset>

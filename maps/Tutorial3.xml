@@ -2155,7 +2155,7 @@
 				<posx>350</posx>
 				<posy>200</posy>
 			</tile>
-	<tile type="wall" animated="false">
+			<tile type="wall" animated="false">
 				<visible>true</visible>
 				<collision>true</collision>
 				<destroyable>false</destroyable>
@@ -2171,7 +2171,7 @@
 				<posx>550</posx>
 				<posy>200</posy>
 			</tile>
-	<tile type="wall" animated="false">
+			<tile type="wall" animated="false">
 				<visible>true</visible>
 				<collision>true</collision>
 				<destroyable>false</destroyable>
@@ -2187,7 +2187,7 @@
 				<posx>750</posx>
 				<posy>200</posy>
 			</tile>
-	<tile type="wall" animated="false">
+			<tile type="wall" animated="false">
 				<visible>true</visible>
 				<collision>true</collision>
 				<destroyable>false</destroyable>

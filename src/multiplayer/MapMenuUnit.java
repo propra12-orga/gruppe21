@@ -15,6 +15,7 @@ import main.GameConstants;
 import main.GraphicalGameUnit;
 import main.UnitNavigator;
 import main.UnitState;
+import multiplayer.OptionMenuUnit.UnitCreator;
 
 /**
  * The MapMenu class let users choose what map they want to play on.
@@ -174,6 +175,24 @@ public class MapMenuUnit extends GraphicalGameUnit {
 				(int) (GameConstants.FRAME_SIZE_X - rect.getWidth()) / 2,
 				(int) ((GameConstants.FRAME_SIZE_Y - rect.getHeight()) / 2) - 4
 						* unitFont.getSize());
+
+	}
+
+	public static class LocalMapMenuCreator implements UnitCreator {
+
+		@Override
+		public GraphicalGameUnit createUnit() {
+			return new MapMenuUnit(true);
+		}
+
+	}
+
+	public static class NetworkMapMenuCreator implements UnitCreator {
+
+		@Override
+		public GraphicalGameUnit createUnit() {
+			return new MapMenuUnit(false);
+		}
 
 	}
 }

@@ -1,0 +1,3 @@
+<animationset  default="LavaDefault.png">
+<animation frames="4" stretch="50" name="animation">Lava1.png</animation>
+</animationset>
