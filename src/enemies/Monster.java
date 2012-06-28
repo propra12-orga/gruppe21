@@ -35,8 +35,6 @@ public class Monster extends Enemy {
 	public Monster(int x, int y, boolean v, boolean d, boolean c, String p,
 			ImageLoader gr) {
 		super(x, y, v, d, c, p, gr);
-		this.x = x;
-		this.y = y;
 	}
 
 	@Override
