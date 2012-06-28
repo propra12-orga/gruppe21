@@ -40,6 +40,9 @@ public class MultiplayerUnit extends GraphicalGameUnit {
 	private Player myPlayer;
 	private int myPlayerIndex;
 
+	private Server server;
+	private boolean asHost;
+
 	/**
 	 * Some win messages one can randomly choose from.
 	 */
@@ -51,11 +54,30 @@ public class MultiplayerUnit extends GraphicalGameUnit {
 	private final String drawMessage = "Unbelieveable! It's a draw!";
 
 	// Constructor
-	public MultiplayerUnit() {
+	public MultiplayerUnit(Server server) {
+		this.server = server;
+		this.asHost = true;
+
 		initComponent();
 		// to do: hole dir die Adresse und evtl den Port vom Nutzer
 		try {
-			toHostSocket = new Socket("127.0.0.1", 5555);
+			toHostSocket = new Socket("127.0.0.1", server.getPort());
+			os = new DataOutputStream(toHostSocket.getOutputStream());
+			is = new DataInputStream(toHostSocket.getInputStream());
+			fromHost = new ReadFromHost(toHostSocket, os, is);
+		} catch (UnknownHostException e) {
+			System.out.println("Could not reach the host");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public MultiplayerUnit(int port, String ip) {
+		this.asHost = false;
+		initComponent();
+		// to do: hole dir die Adresse und evtl den Port vom Nutzer
+		try {
+			toHostSocket = new Socket(ip, port);
 			os = new DataOutputStream(toHostSocket.getOutputStream());
 			is = new DataInputStream(toHostSocket.getInputStream());
 			fromHost = new ReadFromHost(toHostSocket, os, is);
@@ -123,7 +145,7 @@ public class MultiplayerUnit extends GraphicalGameUnit {
 		if (key == KeyEvent.VK_ESCAPE) {
 			UnitNavigator.getNavigator().set(UnitState.BASE_MENU_UNIT);
 			// schicke dem server eine stop-nachricht. dieser echot die
-			// nachricht zurück und meldet den entsprechenden socket/thread ab
+			// nachricht zurï¿½ck und meldet den entsprechenden socket/thread ab
 			return;
 		}
 		/*
@@ -177,7 +199,7 @@ public class MultiplayerUnit extends GraphicalGameUnit {
 		}
 
 		if (key == KeyEvent.VK_SPACE) {
-			// Prüfe, ob die Anzahl maximaler Bomben erreicht ist
+			// Prï¿½fe, ob die Anzahl maximaler Bomben erreicht ist
 			writeToHost("Player:" + myPlayerIndex + ";" + "Bomb" + ";"
 					+ "Pressed");
 			myPlayer.plantBomb(multiplayerMap.getCollisionMap());

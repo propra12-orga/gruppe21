@@ -8,6 +8,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.geom.Rectangle2D;
+import java.io.IOException;
 
 import main.GameConstants;
 import main.GraphicalGameUnit;
@@ -78,10 +79,23 @@ public class IPChooserUnit extends GraphicalGameUnit {
 						UnitState.TEMPORARY_UNIT);
 				UnitNavigator.getNavigator().set(UnitState.TEMPORARY_UNIT);
 			} else if (selectionCounter == numOfElements - 2) {
-				System.out.println("PORT: " + port);
-				if (!asHost) {
-					System.out.println("IP: " + ip);
+				if (asHost) {
+					try {
+						Server server = new Server(Integer.parseInt(port));
+						UnitNavigator.getNavigator().addGameUnit(
+								new MultiplayerUnit(server),
+								UnitState.LEVEL_MANAGER_UNIT);
+					} catch (NumberFormatException e1) {
+						e1.printStackTrace();
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					}
+				} else {
+					UnitNavigator.getNavigator().addGameUnit(
+							new MultiplayerUnit(Integer.parseInt(port), ip),
+							UnitState.LEVEL_MANAGER_UNIT);
 				}
+				UnitNavigator.getNavigator().set(UnitState.LEVEL_MANAGER_UNIT);
 			}
 		}
 

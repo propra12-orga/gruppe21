@@ -31,6 +31,10 @@ public class Server extends Thread {
 		this.start();
 	}
 
+	public int getPort() {
+		return hostSocket.getLocalPort();
+	}
+
 	@Override
 	public void run() {
 		while (gamestarted == false) {
@@ -59,7 +63,7 @@ public class Server extends Thread {
 		String consoleInput = null;
 		while (true) {
 			consoleInput = scanner.next();
-			if (consoleInput.equals("stop")) // schlieﬂe Sockets
+			if (consoleInput.equals("stop")) // schliesse Sockets
 				break;
 		}
 	}
