@@ -18,8 +18,9 @@ public class Editor extends JFrame implements KeyListener, MouseListener {
 	/**
 	 * Editor Components
 	 */
-	FileToolBar fileBar = new FileToolBar();
-	ToolBar toolBar = new ToolBar();
+	MapCanvas canvas = new MapCanvas();
+	FileToolBar fileBar = new FileToolBar(48, 1);
+	ToolBar toolBar = new ToolBar(48, 1, canvas);
 	/**
 	 * status of the map changes
 	 */
@@ -46,8 +47,10 @@ public class Editor extends JFrame implements KeyListener, MouseListener {
 
 		fileBar.setBounds(0, 0, 200, 50);
 		toolBar.setBounds(200, 0, 400, 50);
+		canvas.setBounds(0, 50, 600, 550);
 		add(fileBar);
 		add(toolBar);
+		add(canvas);
 	}
 
 	public static void main(String args[]) {

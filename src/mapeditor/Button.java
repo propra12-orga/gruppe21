@@ -2,24 +2,30 @@ package mapeditor;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 
-import javax.swing.JPanel;
+import javax.swing.JComponent;
 
 import main.GameConstants;
 
-public class Button extends JPanel implements MouseListener {
+public class Button extends JComponent implements MouseListener {
 	BufferedImage image;
 	private int width;
 	private int height;
+	private int posX;
+	private int posY;
+	private String action;
 
-	public Button(int w, int h, String imageName) {
+	public Button(int w, int h, String imageName, String act) {
 		width = w;
 		height = h;
 		image = EditorGraphics.loadImage(GameConstants.EDITOR_BUTTONS
 				+ imageName);
+		action = act;
+
 		setFocusable(true);
 		setSize(w, h);
 		addMouseListener(this);
@@ -39,7 +45,12 @@ public class Button extends JPanel implements MouseListener {
 	 */
 	protected void draw(int x, int y, Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
+		g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
+				RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+
 		g2d.drawImage(image, x, y, width, height, null);
+		this.posX = x;
+		this.posY = y;
 	}
 
 	@Override
@@ -78,5 +89,17 @@ public class Button extends JPanel implements MouseListener {
 
 	public int getHeight() {
 		return height;
+	}
+
+	public int getPosX() {
+		return posX;
+	}
+
+	public int getPosY() {
+		return posY;
+	}
+
+	public String getAction() {
+		return this.action;
 	}
 }
