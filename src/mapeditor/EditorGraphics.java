@@ -2,6 +2,7 @@ package mapeditor;
 
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
@@ -33,5 +34,18 @@ public class EditorGraphics {
 		b.dispose();
 
 		return (buff);
+	}
+
+	public static BufferedImage resize(int x, int y, BufferedImage image) {
+		BufferedImage resImage = new BufferedImage(x, y,
+				BufferedImage.TYPE_INT_ARGB);
+
+		Graphics2D g2d = resImage.createGraphics();
+		g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
+				RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+		g2d.drawImage(image, 0, 0, x, y, null);
+
+		g2d.dispose();
+		return resImage;
 	}
 }

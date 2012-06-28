@@ -125,13 +125,14 @@ public class MultiplayerUnit extends GraphicalGameUnit {
 		/*
 		 * Player KeyEvents
 		 */
-		if (key == KeyEvent.VK_W) {
+		if (key == KeyEvent.VK_UP) {
 			if (!myPlayer.direction.isUp()) {
 				try {
 					int tmpPosX = myPlayer.getPosX();
 					int tmpPosY = myPlayer.getPosY();
 					os.writeUTF("Player:" + myPlayerIndex + ";" + "Up" + ";"
 							+ "Pressed" + "/" + tmpPosX + "/" + tmpPosY);
+					myPlayer.direction.setUp(true);
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
@@ -139,39 +140,42 @@ public class MultiplayerUnit extends GraphicalGameUnit {
 			return;
 		}
 
-		if (key == KeyEvent.VK_S) {
+		if (key == KeyEvent.VK_DOWN) {
 			if (!myPlayer.direction.isDown())
 				try {
 					int tmpPosX = myPlayer.getPosX();
 					int tmpPosY = myPlayer.getPosY();
 					os.writeUTF("Player:" + myPlayerIndex + ";" + "Down" + ";"
 							+ "Pressed" + "/" + tmpPosX + "/" + tmpPosY);
+					myPlayer.direction.setDown(true);
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
 			return;
 		}
 
-		if (key == KeyEvent.VK_A) {
+		if (key == KeyEvent.VK_LEFT) {
 			if (!myPlayer.direction.isLeft())
 				try {
 					int tmpPosX = myPlayer.getPosX();
 					int tmpPosY = myPlayer.getPosY();
 					os.writeUTF("Player:" + myPlayerIndex + ";" + "Left" + ";"
 							+ "Pressed" + "/" + tmpPosX + "/" + tmpPosY);
+					myPlayer.direction.setLeft(true);
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
 			return;
 		}
 
-		if (key == KeyEvent.VK_D) {
+		if (key == KeyEvent.VK_RIGHT) {
 			if (!myPlayer.direction.isRight())
 				try {
 					int tmpPosX = myPlayer.getPosX();
 					int tmpPosY = myPlayer.getPosY();
 					os.writeUTF("Player:" + myPlayerIndex + ";" + "Right" + ";"
 							+ "Pressed" + "/" + tmpPosX + "/" + tmpPosY);
+					myPlayer.direction.setRight(true);
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
@@ -183,6 +187,7 @@ public class MultiplayerUnit extends GraphicalGameUnit {
 			try {
 				os.writeUTF("Player:" + myPlayerIndex + ";" + "Bomb" + ";"
 						+ "Pressed");
+				myPlayer.plantBomb(multiplayerMap.getCollisionMap());
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
@@ -195,48 +200,52 @@ public class MultiplayerUnit extends GraphicalGameUnit {
 		/*
 		 * playerOne KeyEvents
 		 */
-		if (key == KeyEvent.VK_W) {
+		if (key == KeyEvent.VK_UP) {
 			try {
 				int tmpPosX = myPlayer.getPosX();
 				int tmpPosY = myPlayer.getPosY();
 				os.writeUTF("Player:" + myPlayerIndex + ";" + "Up" + ";"
 						+ "Released" + "/" + tmpPosX + "/" + tmpPosY);
+				myPlayer.direction.setUp(false);
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
 			return;
 		}
 
-		if (key == KeyEvent.VK_S) {
+		if (key == KeyEvent.VK_DOWN) {
 			try {
 				int tmpPosX = myPlayer.getPosX();
 				int tmpPosY = myPlayer.getPosY();
 				os.writeUTF("Player:" + myPlayerIndex + ";" + "Down" + ";"
 						+ "Released" + "/" + tmpPosX + "/" + tmpPosY);
+				myPlayer.direction.setDown(false);
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
 			return;
 		}
 
-		if (key == KeyEvent.VK_A) {
+		if (key == KeyEvent.VK_LEFT) {
 			try {
 				int tmpPosX = myPlayer.getPosX();
 				int tmpPosY = myPlayer.getPosY();
 				os.writeUTF("Player:" + myPlayerIndex + ";" + "Left" + ";"
 						+ "Released" + "/" + tmpPosX + "/" + tmpPosY);
+				myPlayer.direction.setLeft(false);
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
 			return;
 		}
 
-		if (key == KeyEvent.VK_D) {
+		if (key == KeyEvent.VK_RIGHT) {
 			try {
 				int tmpPosX = myPlayer.getPosX();
 				int tmpPosY = myPlayer.getPosY();
 				os.writeUTF("Player:" + myPlayerIndex + ";" + "Right" + ";"
 						+ "Released" + "/" + tmpPosX + "/" + tmpPosY);
+				myPlayer.direction.setRight(false);
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
@@ -293,6 +302,10 @@ public class MultiplayerUnit extends GraphicalGameUnit {
 				mapCanvas.getWidth(), mapCanvas.getHeight(), null);
 	}
 
+	/*
+	 * Section which deals with incoming server-messages
+	 */
+
 	public void analizeIncoming(String incomingMsg) {
 		if (incomingMsg.indexOf("Player:") != -1) {
 			String[] parts = incomingMsg.split(":");
@@ -327,26 +340,26 @@ public class MultiplayerUnit extends GraphicalGameUnit {
 		Player tmpPlayer = multiplayerMap.getPlayerByNumber(playerIndex);
 		String[] parts = incoming.split("/");
 		if (incoming.indexOf("Up") != -1) {
-			// tmpPlayer.setPosX(Integer.parseInt(parts[1]));
-			// tmpPlayer.setPosY(Integer.parseInt(parts[2]));
+			tmpPlayer.setPosX(Integer.parseInt(parts[1]));
+			tmpPlayer.setPosY(Integer.parseInt(parts[2]));
 			tmpPlayer.direction.setUp(true);
 			return;
 		}
 		if (incoming.indexOf("Down") != -1) {
-			// tmpPlayer.setPosX(Integer.parseInt(parts[1]));
-			// tmpPlayer.setPosY(Integer.parseInt(parts[2]));
+			tmpPlayer.setPosX(Integer.parseInt(parts[1]));
+			tmpPlayer.setPosY(Integer.parseInt(parts[2]));
 			tmpPlayer.direction.setDown(true);
 			return;
 		}
 		if (incoming.indexOf("Left") != -1) {
-			// tmpPlayer.setPosX(Integer.parseInt(parts[1]));
-			// tmpPlayer.setPosY(Integer.parseInt(parts[2]));
+			tmpPlayer.setPosX(Integer.parseInt(parts[1]));
+			tmpPlayer.setPosY(Integer.parseInt(parts[2]));
 			tmpPlayer.direction.setLeft(true);
 			return;
 		}
 		if (incoming.indexOf("Right") != -1) {
-			// tmpPlayer.setPosX(Integer.parseInt(parts[1]));
-			// tmpPlayer.setPosY(Integer.parseInt(parts[2]));
+			tmpPlayer.setPosX(Integer.parseInt(parts[1]));
+			tmpPlayer.setPosY(Integer.parseInt(parts[2]));
 			tmpPlayer.direction.setRight(true);
 			return;
 		}

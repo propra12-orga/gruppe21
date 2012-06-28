@@ -13,7 +13,6 @@ public class Monster extends Enemy {
 	private int waitingCounter;
 	private int walkdelay;
 	private int x, y;
-	private int slimeX, slimeY;
 
 	/**
 	 * Monster constructor.
@@ -53,11 +52,9 @@ public class Monster extends Enemy {
 					posY -= speed;
 					y += speed;
 
-					if (y >= 50) {
-						slimeX = (posX + 25) / 50 * 50;
-						slimeY = (posY + 25) / 50 * 50;
-						Slime slime = new Slime(slimeX, slimeY, true, true,
-								false, "slime", map.getGraphics(), "vertical");
+					if (y >= 5) {
+						Slime slime = new Slime(posX, posY, true, true, false,
+								"slime", map.getGraphics(), "up");
 						slime.setMap(getMap());
 						map.getMapObjects().get(1).add(slime);
 						y = 0;
@@ -76,11 +73,9 @@ public class Monster extends Enemy {
 					posY += speed;
 					y += speed;
 
-					if (y >= 50) {
-						slimeX = (posX + 25) / 50 * 50;
-						slimeY = (posY + 25) / 50 * 50;
-						Slime slime = new Slime(slimeX, slimeY, true, true,
-								false, "slime", map.getGraphics(), "vertical");
+					if (y >= 5) {
+						Slime slime = new Slime(posX, posY, true, true, false,
+								"slime", map.getGraphics(), "down");
 						slime.setMap(getMap());
 						map.getMapObjects().get(1).add(slime);
 						y = 0;
@@ -99,11 +94,9 @@ public class Monster extends Enemy {
 					posX -= speed;
 					x += speed;
 
-					if (x >= 50) {
-						slimeX = (posX + 25) / 50 * 50;
-						slimeY = (posY + 25) / 50 * 50;
-						Slime slime = new Slime(slimeX, slimeY, true, true,
-								false, "slime", map.getGraphics(), "horizontal");
+					if (x >= 5) {
+						Slime slime = new Slime(posX, posY, true, true, false,
+								"slime", map.getGraphics(), "left");
 						slime.setMap(getMap());
 						map.getMapObjects().get(1).add(slime);
 						x = 0;
@@ -122,11 +115,9 @@ public class Monster extends Enemy {
 					posX += speed;
 					x += speed;
 
-					if (x >= 50) {
-						slimeX = (posX + 25) / 50 * 50;
-						slimeY = (posY + 25) / 50 * 50;
-						Slime slime = new Slime(slimeX, slimeY, true, true,
-								false, "slime", map.getGraphics(), "horizontal");
+					if (x >= 5) {
+						Slime slime = new Slime(posX, posY, true, true, false,
+								"slime", map.getGraphics(), "right");
 						slime.setMap(getMap());
 						map.getMapObjects().get(1).add(slime);
 						x = 0;

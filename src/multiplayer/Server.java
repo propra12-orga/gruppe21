@@ -78,6 +78,22 @@ public class Server extends Thread {
 		}
 	}
 
+	public void distributeMessage(int sendingPlayer, String incoming) {
+		for (int i = 1; i < 3; i++) { // Change
+			if (!(i == sendingPlayer)) {
+				try {
+					System.out.println(incoming);
+					Lock tmpLock = toClientSockets[i].getWriteLock();
+					tmpLock.lock();
+					toClientSockets[i].getOS().writeUTF(incoming);
+					tmpLock.unlock();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+
 	// evtl stoppe den Thread, nachdem das Spiel startet
 
 	public class ToClientSocket extends Thread implements Runnable {
@@ -123,7 +139,7 @@ public class Server extends Thread {
 			while (true) {
 				try {
 					String incoming = is.readUTF();
-					distributeMessage(incoming);
+					distributeMessage(playerIndex, incoming);
 				} catch (IOException e) {
 					e.printStackTrace();
 					try {
