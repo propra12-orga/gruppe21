@@ -13,7 +13,7 @@
 			character to the exit on the other side.#
 			. . . . . . . . . . . .#  Press Enter
 			</intro>
-			<name>Castle1</name>
+			<name>Tutorial1</name>
 			<sequence>0</sequence>
 		</map>
 		<map>
