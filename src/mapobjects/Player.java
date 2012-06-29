@@ -19,6 +19,10 @@ public class Player extends MoveableObject {
 	 */
 	private int ID;
 	/**
+	 * Variable used to determine if this playerobject is controlled remotely
+	 */
+	private boolean remotePlayer = false;
+	/**
 	 * maximal number of bombs that the player could use
 	 */
 	private int maxbombs = 1;
@@ -39,7 +43,8 @@ public class Player extends MoveableObject {
 	 */
 	private boolean bombRemote = false;
 
-	private boolean shieldProtection = false, immortal = false;
+	private boolean shieldProtection = false, immortal = false,
+			remoteImmortal = false;
 	/**
 	 * List of the actual planted bombs
 	 */
@@ -318,8 +323,8 @@ public class Player extends MoveableObject {
 	public void update(BufferedImage cm) {
 		if (simpleHasColl(posX, posY, map.getCollisionMap(), Color.orange,
 				Color.red)) {
-			if (!immortal) {
-				if (!shieldProtection) {
+			if (!immortal || remotePlayer) {
+				if (!shieldProtection && !remotePlayer) {
 					this.die();
 					map.finishMap();
 				} else {
@@ -331,6 +336,8 @@ public class Player extends MoveableObject {
 					}
 				}
 			} else {
+				// das hier wird auch aufgerufen, wenn ein remotePlayer was
+				// abbekommt, just sayin'
 				System.out.println("Hit, but immortal. Muhaha");
 			}
 		}
@@ -342,9 +349,16 @@ public class Player extends MoveableObject {
 				System.out.println("Shield off");
 			}
 		}
-		if (immortal) {
+		if (immortal && !remotePlayer) {
 			if (immortalStartTime + immortalTime <= System.nanoTime()) {
 				immortal = false;
+				animation.setCurrentAnimation(animation.getCurrentImagePath());
+				System.out.println("Now you are not immortal anymore");
+			}
+		}
+		if (remoteImmortal) {
+			if (immortalStartTime + immortalTime <= System.nanoTime()) {
+				remoteImmortal = false;
 				animation.setCurrentAnimation(animation.getCurrentImagePath());
 				System.out.println("Now you are not immortal anymore");
 			}
@@ -395,8 +409,16 @@ public class Player extends MoveableObject {
 			System.out.println("remoteBomb");
 		}
 		if (simpleHasColl(posX, posY, cm, Color.lightGray)) {
-			if (!immortal) {
-				immortal = true;
+			if (!remotePlayer) {
+				if (!immortal) {
+					immortal = true;
+					shieldProtection = false;
+					animation.setCurrentAnimation("playerDown_immortal");
+					immortalStartTime = System.nanoTime();
+					System.out.println("You are immortal for 5 secs");
+				}
+			} else if (!remoteImmortal) {
+				remoteImmortal = true;
 				shieldProtection = false;
 				animation.setCurrentAnimation("playerDown_immortal");
 				immortalStartTime = System.nanoTime();
@@ -461,6 +483,14 @@ public class Player extends MoveableObject {
 	}
 
 	/**
+	 * Initializes this playerobject as a remote controlled player
+	 */
+	public void makeRemote() {
+		remotePlayer = true;
+		immortal = true;
+	}
+
+	/**
 	 * Returns a player's identification number.
 	 * 
 	 * @return current ID
@@ -501,6 +531,10 @@ public class Player extends MoveableObject {
 
 	public int getBombRadius() {
 		return bombradius;
+	}
+
+	public int getCurrentBombs() {
+		return actualbombs;
 	}
 
 	public int getMaxBombs() {
