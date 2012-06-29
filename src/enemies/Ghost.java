@@ -137,7 +137,7 @@ public class Ghost extends Enemy {
 				setDestroyed(true);
 			}
 		} else if (wallWalking) {
-			if (walldelay > 4) {
+			if (walldelay > 1) {
 				walldelay = 0;
 			}
 			if (walldelay == 0) {

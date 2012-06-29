@@ -35,8 +35,6 @@ public class Monster extends Enemy {
 	public Monster(int x, int y, boolean v, boolean d, boolean c, String p,
 			ImageLoader gr) {
 		super(x, y, v, d, c, p, gr);
-		this.x = x;
-		this.y = y;
 	}
 
 	@Override
@@ -144,13 +142,14 @@ public class Monster extends Enemy {
 				setDestroyed(true);
 			}
 		} else {
-			if (walkdelay > 1) {
-				walkdelay = 0;
-			}
-			if (walkdelay == 0) {
-				move();
-			}
-			walkdelay++;
+			// if (walkdelay > 1) {
+			// walkdelay = 0;
+			// }
+			// if (walkdelay == 0) {
+			// move();
+			// }
+			// walkdelay++;
+			move();
 		}
 	}
 

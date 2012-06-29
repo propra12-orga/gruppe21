@@ -164,7 +164,7 @@
 				<visible>true</visible>
 				<collision>true</collision>
 				<destroyable>false</destroyable>
-				<image rotation="0">SWEAOL.png</image>
+				<image rotation="0">SWEAOL2.png</image>
 				<posx>600</posx>
 				<posy>200</posy>
 			</tile>
@@ -228,7 +228,7 @@
 				<visible>true</visible>
 				<collision>true</collision>
 				<destroyable>false</destroyable>
-				<image rotation="0">SWEAOR.png</image>
+				<image rotation="0">SWEAOR2.png</image>
 				<posx>800</posx>
 				<posy>200</posy>
 			</tile>
@@ -588,7 +588,7 @@
 				<visible>true</visible>
 				<collision>true</collision>
 				<destroyable>false</destroyable>
-				<image rotation="0">SWEAUL.png</image>
+				<image rotation="0">SWEAUL2.png</image>
 				<posx>300</posx>
 				<posy>700</posy>
 			</tile>
@@ -652,7 +652,7 @@
 				<visible>true</visible>
 				<collision>true</collision>
 				<destroyable>false</destroyable>
-				<image rotation="0">SWEAUR.png</image>
+				<image rotation="0">SWEAUR2.png</image>
 				<posx>500</posx>
 				<posy>700</posy>
 			</tile>
@@ -660,7 +660,7 @@
 				<visible>true</visible>
 				<collision>true</collision>
 				<destroyable>false</destroyable>
-				<image rotation="0">SWEAUL.png</image>
+				<image rotation="0">SWEAUL2.png</image>
 				<posx>550</posx>
 				<posy>700</posy>
 			</tile>
@@ -724,7 +724,7 @@
 				<visible>true</visible>
 				<collision>true</collision>
 				<destroyable>false</destroyable>
-				<image rotation="0">SWEAUR.png</image>
+				<image rotation="0">SWEAUR2.png</image>
 				<posx>750</posx>
 				<posy>700</posy>
 			</tile>
@@ -3511,6 +3511,62 @@
 				<posx>0</posx>
 				<posy>550</posy>
 			</tile>
+			<tile type="animatedfloor" animated="true">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<animationset>fackel3</animationset>
+				<posx>150</posx>
+				<posy>200</posy>
+			</tile>
+			<tile type="animatedfloor" animated="true">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<animationset>fackel3</animationset>
+				<posx>350</posx>
+				<posy>200</posy>
+			</tile>
+			<tile type="animatedfloor" animated="true">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<animationset>fackel3</animationset>
+				<posx>550</posx>
+				<posy>200</posy>
+			</tile>
+			<tile type="animatedfloor" animated="true">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<animationset>fackel3</animationset>
+				<posx>700</posx>
+				<posy>100</posy>
+			</tile>
+			<tile type="animatedfloor" animated="true">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<animationset>fackel3</animationset>
+				<posx>1000</posx>
+				<posy>100</posy>
+			</tile>
+			<tile type="animatedfloor" animated="true">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<animationset>fackel3</animationset>
+				<posx>1200</posx>
+				<posy>100</posy>
+			</tile>
+			<tile type="animatedfloor" animated="true">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<animationset>fackel3</animationset>
+				<posx>1400</posx>
+				<posy>100</posy>
+			</tile>
 		</level>
 		<level>
 			<tile type="exit" animated="false">
@@ -3520,6 +3576,54 @@
 				<image rotation="0">Kellerboden.png</image>
 				<posx>1000</posx>
 				<posy>800</posy>
+			</tile>
+			<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">PrisonL.png</image>
+				<posx>650</posx>
+				<posy>200</posy>
+			</tile>
+			<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">PrisonR.png</image>
+				<posx>750</posx>
+				<posy>200</posy>
+			</tile>
+			<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">PrisonUL.png</image>
+				<posx>350</posx>
+				<posy>700</posy>
+			</tile>
+			<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">PrisonUR.png</image>
+				<posx>450</posx>
+				<posy>700</posy>
+			</tile>
+			<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">PrisonUL.png</image>
+				<posx>600</posx>
+				<posy>700</posy>
+			</tile>
+			<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">PrisonUR.png</image>
+				<posx>700</posx>
+				<posy>700</posy>
 			</tile>
 		</level>
 		<level>
