@@ -46,6 +46,7 @@ public class Upgrade extends MapObject {
 			animation.animate();
 		} else {
 			counter++;
+			map.synchronizePickup(this);
 		}
 
 		if (counter > 3) {
@@ -65,19 +66,7 @@ public class Upgrade extends MapObject {
 		}
 	}
 
-	public String getType() {
-		if (color.equals(Color.pink)) {
-			return "BombPlus";
-		} else if (color.equals(Color.blue)) {
-			return "BombRange";
-		} else if (color.equals(Color.cyan)) {
-			return "Shield";
-		} else if (color.equals(Color.magenta)) {
-			return "BombRemote";
-		} else if (color.equals(Color.lightGray)) {
-			return "Bulletproof";
-		} else {
-			return "BombPlus";
-		}
+	public Color getColor() {
+		return color;
 	}
 }

@@ -285,6 +285,11 @@ public class MultiplayerUnit extends GraphicalGameUnit implements
 			handlePlayerEvents(playerIndex, parts[1].substring(2));
 			return;
 		}
+		if (incomingMsg.indexOf("Upgrade:") != -1) {
+			String[] parts = incomingMsg.split(":");
+			handleUpgradeEvents(parts[1]);
+			return;
+		}
 		if (incomingMsg.indexOf("Welcome Player ") != -1) {
 			myPlayerIndex = Integer.parseInt(incomingMsg.substring(15, 16));
 			myPlayer = multiplayerMap.getPlayerByNumber(myPlayerIndex);
@@ -375,6 +380,15 @@ public class MultiplayerUnit extends GraphicalGameUnit implements
 		}
 	}
 
+	private void handleUpgradeEvents(String incoming) {
+		if (incoming.indexOf("PickUp") != -1) {
+			// noch zu behandeln
+		} else {
+			// rufe den upgrade constructor auf (wieso habe ich keine referenz
+			// auf die mappa?)
+		}
+	}
+
 	/**
 	 * Generates a BufferedImage to be passed to a TransitionUnit.
 	 * 
@@ -406,7 +420,13 @@ public class MultiplayerUnit extends GraphicalGameUnit implements
 	}
 
 	@Override
-	public void upgradeSpawned(int x, int y, String type) {
-		writeToHost("Upgrade:" + type + "/" + x + "/" + y);
+	public void upgradeSpawned(int x, int y, Color color) {
+		writeToHost("Upgrade:" + color + "/" + x + "/" + y);
+	}
+
+	@Override
+	public void upgradePickedUp(int PosAtList) {
+		writeToHost("Upgrade:" + "PickUp" + PosAtList);
+
 	}
 }

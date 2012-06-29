@@ -29,7 +29,7 @@ public class Player extends MoveableObject {
 	/**
 	 * number of active bombs on the playground
 	 */
-	private int actualbombs = 0;
+	private int currentbombs = 0;
 	/**
 	 * radius of the bomb
 	 */
@@ -465,21 +465,21 @@ public class Player extends MoveableObject {
 	 * @return true if max bomb level is reached else false
 	 */
 	public boolean reachedMaxBombs() {
-		return (actualbombs + 1 > maxbombs);
+		return (currentbombs + 1 > maxbombs);
 	}
 
 	/**
 	 * increase bombcounter
 	 */
 	public void addBomb() {
-		actualbombs++;
+		currentbombs++;
 	}
 
 	/**
 	 * decrease bombcounter
 	 */
 	public void removeBomb() {
-		actualbombs--;
+		currentbombs--;
 	}
 
 	/**
@@ -534,7 +534,7 @@ public class Player extends MoveableObject {
 	}
 
 	public int getCurrentBombs() {
-		return actualbombs;
+		return currentbombs;
 	}
 
 	public int getMaxBombs() {

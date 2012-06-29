@@ -318,7 +318,12 @@ public class Map {
 		incrementUpgradeCounter();
 		if (listener != null)
 			listener.upgradeSpawned(upgrade.getPosX(), upgrade.getPosY(),
-					upgrade.getType());
+					upgrade.getColor());
+	}
+
+	public void synchronizePickup(Upgrade upgrade) {
+		if (listener != null)
+			listener.upgradePickedUp(getMapObjects().get(1).indexOf(upgrade));
 	}
 
 	public void setMaxUpgrades(int maxUpgrades) {
