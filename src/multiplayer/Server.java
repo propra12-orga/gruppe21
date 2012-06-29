@@ -17,18 +17,32 @@ public class Server extends Thread {
 	// Host Socket
 	private ServerSocket hostSocket = null;
 	// Player Management
+	private int maxPlayers;
 	private int playerCount = 1;
+	private String selectedMap;
 	// Socket Management
-	private ToClientSocket[] toClientSockets = new ToClientSocket[3]; // Change
+	private ToClientSocket[] toClientSockets;
 	// Console Input
 	private Scanner scanner = new Scanner(new BufferedInputStream(System.in),
 			"UTF-8");
 
 	// Constructor
-	public Server(int port) throws IOException {
+	public Server(int maxPlayers, String selectedMap, int port)
+			throws IOException {
+		this.maxPlayers = maxPlayers;
+		this.selectedMap = selectedMap;
+		toClientSockets = new ToClientSocket[maxPlayers + 1];
 		hostSocket = new ServerSocket(port);
 		/* hostSocket.setSoTimeout(10000); */// not sure if needed
 		this.start();
+	}
+
+	public int getPort() {
+		return hostSocket.getLocalPort();
+	}
+
+	public String getMapName() {
+		return selectedMap;
 	}
 
 	@Override
@@ -38,7 +52,7 @@ public class Server extends Thread {
 				toClientSockets[playerCount] = new ToClientSocket(playerCount,
 						hostSocket.accept());
 				playerCount += 1;
-				if (playerCount == 3) { // Change
+				if (playerCount == maxPlayers + 1) {
 					gamestarted = true;
 					try {
 						Thread.sleep(10);
@@ -59,13 +73,13 @@ public class Server extends Thread {
 		String consoleInput = null;
 		while (true) {
 			consoleInput = scanner.next();
-			if (consoleInput.equals("stop")) // schlieﬂe Sockets
+			if (consoleInput.equals("stop")) // schliesse Sockets
 				break;
 		}
 	}
 
 	public void distributeMessage(String incoming) {
-		for (int i = 1; i < 3; i++) { // Change
+		for (int i = 1; i <= maxPlayers; i++) {
 			try {
 				System.out.println(incoming);
 				Lock tmpLock = toClientSockets[i].getWriteLock();
@@ -79,7 +93,7 @@ public class Server extends Thread {
 	}
 
 	public void distributeMessage(int sendingPlayer, String incoming) {
-		for (int i = 1; i < 3; i++) { // Change
+		for (int i = 1; i <= maxPlayers; i++) {
 			if (!(i == sendingPlayer)) {
 				try {
 					System.out.println(incoming);
@@ -129,6 +143,7 @@ public class Server extends Thread {
 			try {
 				writeLock.lock();
 				os.writeUTF("Welcome Player " + playerIndex);
+				os.writeUTF("Map: " + getMapName());
 				writeLock.unlock();
 			} catch (IOException e) {
 				e.printStackTrace();
