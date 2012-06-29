@@ -1,5 +1,5 @@
 <animationset default="Skull_front.png">
-<animation frames="1" stretch="1" name="enemyDying">explosion.png</animation>
+<animation frames="3" stretch="15" name="enemyDying">Skull_explosion.png</animation>
 <animation frames="1" stretch="1" name="enemyLeft">Skull_left.png</animation>
 <animation frames="1" stretch="1" name="enemyRight">Skull_right.png</animation>
 <animation frames="1" stretch="1" name="enemyUp">Skull_back.png</animation>

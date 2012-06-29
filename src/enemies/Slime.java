@@ -20,7 +20,6 @@ public class Slime extends MapObject {
 			ImageLoader gr, String dir) {
 		super(x, y, v, d, c, p, gr);
 		beforeTime = System.nanoTime();
-		animation.start("slime");
 		initDirection(dir);
 	}
 

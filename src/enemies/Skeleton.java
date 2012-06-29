@@ -10,14 +10,14 @@ import mapobjects.Enemy;
 
 public class Skeleton extends Enemy {
 
-	// private int maxSkulls = 3;
-	private int waitingCounter;
+	private int waitingCounter, shootCounter;
 
 	private boolean shooted = false;
 
 	public Skeleton(int x, int y, boolean v, boolean d, boolean c, String p,
 			ImageLoader gr) {
 		super(x, y, v, d, c, p, gr);
+		speed = 2;
 	}
 
 	@Override
@@ -25,13 +25,19 @@ public class Skeleton extends Enemy {
 		if (UP) {
 			if (hasObjectCollision(posX, posY - speed, map.getCollisionMap())) {
 				waitingCounter = 0;
+				shootCounter = 0;
 				shooted = false;
 				findPath("enemyUp", "enemyDown", "enemyLeft", "enemyRight");
 			} else {
 				waitingCounter++;
+				shootCounter++;
 				if (!shooted) {
 					shootSkull("up");
 					shooted = true;
+				}
+				if (shootCounter > 80) {
+					shootSkull("up");
+					shootCounter = 0;
 				}
 				if (waitingCounter > 100) {
 					posY -= speed;
@@ -42,13 +48,19 @@ public class Skeleton extends Enemy {
 		if (DOWN) {
 			if (hasObjectCollision(posX, posY + speed, map.getCollisionMap())) {
 				waitingCounter = 0;
+				shootCounter = 0;
 				shooted = false;
 				findPath("enemyUp", "enemyDown", "enemyLeft", "enemyRight");
 			} else {
 				waitingCounter++;
+				shootCounter++;
 				if (!shooted) {
 					shootSkull("down");
 					shooted = true;
+				}
+				if (shootCounter > 80) {
+					shootSkull("down");
+					shootCounter = 0;
 				}
 				if (waitingCounter > 100) {
 					posY += speed;
@@ -60,12 +72,18 @@ public class Skeleton extends Enemy {
 			if (hasObjectCollision(posX - speed, posY, map.getCollisionMap())) {
 				waitingCounter = 0;
 				shooted = false;
+				shootCounter = 0;
 				findPath("enemyUp", "enemyDown", "enemyLeft", "enemyRight");
 			} else {
 				waitingCounter++;
+				shootCounter++;
 				if (!shooted) {
 					shootSkull("left");
 					shooted = true;
+				}
+				if (shootCounter > 80) {
+					shootSkull("left");
+					shootCounter = 0;
 				}
 				if (waitingCounter > 100) {
 					posX -= speed;
@@ -76,13 +94,19 @@ public class Skeleton extends Enemy {
 		if (RIGHT) {
 			if (hasObjectCollision(posX + speed, posY, map.getCollisionMap())) {
 				waitingCounter = 0;
+				shootCounter = 0;
 				shooted = false;
 				findPath("enemyUp", "enemyDown", "enemyLeft", "enemyRight");
 			} else {
 				waitingCounter++;
+				shootCounter++;
 				if (!shooted) {
 					shootSkull("right");
 					shooted = true;
+				}
+				if (shootCounter > 80) {
+					shootSkull("right");
+					shootCounter = 0;
 				}
 				if (waitingCounter > 100) {
 					posX += speed;
@@ -118,9 +142,9 @@ public class Skeleton extends Enemy {
 	}
 
 	private void shootSkull(String dir) {
-		int i = (int) (Math.random() * 3 + 1);
+		int i = (int) (Math.random() * 2 + 1);
 
-		if (i == 3) {
+		if (i == 2) {
 			Skull skull = new Skull(getPosX(), getPosY(), true, true, false,
 					"skulls", map.getGraphics(), dir);
 			skull.setMap(getMap());

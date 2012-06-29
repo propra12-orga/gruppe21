@@ -142,13 +142,14 @@ public class Monster extends Enemy {
 				setDestroyed(true);
 			}
 		} else {
-			if (walkdelay > 1) {
-				walkdelay = 0;
-			}
-			if (walkdelay == 0) {
-				move();
-			}
-			walkdelay++;
+			// if (walkdelay > 1) {
+			// walkdelay = 0;
+			// }
+			// if (walkdelay == 0) {
+			// move();
+			// }
+			// walkdelay++;
+			move();
 		}
 	}
 

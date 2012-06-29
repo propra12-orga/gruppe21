@@ -39,8 +39,8 @@ public class Skull extends Enemy {
 				die("enemyDying");
 			} else {
 				posY -= speed;
+				animation.change("enemyUp");
 			}
-			animation.change("enemyUp");
 		}
 
 		if (DOWN) {
@@ -48,8 +48,8 @@ public class Skull extends Enemy {
 				die("enemyDying");
 			} else {
 				posY += speed;
+				animation.change("enemyDown");
 			}
-			animation.change("enemyDown");
 		}
 
 		if (LEFT) {
@@ -57,8 +57,8 @@ public class Skull extends Enemy {
 				die("enemyDying");
 			} else {
 				posX -= speed;
+				animation.change("enemyLeft");
 			}
-			animation.change("enemyLeft");
 		}
 
 		if (RIGHT) {
@@ -66,8 +66,8 @@ public class Skull extends Enemy {
 				die("enemyDying");
 			} else {
 				posX += speed;
+				animation.change("enemyRight");
 			}
-			animation.change("enemyRight");
 		}
 	}
 
@@ -85,16 +85,11 @@ public class Skull extends Enemy {
 		if (dying) {
 
 			if (beforeTime + dyingTime <= System.nanoTime()) {
-				setDestroyed(true);
+				destroyed = true;
 			}
 		} else {
 			move();
 		}
-	}
-
-	@Override
-	public void setDestroyed(boolean destroyed) {
-		this.destroyed = destroyed;
 	}
 
 }
