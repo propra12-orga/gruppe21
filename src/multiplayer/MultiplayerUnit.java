@@ -199,10 +199,11 @@ public class MultiplayerUnit extends GraphicalGameUnit {
 		}
 
 		if (key == KeyEvent.VK_SPACE) {
-			// Pr�fe, ob die Anzahl maximaler Bomben erreicht ist
-			writeToHost("Player:" + myPlayerIndex + ";" + "Bomb" + ";"
-					+ "Pressed");
-			myPlayer.plantBomb(multiplayerMap.getCollisionMap());
+			if (!(myPlayer.getCurrentBombs() == myPlayer.getMaxBombs())) {
+				writeToHost("Player:" + myPlayerIndex + ";" + "Bomb" + ";"
+						+ "Pressed");
+				myPlayer.plantBomb(multiplayerMap.getCollisionMap());
+			}
 		}
 	}
 
@@ -324,7 +325,7 @@ public class MultiplayerUnit extends GraphicalGameUnit {
 			// make all non self controlled players invulnerable
 			for (int i = 1; i < 3; i++) {
 				if (!(i == myPlayerIndex))
-					multiplayerMap.getPlayerByNumber(i).setDestroyable(false);
+					multiplayerMap.getPlayerByNumber(i).makeRemote();
 			}
 			return;
 		}
