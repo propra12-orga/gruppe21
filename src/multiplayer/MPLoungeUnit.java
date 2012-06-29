@@ -8,6 +8,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.geom.Rectangle2D;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
@@ -16,7 +18,6 @@ import main.GraphicalGameUnit;
 import main.UnitNavigator;
 import main.UnitState;
 import map.MapReader;
-import multiplayer.MultiplayerUnit.SocketListener;
 
 /**
  * When creating a new multiplayer game, all players meet in a MPLoungeUnit
@@ -26,7 +27,8 @@ import multiplayer.MultiplayerUnit.SocketListener;
  * @author tohei
  * 
  */
-public class MPLoungeUnit extends GraphicalGameUnit implements SocketListener {
+public class MPLoungeUnit extends GraphicalGameUnit implements
+		multiplayer.ReadFromHost.SocketListener {
 
 	private GameGraphic background;
 	private GameGraphic[] playerStatusImages;
@@ -50,6 +52,9 @@ public class MPLoungeUnit extends GraphicalGameUnit implements SocketListener {
 	private static final int PLAYER_CONNECTED = 1;
 	private static final int PLAYER_READY = 2;
 
+	private ReadFromHost fromHost = null;
+	private Socket toHostSocket = null;
+
 	GameGraphic selectedMap;
 	private String mapName;
 
@@ -67,22 +72,34 @@ public class MPLoungeUnit extends GraphicalGameUnit implements SocketListener {
 	private int playerNumber;
 	boolean asHost;
 
-	private Socket clientSocket;
+	private DataOutputStream os = null;
+	private DataInputStream is = null;
+
 	private Server gameServer;
 
-	public MPLoungeUnit(Socket clientSocket, int playerNumber, String mapName,
-			boolean asHost) {
+	public MPLoungeUnit(ReadFromHost fromHost, Socket toHostSocket,
+			int playerNumber, String mapName, boolean asHost) {
+		this.fromHost = fromHost;
+		this.toHostSocket = toHostSocket;
+		fromHost.setListener(this);
+		try {
+			os = new DataOutputStream(toHostSocket.getOutputStream());
+			is = new DataInputStream(toHostSocket.getInputStream());
+		} catch (IOException e) {
+			System.err.println("Failed to fetch Stream from socket.");
+			e.printStackTrace();
+		}
 		this.asHost = asHost;
-		this.clientSocket = clientSocket;
-		this.playerNumber = playerNumber;
+		this.playerNumber = playerNumber - 1;
 		this.mapName = mapName;
-		this.asHost = false;
+		this.asHost = asHost;
 		MapReader mr = new MapReader(mapName);
 		this.selectedMap = new GameGraphic(GameConstants.MENU_IMAGES_DIR
 				+ mr.getHeader("minimap"));
 		int numOfPlayers = Integer.parseInt(mr.getHeader("playercount"));
 		playerStatus = new int[numOfPlayers];
-		playerStatus[playerNumber] = PLAYER_CONNECTED;
+		System.out.println(this.playerNumber);
+		playerStatus[this.playerNumber] = PLAYER_CONNECTED;
 		playerStatusImages = new GameGraphic[3];
 		initComponent();
 	}
@@ -102,22 +119,44 @@ public class MPLoungeUnit extends GraphicalGameUnit implements SocketListener {
 			}
 		}
 		if (key == KeyEvent.VK_RIGHT) {
-			if (!(selectionCounter == 2)) {
-				selectionCounter++;
+			if (asHost) {
+				if (!(selectionCounter == 2)) {
+					selectionCounter++;
+				}
+			} else {
+				if (!(selectionCounter == 1)) {
+					selectionCounter++;
+				}
 			}
 		}
+
+		if (asHost && key == KeyEvent.VK_ENTER && selectionCounter == 1) {
+			boolean allowedToStart = true;
+			for (int i = 0; i < playerStatus.length; i++) {
+				if (playerStatus[i] == PLAYER_CONNECTED)
+					allowedToStart = false;
+			}
+			if (allowedToStart) {
+				writeToHost("starting...");
+				startMultiplayer();
+			}
+		}
+
 		if (key == KeyEvent.VK_ENTER && selectionCounter == 0) {
 			if (playerStatus[playerNumber] == PLAYER_READY) {
 				playerStatus[playerNumber] = PLAYER_CONNECTED;
+				writeToHost("Status-Player:" + playerNumber + ":"
+						+ playerStatus[playerNumber]);
 			} else {
 				playerStatus[playerNumber] = PLAYER_READY;
+				writeToHost("Status-Player:" + playerNumber + ":"
+						+ playerStatus[playerNumber]);
 			}
 		}
 		if (key == KeyEvent.VK_ESCAPE) {
 			try {
-				clientSocket.close();
+				toHostSocket.close();
 				UnitNavigator.getNavigator().set(UnitState.BASE_MENU_UNIT);
-				System.out.println("BASEMENU");
 			} catch (IOException e1) {
 				System.out
 						.println("An error occured while trying to close the client socket!");
@@ -125,6 +164,14 @@ public class MPLoungeUnit extends GraphicalGameUnit implements SocketListener {
 			}
 		}
 
+	}
+
+	public void writeToHost(String outgoing) {
+		try {
+			os.writeUTF(outgoing);
+		} catch (IOException e) {
+			System.err.println("Failed to write Message!");
+		}
 	}
 
 	@Override
@@ -178,6 +225,8 @@ public class MPLoungeUnit extends GraphicalGameUnit implements SocketListener {
 					- readyActive.getImage().getWidth() - elementSpace - backActive
 					.getImage().getWidth()) / 2;
 		}
+		writeToHost("Joined-Player:" + playerNumber + ":"
+				+ playerStatus[playerNumber]);
 	}
 
 	@Override
@@ -248,7 +297,32 @@ public class MPLoungeUnit extends GraphicalGameUnit implements SocketListener {
 
 	@Override
 	public void analizeIncoming(String input) {
-		// TODO Auto-generated method stub
+		if (input.contains("Joined")) {
+			String[] data = input.split(":");
+			int player = Integer.parseInt(data[1]);
+			int status = Integer.parseInt(data[2]);
+			playerStatus[player] = status;
+			writeToHost("Status-Player:" + playerNumber + ":"
+					+ playerStatus[playerNumber]);
+			return;
+		}
+		if (input.contains("Status")) {
+			String[] data = input.split(":");
+			int player = Integer.parseInt(data[1]);
+			int status = Integer.parseInt(data[2]);
+			playerStatus[player] = status;
+			return;
+		}
+		if (input.contains("starting")) {
+			startMultiplayer();
+		}
+	}
 
+	private void startMultiplayer() {
+		MultiplayerUnit mpUnit = new MultiplayerUnit(fromHost,
+				playerNumber + 1, mapName, toHostSocket);
+		UnitNavigator.getNavigator().addGameUnit(mpUnit,
+				UnitState.LEVEL_MANAGER_UNIT);
+		UnitNavigator.getNavigator().set(UnitState.LEVEL_MANAGER_UNIT);
 	}
 }

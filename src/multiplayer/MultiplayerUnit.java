@@ -11,7 +11,6 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
-import java.net.UnknownHostException;
 
 import main.GameConstants;
 import main.GraphicalGameUnit;
@@ -21,7 +20,8 @@ import map.Map;
 import mapobjects.Player;
 import unitTransitions.TransitionUnit;
 
-public class MultiplayerUnit extends GraphicalGameUnit {
+public class MultiplayerUnit extends GraphicalGameUnit implements
+		multiplayer.ReadFromHost.SocketListener {
 
 	private Map multiplayerMap;
 	private BufferedImage mapCanvas;
@@ -31,8 +31,7 @@ public class MultiplayerUnit extends GraphicalGameUnit {
 
 	private String mapName = "MP-Woodwars";
 
-	private Thread fromHost = null;
-	private Socket toHostSocket = null;
+	private ReadFromHost fromHost = null;
 	private DataOutputStream os = null;
 	private DataInputStream is = null;
 	private Player playerOne;
@@ -41,6 +40,7 @@ public class MultiplayerUnit extends GraphicalGameUnit {
 	private int myPlayerIndex;
 
 	private Server server;
+	private Socket toHostSocket;
 	private boolean asHost;
 
 	/**
@@ -54,54 +54,21 @@ public class MultiplayerUnit extends GraphicalGameUnit {
 	private final String drawMessage = "Unbelieveable! It's a draw!";
 
 	// Constructor
-	public MultiplayerUnit(Server server) {
-		this.server = server;
-		this.asHost = true;
-
-		initComponent();
-		// to do: hole dir die Adresse und evtl den Port vom Nutzer
+	public MultiplayerUnit(ReadFromHost fromHost, int myPlayerIndex,
+			String mapName, Socket toHostSocket) {
+		this.toHostSocket = toHostSocket;
+		this.fromHost = fromHost;
+		fromHost.setListener(this);
 		try {
-			toHostSocket = new Socket("127.0.0.1", server.getPort());
 			os = new DataOutputStream(toHostSocket.getOutputStream());
 			is = new DataInputStream(toHostSocket.getInputStream());
-			fromHost = new ReadFromHost(toHostSocket, os, is);
-		} catch (UnknownHostException e) {
-			System.out.println("Could not reach the host");
 		} catch (IOException e) {
+			System.err.println("Failed to fetch Stream from socket.");
 			e.printStackTrace();
 		}
-	}
-
-	public MultiplayerUnit(int port, String ip) {
-		this.asHost = false;
-		initComponent();
-		// to do: hole dir die Adresse und evtl den Port vom Nutzer
-		try {
-			toHostSocket = new Socket(ip, port);
-			os = new DataOutputStream(toHostSocket.getOutputStream());
-			is = new DataInputStream(toHostSocket.getInputStream());
-			fromHost = new ReadFromHost(toHostSocket, os, is);
-		} catch (UnknownHostException e) {
-			System.out.println("Could not reach the host");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	public MultiplayerUnit(String mapName) {
+		this.myPlayerIndex = myPlayerIndex;
 		this.mapName = mapName;
 		initComponent();
-		// to do: hole dir die Adresse und evtl den Port vom Nutzer
-		try {
-			toHostSocket = new Socket("127.0.0.1", 5555);
-			os = new DataOutputStream(toHostSocket.getOutputStream());
-			is = new DataInputStream(toHostSocket.getInputStream());
-			fromHost = new ReadFromHost(toHostSocket, os, is);
-		} catch (UnknownHostException e) {
-			System.out.println("Could not reach the host");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 
 	@Override
@@ -253,8 +220,7 @@ public class MultiplayerUnit extends GraphicalGameUnit {
 		 * load map and players
 		 */
 		multiplayerMap = new Map(mapName);
-		playerOne = multiplayerMap.getPlayerByNumber(1);
-		playerTwo = multiplayerMap.getPlayerByNumber(2);
+		myPlayer = multiplayerMap.getPlayerByNumber(myPlayerIndex);
 		/*
 		 * calculate mapCanvas position on panel
 		 */
@@ -437,44 +403,5 @@ public class MultiplayerUnit extends GraphicalGameUnit {
 				(int) (GameConstants.FRAME_SIZE_X - rect.getWidth()) / 2,
 				(int) (GameConstants.FRAME_SIZE_Y - rect.getHeight()) / 2);
 		return msg;
-	}
-
-	public static class ReadFromHost extends Thread implements Runnable {
-
-		private SocketListener listener;
-		private Socket toHostSocket;
-		private DataOutputStream os;
-		private DataInputStream is;
-		private String incomingMsg = null;
-
-		public ReadFromHost(Socket toHostSocket, DataOutputStream os,
-				DataInputStream is) throws IOException, UnknownHostException {
-			this.toHostSocket = toHostSocket;
-			this.os = os;
-			this.is = is;
-			this.start();
-		}
-
-		public void run() {
-			while (true) {
-				try {
-					incomingMsg = is.readUTF();
-					System.out.println(incomingMsg);
-					listener.analizeIncoming(incomingMsg);
-				} catch (IOException e) {
-					System.out.println("Connetion to host lost!");
-					try {
-						toHostSocket.close();
-					} catch (IOException e1) {
-						e1.printStackTrace();
-					}
-					break;
-				}
-			}
-		}
-	}
-
-	public interface SocketListener {
-		public void analizeIncoming(String input);
 	}
 }

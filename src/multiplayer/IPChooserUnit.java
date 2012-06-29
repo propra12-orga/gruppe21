@@ -84,12 +84,11 @@ public class IPChooserUnit extends GraphicalGameUnit {
 							UnitState.TEMPORARY_UNIT);
 					UnitNavigator.getNavigator().set(UnitState.TEMPORARY_UNIT);
 				} else {
-					// NetworkConnectorUnit networkConnector = new
-					// NetworkConnectorUnit(
-					// ip, parsePort());
-					// UnitNavigator.getNavigator().addGameUnit(networkConnector,
-					// UnitState.TEMPORARY_UNIT);
-					// UnitNavigator.getNavigator().set(UnitState.TEMPORARY_UNIT);
+					NetworkConnectorUnit networkConnector = new NetworkConnectorUnit(
+							ip, parsePort(), false);
+					UnitNavigator.getNavigator().addGameUnit(networkConnector,
+							UnitState.TEMPORARY_UNIT);
+					UnitNavigator.getNavigator().set(UnitState.TEMPORARY_UNIT);
 				}
 			}
 		}

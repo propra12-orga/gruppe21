@@ -59,7 +59,7 @@ public class Server extends Thread {
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
-					distributeMessage("Start!");
+					// distributeMessage("Start!");
 				}
 			} catch (SocketTimeoutException s) {
 				System.out.println("Socket T/O");
@@ -69,7 +69,7 @@ public class Server extends Thread {
 				break;
 			}
 		}
-		System.out.println("Bomberman Server v1.0:");
+		// System.out.println("Bomberman Server v1.0:");
 		String consoleInput = null;
 		while (true) {
 			consoleInput = scanner.next();
@@ -79,7 +79,7 @@ public class Server extends Thread {
 	}
 
 	public void distributeMessage(String incoming) {
-		for (int i = 1; i <= maxPlayers; i++) {
+		for (int i = 1; i < playerCount; i++) {
 			try {
 				System.out.println(incoming);
 				Lock tmpLock = toClientSockets[i].getWriteLock();
@@ -93,7 +93,7 @@ public class Server extends Thread {
 	}
 
 	public void distributeMessage(int sendingPlayer, String incoming) {
-		for (int i = 1; i <= maxPlayers; i++) {
+		for (int i = 1; i < playerCount; i++) {
 			if (!(i == sendingPlayer)) {
 				try {
 					System.out.println(incoming);
@@ -142,8 +142,8 @@ public class Server extends Thread {
 		private void initializePlayerSlot() {
 			try {
 				writeLock.lock();
-				os.writeUTF("Welcome Player " + playerIndex);
-				os.writeUTF("Map: " + getMapName());
+				os.writeUTF("Welcome Player:" + playerIndex);
+				os.writeUTF("Map:" + getMapName());
 				writeLock.unlock();
 			} catch (IOException e) {
 				e.printStackTrace();

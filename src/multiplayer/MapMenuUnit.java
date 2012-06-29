@@ -8,6 +8,7 @@ import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.geom.Rectangle2D;
+import java.io.IOException;
 
 import javax.swing.ImageIcon;
 
@@ -15,6 +16,7 @@ import main.GameConstants;
 import main.GraphicalGameUnit;
 import main.UnitNavigator;
 import main.UnitState;
+import map.MapReader;
 import multiplayer.OptionMenuUnit.UnitCreator;
 
 /**
@@ -94,7 +96,7 @@ public class MapMenuUnit extends GraphicalGameUnit {
 						UnitState.LEVEL_MANAGER_UNIT);
 				UnitNavigator.getNavigator().set(UnitState.LEVEL_MANAGER_UNIT);
 			} else {
-				startServer();
+				startServer("MP-Woodwars");
 				UnitNavigator.getNavigator().addGameUnit(
 						new NetworkConnectorUnit("127.0.0.1", port, true),
 						UnitState.TEMPORARY_UNIT);
@@ -109,7 +111,7 @@ public class MapMenuUnit extends GraphicalGameUnit {
 						UnitState.LEVEL_MANAGER_UNIT);
 				UnitNavigator.getNavigator().set(UnitState.LEVEL_MANAGER_UNIT);
 			} else {
-				startServer();
+				startServer("multMap");
 				UnitNavigator.getNavigator().addGameUnit(
 						new NetworkConnectorUnit("127.0.0.1", port, true),
 						UnitState.TEMPORARY_UNIT);
@@ -145,9 +147,14 @@ public class MapMenuUnit extends GraphicalGameUnit {
 		}
 	}
 
-	private void startServer() {
-		// TODO Auto-generated method stub
-
+	private void startServer(String mapName) {
+		MapReader mr = new MapReader(mapName);
+		int maxPlayers = Integer.parseInt(mr.getHeader("playercount"));
+		try {
+			Server server = new Server(maxPlayers, mapName, port);
+		} catch (IOException e) {
+			System.err.println("Failed to install server.");
+		}
 	}
 
 	@Override
