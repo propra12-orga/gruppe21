@@ -96,7 +96,7 @@ public class MapMenuUnit extends GraphicalGameUnit {
 			} else {
 				startServer();
 				UnitNavigator.getNavigator().addGameUnit(
-						new NetworkConnectorUnit("127.0.0.1", port),
+						new NetworkConnectorUnit("127.0.0.1", port, true),
 						UnitState.TEMPORARY_UNIT);
 				UnitNavigator.getNavigator().set(UnitState.TEMPORARY_UNIT);
 			}
@@ -111,7 +111,7 @@ public class MapMenuUnit extends GraphicalGameUnit {
 			} else {
 				startServer();
 				UnitNavigator.getNavigator().addGameUnit(
-						new NetworkConnectorUnit("127.0.0.1", port),
+						new NetworkConnectorUnit("127.0.0.1", port, true),
 						UnitState.TEMPORARY_UNIT);
 				UnitNavigator.getNavigator().set(UnitState.TEMPORARY_UNIT);
 			}
