@@ -21,7 +21,7 @@ import mapobjects.Player;
 import unitTransitions.TransitionUnit;
 
 public class MultiplayerUnit extends GraphicalGameUnit implements
-		multiplayer.ReadFromHost.SocketListener {
+		multiplayer.ReadFromHost.SocketListener, UpgradeListener {
 
 	private Map multiplayerMap;
 	private BufferedImage mapCanvas;
@@ -403,5 +403,10 @@ public class MultiplayerUnit extends GraphicalGameUnit implements
 				(int) (GameConstants.FRAME_SIZE_X - rect.getWidth()) / 2,
 				(int) (GameConstants.FRAME_SIZE_Y - rect.getHeight()) / 2);
 		return msg;
+	}
+
+	@Override
+	public void upgradeSpawned(int x, int y, String type) {
+		writeToHost("Upgrade:" + type + "/" + x + "/" + y);
 	}
 }

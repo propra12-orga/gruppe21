@@ -64,4 +64,20 @@ public class Upgrade extends MapObject {
 			cmg.fillRect(posX + 10, posY + 10, 30, 30);
 		}
 	}
+
+	public String getType() {
+		if (color.equals(Color.pink)) {
+			return "BombPlus";
+		} else if (color.equals(Color.blue)) {
+			return "BombRange";
+		} else if (color.equals(Color.cyan)) {
+			return "Shield";
+		} else if (color.equals(Color.magenta)) {
+			return "BombRemote";
+		} else if (color.equals(Color.lightGray)) {
+			return "Bulletproof";
+		} else {
+			return "BombPlus";
+		}
+	}
 }

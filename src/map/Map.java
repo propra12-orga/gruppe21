@@ -13,6 +13,8 @@ import mapobjects.Enemy;
 import mapobjects.Exit;
 import mapobjects.MapObject;
 import mapobjects.Player;
+import mapobjects.Upgrade;
+import multiplayer.UpgradeListener;
 
 /**
  * the map class holds all objects of the map in a vector (MapObjects) the map
@@ -41,6 +43,7 @@ public class Map {
 	private boolean exitActivated = false;
 	private int upgradeCounter;
 	private int maxUpgrades;
+	private UpgradeListener listener;
 
 	/**
 	 * constructor
@@ -306,4 +309,19 @@ public class Map {
 		return (upgradeCounter == maxUpgrades);
 	}
 
+	public void setUpgradeListener(UpgradeListener listener) {
+		this.listener = listener;
+	}
+
+	public void addUpgrade(Upgrade upgrade) {
+		getMapObjects().get(1).add(upgrade);
+		incrementUpgradeCounter();
+		if (listener != null)
+			listener.upgradeSpawned(upgrade.getPosX(), upgrade.getPosY(),
+					upgrade.getType());
+	}
+
+	public void setMaxUpgrades(int maxUpgrades) {
+		this.maxUpgrades = maxUpgrades;
+	}
 }

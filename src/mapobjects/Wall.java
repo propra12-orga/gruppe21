@@ -96,8 +96,7 @@ public class Wall extends MapObject {
 			Upgrade upgrade = new Upgrade(getPosX(), getPosY(), true, true,
 					true, "upgrades", map.getGraphics(), upgradeColor);
 			upgrade.setMap(getMap());
-			map.getMapObjects().get(1).add(upgrade);
-			map.incrementUpgradeCounter();
+			map.addUpgrade(upgrade);
 		}
 	}
 
