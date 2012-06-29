@@ -438,8 +438,9 @@ public class MultiplayerUnit extends GraphicalGameUnit {
 		return msg;
 	}
 
-	public class ReadFromHost extends Thread implements Runnable {
+	public static class ReadFromHost extends Thread implements Runnable {
 
+		private SocketListener listener;
 		private Socket toHostSocket;
 		private DataOutputStream os;
 		private DataInputStream is;
@@ -458,7 +459,7 @@ public class MultiplayerUnit extends GraphicalGameUnit {
 				try {
 					incomingMsg = is.readUTF();
 					System.out.println(incomingMsg);
-					analizeIncoming(incomingMsg);
+					listener.analizeIncoming(incomingMsg);
 				} catch (IOException e) {
 					System.out.println("Connetion to host lost!");
 					try {
@@ -470,5 +471,9 @@ public class MultiplayerUnit extends GraphicalGameUnit {
 				}
 			}
 		}
+	}
+
+	public interface SocketListener {
+		public void analizeIncoming(String input);
 	}
 }

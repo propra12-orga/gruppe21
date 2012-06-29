@@ -56,14 +56,17 @@ public class MapMenuUnit extends GraphicalGameUnit {
 	private Point selectorGhost = new Point(frameXPosition2, startYPos
 			- (map1.getHeight(null) / 2) - 3);
 
-	boolean local = true;
+	private int port;
+	private boolean local = true;
 
-	public MapMenuUnit() {
+	public MapMenuUnit(int port) {
+		this.local = false;
+		this.port = port;
 		initComponent();
 	}
 
-	public MapMenuUnit(boolean local) {
-		this.local = local;
+	public MapMenuUnit() {
+		this.local = true;
 		initComponent();
 	}
 
@@ -87,23 +90,31 @@ public class MapMenuUnit extends GraphicalGameUnit {
 			GraphicalGameUnit levelmanager;
 			if (local) {
 				levelmanager = new LocalMultiplayerUnit("MP-Woodwars");
+				UnitNavigator.getNavigator().addGameUnit(levelmanager,
+						UnitState.LEVEL_MANAGER_UNIT);
+				UnitNavigator.getNavigator().set(UnitState.LEVEL_MANAGER_UNIT);
 			} else {
-				levelmanager = new MultiplayerUnit("MP-Woodwars");
+				startServer();
+				UnitNavigator.getNavigator().addGameUnit(
+						new NetworkConnectorUnit("127.0.0.1", port),
+						UnitState.TEMPORARY_UNIT);
+				UnitNavigator.getNavigator().set(UnitState.TEMPORARY_UNIT);
 			}
-			UnitNavigator.getNavigator().addGameUnit(levelmanager,
-					UnitState.LEVEL_MANAGER_UNIT);
-			UnitNavigator.getNavigator().set(UnitState.LEVEL_MANAGER_UNIT);
 		}
 		if (key == KeyEvent.VK_ENTER && frameXPosition1 == frameXPosition2) {
 			GraphicalGameUnit levelmanager;
 			if (local) {
 				levelmanager = new LocalMultiplayerUnit("multMap");
+				UnitNavigator.getNavigator().addGameUnit(levelmanager,
+						UnitState.LEVEL_MANAGER_UNIT);
+				UnitNavigator.getNavigator().set(UnitState.LEVEL_MANAGER_UNIT);
 			} else {
-				levelmanager = new MultiplayerUnit("multMap");
+				startServer();
+				UnitNavigator.getNavigator().addGameUnit(
+						new NetworkConnectorUnit("127.0.0.1", port),
+						UnitState.TEMPORARY_UNIT);
+				UnitNavigator.getNavigator().set(UnitState.TEMPORARY_UNIT);
 			}
-			UnitNavigator.getNavigator().addGameUnit(levelmanager,
-					UnitState.LEVEL_MANAGER_UNIT);
-			UnitNavigator.getNavigator().set(UnitState.LEVEL_MANAGER_UNIT);
 		}
 		if (key == KeyEvent.VK_ENTER && frameXPosition1 == frameOutOfRange) {
 			UnitNavigator.getNavigator().addGameUnit(
@@ -132,6 +143,11 @@ public class MapMenuUnit extends GraphicalGameUnit {
 			frameXPosition1 = frameOutOfRange;
 			currentImage = activeBack;
 		}
+	}
+
+	private void startServer() {
+		// TODO Auto-generated method stub
+
 	}
 
 	@Override
@@ -185,16 +201,7 @@ public class MapMenuUnit extends GraphicalGameUnit {
 
 		@Override
 		public GraphicalGameUnit createUnit() {
-			return new MapMenuUnit(true);
-		}
-
-	}
-
-	public static class NetworkMapMenuCreator implements UnitCreator {
-
-		@Override
-		public GraphicalGameUnit createUnit() {
-			return new MapMenuUnit(false);
+			return new MapMenuUnit();
 		}
 
 	}

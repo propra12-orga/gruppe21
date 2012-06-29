@@ -19,6 +19,7 @@ public class Server extends Thread {
 	// Player Management
 	private int maxPlayers;
 	private int playerCount = 1;
+	private String selectedMap;
 	// Socket Management
 	private ToClientSocket[] toClientSockets;
 	// Console Input
@@ -26,8 +27,10 @@ public class Server extends Thread {
 			"UTF-8");
 
 	// Constructor
-	public Server(int maxPlayers, int port) throws IOException {
+	public Server(int maxPlayers, String selectedMap, int port)
+			throws IOException {
 		this.maxPlayers = maxPlayers;
+		this.selectedMap = selectedMap;
 		toClientSockets = new ToClientSocket[maxPlayers + 1];
 		hostSocket = new ServerSocket(port);
 		/* hostSocket.setSoTimeout(10000); */// not sure if needed
@@ -36,6 +39,10 @@ public class Server extends Thread {
 
 	public int getPort() {
 		return hostSocket.getLocalPort();
+	}
+
+	public String getMapName() {
+		return selectedMap;
 	}
 
 	@Override
@@ -136,6 +143,7 @@ public class Server extends Thread {
 			try {
 				writeLock.lock();
 				os.writeUTF("Welcome Player " + playerIndex);
+				os.writeUTF("Map: " + getMapName());
 				writeLock.unlock();
 			} catch (IOException e) {
 				e.printStackTrace();

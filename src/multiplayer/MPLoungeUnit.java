@@ -8,19 +8,25 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.geom.Rectangle2D;
+import java.io.IOException;
+import java.net.Socket;
 
 import main.GameConstants;
 import main.GraphicalGameUnit;
+import main.UnitNavigator;
+import main.UnitState;
+import map.MapReader;
+import multiplayer.MultiplayerUnit.SocketListener;
 
 /**
- * When starting a new multiplayer game, all players meet in a MPLoungeUnit
+ * When creating a new multiplayer game, all players meet in a MPLoungeUnit
  * before the game can be started by the host. Every player has to set his
  * status to 'ready' in order to start the game.
  * 
  * @author tohei
  * 
  */
-public class MPLoungeUnit extends GraphicalGameUnit {
+public class MPLoungeUnit extends GraphicalGameUnit implements SocketListener {
 
 	private GameGraphic background;
 	private GameGraphic[] playerStatusImages;
@@ -45,6 +51,7 @@ public class MPLoungeUnit extends GraphicalGameUnit {
 	private static final int PLAYER_READY = 2;
 
 	GameGraphic selectedMap;
+	private String mapName;
 
 	GameGraphic backActive;
 	GameGraphic backInactive;
@@ -60,14 +67,22 @@ public class MPLoungeUnit extends GraphicalGameUnit {
 	private int playerNumber;
 	boolean asHost;
 
-	public MPLoungeUnit(int numOfPlayers, GameGraphic selectedMap,
-			boolean asHost, int playerNumber) {
-		this.asHost = asHost;
-		this.selectedMap = selectedMap;
-		this.playerNumber = playerNumber - 1;
+	private Socket clientSocket;
+	private Server gameServer;
 
+	public MPLoungeUnit(Socket clientSocket, int playerNumber, String mapName,
+			boolean asHost) {
+		this.asHost = asHost;
+		this.clientSocket = clientSocket;
+		this.playerNumber = playerNumber;
+		this.mapName = mapName;
+		this.asHost = false;
+		MapReader mr = new MapReader(mapName);
+		this.selectedMap = new GameGraphic(GameConstants.MENU_IMAGES_DIR
+				+ mr.getHeader("minimap"));
+		int numOfPlayers = Integer.parseInt(mr.getHeader("playercount"));
 		playerStatus = new int[numOfPlayers];
-		playerStatus[0] = PLAYER_CONNECTED;
+		playerStatus[playerNumber] = PLAYER_CONNECTED;
 		playerStatusImages = new GameGraphic[3];
 		initComponent();
 	}
@@ -96,6 +111,17 @@ public class MPLoungeUnit extends GraphicalGameUnit {
 				playerStatus[playerNumber] = PLAYER_CONNECTED;
 			} else {
 				playerStatus[playerNumber] = PLAYER_READY;
+			}
+		}
+		if (key == KeyEvent.VK_ESCAPE) {
+			try {
+				clientSocket.close();
+				UnitNavigator.getNavigator().set(UnitState.BASE_MENU_UNIT);
+				System.out.println("BASEMENU");
+			} catch (IOException e1) {
+				System.out
+						.println("An error occured while trying to close the client socket!");
+				e1.printStackTrace();
 			}
 		}
 
@@ -217,6 +243,12 @@ public class MPLoungeUnit extends GraphicalGameUnit {
 			tmpButton = backActive;
 		}
 		g2d.drawImage(tmpButton.getImage(), tmpX, buttonStartY, null);
+
+	}
+
+	@Override
+	public void analizeIncoming(String input) {
+		// TODO Auto-generated method stub
 
 	}
 }

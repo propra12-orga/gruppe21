@@ -5,6 +5,8 @@
 		<sizex>1000</sizex>
 		<sizey>750</sizey>
 		<maxUpgrades>0</maxUpgrades>
+		<minimap>WoodwarsMenuPic.png</minimap>
+		<playercount>2</playercount>
 	</header>
 	<mapobjects>
 		<level>
