@@ -43,8 +43,7 @@ public class Upgrade extends MapObject {
 				Color.darkGray)) {
 			animation.animate();
 		} else {
-			map.synchronizePickup(this); // nicht nötig... noch zu entfernen
-			map.UpgradePickUpEvent(this);
+			map.synchronizePickup(this);
 		}
 	}
 

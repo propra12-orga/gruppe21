@@ -78,7 +78,7 @@ public class Server extends Thread {
 		}
 	}
 
-	public void distributeMessage(String incoming) {
+	private void distributeMessage(String incoming) {
 		for (int i = 1; i < playerCount; i++) {
 			try {
 				System.out.println(incoming);
@@ -92,7 +92,7 @@ public class Server extends Thread {
 		}
 	}
 
-	public void distributeMessage(int sendingPlayer, String incoming) {
+	private void distributeMessage(int sendingPlayer, String incoming) {
 		for (int i = 1; i < playerCount; i++) {
 			if (!(i == sendingPlayer)) {
 				try {
@@ -108,6 +108,18 @@ public class Server extends Thread {
 		}
 	}
 
+	public void checkRelevance(int sendingPlayer, String incoming) {
+		if (incoming.startsWith("!"))
+			handleRelevantMsg(sendingPlayer, incoming);
+		else
+			distributeMessage(sendingPlayer, incoming);
+	}
+
+	private void handleRelevantMsg(int sendingPlayer, String incoming) {
+		if (incoming.indexOf("Upgrade:") != -1)
+			distributeMessage(incoming);
+	}
+
 	// evtl stoppe den Thread, nachdem das Spiel startet
 
 	public class ToClientSocket extends Thread implements Runnable {
@@ -116,6 +128,7 @@ public class Server extends Thread {
 		private int playerIndex;
 		private Socket clientSocket;
 		private Lock writeLock = new ReentrantLock();
+		private boolean hasRemoved = true;
 
 		// Constructor
 		public ToClientSocket(int playerIndex, Socket clientSocket) {
@@ -139,10 +152,18 @@ public class Server extends Thread {
 			return writeLock;
 		}
 
+		public boolean isRemoved() {
+			return hasRemoved;
+		}
+
+		public void setRemoved(boolean b) {
+			hasRemoved = b;
+		}
+
 		private void initializePlayerSlot() {
 			try {
 				writeLock.lock();
-				os.writeUTF("Welcome Player:" + playerIndex);
+				os.writeUTF("Welcome Player " + playerIndex);
 				os.writeUTF("Map:" + getMapName());
 				writeLock.unlock();
 			} catch (IOException e) {
@@ -154,7 +175,7 @@ public class Server extends Thread {
 			while (true) {
 				try {
 					String incoming = is.readUTF();
-					distributeMessage(playerIndex, incoming);
+					checkRelevance(playerIndex, incoming);
 				} catch (IOException e) {
 					e.printStackTrace();
 					try {

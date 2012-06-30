@@ -326,15 +326,17 @@ public class Map {
 	public void synchronizePickup(Upgrade upgrade) {
 		if (listener != null)
 			listener.upgradePickedUp(getMapObjects().get(1).indexOf(upgrade));
+		else
+			UpgradePickUpEvent(upgrade);
+	}
+
+	private void UpgradePickUpEvent(Upgrade upgrade) {
+		if (cmListener != null)
+			cmListener.giveUpgrade(upgrade);
 	}
 
 	public void setCMListener(CMListener cmListener) {
 		this.cmListener = cmListener;
-	}
-
-	public void UpgradePickUpEvent(Upgrade upgrade) {
-		if (cmListener != null)
-			cmListener.giveUpgrade(upgrade);
 	}
 
 	public void setMaxUpgrades(int maxUpgrades) {

@@ -348,7 +348,6 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 				currentMap.getHeight(), BufferedImage.TYPE_INT_ARGB);
 		Player tmpPlayer = player;
 		player = currentMap.getMapPlayer();
-		currentMap.setCMListener(player);
 		if (tmpPlayer != null && tmpPlayer.isAlive()) {
 			player.restorePlayerToData(tmpPlayer.getPlayerData());
 		}

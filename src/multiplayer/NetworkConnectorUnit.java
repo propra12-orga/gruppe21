@@ -69,8 +69,7 @@ public class NetworkConnectorUnit extends GraphicalGameUnit implements
 			return;
 		}
 		if (incomingMsg.contains("Welcome Player")) {
-			String[] parts = incomingMsg.split(":");
-			playerIndex = Integer.parseInt(parts[1]);
+			playerIndex = Integer.parseInt(incomingMsg.substring(15, 16));
 			gotMapName = true;
 			return;
 		}

@@ -18,6 +18,7 @@ import main.UnitNavigator;
 import main.UnitState;
 import map.Map;
 import mapobjects.Player;
+import mapobjects.Upgrade;
 import unitTransitions.TransitionUnit;
 
 public class MultiplayerUnit extends GraphicalGameUnit implements
@@ -167,8 +168,10 @@ public class MultiplayerUnit extends GraphicalGameUnit implements
 
 		if (key == KeyEvent.VK_SPACE) {
 			if (!(myPlayer.getCurrentBombs() == myPlayer.getMaxBombs())) {
+				int tmpPosX = myPlayer.getPosX();
+				int tmpPosY = myPlayer.getPosY();
 				writeToHost("Player:" + myPlayerIndex + ";" + "Bomb" + ";"
-						+ "Pressed");
+						+ "Pressed" + "/" + tmpPosX + "/" + tmpPosY);
 				myPlayer.plantBomb(multiplayerMap.getCollisionMap());
 			}
 		}
@@ -221,6 +224,17 @@ public class MultiplayerUnit extends GraphicalGameUnit implements
 		 */
 		multiplayerMap = new Map(mapName);
 		myPlayer = multiplayerMap.getPlayerByNumber(myPlayerIndex);
+		for (int i = 0; i < multiplayerMap.getPlayers().size() - 1; i++) {
+			if (!(i + 1 == myPlayerIndex))
+				multiplayerMap.getPlayerByNumber(i + 1).makeRemote();
+		}
+		/*
+		 * initializing the upgrade system
+		 */
+		multiplayerMap.setCMListener(myPlayer);
+		multiplayerMap.setUpgradeListener(this);
+		if (myPlayerIndex != 1)
+			multiplayerMap.setMaxUpgrades(0);
 		/*
 		 * calculate mapCanvas position on panel
 		 */
@@ -291,13 +305,9 @@ public class MultiplayerUnit extends GraphicalGameUnit implements
 			return;
 		}
 		if (incomingMsg.indexOf("Welcome Player ") != -1) {
-			myPlayerIndex = Integer.parseInt(incomingMsg.substring(15, 16));
-			myPlayer = multiplayerMap.getPlayerByNumber(myPlayerIndex);
+			// myPlayerIndex = Integer.parseInt(incomingMsg.substring(15, 16));
+			// myPlayer = multiplayerMap.getPlayerByNumber(myPlayerIndex);
 			// make all non self controlled players invulnerable
-			for (int i = 1; i < 3; i++) {
-				if (!(i == myPlayerIndex))
-					multiplayerMap.getPlayerByNumber(i).makeRemote();
-			}
 			return;
 		}
 		if (incomingMsg.indexOf("Start!") != -1) {
@@ -348,6 +358,8 @@ public class MultiplayerUnit extends GraphicalGameUnit implements
 			return;
 		}
 		if (incoming.indexOf("Bomb") != -1) {
+			tmpPlayer.setPosX(Integer.parseInt(parts[1]));
+			tmpPlayer.setPosY(Integer.parseInt(parts[2]));
 			tmpPlayer.plantBomb(multiplayerMap.getCollisionMap());
 		}
 	}
@@ -382,10 +394,22 @@ public class MultiplayerUnit extends GraphicalGameUnit implements
 
 	private void handleUpgradeEvents(String incoming) {
 		if (incoming.indexOf("PickUp") != -1) {
-			// noch zu behandeln
+			String[] parts = incoming.split(";");
+			int tmpPlayerIndex = Integer.parseInt(parts[0].substring(6));
+			int tmpPosAtList = Integer.parseInt(parts[2]);
+			Upgrade tmpUpgrade = (Upgrade) multiplayerMap.getMapObjects()
+					.get(1).get(tmpPosAtList);
+			multiplayerMap.getPlayerByNumber(tmpPlayerIndex).giveUpgrade(
+					tmpUpgrade);
+			tmpUpgrade.setDestroyed(true);
 		} else {
-			// rufe den upgrade constructor auf (wieso habe ich keine referenz
-			// auf die mappa?)
+			System.out.println("test");
+			String[] parts = incoming.split("/");
+			Color tmpColor = Color.getColor(parts[0]); // getColor oder decode?
+			int tmpPosX = Integer.parseInt(parts[1]);
+			int tmpPosY = Integer.parseInt(parts[2]);
+			multiplayerMap.addUpgrade(new Upgrade(tmpPosX, tmpPosY, true, true,
+					true, "upgrades", multiplayerMap.getGraphics(), tmpColor));
 		}
 	}
 
@@ -422,11 +446,13 @@ public class MultiplayerUnit extends GraphicalGameUnit implements
 	@Override
 	public void upgradeSpawned(int x, int y, Color color) {
 		writeToHost("Upgrade:" + color + "/" + x + "/" + y);
+		System.out.println("Upgrade:" + color + "/" + x + "/" + y);
 	}
 
 	@Override
 	public void upgradePickedUp(int PosAtList) {
-		writeToHost("Upgrade:" + "PickUp" + PosAtList);
+		writeToHost("!Upgrade:" + "Player" + myPlayerIndex + ";" + "PickUp"
+				+ ";" + PosAtList);
 
 	}
 }

@@ -4,7 +4,7 @@
 	    <mapname>MP Wood Wars</mapname>
 		<sizex>1000</sizex>
 		<sizey>750</sizey>
-		<maxUpgrades>0</maxUpgrades>
+		<maxUpgrades>100</maxUpgrades>
 		<minimap>WoodwarsMenuPic.png</minimap>
 		<playercount>2</playercount>
 	</header>
