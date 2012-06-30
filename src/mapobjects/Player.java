@@ -81,7 +81,6 @@ public class Player extends MoveableObject implements CMListener {
 			ImageLoader gr) {
 		super(x, y, v, d, c, p, gr);
 		alive = true;
-		map.setCMListener(this);
 	}
 
 	// TODO UseWeapon or plantBomB,ChangeWeapon
@@ -381,67 +380,6 @@ public class Player extends MoveableObject implements CMListener {
 		}
 	}
 
-	/**
-	 * Checks for collision with Upgrades which are on the map. Changes the
-	 * corresponding attribute or activates the special effect if there is a
-	 * collision.
-	 */
-	private void checkUpgradeCollision(BufferedImage cm) {
-		if (simpleHasColl(posX, posY, cm, Color.pink) && !maxBombs_used) {
-			if (maxbombs < 4) {
-				maxbombs++;
-				maxBombs_used = true;
-				System.out.printf("maxbombs: %d\n", maxbombs);
-			}
-		}
-		if (simpleHasColl(posX, posY, cm, Color.blue) && !bombRadius_used) {
-			if (bombradius < 3) {
-				bombradius++;
-				bombRadius_used = true;
-				System.out.printf("Radius: %d\n", bombradius);
-			}
-		}
-		if (simpleHasColl(posX, posY, cm, Color.cyan)) {
-			if (!shieldEqu) {
-				shieldEqu = true;
-				System.out.println("Shield equipped\n");
-			}
-		}
-		if (simpleHasColl(posX, posY, cm, Color.magenta)) {
-			bombRemote = true;
-			System.out.println("remoteBomb");
-		}
-		if (simpleHasColl(posX, posY, cm, Color.lightGray)) {
-			if (!remotePlayer) {
-				if (!immortal) {
-					immortal = true;
-					shieldProtection = false;
-					animation.setCurrentAnimation("playerDown_immortal");
-					immortalStartTime = System.nanoTime();
-					System.out.println("You are immortal for 5 secs");
-				}
-			} else if (!remoteImmortal) {
-				remoteImmortal = true;
-				shieldProtection = false;
-				animation.setCurrentAnimation("playerDown_immortal");
-				immortalStartTime = System.nanoTime();
-				System.out.println("You are immortal for 5 secs");
-			}
-		}
-
-		if (maxBombs_used) {
-			if (!simpleHasColl(posX, posY, cm, Color.pink)) {
-				maxBombs_used = false;
-			}
-		}
-
-		if (bombRadius_used) {
-			if (!simpleHasColl(posX, posY, cm, Color.blue)) {
-				bombRadius_used = false;
-			}
-		}
-	}
-
 	public void activateShield() {
 		if (shieldEqu && !shieldProtection) {
 			shieldProtection = true;
@@ -699,13 +637,8 @@ public class Player extends MoveableObject implements CMListener {
 
 	@Override
 	public void giveUpgrade(Upgrade upgrade) {
-		if ((Math.abs(this.getPosX() - upgrade.getPosX()) < 50)
-				&& (Math.abs(this.getPosY() - upgrade.getPosY()) < 50)) {
-			handleUpgrades(upgrade);
-			upgrade.setDestroyed(true);
-			System.out.println("Upgrade listener test successful");
-		}
-
+		handleUpgrades(upgrade);
+		upgrade.setDestroyed(true);
 	}
 
 }
