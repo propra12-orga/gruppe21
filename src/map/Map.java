@@ -14,6 +14,7 @@ import mapobjects.Exit;
 import mapobjects.MapObject;
 import mapobjects.Player;
 import mapobjects.Upgrade;
+import mapobjects.Upgrade.CMListener;
 import multiplayer.UpgradeListener;
 
 /**
@@ -44,6 +45,7 @@ public class Map {
 	private int upgradeCounter;
 	private int maxUpgrades;
 	private UpgradeListener listener;
+	private CMListener cmListener;
 
 	/**
 	 * constructor
@@ -324,6 +326,15 @@ public class Map {
 	public void synchronizePickup(Upgrade upgrade) {
 		if (listener != null)
 			listener.upgradePickedUp(getMapObjects().get(1).indexOf(upgrade));
+	}
+
+	public void setCMListener(CMListener cmListener) {
+		this.cmListener = cmListener;
+	}
+
+	public void UpgradePickUpEvent(Upgrade upgrade) {
+		if (cmListener != null)
+			cmListener.giveUpgrade(upgrade);
 	}
 
 	public void setMaxUpgrades(int maxUpgrades) {

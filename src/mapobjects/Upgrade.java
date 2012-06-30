@@ -9,8 +9,6 @@ import java.awt.image.BufferedImage;
 public class Upgrade extends MapObject {
 
 	private Color color;
-	private int counter; // to be sure the player got the upgrade before it
-							// disappears
 
 	public Upgrade(int x, int y, boolean v, boolean d, boolean c, String p,
 			ImageLoader gr, Color col) {
@@ -45,12 +43,8 @@ public class Upgrade extends MapObject {
 				Color.darkGray)) {
 			animation.animate();
 		} else {
-			counter++;
-			map.synchronizePickup(this);
-		}
-
-		if (counter > 3) {
-			setDestroyed(true);
+			map.synchronizePickup(this); // nicht nötig... noch zu entfernen
+			map.UpgradePickUpEvent(this);
 		}
 	}
 
@@ -68,5 +62,9 @@ public class Upgrade extends MapObject {
 
 	public Color getColor() {
 		return color;
+	}
+
+	public interface CMListener {
+		public void giveUpgrade(Upgrade upgrade);
 	}
 }

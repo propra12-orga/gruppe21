@@ -7,13 +7,15 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.Vector;
 
+import mapobjects.Upgrade.CMListener;
+
 /**
  * Player object is the player controlled by the player
  * 
  * @author eik
  * 
  */
-public class Player extends MoveableObject {
+public class Player extends MoveableObject implements CMListener {
 	/**
 	 * player id , for multiplayer
 	 */
@@ -46,7 +48,7 @@ public class Player extends MoveableObject {
 	private boolean shieldProtection = false, immortal = false,
 			remoteImmortal = false;
 	/**
-	 * List of the actual planted bombs
+	 * List of currently planted bombs
 	 */
 	private Vector<Bomb> remoteBombs = new Vector<Bomb>();
 
@@ -79,9 +81,10 @@ public class Player extends MoveableObject {
 			ImageLoader gr) {
 		super(x, y, v, d, c, p, gr);
 		alive = true;
+		map.setCMListener(this);
 	}
 
-	// TODO UseWeapon or LayBomB,ChangeWeapon
+	// TODO UseWeapon or plantBomB,ChangeWeapon
 
 	@Override
 	public void move() {
@@ -365,7 +368,7 @@ public class Player extends MoveableObject {
 		}
 		animation.animate();
 		move();
-		checkUpgradeCollision(cm);
+		// checkUpgradeCollision(cm); wird durch handleUpgrades ersetzt
 	}
 
 	/**
@@ -444,6 +447,57 @@ public class Player extends MoveableObject {
 			shieldProtection = true;
 			animation.setCurrentAnimation("playerDown_bubble");
 			System.out.println("Shield activated");
+		}
+	}
+
+	private void handleUpgrades(Upgrade upgrade) {
+		Color tmpColor = upgrade.getColor();
+		if ((tmpColor == Color.pink) && !maxBombs_used) {
+			if (maxbombs < 4) {
+				maxbombs++;
+				maxBombs_used = true;
+			}
+		}
+		if ((tmpColor == Color.blue) && !bombRadius_used) {
+			if (bombradius < 3) {
+				bombradius++;
+				bombRadius_used = true;
+			}
+		}
+		if (tmpColor == Color.cyan) {
+			if (!shieldEqu) {
+				shieldEqu = true;
+			}
+		}
+		if (tmpColor == Color.magenta) {
+			bombRemote = true;
+		}
+		if (tmpColor == Color.lightGray) {
+			if (!remotePlayer) {
+				if (!immortal) {
+					immortal = true;
+					shieldProtection = false;
+					animation.setCurrentAnimation("playerDown_immortal");
+					immortalStartTime = System.nanoTime();
+				}
+			} else if (!remoteImmortal) {
+				remoteImmortal = true;
+				shieldProtection = false;
+				animation.setCurrentAnimation("playerDown_immortal");
+				immortalStartTime = System.nanoTime();
+			}
+		}
+
+		if (maxBombs_used) {
+			if (tmpColor == Color.pink) {
+				maxBombs_used = false;
+			}
+		}
+
+		if (bombRadius_used) {
+			if (tmpColor == Color.blue) {
+				bombRadius_used = false;
+			}
 		}
 	}
 
@@ -641,6 +695,17 @@ public class Player extends MoveableObject {
 			sb.append(";ps=").append(speed); // TODO Shield
 			return sb.toString();
 		}
+	}
+
+	@Override
+	public void giveUpgrade(Upgrade upgrade) {
+		if ((Math.abs(this.getPosX() - upgrade.getPosX()) < 50)
+				&& (Math.abs(this.getPosY() - upgrade.getPosY()) < 50)) {
+			handleUpgrades(upgrade);
+			upgrade.setDestroyed(true);
+			System.out.println("Upgrade listener test successful");
+		}
+
 	}
 
 }
