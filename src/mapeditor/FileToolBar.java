@@ -39,7 +39,7 @@ public class FileToolBar extends JPanel implements MouseListener {
 		this.setSize(200, 50);
 		this.setDoubleBuffered(true);
 		setFocusable(true);
-		addMouseListener(this);
+
 		buttonSize = bSize;
 		padding = padd;
 
@@ -49,6 +49,8 @@ public class FileToolBar extends JPanel implements MouseListener {
 				"saveFile"));
 		buttonList.add(openButton = new Button(bSize, bSize, "open.png",
 				"openFile"));
+
+		addMouseListener(this);
 	}
 
 	@Override
