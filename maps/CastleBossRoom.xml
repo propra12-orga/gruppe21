@@ -2058,6 +2058,86 @@
 				<posx>550</posx>
 				<posy>0</posy>
 			</tile>
+			<tile type="animatedfloor" animated="true">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<animationset>Feuerschale</animationset>
+				<posx>350</posx>
+				<posy>550</posy>
+			</tile>
+			<tile type="animatedfloor" animated="true">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<animationset>Feuerschale</animationset>
+				<posx>500</posx>
+				<posy>550</posy>
+			</tile>
+			<tile type="animatedfloor" animated="true">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<animationset>Feuerschale</animationset>
+				<posx>350</posx>
+				<posy>450</posy>
+			</tile>
+			<tile type="animatedfloor" animated="true">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<animationset>Feuerschale</animationset>
+				<posx>500</posx>
+				<posy>450</posy>
+			</tile>
+			<tile type="animatedfloor" animated="true">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<animationset>Feuerschale</animationset>
+				<posx>350</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="animatedfloor" animated="true">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<animationset>Feuerschale</animationset>
+				<posx>500</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="animatedfloor" animated="true">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<animationset>Feuerschale</animationset>
+				<posx>350</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="animatedfloor" animated="true">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<animationset>Feuerschale</animationset>
+				<posx>500</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="animatedfloor" animated="true">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<animationset>Feuerschale</animationset>
+				<posx>350</posx>
+				<posy>150</posy>
+			</tile>
+			<tile type="animatedfloor" animated="true">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<animationset>Feuerschale</animationset>
+				<posx>500</posx>
+				<posy>150</posy>
+			</tile>
 		</level>
 		<level>
 		</level>
