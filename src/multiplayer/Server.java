@@ -13,7 +13,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class Server extends Thread {
 
-	public static boolean gamestarted = false;
+	public boolean gamestarted = false;
 	// Host Socket
 	private ServerSocket hostSocket = null;
 	// Player Management
@@ -111,8 +111,16 @@ public class Server extends Thread {
 	public void checkRelevance(int sendingPlayer, String incoming) {
 		if (incoming.startsWith("!"))
 			handleRelevantMsg(sendingPlayer, incoming);
-		else
+		else {
+			if (incoming.contains("starting"))
+				setGameStarted(true);
+
 			distributeMessage(sendingPlayer, incoming);
+		}
+	}
+
+	private void setGameStarted(boolean gamestarted) {
+		this.gamestarted = gamestarted;
 	}
 
 	private void handleRelevantMsg(int sendingPlayer, String incoming) {

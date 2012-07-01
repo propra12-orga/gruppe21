@@ -125,6 +125,13 @@ public class MapMenuUnit extends GraphicalGameUnit {
 			UnitNavigator.getNavigator().set(UnitState.TEMPORARY_UNIT);
 		}
 		if (key == KeyEvent.VK_ESCAPE) {
+			if (local) {
+				OptionMenuUnit.loadLocalNetworkOptionMenu();
+			} else {
+				UnitNavigator.getNavigator().addGameUnit(
+						new IPChooserUnit(true), UnitState.TEMPORARY_UNIT);
+				UnitNavigator.getNavigator().set(UnitState.TEMPORARY_UNIT);
+			}
 			UnitNavigator.getNavigator().set(UnitState.BASE_MENU_UNIT);
 		}
 		if (key == KeyEvent.VK_RIGHT) {

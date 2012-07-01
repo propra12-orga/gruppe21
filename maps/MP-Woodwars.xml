@@ -6,7 +6,7 @@
 		<sizey>750</sizey>
 		<maxUpgrades>100</maxUpgrades>
 		<minimap>WoodwarsMenuPic.png</minimap>
-		<playercount>2</playercount>
+		<playercount>4</playercount>
 	</header>
 	<mapobjects>
 		<level>
@@ -4173,6 +4173,22 @@
 			 	<animationset>MPPlayer2</animationset>
 				<posx>900</posx>
 				<posy>650</posy>
+			</character>
+			<character type="player" animated="true">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<animationset>MPPlayer1</animationset>
+				<posx>50</posx>
+				<posy>650</posy>
+			</character>
+			<character type="player" animated="true">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<animationset>MPPlayer2</animationset>
+				<posx>900</posx>
+				<posy>50</posy>
 			</character>
 					
 		</level>

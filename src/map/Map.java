@@ -15,6 +15,7 @@ import mapobjects.MapObject;
 import mapobjects.Player;
 import mapobjects.Upgrade;
 import mapobjects.Upgrade.CMListener;
+import multiplayer.MPLoungeUnit;
 import multiplayer.UpgradeListener;
 
 /**
@@ -268,6 +269,14 @@ public class Map {
 			return players.get(number - 1);
 		}
 		return null;
+	}
+
+	public void removeUnattendedPlayers(int[] attendingPlayers) {
+		for (int i = 0; i < attendingPlayers.length; i++) {
+			if (attendingPlayers[i] == MPLoungeUnit.PLAYER_UNAVAILABLE) {
+				mapObjects.get(2).remove(players.get(i));
+			}
+		}
 	}
 
 	/**
