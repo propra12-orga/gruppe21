@@ -44,6 +44,7 @@ public class MultiplayerUnit extends GraphicalGameUnit implements
 	private Socket toHostSocket;
 	private boolean asHost;
 
+	private int[] attendingPLayers;
 	/**
 	 * Some win messages one can randomly choose from.
 	 */
@@ -56,9 +57,10 @@ public class MultiplayerUnit extends GraphicalGameUnit implements
 
 	// Constructor
 	public MultiplayerUnit(ReadFromHost fromHost, int myPlayerIndex,
-			String mapName, Socket toHostSocket) {
+			String mapName, Socket toHostSocket, int[] attendingPLayers) {
 		this.toHostSocket = toHostSocket;
 		this.fromHost = fromHost;
+		this.attendingPLayers = attendingPLayers;
 		fromHost.setListener(this);
 		try {
 			os = new DataOutputStream(toHostSocket.getOutputStream());
@@ -223,10 +225,12 @@ public class MultiplayerUnit extends GraphicalGameUnit implements
 		 * load map and players
 		 */
 		multiplayerMap = new Map(mapName);
+		multiplayerMap.removeUnattendedPlayers(attendingPLayers);
 		myPlayer = multiplayerMap.getPlayerByNumber(myPlayerIndex);
-		for (int i = 0; i < multiplayerMap.getPlayers().size() - 1; i++) {
+		for (int i = 0; i < multiplayerMap.getPlayers().size(); i++) {
 			if (!(i + 1 == myPlayerIndex))
 				multiplayerMap.getPlayerByNumber(i + 1).makeRemote();
+
 		}
 		/*
 		 * initializing the upgrade system

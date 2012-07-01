@@ -48,9 +48,9 @@ public class MPLoungeUnit extends GraphicalGameUnit implements
 	private int buttonStartX;
 	private int buttonStartY = 3 * GameConstants.FRAME_SIZE_Y / 4;
 
-	private static final int PLAYER_UNAVAILABLE = 0;
-	private static final int PLAYER_CONNECTED = 1;
-	private static final int PLAYER_READY = 2;
+	public static final int PLAYER_UNAVAILABLE = 0;
+	public static final int PLAYER_CONNECTED = 1;
+	public static final int PLAYER_READY = 2;
 
 	private ReadFromHost fromHost = null;
 	private Socket toHostSocket = null;
@@ -74,8 +74,6 @@ public class MPLoungeUnit extends GraphicalGameUnit implements
 
 	private DataOutputStream os = null;
 	private DataInputStream is = null;
-
-	private Server gameServer;
 
 	public MPLoungeUnit(ReadFromHost fromHost, Socket toHostSocket,
 			int playerNumber, String mapName, boolean asHost) {
@@ -320,7 +318,7 @@ public class MPLoungeUnit extends GraphicalGameUnit implements
 
 	private void startMultiplayer() {
 		MultiplayerUnit mpUnit = new MultiplayerUnit(fromHost,
-				playerNumber + 1, mapName, toHostSocket);
+				playerNumber + 1, mapName, toHostSocket, playerStatus);
 		UnitNavigator.getNavigator().addGameUnit(mpUnit,
 				UnitState.LEVEL_MANAGER_UNIT);
 		UnitNavigator.getNavigator().set(UnitState.LEVEL_MANAGER_UNIT);

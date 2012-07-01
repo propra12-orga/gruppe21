@@ -35,7 +35,7 @@ public class IPChooserUnit extends GraphicalGameUnit {
 	private GameGraphic proceedInactive;
 	private GameGraphic backActive;
 	private GameGraphic backInactive;
-	private String port;
+	private String port = "5555";
 	private String ip;
 	private int elementSpace = 40;
 	private int inputFieldX = GameConstants.FRAME_SIZE_X / 2 - 200;
