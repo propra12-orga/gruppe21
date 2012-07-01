@@ -1,0 +1,7 @@
+<animationset default="skeleton_default.png">
+<animation frames="2" stretch="5" name="enemyDying">skeleton_dying.png</animation>
+<animation frames="2" stretch="20" name="enemyLeft">skeleton_left.png</animation>
+<animation frames="2" stretch="20" name="enemyRight">skeleton_right.png</animation>
+<animation frames="2" stretch="20" name="enemyUp">skeleton_back.png</animation>
+<animation frames="2" stretch="20" name="enemyDown">skeleton_front.png</animation>
+</animationset>

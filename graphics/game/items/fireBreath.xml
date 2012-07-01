@@ -1,0 +1,7 @@
+<animationset default="flame_right.png">
+<animation frames="1" stretch="1" name="enemyDying">fireSpitExplosion.png</animation>
+<animation frames="1" stretch="1" name="enemyLeft">flame_left.png</animation>
+<animation frames="1" stretch="1" name="enemyRight">flame_right.png</animation>
+<animation frames="1" stretch="1" name="enemyUp">flame_up.png</animation>
+<animation frames="1" stretch="1" name="enemyDown">flame_down.png</animation>
+</animationset>

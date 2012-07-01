@@ -1247,14 +1247,6 @@
 				<collision>false</collision>
 				<destroyable>false</destroyable>
 				<image rotation="0">Kellerboden3.png</image>
-				<posx>50</posx>
-				<posy>350</posy>
-			</tile>
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Kellerboden3.png</image>
 				<posx>100</posx>
 				<posy>350</posy>
 			</tile>
@@ -1360,14 +1352,6 @@
 				<destroyable>false</destroyable>
 				<image rotation="0">Kellerboden3.png</image>
 				<posx>750</posx>
-				<posy>350</posy>
-			</tile>
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Kellerboden3.png</image>
-				<posx>800</posx>
 				<posy>350</posy>
 			</tile>
 			<tile type="floor" animated="false">
@@ -2058,86 +2042,183 @@
 				<posx>550</posx>
 				<posy>0</posy>
 			</tile>
-			<tile type="animatedfloor" animated="true">
+			<tile type="wall" animated="false">
 				<visible>true</visible>
 				<collision>true</collision>
 				<destroyable>false</destroyable>
-				<animationset>Feuerschale</animationset>
-				<posx>350</posx>
-				<posy>550</posy>
-			</tile>
-			<tile type="animatedfloor" animated="true">
-				<visible>true</visible>
-				<collision>true</collision>
-				<destroyable>false</destroyable>
-				<animationset>Feuerschale</animationset>
-				<posx>500</posx>
-				<posy>550</posy>
-			</tile>
-			<tile type="animatedfloor" animated="true">
-				<visible>true</visible>
-				<collision>true</collision>
-				<destroyable>false</destroyable>
-				<animationset>Feuerschale</animationset>
+				<image rotation="0">FeuerschaleLeer.png</image>
 				<posx>350</posx>
 				<posy>450</posy>
 			</tile>
-			<tile type="animatedfloor" animated="true">
+			<tile type="wall" animated="false">
 				<visible>true</visible>
 				<collision>true</collision>
 				<destroyable>false</destroyable>
-				<animationset>Feuerschale</animationset>
+				<image rotation="0">FeuerschaleLeer.png</image>
 				<posx>500</posx>
 				<posy>450</posy>
 			</tile>
-			<tile type="animatedfloor" animated="true">
+			<tile type="wall" animated="false">
 				<visible>true</visible>
 				<collision>true</collision>
 				<destroyable>false</destroyable>
-				<animationset>Feuerschale</animationset>
+				<image rotation="0">FeuerschaleLeer.png</image>
 				<posx>350</posx>
 				<posy>350</posy>
 			</tile>
-			<tile type="animatedfloor" animated="true">
+			<tile type="wall" animated="false">
 				<visible>true</visible>
 				<collision>true</collision>
 				<destroyable>false</destroyable>
-				<animationset>Feuerschale</animationset>
+				<image rotation="0">FeuerschaleLeer.png</image>
 				<posx>500</posx>
 				<posy>350</posy>
 			</tile>
-			<tile type="animatedfloor" animated="true">
+			<tile type="wall" animated="false">
 				<visible>true</visible>
 				<collision>true</collision>
 				<destroyable>false</destroyable>
-				<animationset>Feuerschale</animationset>
+				<image rotation="0">FeuerschaleLeer.png</image>
 				<posx>350</posx>
 				<posy>250</posy>
 			</tile>
-			<tile type="animatedfloor" animated="true">
+			<tile type="wall" animated="false">
 				<visible>true</visible>
 				<collision>true</collision>
 				<destroyable>false</destroyable>
-				<animationset>Feuerschale</animationset>
+				<image rotation="0">FeuerschaleLeer.png</image>
 				<posx>500</posx>
 				<posy>250</posy>
 			</tile>
-			<tile type="animatedfloor" animated="true">
+			<tile type="wall" animated="false">
 				<visible>true</visible>
 				<collision>true</collision>
 				<destroyable>false</destroyable>
-				<animationset>Feuerschale</animationset>
+				<image rotation="0">FeuerschaleLeer.png</image>
 				<posx>350</posx>
 				<posy>150</posy>
 			</tile>
-			<tile type="animatedfloor" animated="true">
+			<tile type="wall" animated="false">
 				<visible>true</visible>
 				<collision>true</collision>
 				<destroyable>false</destroyable>
-				<animationset>Feuerschale</animationset>
+				<image rotation="0">FeuerschaleLeer.png</image>
 				<posx>500</posx>
 				<posy>150</posy>
 			</tile>
+			<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">placeholder_undestructible.png</image>
+				<posx>50</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">placeholder_undestructible.png</image>
+				<posx>800</posx>
+				<posy>350</posy>
+			</tile>
+				<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">placeholder_undestructible.png</image>
+				<posx>200</posx>
+				<posy>600</posy>
+			</tile>
+				<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">placeholder_undestructible.png</image>
+				<posx>650</posx>
+				<posy>600</posy>
+			</tile>
+				<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">placeholder_undestructible.png</image>
+				<posx>100</posx>
+				<posy>150</posy>
+			</tile>
+				<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">placeholder_undestructible.png</image>
+				<posx>750</posx>
+				<posy>150</posy>
+			</tile>
+			<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">placeholder_undestructible.png</image>
+				<posx>250</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">placeholder_undestructible.png</image>
+				<posx>600</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>true</destroyable>
+				<image rotation="0">placeholder_destructible.png</image>
+				<posx>50</posx>
+				<posy>150</posy>
+			</tile>
+			<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>true</destroyable>
+				<image rotation="0">placeholder_destructible.png</image>
+				<posx>150</posx>
+				<posy>150</posy>
+			</tile>
+				<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>true</destroyable>
+				<image rotation="0">placeholder_destructible.png</image>
+				<posx>700</posx>
+				<posy>150</posy>
+			</tile>
+				<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>true</destroyable>
+				<image rotation="0">placeholder_destructible.png</image>
+				<posx>800</posx>
+				<posy>150</posy>
+			</tile>
+				<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>true</destroyable>
+				<image rotation="0">placeholder_destructible.png</image>
+				<posx>50</posx>
+				<posy>600</posy>
+			</tile>
+				<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>true</destroyable>
+				<image rotation="0">placeholder_destructible.png</image>
+				<posx>800</posx>
+				<posy>600</posy>
+			</tile>
+			
 		</level>
 		<level>
 		</level>
@@ -2150,18 +2231,32 @@
 				<posx>400</posx>
 				<posy>650</posy>
 			</character>
-			</level>						
+		</level>						
 		<level>
+			<character type="boss" animated="true">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				 <animationset>boss</animationset>
+				<posx>425</posx>
+				<posy>75</posy>
+			</character>
 		</level>
 		<level>
 		</level>
 	</mapobjects>	
 
 	<items>
-		<animationset>simplebomb</animationset>
 		<animationset>upgrades</animationset>
+		<animationset>simplebomb</animationset>
+		<animationset>aoeFlames</animationset>
 		<animationset>skulls</animationset>
+		<animationset>fireBreath</animationset>
+		<animationset>fireBowls</animationset>
+		<animationset>skeletons</animationset>
 		<animationset>slime</animationset>
+		<animationset>portals</animationset>
+		<animationset>flames</animationset>
 		<image>exit.png</image>
 	</items>
 </map>

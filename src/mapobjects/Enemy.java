@@ -56,10 +56,7 @@ public abstract class Enemy extends MoveableObject {
 	public Enemy(int x, int y, boolean v, boolean d, boolean c, String p,
 			ImageLoader gr) {
 		super(x, y, v, d, c, p, gr);
-		UP = false;
-		DOWN = false;
-		RIGHT = true; // start direction must be given
-		LEFT = false;
+		findPath("enemyUp", "enemyDown", "enemyLeft", "enemyRight");
 		speed = 1;
 	}
 

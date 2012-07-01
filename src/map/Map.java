@@ -14,9 +14,11 @@ import mapobjects.Exit;
 import mapobjects.MapObject;
 import mapobjects.Player;
 import mapobjects.Upgrade;
+import mapobjects.FireBowl;
 import mapobjects.Upgrade.CMListener;
 import multiplayer.MPLoungeUnit;
 import multiplayer.UpgradeListener;
+import enemies.Boss;
 
 /**
  * the map class holds all objects of the map in a vector (MapObjects) the map
@@ -47,6 +49,7 @@ public class Map {
 	private int maxUpgrades;
 	private UpgradeListener listener;
 	private CMListener cmListener;
+	private Boss boss;
 
 	/**
 	 * constructor
@@ -108,6 +111,9 @@ public class Map {
 				if (mapObjects.get(i).get(j) instanceof Exit) {
 					exit = (Exit) mapObjects.get(i).get(j);
 				}
+				if (mapObjects.get(i).get(j) instanceof Boss) {
+					boss = (Boss) mapObjects.get(i).get(j);
+				}
 			}
 		}
 
@@ -162,6 +168,9 @@ public class Map {
 					}
 					if (mapObjects.get(i).get(j) instanceof Enemy) {
 						this.decreaseEnemies();
+					}
+					if (mapObjects.get(i).get(j) instanceof FireBowl) {
+						boss.fireBowls.remove(mapObjects.get(i).get(j));
 					}
 					mapObjects.get(i).remove(j);
 

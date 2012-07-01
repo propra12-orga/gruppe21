@@ -1,0 +1,3 @@
+<animationset default="aoeFlames.png">
+<animation frames="4" stretch="15" name="aoe">aoeFlames.png</animation>
+</animationset>

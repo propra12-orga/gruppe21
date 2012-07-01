@@ -1,0 +1,12 @@
+<animationset default="skeleton_default.png">
+<animation frames="1" stretch="1" name="casting">boss_phase1.png</animation>
+<animation frames="4" stretch="10" name="enemyUp">boss_back.png</animation>
+<animation frames="4" stretch="10" name="enemyDown">boss_front.png</animation>
+<animation frames="4" stretch="10" name="enemyLeft">boss_left.png</animation>
+<animation frames="4" stretch="10" name="enemyRight">boss_right.png</animation>
+<animation frames="4" stretch="10" name="enemyDying">boss_front_hit.png</animation>
+<animation frames="4" stretch="10" name="enemyUp_hit">boss_back_hit.png</animation>
+<animation frames="4" stretch="10" name="enemyDown_hit">boss_front_hit.png</animation>
+<animation frames="4" stretch="10" name="enemyLeft_hit">boss_left_hit.png</animation>
+<animation frames="4" stretch="10" name="enemyRight_hit">boss_right_hit.png</animation>
+</animationset>
