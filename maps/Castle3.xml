@@ -2724,6 +2724,30 @@
 			</tile>
 		</level>
 		<level>
+			<tile type="exit" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="2">TGG.png</image>
+				<posx>1300</posx>
+				<posy>0</posy>
+			</tile>
+			<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">UndesPillar.png</image>
+				<posx>500</posx>
+				<posy>200</posy>
+			</tile>
+			<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">UndesPillar2.png</image>
+				<posx>650</posx>
+				<posy>200</posy>
+			</tile>
 		</level>
 		<level>
 			<character type="player" animated="true">
