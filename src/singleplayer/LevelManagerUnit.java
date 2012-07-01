@@ -351,6 +351,7 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 		if (tmpPlayer != null && tmpPlayer.isAlive()) {
 			player.restorePlayerToData(tmpPlayer.getPlayerData());
 		}
+		currentMap.setCMListener(player);
 		player.direction.setUp(false);
 		player.direction.setDown(false);
 		player.direction.setLeft(false);
