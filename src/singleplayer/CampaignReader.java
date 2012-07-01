@@ -1,12 +1,13 @@
 package singleplayer;
 
+import imageloader.GameGraphic;
+
 import java.awt.Point;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import main.GameConstants;
-import map.Map;
 
 import org.jdom2.Document;
 import org.jdom2.Element;
@@ -61,22 +62,31 @@ public class CampaignReader {
 
 		Element worldMapElement = campaignRoot.getChild("worldmap");
 		String worldMapName = worldMapElement.getChildText("name");
+		GameGraphic background = new GameGraphic(GameConstants.WM_GRAPHICS_DIR
+				+ worldMapElement.getChildText("background"));
+		GameGraphic player = new GameGraphic(GameConstants.CHAR_DIR
+				+ worldMapElement.getChildText("player"));
 		List<Element> coords = campaignRoot.getChild("worldmap")
 				.getChild("coordinates").getChildren();
 		Point[] coordinates = new Point[coords.size()];
 		String[] coordLabel = new String[coords.size()];
+		GameGraphic[] progressIndicator = new GameGraphic[coords.size() - 1];
 		for (int i = 0; i < coords.size(); i++) {
 			Element el = coords.get(i);
 			int x = Integer.parseInt(el.getChildText("cx"));
 			int y = Integer.parseInt(el.getChildText("cy"));
 			coordLabel[i] = el.getChildText("label");
 			coordinates[i] = new Point(x, y);
+			if (i != coords.size() - 1) {
+				progressIndicator[i] = new GameGraphic(
+						GameConstants.WM_GRAPHICS_DIR
+								+ el.getChildText("progInd"));
+			}
 		}
 
-		WorldMap worldMap = new WorldMap(coordinates, coordLabel, new Map(
-				worldMapName));
+		WorldMap worldMap = new WorldMap(coordinates, coordLabel,
+				progressIndicator, background, player);
 		Campaign campaign = new Campaign(levels, worldMap, filename);
 		return campaign;
 	}
-
 }

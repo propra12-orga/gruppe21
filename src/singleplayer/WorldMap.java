@@ -1,8 +1,8 @@
 package singleplayer;
 
-import java.awt.Point;
+import imageloader.GameGraphic;
 
-import map.Map;
+import java.awt.Point;
 
 /**
  * The WorldMap class contains all data required to manage a WorldMap. This
@@ -26,16 +26,15 @@ public class WorldMap {
 	 */
 	private Point[] levelCoords;
 	private String[] coordLabels;
+	private GameGraphic[] progressIndicator;
+	private GameGraphic backgroundImg;
+	private GameGraphic playerImg;
 	/**
 	 * The maximum level accessible by the player. On successfully completing
 	 * the current max level, this counter will be increased, allowing the user
 	 * to advance.
 	 */
 	private int maxLevelAccessible;
-	/**
-	 * A map object representing the WorldMap.
-	 */
-	private Map worldmap;
 
 	/**
 	 * Construct a WorldMap.
@@ -45,31 +44,39 @@ public class WorldMap {
 	 * @param worldmap
 	 *            map object representing the WorldMap.
 	 */
-	public WorldMap(Point[] levelCoords, String[] coordLabels, Map worldmap) {
+	public WorldMap(Point[] levelCoords, String[] coordLabels,
+			GameGraphic[] progressIndicator, GameGraphic backgroundImg,
+			GameGraphic playerImg) {
 		this.levelCoords = levelCoords;
 		this.coordLabels = coordLabels;
-		this.worldmap = worldmap;
+		this.progressIndicator = progressIndicator;
+		this.playerImg = playerImg;
+		this.backgroundImg = backgroundImg;
 		maxLevelAccessible = 0;
 		selectedLevel = 0;
 	}
 
-	/**
-	 * Request the map object.
-	 * 
-	 * @return world map
-	 */
-	public Map getMap() {
-		return worldmap;
+	public GameGraphic getPlayerImg() {
+		return playerImg;
 	}
 
 	/**
-	 * Sets the worldMap variable to the given map object.
+	 * Request background image.
 	 * 
-	 * @param worldmap
-	 *            new world map
+	 * @return
 	 */
-	public void setWorldmap(Map worldmap) {
-		this.worldmap = worldmap;
+	public GameGraphic getBackgroundImg() {
+		return backgroundImg;
+	}
+
+	/**
+	 * Get an array of images that may used to depict a player's progress on the
+	 * worldmap.
+	 * 
+	 * @return
+	 */
+	public GameGraphic[] getProgressIndicator() {
+		return progressIndicator;
 	}
 
 	/**

@@ -1,5 +1,7 @@
 package singleplayer;
 
+import imageloader.GameGraphic;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -13,7 +15,6 @@ import main.GameConstants;
 import main.GraphicalGameUnit;
 import main.UnitNavigator;
 import main.UnitState;
-import mapobjects.Player;
 
 /**
  * This subclass of GraphicalGameUnit is used to depict and interact with a
@@ -28,16 +29,17 @@ public class WorldMapUnit extends GraphicalGameUnit {
 	 * The corresponding WorldMap object manages all related data.
 	 */
 	private WorldMap worldMap;
-	/**
-	 * Used to center and draw the worldMap's map object.
-	 */
-	private BufferedImage mapCanvas;
 
 	/**
 	 * Create a new WorldMapUnit from a WorldMap object.
 	 * 
 	 * @param worldMap
 	 */
+
+	private BufferedImage mapCanvas;
+	private int mapCanvasX;
+	private int mapCanvasY;
+
 	public WorldMapUnit(WorldMap worldMap) {
 		this.worldMap = worldMap;
 		initComponent();
@@ -52,39 +54,36 @@ public class WorldMapUnit extends GraphicalGameUnit {
 			"Here you can plan your journey and save your progress:",
 			"Use Up and Down Keys to switch the selected level",
 			"Press 'Enter' to play, or 'S' to save!" };
+	private int textMaxWidth;
+	int[] lineWidth;
 
 	@Override
 	public void drawComponent(Graphics g) {
-		g.setColor(Color.black);
-		g.fillRect(0, 0, GameConstants.FRAME_SIZE_X, GameConstants.FRAME_SIZE_Y);
-		mapCanvas = new BufferedImage(worldMap.getMap().getWidth(), worldMap
-				.getMap().getHeight(), BufferedImage.TYPE_INT_ARGB);
-		worldMap.getMap().drawMap((Graphics2D) mapCanvas.getGraphics());
-		/*
-		 * Center and draw mapCanvas
-		 */
-		g.drawImage(mapCanvas,
-				(GameConstants.FRAME_SIZE_X - mapCanvas.getWidth()) / 2,
-				(GameConstants.FRAME_SIZE_Y - mapCanvas.getHeight()) / 2,
-				mapCanvas.getWidth(), mapCanvas.getHeight(), null);
+		Graphics2D g2d = mapCanvas.createGraphics();
+		g2d.setFont(unitFont);
+		g2d.setColor(Color.black);
+		g2d.fillRect(0, 0, mapCanvas.getWidth(), mapCanvas.getHeight());
+		g2d.setColor(Color.white);
+		g2d.drawImage(worldMap.getBackgroundImg().getImage(), 0, 0, null);
+		GameGraphic[] tmp = worldMap.getProgressIndicator();
+		Point[] coords = worldMap.getLevelCoords();
+		for (int i = 0; i < worldMap.getMaxLevelAccessible(); i++) {
+			g2d.drawImage(tmp[i].getImage(), coords[i + 1].x, coords[i + 1].y,
+					null);
+		}
+		g2d.drawImage(worldMap.getPlayerImg().getImage(),
+				worldMap.getPlayerCoord().x
+						- worldMap.getPlayerImg().getImage().getWidth() / 2,
+				worldMap.getPlayerCoord().y
+						- worldMap.getPlayerImg().getImage().getHeight(), null);
 
 		/*
 		 * draw info message
 		 */
-		Graphics2D g2d = (Graphics2D) g;
-		g2d.setFont(unitFont);
-		String[] infoTxt;
 		if (helpShown) {
-			infoTxt = infoMsg;
+			drawTextInfo(g2d, infoMsg);
 		} else {
-			infoTxt = helpMsg;
-		}
-		for (int i = 0; i < infoTxt.length; i++) {
-			Rectangle2D rect = unitFont.getStringBounds(infoTxt[i],
-					g2d.getFontRenderContext());
-			g2d.drawString(infoTxt[i],
-					(int) (GameConstants.FRAME_SIZE_X - rect.getWidth()) / 2,
-					(int) ((80 + rect.getHeight() * 2 * i)));
+			drawTextInfo(g2d, helpMsg);
 		}
 		/*
 		 * draw level info
@@ -96,11 +95,34 @@ public class WorldMapUnit extends GraphicalGameUnit {
 				g2d.getFontRenderContext());
 		g2d.drawString(s,
 				(int) (GameConstants.FRAME_SIZE_X - rect.getWidth()) / 2,
-				GameConstants.FRAME_SIZE_Y - 60);
+				GameConstants.FRAME_SIZE_Y - 40);
+
+		g.setColor(Color.black);
+		g.fillRect(0, 0, GameConstants.FRAME_SIZE_X, GameConstants.FRAME_SIZE_Y);
+		g.drawImage(mapCanvas, mapCanvasX, mapCanvasY, null);
+	}
+
+	private void drawTextInfo(Graphics2D g2d, String[] text) {
+		g2d.setColor(Color.white);
+		for (int i = 0; i < text.length; i++) {
+			g2d.drawString(text[i],
+					(GameConstants.FRAME_SIZE_X - lineWidth[i]) / 2, 50 + i * 2
+							* unitFont.getSize());
+		}
+
 	}
 
 	public void setHelpShown(boolean helpShown) {
 		this.helpShown = helpShown;
+		lineWidth = new int[infoMsg.length];
+		for (int i = 0; i < infoMsg.length; i++) {
+			Rectangle2D rect = unitFont.getStringBounds(infoMsg[i], mapCanvas
+					.createGraphics().getFontRenderContext());
+			if (rect.getWidth() > textMaxWidth) {
+				textMaxWidth = (int) rect.getWidth();
+			}
+			lineWidth[i] = (int) rect.getWidth();
+		}
 	}
 
 	@Override
@@ -144,17 +166,6 @@ public class WorldMapUnit extends GraphicalGameUnit {
 		}
 	}
 
-	/**
-	 * Set player position according to the worldMap's selectedLevel variable.
-	 */
-	private void updatePlayerPosition() {
-		Point playerCoord = worldMap.getPlayerCoord();
-		worldMap.getMap().getMapPlayer()
-				.setPosX(GameConstants.TILE_SIZE * playerCoord.x);
-		worldMap.getMap().getMapPlayer()
-				.setPosY(GameConstants.TILE_SIZE * playerCoord.y);
-	}
-
 	@Override
 	public void handleKeyReleased(KeyEvent e) {
 	}
@@ -165,23 +176,34 @@ public class WorldMapUnit extends GraphicalGameUnit {
 		 * load font
 		 */
 		try {
-			unitFont = loadFont("font1.TTF").deriveFont(30f);
+			unitFont = loadFont("font1.TTF").deriveFont(28f);
 		} catch (Exception e) {
 			System.err.println("ERROR LOADING FONT: font1.TTF");
 			e.printStackTrace();
 			unitFont = new Font("serif", Font.PLAIN, 24);
 		}
+		mapCanvas = new BufferedImage(worldMap.getBackgroundImg().getImage()
+				.getWidth(),
+				worldMap.getBackgroundImg().getImage().getHeight(),
+				BufferedImage.TYPE_INT_ARGB);
+		mapCanvasX = (GameConstants.FRAME_SIZE_X - mapCanvas.getWidth()) / 2;
+		mapCanvasY = (GameConstants.FRAME_SIZE_Y - mapCanvas.getHeight()) / 2;
+
+		mapCanvas.createGraphics().setFont(unitFont);
+		lineWidth = new int[helpMsg.length];
+		for (int i = 0; i < helpMsg.length; i++) {
+			Rectangle2D rect = unitFont.getStringBounds(helpMsg[i], mapCanvas
+					.createGraphics().getFontRenderContext());
+			if (rect.getWidth() > textMaxWidth) {
+				textMaxWidth = (int) rect.getWidth();
+			}
+			lineWidth[i] = (int) rect.getWidth();
+		}
 	}
 
 	@Override
 	public void updateComponent() {
-		Player player = worldMap.getMap().getMapPlayer();
-		player.direction.setUp(false);
-		player.direction.setDown(false);
-		player.direction.setLeft(false);
-		player.direction.setRight(false);
-		worldMap.getMap().update();
-		updatePlayerPosition();
+
 	}
 
 }

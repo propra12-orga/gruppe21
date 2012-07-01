@@ -29,7 +29,8 @@ public class GameConstants {
 	public static final String ANIMATION_FILES_DIR = "graphics/game/";
 	public static final String SOUNDS_DIR = "sounds/";
 	public static final String FONTS_DIR = "fonts/";
-
+	public static final String WM_GRAPHICS_DIR = "graphics/game/worldmap/";
+	public static final String CHAR_DIR = "graphics/game/characters/";
 	/**
 	 * Editor paths
 	 */
