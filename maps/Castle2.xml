@@ -4371,16 +4371,8 @@
 				<collision>true</collision>
 				<destroyable>false</destroyable>
 				 <animationset>monsters</animationset>
-				<posx>950</posx>
-				<posy>150</posy>
-			</character>
-			<character type="monster" animated="true">
-				<visible>true</visible>
-				<collision>true</collision>
-				<destroyable>false</destroyable>
-				 <animationset>monsters</animationset>
 				<posx>1350</posx>
-				<posy>700</posy>
+				<posy>650</posy>
 			</character>
 			<character type="monster" animated="true">
 				<visible>true</visible>
