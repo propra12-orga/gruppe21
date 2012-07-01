@@ -2160,8 +2160,6 @@
 	<items>
 		<animationset>simplebomb</animationset>
 		<animationset>upgrades</animationset>
-		<animationset>skulls</animationset>
-		<animationset>slime</animationset>
 		<image>exit.png</image>
 	</items>
 </map>
