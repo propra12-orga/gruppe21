@@ -1,5 +1,7 @@
 package mapeditor;
 
+import imageloader.ImageLoader;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -18,9 +20,11 @@ public class Editor extends JFrame implements KeyListener, MouseListener {
 	/**
 	 * Editor Components
 	 */
-	MapCanvas canvas = new MapCanvas();
-	FileToolBar fileBar = new FileToolBar(48, 1);
-	ToolBar toolBar = new ToolBar(48, 1, canvas);
+	public ImageLoader imageStack = new ImageLoader();
+	private MapCanvas canvas = new MapCanvas();
+	private FileToolBar fileBar = new FileToolBar(48, 1);
+	private ToolBar toolBar = new ToolBar(48, 1, canvas);
+	private TileNavigator tileNavigator = new TileNavigator();
 	/**
 	 * status of the map changes
 	 */
@@ -48,9 +52,11 @@ public class Editor extends JFrame implements KeyListener, MouseListener {
 		fileBar.setBounds(0, 0, 200, 50);
 		toolBar.setBounds(200, 0, 400, 50);
 		canvas.setBounds(0, 50, 600, 550);
+		tileNavigator.setBounds(600, 0, 200, 300);
 		add(fileBar);
 		add(toolBar);
 		add(canvas);
+		add(tileNavigator);
 	}
 
 	public static void main(String args[]) {

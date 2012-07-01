@@ -2,7 +2,7 @@
 <campaign>
 
 	<header>
-		<numOfLevels>3</numOfLevels>
+		<numOfLevels>4</numOfLevels>
 	</header>
 
 	<maps>
@@ -13,7 +13,7 @@
 			character to the exit on the other side.#
 			. . . . . . . . . . . .#  Press Enter
 			</intro>
-			<name>Castle3</name>
+			<name>Tutorial1</name>
 			<sequence>0</sequence>
 		</map>
 		<map>
@@ -62,6 +62,21 @@
 			<name>testmap</name>
 			<sequence>2</sequence>
 		</map>
+		<map>
+			<intro></intro>
+			<name>Castle1</name>
+			<sequence>3</sequence>
+		</map>
+		<map>
+			<intro></intro>
+			<name>Castle2</name>
+			<sequence>3</sequence>
+		</map>
+		<map>
+			<intro></intro>
+			<name>Castle3</name>
+			<sequence>3</sequence>
+		</map>
 
 	</maps>
 
@@ -69,22 +84,33 @@
 	<worldmap>
 
 		<name>campaign1worldmap</name>
-
+		<background>worldmap.png</background>
+		<player>BMdefault.png</player>
+		
 		<coordinates>
 			<coord>
 				<label>Tutorial: The Battleship</label>
-				<cx>10</cx>
-				<cy>12</cy>
+				<progInd>path1.png</progInd>
+				<cx>807</cx>
+				<cy>626</cy>
 			</coord>
 			<coord>
-				<label>The Beach 1</label>
-				<cx>11</cx>
-				<cy>10</cy>
+				<label>The Beach</label>
+				<progInd>path2.png</progInd>
+				<cx>734</cx>
+				<cy>490</cy>
 			</coord>
 			<coord>
-				<label>The Beach 2</label>
-				<cx>10</cx>
-				<cy>8</cy>
+				<label>Placeholder</label>
+				<progInd>path3.png</progInd>
+				<cx>503</cx>
+				<cy>346</cy>
+			</coord>
+			<coord>
+				<label>The Castle</label>
+				<progInd></progInd>
+				<cx>429</cx>
+				<cy>292</cy>
 			</coord>
 		</coordinates>
 

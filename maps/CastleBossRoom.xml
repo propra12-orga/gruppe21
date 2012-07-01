@@ -2248,6 +2248,7 @@
 
 	<items>
 		<animationset>upgrades</animationset>
+<<<<<<< HEAD
 		<animationset>simplebomb</animationset>
 		<animationset>aoeFlames</animationset>
 		<animationset>skulls</animationset>
@@ -2257,6 +2258,8 @@
 		<animationset>slime</animationset>
 		<animationset>portals</animationset>
 		<animationset>flames</animationset>
+=======
+>>>>>>> f5d88e1487394d51392a0738a0947fe65df7bd74
 		<image>exit.png</image>
 	</items>
 </map>

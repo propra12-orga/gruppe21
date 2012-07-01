@@ -8,6 +8,13 @@ import java.util.Vector;
 
 import javax.swing.JPanel;
 
+/**
+ * The Toolbar holds buttons the are used to switch between the differend modes
+ * while working on the map.
+ * 
+ * @author eik
+ * 
+ */
 public class ToolBar extends JPanel implements MouseListener {
 	/**
 	 * Buttons
@@ -63,6 +70,12 @@ public class ToolBar extends JPanel implements MouseListener {
 		}
 	}
 
+	/**
+	 * mouseClicked
+	 * 
+	 * on left click , ToolBar checks which button was pressed and changes the
+	 * reffering mode in the mapCanvas
+	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
 
