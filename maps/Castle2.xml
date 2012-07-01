@@ -3190,7 +3190,14 @@
 				<posx>1000</posx>
 				<posy>850</posy>
 			</tile>
-
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="2">Kellerboden2.png</image>
+				<posx>1000</posx>
+				<posy>800</posy>
+			</tile>
 
 
 

@@ -148,7 +148,7 @@ public class Skeleton extends Enemy {
 			Skull skull = new Skull(getPosX(), getPosY(), true, true, false,
 					"skulls", map.getGraphics(), dir);
 			skull.setMap(getMap());
-			map.getMapObjects().get(1).add(skull);
+			map.addEnemy(skull);
 		}
 	}
 

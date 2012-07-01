@@ -11,10 +11,10 @@ import java.util.Vector;
 import mapobjects.Bomb;
 import mapobjects.Enemy;
 import mapobjects.Exit;
+import mapobjects.FireBowl;
 import mapobjects.MapObject;
 import mapobjects.Player;
 import mapobjects.Upgrade;
-import mapobjects.FireBowl;
 import mapobjects.Upgrade.CMListener;
 import multiplayer.MPLoungeUnit;
 import multiplayer.UpgradeListener;
@@ -59,7 +59,6 @@ public class Map {
 	 */
 	public Map(String mn) {
 		mr = new MapReader(mn);
-		System.out.println("READ MAP: " + mn);
 		prepareMap();
 	}
 
@@ -75,7 +74,6 @@ public class Map {
 	public Map(String mn, ImageLoader levelGraphics) {
 		this.graphics = levelGraphics;
 		mr = new MapReader(mn);
-		System.out.println("READ MAP: " + mn);
 		prepareMap();
 	}
 
@@ -310,7 +308,6 @@ public class Map {
 	public void decreaseEnemies() {
 		if (enemies != 0)
 			this.enemies--;
-		System.out.println(enemies);
 	}
 
 	/**
@@ -359,5 +356,10 @@ public class Map {
 
 	public void setMaxUpgrades(int maxUpgrades) {
 		this.maxUpgrades = maxUpgrades;
+	}
+
+	public void addEnemy(Enemy enemy) {
+		mapObjects.get(3).add(enemy);
+		enemies++;
 	}
 }
