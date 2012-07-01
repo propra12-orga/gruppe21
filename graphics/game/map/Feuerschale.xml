@@ -1,0 +1,3 @@
+<animationset  default="FeuerschaleDefault.png">
+<animation frames="2" stretch="50" name="animation">Feuerschale1.png</animation>
+</animationset>
