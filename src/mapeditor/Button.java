@@ -15,11 +15,25 @@ public class Button extends JComponent implements MouseListener {
 	BufferedImage image;
 	private int width;
 	private int height;
-	private int posX;
-	private int posY;
+	private int posX = 0;
+	private int posY = 0;
 	private String action;
 
 	public Button(int w, int h, String imageName, String act) {
+		width = w;
+		height = h;
+		image = EditorGraphics.loadImage(GameConstants.EDITOR_BUTTONS
+				+ imageName);
+		action = act;
+
+		setFocusable(true);
+		setSize(w, h);
+		addMouseListener(this);
+	}
+
+	public Button(int x, int y, int w, int h, String imageName, String act) {
+		this.setPosX(x);
+		this.setPosY(y);
 		width = w;
 		height = h;
 		image = EditorGraphics.loadImage(GameConstants.EDITOR_BUTTONS
@@ -51,6 +65,14 @@ public class Button extends JComponent implements MouseListener {
 		g2d.drawImage(image, x, y, width, height, null);
 		this.posX = x;
 		this.posY = y;
+	}
+
+	protected void draw(Graphics g) {
+		Graphics2D g2d = (Graphics2D) g;
+		g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
+				RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+
+		g2d.drawImage(image, posX, posY, width, height, null);
 	}
 
 	@Override
@@ -95,8 +117,16 @@ public class Button extends JComponent implements MouseListener {
 		return posX;
 	}
 
+	public void setPosX(int x) {
+		this.posX = x;
+	}
+
 	public int getPosY() {
 		return posY;
+	}
+
+	public void setPosY(int y) {
+		this.posY = y;
 	}
 
 	public String getAction() {

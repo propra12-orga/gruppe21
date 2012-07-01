@@ -11,7 +11,7 @@ import java.util.Vector;
 import javax.swing.JPanel;
 
 public class TileNavigator extends JPanel implements MouseListener {
-	private Button newTile, newAnimation, newEnemy, navUp, navDown;
+	private Button newButton, navUp, navDown;
 	private Vector<Button> buttonList = new Vector<Button>();
 	private String mode = "Tiles";
 	private boolean tileOverflow = false;
@@ -22,6 +22,8 @@ public class TileNavigator extends JPanel implements MouseListener {
 	 */
 	private Tab tile, enemy;
 	Vector<Tab> tabList = new Vector<Tab>();
+	TilePanel tilePanelTiles = new TilePanel(5, 30, 190, 200);
+	TilePanel tilePanelEnemies = new TilePanel(5, 30, 190, 200);
 
 	public TileNavigator() {
 		this.setBackground(Color.DARK_GRAY);
@@ -34,7 +36,11 @@ public class TileNavigator extends JPanel implements MouseListener {
 		 */
 		tabList.add(tile = new Tab(1, 0, 70, 20, "Tiles"));
 		tabList.add(enemy = new Tab(73, 0, 70, 20, "Enemies"));
-		// buttonList.add(newTile = new Button());
+		buttonList.add(newButton = new Button(5, 270, 25, 25, "newred.png",
+				"newtile"));
+		buttonList.add(navUp = new Button(10, 235, 80, 20, "up.png", "navUp"));
+		buttonList.add(navDown = new Button(110, 235, 80, 20, "down.png",
+				"navDown"));
 	}
 
 	@Override
@@ -53,8 +59,15 @@ public class TileNavigator extends JPanel implements MouseListener {
 		g2d.setColor(Color.GRAY);
 		g2d.fill(new Rectangle2D.Float(0, 20, 200, 280));
 
-		g2d.setColor(Color.DARK_GRAY.brighter());
-		g2d.fill(new Rectangle2D.Float(5, 30, 190, 200));
+		if (mode.equals("Tiles")) {
+			tilePanelTiles.draw(g2d);
+		} else {
+			tilePanelEnemies.draw(g2d);
+		}
+
+		for (int i = 0; i < buttonList.size(); i++) {
+			buttonList.get(i).draw(g2d);
+		}
 
 		g2d.setColor(Color.DARK_GRAY);
 		g2d.drawLine(0, 0, 0, 299);
@@ -73,6 +86,23 @@ public class TileNavigator extends JPanel implements MouseListener {
 						.getPosX() + tabList.get(i).getWidth(), tabList.get(i)
 						.getPosY() + tabList.get(i).getHeight())) {
 					this.setMode(tabList.get(i).getMode());
+					this.repaint();
+				}
+			}
+
+			/**
+			 * go through buttons if one was clicked
+			 */
+
+			for (int i = 0; i < buttonList.size(); i++) {
+				if (Mouse.isInRegion(e.getX(), e.getY(), buttonList.get(i)
+						.getPosX(), buttonList.get(i).getPosY(), buttonList
+						.get(i).getPosX() + buttonList.get(i).getWidth(),
+						buttonList.get(i).getPosY()
+								+ buttonList.get(i).getHeight())) {
+					if (buttonList.get(i).getAction().equals("newTile")) {
+
+					}
 					this.repaint();
 				}
 			}
