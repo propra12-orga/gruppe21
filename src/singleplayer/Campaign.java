@@ -108,17 +108,21 @@ public class Campaign {
 			mapCounter++;
 			return true;
 		} else {
+			mapCounter = 0;
 			if (worldMap.getSelectedLevel() == worldMap.getMaxLevelAccessible()) {
 				if (worldMap.getMaxLevelAccessible() == levels.size() - 1) {
 					campaignFinished = true;
 				} else {
 					worldMap.setMaxLevelAccessible(worldMap
 							.getMaxLevelAccessible() + 1);
-					mapCounter = 0;
 				}
 			}
 			return false;
 		}
+	}
+
+	public void setMapCounter(int counter) {
+		this.mapCounter = counter;
 	}
 
 	/**

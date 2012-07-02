@@ -83,8 +83,6 @@ public class Map {
 		mapSizeX = Integer.parseInt(mr.getHeader("sizex"));
 		mapSizeY = Integer.parseInt(mr.getHeader("sizey"));
 		maxUpgrades = Integer.parseInt(mr.getHeader("maxUpgrades"));
-		boolean bombsActivated = Boolean.parseBoolean(mr
-				.getHeader("bombsActivated"));
 
 		drawLevels = mr.getDrawLevels();
 		upgradeCounter = 0;
@@ -115,6 +113,13 @@ public class Map {
 				if (mapObjects.get(i).get(j) instanceof Boss) {
 					boss = (Boss) mapObjects.get(i).get(j);
 				}
+			}
+		}
+		boolean bombsActivated = Boolean.parseBoolean(mr
+				.getHeader("bombsActivated"));
+		if (!bombsActivated) {
+			for (Player player : players) {
+				player.disableBombs();
 			}
 		}
 
