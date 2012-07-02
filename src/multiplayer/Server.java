@@ -69,6 +69,11 @@ public class Server extends Thread {
 				break;
 			}
 		}
+		try {
+			hostSocket.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -135,21 +140,34 @@ public class Server extends Thread {
 	 * @param sendingPlayer
 	 * @param incoming
 	 */
-	private synchronized void handleRelevantMsg(int sendingPlayer,
+	private void handleRelevantMsg(int sendingPlayer, String incoming) {
+		if (incoming.indexOf("Upgrade:") != -1) {
+			handleUpgradeMsg(sendingPlayer, incoming);
+			return;
+		}
+		if (incoming.contains("stop")) {
+			distributeMessage("stop");
+			return;
+		}
+		if (incoming.contains("close remote")) {
+			toClientSockets[sendingPlayer].terminate();
+		}
+	}
+
+	private synchronized void handleUpgradeMsg(int sendingPlayer,
 			String incoming) {
-		if (incoming.indexOf("Upgrade:") != -1)
-			if (incoming.indexOf("PickUp") != -1) {
-				String[] parts = incoming.split(";");
-				int listIndex = MPIDList.indexOf(parts[2]);
-				if (listIndex != -1) {
-					MPIDList.remove(listIndex);
-					distributeMessage(incoming);
-				}
-			} else {
-				String[] parts = incoming.split("/");
-				MPIDList.add(parts[3]);
-				distributeMessage(sendingPlayer, incoming);
+		if (incoming.indexOf("PickUp") != -1) {
+			String[] parts = incoming.split(";");
+			int listIndex = MPIDList.indexOf(parts[2]);
+			if (listIndex != -1) {
+				MPIDList.remove(listIndex);
+				distributeMessage(incoming);
 			}
+		} else {
+			String[] parts = incoming.split("/");
+			MPIDList.add(parts[3]);
+			distributeMessage(sendingPlayer, incoming);
+		}
 	}
 
 	/**
@@ -165,6 +183,7 @@ public class Server extends Thread {
 		private Socket clientSocket;
 		private Lock writeLock = new ReentrantLock();
 		private boolean hasRemoved = true;
+		private boolean stopped = false;
 
 		// Constructor
 		public ToClientSocket(int playerIndex, Socket clientSocket) {
@@ -207,8 +226,17 @@ public class Server extends Thread {
 			}
 		}
 
+		public void terminate() {
+			stopped = true;
+			try {
+				clientSocket.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
 		public void run() {
-			while (true) {
+			while (!stopped) {
 				try {
 					String incoming = is.readUTF();
 					checkRelevance(playerIndex, incoming);

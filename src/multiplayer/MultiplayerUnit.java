@@ -90,6 +90,10 @@ public class MultiplayerUnit extends GraphicalGameUnit implements
 		initComponent();
 	}
 
+	/**
+	 * Updates any object on the map, also checks if players are dead and if the
+	 * map is finished
+	 */
 	@Override
 	public void updateComponent() {
 		if (playersRemaining <= 1)
@@ -126,16 +130,21 @@ public class MultiplayerUnit extends GraphicalGameUnit implements
 
 	}
 
+	/**
+	 * Key pressed events who also contact the server
+	 */
 	@Override
 	public void handleKeyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
 		/*
-		 * Pause Game
+		 * Close multiplayer
 		 */
 		if (key == KeyEvent.VK_ESCAPE) {
 			UnitNavigator.getNavigator().set(UnitState.BASE_MENU_UNIT);
-			// schicke dem server eine stop-nachricht. dieser echot die
-			// nachricht zur�ck und meldet den entsprechenden socket/thread ab
+			if (myPlayerIndex == 1)
+				writeToHost("!stop");
+			else
+				writeToHost("!leaving");
 			return;
 		}
 		/*
@@ -218,6 +227,9 @@ public class MultiplayerUnit extends GraphicalGameUnit implements
 		}
 	}
 
+	/**
+	 * Key released events (also synchronizing there state with the server)
+	 */
 	@Override
 	public void handleKeyReleased(KeyEvent e) {
 		int key = e.getKeyCode();
@@ -258,6 +270,10 @@ public class MultiplayerUnit extends GraphicalGameUnit implements
 		}
 	}
 
+	/**
+	 * Initializes the game through loading the map, marking remote controlled
+	 * players and if necessary hiding non player-controlled units
+	 */
 	@Override
 	public void initComponent() {
 		/*
@@ -322,10 +338,9 @@ public class MultiplayerUnit extends GraphicalGameUnit implements
 				mapCanvas.getWidth(), mapCanvas.getHeight(), null);
 	}
 
-	/*
-	 * The following Method handles any toHost communication
+	/**
+	 * This method handles any toHost communication
 	 */
-
 	public void writeToHost(String outgoing) {
 		try {
 			os.writeUTF(outgoing);
@@ -334,10 +349,9 @@ public class MultiplayerUnit extends GraphicalGameUnit implements
 		}
 	}
 
-	/*
-	 * The following section deals with incoming server-messages
+	/**
+	 * This is the main function handling incoming server messages
 	 */
-
 	public void analizeIncoming(String incomingMsg) {
 		if (incomingMsg.indexOf("Player:") != -1) {
 			String[] parts = incomingMsg.split(":");
@@ -348,9 +362,21 @@ public class MultiplayerUnit extends GraphicalGameUnit implements
 		if (incomingMsg.indexOf("Upgrade:") != -1) {
 			String[] parts = incomingMsg.split(":");
 			handleUpgradeEvents(parts[1]);
+			return;
+		}
+		if (incomingMsg.indexOf("stop") != -1) {
+			writeToHost("!close remote");
+			fromHost.terminate();
 		}
 	}
 
+	/**
+	 * Takes a substring and an integer from analizeIncoming() and does further
+	 * analization of the message
+	 * 
+	 * @param playerIndex
+	 * @param incoming
+	 */
 	private void handlePlayerEvents(int playerIndex, String incoming) {
 		if (incoming.indexOf("Pressed") != -1) {
 			handlePlayerMovementOnPress(playerIndex, incoming);
@@ -370,6 +396,12 @@ public class MultiplayerUnit extends GraphicalGameUnit implements
 		}
 	}
 
+	/**
+	 * This function handles any key pressed-events sent by other clients
+	 * 
+	 * @param playerIndex
+	 * @param incoming
+	 */
 	private void handlePlayerMovementOnPress(int playerIndex, String incoming) {
 		Player tmpPlayer = multiplayerMap.getPlayerByNumber(playerIndex);
 		String[] parts = incoming.split("/");
@@ -414,6 +446,12 @@ public class MultiplayerUnit extends GraphicalGameUnit implements
 		}
 	}
 
+	/**
+	 * This function handles any key released-events sent by other clients
+	 * 
+	 * @param playerIndex
+	 * @param incoming
+	 */
 	private void handlePlayerMovementOnRelease(int playerIndex, String incoming) {
 		Player tmpPlayer = multiplayerMap.getPlayerByNumber(playerIndex);
 		String[] parts = incoming.split("/");
@@ -442,6 +480,11 @@ public class MultiplayerUnit extends GraphicalGameUnit implements
 		}
 	}
 
+	/**
+	 * This function handles the upgrade events
+	 * 
+	 * @param incoming
+	 */
 	private void handleUpgradeEvents(String incoming) {
 		if (incoming.indexOf("PickUp") != -1) {
 			System.out.println(incoming);
