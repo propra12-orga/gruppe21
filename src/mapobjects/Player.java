@@ -45,8 +45,7 @@ public class Player extends MoveableObject implements CMListener {
 	 */
 	private boolean bombRemote = false;
 
-	private boolean shieldProtection = false, immortal = false,
-			remoteImmortal = false;
+	private boolean shieldProtection = false, immortal = false;
 	/**
 	 * List of currently planted bombs
 	 */
@@ -179,7 +178,7 @@ public class Player extends MoveableObject implements CMListener {
 	 * @param y
 	 *            current y position
 	 * @param cm
-	 *            current collisionmap
+	 *            current collision map
 	 * @param dir
 	 *            current direction
 	 * @return returns true if object has a collision else false
@@ -326,9 +325,11 @@ public class Player extends MoveableObject implements CMListener {
 		if (simpleHasColl(posX, posY, map.getCollisionMap(), Color.orange,
 				Color.red)) {
 			if (!immortal) {
-				if (!shieldProtection && !remotePlayer) {
-					this.die();
-					map.finishMap();
+				if (!shieldProtection) {
+					if (!remotePlayer) {
+						this.die();
+						map.finishMap();
+					}
 				} else {
 					if (!shieldHit) {
 						shieldStartTime = System.nanoTime();

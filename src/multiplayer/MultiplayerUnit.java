@@ -17,6 +17,7 @@ import main.GraphicalGameUnit;
 import main.UnitNavigator;
 import main.UnitState;
 import map.Map;
+import mapobjects.MapObject;
 import mapobjects.Player;
 import mapobjects.Upgrade;
 import unitTransitions.TransitionUnit;
@@ -417,12 +418,16 @@ public class MultiplayerUnit extends GraphicalGameUnit implements
 			System.out.println(incoming);
 			String[] parts = incoming.split(";");
 			int tmpPlayerIndex = Integer.parseInt(parts[0].substring(6));
-			int tmpPosAtList = Integer.parseInt(parts[2]);
-			Upgrade tmpUpgrade = (Upgrade) multiplayerMap.getMapObjects()
-					.get(1).get(tmpPosAtList);
-			multiplayerMap.getPlayerByNumber(tmpPlayerIndex).giveUpgrade(
-					tmpUpgrade);
-			tmpUpgrade.setDestroyed(true);
+			for (MapObject obj : multiplayerMap.getMapObjects().get(1)) {
+				if (obj instanceof Upgrade) {
+					Upgrade tmpUpgrade = (Upgrade) obj;
+					if (tmpUpgrade.getMPID().equals(parts[2])) {
+						multiplayerMap.getPlayerByNumber(tmpPlayerIndex)
+								.giveUpgrade(tmpUpgrade);
+						break;
+					}
+				}
+			}
 		} else {
 			System.out.println(incoming);
 			String[] parts = incoming.split("/");
@@ -491,7 +496,7 @@ public class MultiplayerUnit extends GraphicalGameUnit implements
 	@Override
 	public void upgradePickedUp(int PosAtList, String MPID) {
 		writeToHost("!Upgrade:" + "Player" + myPlayerIndex + ";" + "PickUp"
-				+ ";" + PosAtList + ";" + MPID);
+				+ ";" + MPID);
 
 	}
 }

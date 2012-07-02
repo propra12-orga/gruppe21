@@ -101,7 +101,7 @@ public class Server extends Thread {
 		if (incoming.indexOf("Upgrade:") != -1)
 			if (incoming.indexOf("PickUp") != -1) {
 				String[] parts = incoming.split(";");
-				int listIndex = MPIDList.indexOf(parts[3]);
+				int listIndex = MPIDList.indexOf(parts[2]);
 				if (listIndex != -1) {
 					MPIDList.remove(listIndex);
 					distributeMessage(incoming);
