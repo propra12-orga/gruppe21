@@ -96,7 +96,6 @@ public class MPLoungeUnit extends GraphicalGameUnit implements
 				+ mr.getHeader("minimap"));
 		int numOfPlayers = Integer.parseInt(mr.getHeader("playercount"));
 		playerStatus = new int[numOfPlayers];
-		System.out.println(this.playerNumber);
 		playerStatus[this.playerNumber] = PLAYER_CONNECTED;
 		playerStatusImages = new GameGraphic[3];
 		initComponent();
@@ -156,7 +155,7 @@ public class MPLoungeUnit extends GraphicalGameUnit implements
 				toHostSocket.close();
 				UnitNavigator.getNavigator().set(UnitState.BASE_MENU_UNIT);
 			} catch (IOException e1) {
-				System.out
+				System.err
 						.println("An error occured while trying to close the client socket!");
 				e1.printStackTrace();
 			}
