@@ -18,14 +18,14 @@ public class StoneOrbSpawn extends Enemy {
 			String p, ImageLoader gr) {
 		super(x, y, v, d, c, p, gr);
 
-	}
-
-	private void spawnOrb() {
-
 		spawnpoint = new AnimatedFloor(50, 300, true, false, false, "portals",
 				map.getGraphics());
 		spawnpoint.setMap(getMap());
 		map.getMapObjects().get(1).add(spawnpoint);
+
+	}
+
+	private void spawnOrb() {
 
 		if (spawnTime + spawnCountdown <= System.nanoTime()) {
 			int x, y = 200, i = (int) (Math.random() * 2 + 1);

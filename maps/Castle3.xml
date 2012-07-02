@@ -1695,6 +1695,14 @@
 			</character>
 			</level>						
 		<level>
+			<character type="StoneOrbSpawn" animated="true">
+			    <visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+			 	<animationset>portals</animationset>
+				<posx>50</posx>
+				<posy>300</posy>
+			</character>
 		</level>
 		<level>
 		</level>
