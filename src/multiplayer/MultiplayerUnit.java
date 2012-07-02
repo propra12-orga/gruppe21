@@ -414,6 +414,7 @@ public class MultiplayerUnit extends GraphicalGameUnit implements
 
 	private void handleUpgradeEvents(String incoming) {
 		if (incoming.indexOf("PickUp") != -1) {
+			System.out.println(incoming);
 			String[] parts = incoming.split(";");
 			int tmpPlayerIndex = Integer.parseInt(parts[0].substring(6));
 			int tmpPosAtList = Integer.parseInt(parts[2]);
@@ -423,6 +424,7 @@ public class MultiplayerUnit extends GraphicalGameUnit implements
 					tmpUpgrade);
 			tmpUpgrade.setDestroyed(true);
 		} else {
+			System.out.println(incoming);
 			String[] parts = incoming.split("/");
 			Color tmpColor = stringToColor(parts[0]);
 			int tmpPosX = Integer.parseInt(parts[1]);

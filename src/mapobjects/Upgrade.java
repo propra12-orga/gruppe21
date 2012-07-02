@@ -52,7 +52,7 @@ public class Upgrade extends MapObject {
 				Color.darkGray)) {
 			animation.animate();
 		} else {
-			map.synchronizePickup(this);
+			map.pickUpEvent(this);
 		}
 	}
 
@@ -96,5 +96,7 @@ public class Upgrade extends MapObject {
 
 	public interface CMListener {
 		public void giveUpgrade(Upgrade upgrade);
+
+		public boolean collidesWithListener(Upgrade upgrade);
 	}
 }

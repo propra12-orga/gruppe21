@@ -323,7 +323,7 @@ public class Map {
 	}
 
 	public boolean hasReachedMaxUpgrades() {
-		return (upgradeCounter == maxUpgrades);
+		return (upgradeCounter >= maxUpgrades);
 	}
 
 	public void setUpgradeListener(UpgradeListener listener) {
@@ -344,14 +344,18 @@ public class Map {
 		incrementUpgradeCounter();
 	}
 
-	public void synchronizePickup(Upgrade upgrade) {
-		if (cmListener != null) {
-			if (listener != null) {
-				listener.upgradePickedUp(getMapObjects().get(1)
-						.indexOf(upgrade), upgrade.getMPID());
-			} else
-				cmListener.giveUpgrade(upgrade);
-		}
+	private void synchronizePickup(Upgrade upgrade) {
+		if (listener != null) {
+			listener.upgradePickedUp(getMapObjects().get(1).indexOf(upgrade),
+					upgrade.getMPID());
+		} else
+			cmListener.giveUpgrade(upgrade);
+
+	}
+
+	public void pickUpEvent(Upgrade upgrade) {
+		if (cmListener.collidesWithListener(upgrade))
+			synchronizePickup(upgrade);
 	}
 
 	public void setCMListener(CMListener cmListener) {

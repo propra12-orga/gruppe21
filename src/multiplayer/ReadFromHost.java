@@ -28,7 +28,6 @@ public class ReadFromHost extends Thread implements Runnable {
 		while (true) {
 			try {
 				incomingMsg = is.readUTF();
-				System.out.println(incomingMsg);
 				listener.analizeIncoming(incomingMsg);
 			} catch (IOException e) {
 				System.out.println("Connection to host lost!");

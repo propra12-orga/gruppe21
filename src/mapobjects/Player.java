@@ -626,4 +626,13 @@ public class Player extends MoveableObject implements CMListener {
 		upgrade.setDestroyed(true);
 	}
 
+	@Override
+	public boolean collidesWithListener(Upgrade upgrade) {
+		if ((Math.abs(upgrade.getPosX() - this.posX) < 50)
+				&& (Math.abs(upgrade.getPosY() - this.posY) < 50)) {
+			return true;
+		}
+		return false;
+	}
+
 }

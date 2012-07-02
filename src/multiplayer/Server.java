@@ -60,7 +60,6 @@ public class Server extends Thread {
 	private void distributeMessage(String incoming) {
 		for (int i = 1; i < playerCount; i++) {
 			try {
-				System.out.println(incoming);
 				Lock tmpLock = toClientSockets[i].getWriteLock();
 				tmpLock.lock();
 				toClientSockets[i].getOS().writeUTF(incoming);
@@ -75,7 +74,6 @@ public class Server extends Thread {
 		for (int i = 1; i < playerCount; i++) {
 			if (!(i == sendingPlayer)) {
 				try {
-					System.out.println(incoming);
 					Lock tmpLock = toClientSockets[i].getWriteLock();
 					tmpLock.lock();
 					toClientSockets[i].getOS().writeUTF(incoming);
