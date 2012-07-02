@@ -8,11 +8,30 @@ import java.awt.image.BufferedImage;
 
 import mapobjects.Enemy;
 
+/**
+ * <b>public class Monster extends Enemy</b>
+ * <p>
+ * A Monster object displays an enemy which is able to move into a random
+ * direction. While moving it leaves a trace of poisonous slime.
+ * 
+ * @author masto104
+ */
 public class Monster extends Enemy {
 
+	/**
+	 * Used to time the waits before the enemy starts running.
+	 */
 	private int waitingCounter;
+
+	/**
+	 * Used to decrease the speed.
+	 */
 	private int walkdelay;
-	private int x, y;
+
+	/**
+	 * Used for
+	 */
+	private int distance;
 
 	/**
 	 * Monster constructor.
@@ -37,6 +56,15 @@ public class Monster extends Enemy {
 		super(x, y, v, d, c, p, gr);
 	}
 
+	/**
+	 * <b>public void move()</b>
+	 * <p>
+	 * Moves the enemy object over the panel. Checks the ability of moving into
+	 * the relevant direction. If ability is given the enemy object will be
+	 * moved for a fixed number of pixels, if not findPath() will be called.
+	 * Also creates a Slime object whenever a distance of a constant value of
+	 * pixels is exceeded.
+	 */
 	@Override
 	public void move() {
 		if (UP) {
@@ -48,14 +76,14 @@ public class Monster extends Enemy {
 
 				if (waitingCounter > 50) {
 					posY -= speed;
-					y += speed;
+					distance += speed;
 
-					if (y >= 5) {
+					if (distance >= 15) {
 						Slime slime = new Slime(posX, posY, true, true, false,
 								"slime", map.getGraphics(), "up");
 						slime.setMap(getMap());
 						map.getMapObjects().get(1).add(slime);
-						y = 0;
+						distance = 0;
 					}
 				}
 			}
@@ -69,14 +97,14 @@ public class Monster extends Enemy {
 				waitingCounter++;
 				if (waitingCounter > 50) {
 					posY += speed;
-					y += speed;
+					distance += speed;
 
-					if (y >= 5) {
+					if (distance >= 15) {
 						Slime slime = new Slime(posX, posY, true, true, false,
 								"slime", map.getGraphics(), "down");
 						slime.setMap(getMap());
 						map.getMapObjects().get(1).add(slime);
-						y = 0;
+						distance = 0;
 					}
 				}
 			}
@@ -90,14 +118,14 @@ public class Monster extends Enemy {
 				waitingCounter++;
 				if (waitingCounter > 50) {
 					posX -= speed;
-					x += speed;
+					distance += speed;
 
-					if (x >= 5) {
+					if (distance >= 15) {
 						Slime slime = new Slime(posX, posY, true, true, false,
 								"slime", map.getGraphics(), "left");
 						slime.setMap(getMap());
 						map.getMapObjects().get(1).add(slime);
-						x = 0;
+						distance = 0;
 					}
 				}
 			}
@@ -111,14 +139,14 @@ public class Monster extends Enemy {
 				waitingCounter++;
 				if (waitingCounter > 50) {
 					posX += speed;
-					x += speed;
+					distance += speed;
 
-					if (x >= 5) {
+					if (distance >= 15) {
 						Slime slime = new Slime(posX, posY, true, true, false,
 								"slime", map.getGraphics(), "right");
 						slime.setMap(getMap());
 						map.getMapObjects().get(1).add(slime);
-						x = 0;
+						distance = 0;
 					}
 				}
 			}
@@ -142,13 +170,6 @@ public class Monster extends Enemy {
 				setDestroyed(true);
 			}
 		} else {
-			// if (walkdelay > 1) {
-			// walkdelay = 0;
-			// }
-			// if (walkdelay == 0) {
-			// move();
-			// }
-			// walkdelay++;
 			move();
 		}
 	}

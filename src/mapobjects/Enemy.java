@@ -161,7 +161,7 @@ public abstract class Enemy extends MoveableObject {
 	}
 
 	/**
-	 * <b>public void die()</b>
+	 * <b>public void die(String dyingAnimation)</b>
 	 * <p>
 	 * This method is called when the Enemy object has been struck by a bomb.
 	 * The animation changes to the dying animation. The starting point of the

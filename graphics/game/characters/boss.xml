@@ -1,4 +1,4 @@
-<animationset default="skeleton_default.png">
+<animationset default="boss_front.png">
 <animation frames="1" stretch="1" name="casting">boss_phase1.png</animation>
 <animation frames="4" stretch="10" name="enemyUp">boss_back.png</animation>
 <animation frames="4" stretch="10" name="enemyDown">boss_front.png</animation>

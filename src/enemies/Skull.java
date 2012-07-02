@@ -8,8 +8,37 @@ import java.awt.image.BufferedImage;
 
 import mapobjects.Enemy;
 
+/**
+ * <b>public class Skull extends Enemy</b>
+ * <p>
+ * A Skull object displays a skull which is thrown by an object of the enemy
+ * Skeleton. The Skull object flies into the direction the throwing enemy looks
+ * into and explodes when it collides an object.
+ * 
+ * @author masto104
+ */
 public class Skull extends Enemy {
 
+	/**
+	 * Skull constructor.
+	 * 
+	 * @param x
+	 *            - x-coordinate.
+	 * @param y
+	 *            - y-coordinate.
+	 * @param v
+	 *            - sets visibility.
+	 * @param d
+	 *            - sets 'destructible' flag.
+	 * @param c
+	 *            - sets 'collision' flag.
+	 * @param p
+	 *            - AnimationSet filename
+	 * @param gr
+	 *            - ImageLoader.
+	 * @param dir
+	 *            - direction to fly into.
+	 */
 	public Skull(int x, int y, boolean v, boolean d, boolean c, String p,
 			ImageLoader gr, String dir) {
 		super(x, y, v, d, c, p, gr);
@@ -18,6 +47,14 @@ public class Skull extends Enemy {
 		initDirection(dir);
 	}
 
+	/**
+	 * <b>public void initDirection(String dir)</b>
+	 * <p>
+	 * Initializes the matching direction boolean to the committed direction.
+	 * 
+	 * @param dir
+	 *            - direction.
+	 */
 	private void initDirection(String dir) {
 		if (dir.equals("up")) {
 			UP = true;
