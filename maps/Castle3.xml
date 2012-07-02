@@ -1657,6 +1657,14 @@
 				<posx>2250</posx>
 				<posy>250</posy>
 			</tile>
+			<tile type="animatedfloor" animated="true">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<animationset>portals</animationset>
+				<posx>2400</posx>
+				<posy>300</posy>
+			</tile>		
 
 		</level>
 		<level>
@@ -1683,7 +1691,7 @@
 				<image rotation="0">CastleUndesPillar2.png</image>
 				<posx>700</posx>
 				<posy>450</posy>
-			</tile>			
+			</tile>
 		</level>
 		<level>
 			<character type="player" animated="true">
@@ -1696,7 +1704,7 @@
 			</character>
 			</level>						
 		<level>
-			<character type="StoneOrbSpawn" animated="true">
+			<character type="blackhole" animated="true">
 			    <visible>true</visible>
 				<collision>true</collision>
 				<destroyable>false</destroyable>
@@ -1711,6 +1719,7 @@
 
 	<items>
 		<animationset>simplebomb</animationset>
+		<animationset>stoneOrbs</animationset>
 		<image>exit.png</image>
 	</items>
 </map>
