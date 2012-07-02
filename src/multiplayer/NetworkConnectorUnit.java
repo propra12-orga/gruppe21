@@ -19,12 +19,20 @@ import main.GraphicalGameUnit;
 import main.UnitNavigator;
 import main.UnitState;
 
+/**
+ * This unit is used to execute the network connection process. It is capable of
+ * displaying error and status messages to inform the user about what is
+ * happening. It is implementing the SocketListener interface, which means, that
+ * this unit may handle messages send by a Server object.
+ * 
+ * @author tohei
+ * 
+ */
 public class NetworkConnectorUnit extends GraphicalGameUnit implements
 		multiplayer.ReadFromHost.SocketListener {
 
 	private String ip;
 	private int port;
-	private Socket clientSocket;
 	private GameGraphic background;
 	private String msg;
 	private boolean asHost;
@@ -125,6 +133,9 @@ public class NetworkConnectorUnit extends GraphicalGameUnit implements
 
 	@Override
 	public void initComponent() {
+		/*
+		 * load font
+		 */
 		try {
 			unitFont = loadFont("font1.TTF").deriveFont(30f);
 		} catch (Exception e) {
@@ -132,9 +143,15 @@ public class NetworkConnectorUnit extends GraphicalGameUnit implements
 			e.printStackTrace();
 			unitFont = new Font("serif", Font.PLAIN, 24);
 		}
+		/*
+		 * load background
+		 */
 		background = new GameGraphic(GameConstants.MENU_IMAGES_DIR
 				+ "/MultiplayerMenuBG.png");
 
+		/*
+		 * initialize network connection
+		 */
 		try {
 			toHostSocket = new Socket(ip, port);
 			os = new DataOutputStream(toHostSocket.getOutputStream());

@@ -39,15 +39,12 @@ public class MultiplayerUnit extends GraphicalGameUnit implements
 
 	private String mapName = "MP-Woodwars";
 
+	private Socket toHostSocket;
 	private ReadFromHost fromHost = null;
 	private DataOutputStream os = null;
 	private DataInputStream is = null;
 	private Player myPlayer;
 	private int myPlayerIndex;
-
-	private Server server;
-	private Socket toHostSocket;
-	private boolean asHost;
 
 	private boolean playerDiedMsgSend = false;
 

@@ -3,9 +3,8 @@ package singleplayer;
 import java.util.ArrayList;
 
 /**
- * Stores sequences of map names ( = level) and the corresponding world map.
- * Offers static method readCampaignFromFile to load previously stored campaign
- * objects from a text file.
+ * Stores sequences of map names ( = level) and the corresponding world map. To
+ * load a campaign object from an XML file, use a CampaignReader.
  * 
  * @author tohei
  * @see singleplayer.WorldMap
@@ -143,6 +142,11 @@ public class Campaign {
 		return CampaignData.extractData(this);
 	}
 
+	/**
+	 * Restore campaign to a previously stored state.
+	 * 
+	 * @param data
+	 */
 	public void restoreCampaignToData(CampaignData data) {
 		data.restoreCampaign(this);
 	}

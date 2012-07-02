@@ -19,6 +19,13 @@ import main.UnitNavigator;
 import main.UnitState;
 import unitTransitions.TransitionUnit;
 
+/**
+ * This unit provides the user with a graphical user interface to load and store
+ * savegames.
+ * 
+ * @author tohei
+ * 
+ */
 public class SavegameManagerUnit extends GraphicalGameUnit {
 
 	String[] saveGameInfo;
@@ -39,11 +46,22 @@ public class SavegameManagerUnit extends GraphicalGameUnit {
 	private final int titleAreaY = 150;
 	private final int helpAreaY = GameConstants.FRAME_SIZE_Y - 120;
 
+	/**
+	 * Called when using a SavegameManagerUnit from the main menu.
+	 * 
+	 * @param loadGame
+	 *            states if this unit is to be used for saving or loading
+	 *            respectively
+	 */
 	public SavegameManagerUnit(boolean loadGame) {
 		this.loadGame = loadGame;
 		initComponent();
 	}
 
+	/**
+	 * Called when installing a SavegameManagerUnit via the WorldMapUnit (or any
+	 * other temporary GraphicalGameUnit)
+	 */
 	public SavegameManagerUnit(GraphicalGameUnit prevTmpUnit, boolean loadGame) {
 		this.prevTmpUnit = prevTmpUnit;
 		this.loadGame = loadGame;
@@ -120,6 +138,12 @@ public class SavegameManagerUnit extends GraphicalGameUnit {
 		}
 	}
 
+	/**
+	 * Create a tool tip to be displayed while loading. The tool tips may be
+	 * edited in the GameConstants class.
+	 * 
+	 * @return
+	 */
 	private BufferedImage createTooltip() {
 		Image tmp = new ImageIcon(GameConstants.MENU_IMAGES_DIR
 				+ "MultiplayerMenuBG.png").getImage();

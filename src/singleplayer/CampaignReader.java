@@ -14,11 +14,27 @@ import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 
+/**
+ * The CampaignReader can be used to load a campaign object from XML files.
+ * Unlike the Map class, one cannot automatically load a Campaign object by
+ * passing its constructor the XML file, but instead needs to create a
+ * CampaignReader and call its readCampaignFromFile() method explicitly.
+ * 
+ * @author tohei
+ * 
+ */
 public class CampaignReader {
 	private Document campaignXML;
 	private Element campaignRoot;
 	private String filename;
 
+	/**
+	 * Create a new CampaignReader by passing its constructor an XML filename.
+	 * The file is assumed to be located in the campaigns directory; its suffix
+	 * (.xml) has to be omitted!
+	 * 
+	 * @param filename
+	 */
 	public CampaignReader(String filename) {
 		this.filename = filename;
 		try {
@@ -33,10 +49,21 @@ public class CampaignReader {
 		campaignRoot = campaignXML.getRootElement();
 	}
 
+	/**
+	 * Read file header.
+	 * 
+	 * @param v
+	 * @return
+	 */
 	public String getHeader(String v) {
 		return campaignRoot.getChild("header").getChildText(v);
 	}
 
+	/**
+	 * To be called in order to read a campaign object from file.
+	 * 
+	 * @return
+	 */
 	public Campaign readCampaignFromFile() {
 
 		int levelNumber = Integer.parseInt(campaignRoot.getChild("header")
