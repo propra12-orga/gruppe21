@@ -11,7 +11,7 @@ import mapobjects.MapObject;
 
 public class BlackHole extends MapObject {
 
-	private double spawnTime, spawnCountdown = 4000000000L;
+	private double spawnTime, spawnCountdown = 7400000000L;
 	private AnimatedFloor finishHole;
 
 	public BlackHole(int x, int y, boolean v, boolean d, boolean c, String p,
