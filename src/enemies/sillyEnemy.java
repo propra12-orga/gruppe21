@@ -9,12 +9,10 @@ import java.awt.image.BufferedImage;
 import mapobjects.Enemy;
 
 /**
- * <b>public class Enemy extends MoveableObject</b>
+ * <b>public class sillyEnemy extends Enemy</b>
  * <p>
- * The Enemy class defines the structure of an enemy object. It includes all the
- * methods which are called by the map, like update() an draw(), and some other
- * methods, e.g. those which are responsible for moving the Enemy object or
- * checking for collision.
+ * A sillyEnemy object displays an enemy which is just able to move with a
+ * constant speed into a random direction.
  * 
  * @author masto104
  */

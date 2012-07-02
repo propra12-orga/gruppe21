@@ -15,44 +15,140 @@ import mapobjects.MapObject;
 import mapobjects.Wall;
 
 /**
- * phase 1: casten, immortal, fire bowls zu zerstören phase 2: nicht mehr
- * immortal, flames legen phase 3: zusätzlich noch schießen phase 4: aoe (3
- * leben noch)
+ * <b>public class Boss extends Enemy</b>
+ * <p>
+ * The final boss. A Boss object displays an enemy which is able to move into a
+ * random direction. The enemy has got five lives. The fight is divided into
+ * four phases:
+ * <p>
+ * Phase 1: The boss is placed at the top of the level, invoking two portals.
+ * There are eight fire bowls in the room. They must be bombed to get to phase
+ * 2. During they are not bombed the boss is immortal and the portals spawn
+ * skeletons in a constant interval.
+ * <p>
+ * Phase 2: The portals have closed. The boss is moving now. While he moves into
+ * random directions he inflames the ground in a constant interval. The fight
+ * gets to phase 3 if the boss has been hit by a bomb.
+ * <p>
+ * Phase 3: The boss does additionally spit fire in a constant interval. The
+ * fight gets to phase 4 if the boss has been hit by a bomb.
+ * <p>
+ * Phase 4: The boss does additionally cast an aoe attack. The cast inflames the
+ * ground around the boss in a range of 2 tiles.
  * 
- * 
- * @author masto
- * 
+ * @author masto104
  */
-
 public class Boss extends Enemy {
 
+	/**
+	 * Used to initialize the fire bowls and the portal in the first call of the
+	 * upgrade method.
+	 */
 	private boolean startInit = true;
-	private int lifes = 5;
+
+	/**
+	 * The current lives of the boss.
+	 */
+	private int lives = 5;
+
+	/**
+	 * Used to time the interval of planting flames.
+	 */
 	private int flameDelay;
+
+	/**
+	 * Used to time the interval of casting aoe attack.
+	 */
 	private int aoeDelay;
+
+	/**
+	 * Used to time the interval of spitting fire.
+	 */
 	private int fireSpitCounter;
-	private int[] xPos;
-	private int[] yPos;
+
+	/**
+	 * Array of the x- and y-coordinates of the tiles on which the aoe attack is
+	 * damaging
+	 */
+	private int[] xPos, yPos;
+
+	/**
+	 * List of current fire bowls.
+	 */
 	public ArrayList<FireBowl> fireBowls;
+
+	/**
+	 * True, if the boss is currently immortal.
+	 */
 	private boolean immortal;
+
+	/**
+	 * True, if boss is casting aoe attack.
+	 */
 	private boolean aoe;
+
+	/**
+	 * True, if the matching phase is active.
+	 */
 	private boolean phase1 = true, phase2 = false, phase3 = false,
 			phase4 = false, phase5 = false;
+
+	/**
+	 * Used to time the temporary immortality.
+	 */
 	private double immortalStart, immortalTime = 5000000000L;
-	private double startDelay = 5000000000L, spawnTime,
-			spawnCountdown = 3000000000L;
+
+	/**
+	 * Used to time the enemy spawn interval.
+	 */
+	private double spawnTime, spawnCountdown = 3000000000L;
+
+	/**
+	 * Used to time the aoe attack interval.
+	 */
 	private double aoeStart, aoeTime = 2000000000L;
+
+	/**
+	 * The time of the dying animation.
+	 */
+	private double dyingTime = 5000000000L;
+
+	/**
+	 * The aoe animation.
+	 */
 	private Animation aoeAnim;
+
+	/**
+	 * The portals of phase 1.
+	 */
 	AnimatedFloor portal1, portal2;
 
+	/**
+	 * Boss constructor.
+	 * 
+	 * @param x
+	 *            - x-coordinate.
+	 * @param y
+	 *            - y-coordinate.
+	 * @param v
+	 *            - sets visibility.
+	 * @param d
+	 *            - sets 'destructible' flag.
+	 * @param c
+	 *            - sets 'collision' flag
+	 * @param p
+	 *            - AnimationSet filename
+	 * @param gr
+	 *            - ImageLoader
+	 */
 	public Boss(int x, int y, boolean v, boolean d, boolean c, String p,
 			ImageLoader gr) {
 		super(x, y, v, d, c, p, gr);
 		stop();
 		speed = 2;
 		immortal = true;
-		animation.start("casting"); // Anfangsanimation (casten/beschwören
-									// oder so)
+		animation.start("casting");
+
 		spawnTime = System.nanoTime();
 
 		xPos = new int[25];
@@ -62,6 +158,11 @@ public class Boss extends Enemy {
 		aoeAnim.start("aoe");
 	}
 
+	/**
+	 * <b>private void initPhase1()</b>
+	 * <p>
+	 * Initializes phase1. Creates the fireBowls and the portals.
+	 */
 	private void initPhase1() {
 		fireBowls = new ArrayList<FireBowl>();
 
@@ -105,6 +206,11 @@ public class Boss extends Enemy {
 		map.getMapObjects().get(1).add(portal2);
 	}
 
+	/**
+	 * <b>private void closeEntrance()</b>
+	 * <p>
+	 * Sets the accessibility of the entrance of the room to false.
+	 */
 	private void closeEntrance() {
 		Wall gridLeft = new Wall(400, 650, 0, true, false, true, "PrisonUL");
 		gridLeft.setMap(getMap());
@@ -114,6 +220,11 @@ public class Boss extends Enemy {
 		map.getMapObjects().get(1).add(gridRight);
 	}
 
+	/**
+	 * <b>private void plantFlame()</b>
+	 * <p>
+	 * Creates a new Flame object.
+	 */
 	private void plantFlame() {
 		Flame flame = new Flame(posX, posY, true, true, false, "flames",
 				map.getGraphics());
@@ -121,6 +232,14 @@ public class Boss extends Enemy {
 		map.getMapObjects().get(1).add(flame);
 	}
 
+	/**
+	 * <b>private void spitFire(String dir)</b>
+	 * <p>
+	 * Creates a new FireBreathe object moving into the committed direction.
+	 * 
+	 * @param dir
+	 *            - direction.
+	 */
 	private void spitFire(String dir) {
 		fireSpitCounter++;
 
@@ -134,6 +253,12 @@ public class Boss extends Enemy {
 		}
 	}
 
+	/**
+	 * <b>private void aoeAttack()</b>
+	 * <p>
+	 * Initializes the aoe arrays. Only the coordinates of the tiles on which
+	 * there is no wall.
+	 */
 	private void aoeAttack() {
 		if (!aoe) {
 			int index = 0;
@@ -157,6 +282,11 @@ public class Boss extends Enemy {
 		}
 	}
 
+	/**
+	 * <b>private void clearAoeArr()</b>
+	 * <p>
+	 * Clears the aoe array.
+	 */
 	private void clearAoeArr() {
 		for (int i = 0; i < xPos.length; i++) {
 			xPos[i] = 0;
@@ -164,6 +294,14 @@ public class Boss extends Enemy {
 		}
 	}
 
+	/**
+	 * <b>private void phase1()</b>
+	 * <p>
+	 * Checks if all fire bowls are destroyed. While not, skeletons are spawned.
+	 * If all fire bowls are destroyed the portals disappear, the boss's
+	 * x-coordinate is changed, closeEntrance() is called and phase2 is set to
+	 * true.
+	 */
 	private void phase1() {
 		if (!fireBowls.isEmpty()) {
 			if (spawnTime + spawnCountdown <= System.nanoTime()) {
@@ -195,8 +333,11 @@ public class Boss extends Enemy {
 		}
 	}
 
+	/**
+	 * The move() and the plantFlame() method are called.
+	 */
 	private void phase2() {
-		if (lifes == 4) {
+		if (lives == 4) {
 			phase2 = false;
 			phase3 = true;
 			System.out.println("Phase 2 geschafft.");
@@ -211,8 +352,11 @@ public class Boss extends Enemy {
 		}
 	}
 
+	/**
+	 * Same as phase2().
+	 */
 	private void phase3() {
-		if (lifes == 3) {
+		if (lives == 3) {
 			phase3 = false;
 			phase4 = true;
 			System.out.println("Phase 3 geschafft.");
@@ -227,12 +371,10 @@ public class Boss extends Enemy {
 		}
 	}
 
+	/**
+	 * Same as phase2(). Additionally aoeAttack() is called.
+	 */
 	private void phase4() {
-		// if (lifes == 2) {
-		// phase4 = false;
-		// phase5 = true;
-		// }
-
 		move();
 
 		flameDelay++;
@@ -248,6 +390,14 @@ public class Boss extends Enemy {
 		}
 	}
 
+	/**
+	 * <b>public void move()</b>
+	 * <p>
+	 * Moves the Enemy object over the panel. Checks the ability of moving into
+	 * the relevant direction. If ability is given the Enemy object will be
+	 * moved for a fixed number of pixels, if not findPath() will be called.
+	 * Also calls spitFire() if the fight is in a higher phase than phase 2.
+	 */
 	@Override
 	public void move() {
 		if (UP) {
@@ -342,17 +492,21 @@ public class Boss extends Enemy {
 		}
 	}
 
+	/**
+	 * <b>public void draw(Graphics2D g2d, ImageLoader gr, Graphics2D cm)</b>
+	 * <p>
+	 * Draws the current Images and the collision map.
+	 * 
+	 * @param g2d
+	 *            a Graphics object of the actual drawing canvas.
+	 * @param gr
+	 *            an ImageLoader to request images if necessary.
+	 * @param cm
+	 *            a Graphics object to draw onto the collision map.
+	 * 
+	 */
 	@Override
 	public void draw(Graphics2D g2d, ImageLoader gr, Graphics2D cm) {
-		g2d.drawImage(animation.getCurrentImage(), posX, posY, null);
-
-		if (phase1) {
-			cm.setPaint(Color.black); // bubble
-		} else {
-			cm.setPaint(Color.red);
-		}
-		cm.fillRect(posX + 5, posY + 5, 40, 40);
-
 		if (aoe) {
 			for (int i = 0; i < xPos.length; i++) {
 				if (xPos[i] != 0 && yPos[i] != 0) {
@@ -363,8 +517,26 @@ public class Boss extends Enemy {
 				}
 			}
 		}
+
+		g2d.drawImage(animation.getCurrentImage(), posX, posY, null);
+
+		if (phase1) {
+			cm.setPaint(Color.black); // bubble
+		} else if (dying) {
+			cm.setPaint(Color.black);
+		} else {
+			cm.setPaint(Color.red);
+		}
+		cm.fillRect(posX + 5, posY + 5, 40, 40);
 	}
 
+	/**
+	 * <b>public void update(BufferedImage cm)</b>
+	 * <p>
+	 * Calls the phase method for the currently active phase. Also checks
+	 * collision with bombs, if the boss have to die, the aoe animation and
+	 * animates the boss himself.
+	 */
 	@Override
 	public void update(BufferedImage cm) {
 		if (startInit) {
@@ -372,28 +544,32 @@ public class Boss extends Enemy {
 			startInit = false;
 		}
 
-		animation.animate();
-
-		if (simpleHasColl(posX, posY, cm, Color.orange)) {
-			if (!immortal) {
-				lifes--;
-				immortal = true;
-				immortalStart = System.nanoTime();
-			}
-		}
-		if (!phase1 && immortal) {
-			if (immortalStart + immortalTime <= System.nanoTime()) {
-				immortal = false;
-			}
-		}
-		if (lifes == 0) {
+		if (lives == 0 && !dying) {
 			phase4 = false;
 			stop();
 			die("enemyDying");
 		}
+
 		if (dying) {
 			if (beforeTime + dyingTime <= System.nanoTime()) {
 				destroyed = true;
+				map.finishMap();
+			}
+		}
+
+		animation.animate();
+
+		if (simpleHasColl(posX, posY, cm, Color.orange)) {
+			if (!immortal) {
+				lives--;
+				immortal = true;
+				immortalStart = System.nanoTime();
+			}
+		}
+
+		if (!phase1 && immortal) {
+			if (immortalStart + immortalTime <= System.nanoTime()) {
+				immortal = false;
 			}
 		}
 
@@ -414,15 +590,46 @@ public class Boss extends Enemy {
 		} else if (phase4) {
 			phase4();
 		}
-
 	}
 
+	/**
+	 * <b>public class Flame extends MapObject</b>
+	 * <p>
+	 * A Flame object displays a burning floor tile.
+	 * 
+	 * @author masto104
+	 */
 	static class Flame extends MapObject {
 
+		/**
+		 * Used to time the life time of the object.
+		 */
 		private double beforeTime, disappearTime = 1000000000L,
 				lifeTime = 5000000000L;
+
+		/**
+		 * Used to time the disappearing animation.
+		 */
 		private boolean disappearing = false;
 
+		/**
+		 * Flame constructor.
+		 * 
+		 * @param x
+		 *            - x-coordinate.
+		 * @param y
+		 *            - y-coordinate.
+		 * @param v
+		 *            - sets visibility.
+		 * @param d
+		 *            - sets 'destructible' flag.
+		 * @param c
+		 *            - sets 'collision' flag
+		 * @param p
+		 *            - AnimationSet filename
+		 * @param gr
+		 *            - ImageLoader
+		 */
 		public Flame(int x, int y, boolean v, boolean d, boolean c, String p,
 				ImageLoader gr) {
 			super(x, y, v, d, c, p, gr);
@@ -464,6 +671,13 @@ public class Boss extends Enemy {
 			cmg.fillRect(posX + 5, posY + 5, 40, 40);
 		}
 
+		/**
+		 * <b>public void die(String animation)</b>
+		 * <p>
+		 * This method is called when the Enemy object has been struck by a
+		 * bomb. The animation changes to the dying animation. The starting
+		 * point of the dying animation is set.
+		 */
 		private void die(String animation) {
 			beforeTime = System.nanoTime();
 			disappearing = true;
@@ -471,8 +685,33 @@ public class Boss extends Enemy {
 		}
 	}
 
+	/**
+	 * <b>public class FireBreathe extends Skull</b>
+	 * <p>
+	 * A FireBreath object displays a flame spit out from the boss.
+	 * 
+	 * @author masto104
+	 */
 	static class FireBreathe extends Skull {
 
+		/**
+		 * FireBreath constructor.
+		 * 
+		 * @param x
+		 *            - x-coordinate.
+		 * @param y
+		 *            - y-coordinate.
+		 * @param v
+		 *            - sets visibility.
+		 * @param d
+		 *            - sets 'destructible' flag.
+		 * @param c
+		 *            - sets 'collision' flag
+		 * @param p
+		 *            - AnimationSet filename
+		 * @param gr
+		 *            - ImageLoader
+		 */
 		public FireBreathe(int x, int y, boolean v, boolean d, boolean c,
 				String p, ImageLoader gr, String dir) {
 			super(x, y, v, d, c, p, gr, dir);

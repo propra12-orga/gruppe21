@@ -393,7 +393,7 @@ public class MultiplayerUnit extends GraphicalGameUnit implements
 			tmpPlayer.bombExplode();
 			return;
 		}
-		if (incoming.indexOf("Bomb") != -1) {
+		if (incoming.indexOf("Shield") != -1) {
 			tmpPlayer.setPosX(Integer.parseInt(parts[1]));
 			tmpPlayer.setPosY(Integer.parseInt(parts[2]));
 			tmpPlayer.activateShield();
