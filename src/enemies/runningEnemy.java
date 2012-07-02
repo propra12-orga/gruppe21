@@ -9,21 +9,23 @@ import java.awt.image.BufferedImage;
 import mapobjects.Enemy;
 
 /**
- * <b>public class Enemy extends MoveableObject</b>
+ * <b>public class runningEnemy extends Enemy</b>
  * <p>
- * The Enemy class defines the structure of an enemy object. It includes all the
- * methods which are called by the map, like update() an draw(), and some other
- * methods, e.g. those which are responsible for moving the Enemy object or
- * checking for collision.
+ * A runningEnemy object displays an enemy which is able to move into a random
+ * direction. When it collides with a wall, it waits a few moments and then runs
+ * into the chosen direction.
  * 
  * @author masto104
  */
 public class runningEnemy extends Enemy {
 
+	/**
+	 * Used to time the waits before the enemy starts running.
+	 */
 	private int waitingCounter;
 
 	/**
-	 * sillyEnemy constructor.
+	 * runningEnemy constructor.
 	 * 
 	 * @param x
 	 *            - x-coordinate.

@@ -45,8 +45,7 @@ public class Player extends MoveableObject implements CMListener {
 	 */
 	private boolean bombRemote = false;
 
-	private boolean shieldProtection = false, immortal = false,
-			remoteImmortal = false;
+	private boolean shieldProtection = false, immortal = false;
 	/**
 	 * List of currently planted bombs
 	 */
@@ -58,6 +57,10 @@ public class Player extends MoveableObject implements CMListener {
 
 	private double shieldStartTime, shieldTime = 500000000, immortalStartTime,
 			immortalTime = 6000000000L;
+
+	private boolean inMultiplayerMode = false;
+
+	private boolean bombsDeactivated = false;
 
 	/**
 	 * constructor
@@ -83,7 +86,18 @@ public class Player extends MoveableObject implements CMListener {
 		alive = true;
 	}
 
-	// TODO UseWeapon or plantBomB,ChangeWeapon
+	public boolean getBombsDeactivated() {
+		return bombsDeactivated;
+	}
+
+	public void disableBombs() {
+		bombsDeactivated = true;
+		maxbombs = 0;
+	}
+
+	public void setMultiplayerModeTo(boolean mode) {
+		inMultiplayerMode = mode;
+	}
 
 	@Override
 	public void move() {
@@ -179,7 +193,7 @@ public class Player extends MoveableObject implements CMListener {
 	 * @param y
 	 *            current y position
 	 * @param cm
-	 *            current collisionmap
+	 *            current collision map
 	 * @param dir
 	 *            current direction
 	 * @return returns true if object has a collision else false
@@ -325,10 +339,13 @@ public class Player extends MoveableObject implements CMListener {
 	public void update(BufferedImage cm) {
 		if (simpleHasColl(posX, posY, map.getCollisionMap(), Color.orange,
 				Color.red)) {
-			if (!immortal || remotePlayer) {
-				if (!shieldProtection && !remotePlayer) {
-					this.die();
-					map.finishMap();
+			if (!immortal) {
+				if (!shieldProtection) {
+					if (!remotePlayer) {
+						this.die();
+						if (!inMultiplayerMode)
+							map.finishMap();
+					}
 				} else {
 					if (!shieldHit) {
 						shieldStartTime = System.nanoTime();
@@ -338,8 +355,6 @@ public class Player extends MoveableObject implements CMListener {
 					}
 				}
 			} else {
-				// das hier wird auch aufgerufen, wenn ein remotePlayer was
-				// abbekommt, just sayin'
 				System.out.println("Hit, but immortal. Muhaha");
 			}
 		}
@@ -351,16 +366,9 @@ public class Player extends MoveableObject implements CMListener {
 				System.out.println("Shield off");
 			}
 		}
-		if (immortal && !remotePlayer) {
+		if (immortal) {
 			if (immortalStartTime + immortalTime <= System.nanoTime()) {
 				immortal = false;
-				animation.setCurrentAnimation(animation.getCurrentImagePath());
-				System.out.println("Now you are not immortal anymore");
-			}
-		}
-		if (remoteImmortal) {
-			if (immortalStartTime + immortalTime <= System.nanoTime()) {
-				remoteImmortal = false;
 				animation.setCurrentAnimation(animation.getCurrentImagePath());
 				System.out.println("Now you are not immortal anymore");
 			}
@@ -380,12 +388,14 @@ public class Player extends MoveableObject implements CMListener {
 		}
 	}
 
-	public void activateShield() {
+	public boolean activateShield() {
 		if (shieldEqu && !shieldProtection) {
 			shieldProtection = true;
 			animation.setCurrentAnimation("playerDown_bubble");
 			System.out.println("Shield activated");
+			return true;
 		}
+		return false;
 	}
 
 	private void handleUpgrades(Upgrade upgrade) {
@@ -411,15 +421,8 @@ public class Player extends MoveableObject implements CMListener {
 			bombRemote = true;
 		}
 		if (tmpColor == Color.lightGray) {
-			if (!remotePlayer) {
-				if (!immortal) {
-					immortal = true;
-					shieldProtection = false;
-					animation.setCurrentAnimation("playerDown_immortal");
-					immortalStartTime = System.nanoTime();
-				}
-			} else if (!remoteImmortal) {
-				remoteImmortal = true;
+			if (!immortal) {
+				immortal = true;
 				shieldProtection = false;
 				animation.setCurrentAnimation("playerDown_immortal");
 				immortalStartTime = System.nanoTime();
@@ -479,7 +482,6 @@ public class Player extends MoveableObject implements CMListener {
 	 */
 	public void makeRemote() {
 		remotePlayer = true;
-		immortal = true;
 	}
 
 	/**
@@ -534,7 +536,8 @@ public class Player extends MoveableObject implements CMListener {
 	}
 
 	public void setMaxBombs(int maxbombs) {
-		this.maxbombs = maxbombs;
+		if (!bombsDeactivated)
+			this.maxbombs = maxbombs;
 
 	}
 
@@ -639,6 +642,15 @@ public class Player extends MoveableObject implements CMListener {
 	public void giveUpgrade(Upgrade upgrade) {
 		handleUpgrades(upgrade);
 		upgrade.setDestroyed(true);
+	}
+
+	@Override
+	public boolean collidesWithListener(Upgrade upgrade) {
+		if ((Math.abs(upgrade.getPosX() - this.posX) < 50)
+				&& (Math.abs(upgrade.getPosY() - this.posY) < 50)) {
+			return true;
+		}
+		return false;
 	}
 
 }

@@ -46,6 +46,8 @@
 			<name>Tutorial4</name>
 			<sequence>0</sequence>
 		</map>
+		
+		
 		<map>
 			<intro>The Beach - In the Presence of the Enemy#
 			After narrowly escaping death on the battleship,#
@@ -60,8 +62,17 @@
 		<map>
 			<intro></intro>
 			<name>testmap</name>
+			<sequence>1</sequence>
+		</map>
+		
+		
+		<map>
+			<intro></intro>
+			<name>testmap</name>
 			<sequence>2</sequence>
 		</map>
+		
+		
 		<map>
 			<intro></intro>
 			<name>Castle1</name>
@@ -79,6 +90,11 @@
 		</map>
 		<map>
 			<intro></intro>
+			<name>Castle4</name>
+			<sequence>3</sequence>
+		</map>
+		<map>
+			<intro></intro>
 			<name>CastleBossRoom</name>
 			<sequence>3</sequence>
 		</map>
@@ -87,7 +103,7 @@
 
 	<worldmap>
 
-		<name>campaign1worldmap</name>
+		<name>Bomberman Island</name>
 		<background>worldmap.png</background>
 		<player>BMdefault.png</player>
 		

@@ -83,6 +83,7 @@ public class Map {
 		mapSizeX = Integer.parseInt(mr.getHeader("sizex"));
 		mapSizeY = Integer.parseInt(mr.getHeader("sizey"));
 		maxUpgrades = Integer.parseInt(mr.getHeader("maxUpgrades"));
+
 		drawLevels = mr.getDrawLevels();
 		upgradeCounter = 0;
 		mr.loadGraphics(graphics);
@@ -112,6 +113,13 @@ public class Map {
 				if (mapObjects.get(i).get(j) instanceof Boss) {
 					boss = (Boss) mapObjects.get(i).get(j);
 				}
+			}
+		}
+		boolean bombsActivated = Boolean.parseBoolean(mr
+				.getHeader("bombsActivated"));
+		if (!bombsActivated) {
+			for (Player player : players) {
+				player.disableBombs();
 			}
 		}
 
@@ -279,9 +287,20 @@ public class Map {
 	}
 
 	public void removeUnattendedPlayers(int[] attendingPlayers) {
+		Player[] playerTmp = new Player[players.size()];
+		playerTmp = players.toArray(playerTmp);
+		mapObjects.get(2).clear();
+		players.clear();
 		for (int i = 0; i < attendingPlayers.length; i++) {
-			if (attendingPlayers[i] == MPLoungeUnit.PLAYER_UNAVAILABLE) {
-				mapObjects.get(2).remove(players.get(i));
+			if (attendingPlayers[i] == MPLoungeUnit.PLAYER_READY) {
+				mapObjects.get(2).add(playerTmp[i]);
+			} else {
+				playerTmp[i] = null;
+			}
+		}
+		for (Player player : playerTmp) {
+			if (player != null) {
+				players.add(player);
 			}
 		}
 	}
@@ -323,31 +342,39 @@ public class Map {
 	}
 
 	public boolean hasReachedMaxUpgrades() {
-		return (upgradeCounter == maxUpgrades);
+		return (upgradeCounter >= maxUpgrades);
 	}
 
 	public void setUpgradeListener(UpgradeListener listener) {
 		this.listener = listener;
 	}
 
-	public void addUpgrade(Upgrade upgrade) {
+	public void addSpawnedUpgrade(Upgrade upgrade) {
 		getMapObjects().get(1).add(upgrade);
 		incrementUpgradeCounter();
+		upgrade.setMPID(String.valueOf(upgradeCounter));
 		if (listener != null)
 			listener.upgradeSpawned(upgrade.getPosX(), upgrade.getPosY(),
-					upgrade.getColor());
+					upgrade.getStringOfColor(), upgrade.getMPID());
 	}
 
-	public void synchronizePickup(Upgrade upgrade) {
-		if (listener != null)
-			listener.upgradePickedUp(getMapObjects().get(1).indexOf(upgrade));
-		else
-			UpgradePickUpEvent(upgrade);
+	public void addUpgradeRemotely(Upgrade upgrade) {
+		getMapObjects().get(1).add(upgrade);
+		incrementUpgradeCounter();
 	}
 
-	private void UpgradePickUpEvent(Upgrade upgrade) {
-		if (cmListener != null)
+	private void synchronizePickup(Upgrade upgrade) {
+		if (listener != null) {
+			listener.upgradePickedUp(getMapObjects().get(1).indexOf(upgrade),
+					upgrade.getMPID());
+		} else
 			cmListener.giveUpgrade(upgrade);
+
+	}
+
+	public void pickUpEvent(Upgrade upgrade) {
+		if (cmListener.collidesWithListener(upgrade))
+			synchronizePickup(upgrade);
 	}
 
 	public void setCMListener(CMListener cmListener) {

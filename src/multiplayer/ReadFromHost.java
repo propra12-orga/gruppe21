@@ -6,6 +6,13 @@ import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+/**
+ * This is the Thread attached to the Client which listens for incoming messages
+ * from the server
+ * 
+ * @author Dorian
+ * 
+ */
 public class ReadFromHost extends Thread implements Runnable {
 
 	private SocketListener listener;
@@ -14,6 +21,19 @@ public class ReadFromHost extends Thread implements Runnable {
 	private DataInputStream is;
 	private String incomingMsg = null;
 
+	/**
+	 * Create a Thread which reads on a DataInputStream and passes the incoming
+	 * Message to a specified listener
+	 * 
+	 * @param toHostSocket
+	 * @param attached
+	 *            DataOutputStream
+	 * @param attached
+	 *            DataInputStream
+	 * @param listener
+	 * @throws IOException
+	 * @throws UnknownHostException
+	 */
 	public ReadFromHost(Socket toHostSocket, DataOutputStream os,
 			DataInputStream is, SocketListener listener) throws IOException,
 			UnknownHostException {
@@ -28,10 +48,9 @@ public class ReadFromHost extends Thread implements Runnable {
 		while (true) {
 			try {
 				incomingMsg = is.readUTF();
-				System.out.println(incomingMsg);
 				listener.analizeIncoming(incomingMsg);
 			} catch (IOException e) {
-				System.out.println("Connetion to host lost!");
+				System.out.println("Connection to host lost!");
 				try {
 					toHostSocket.close();
 				} catch (IOException e1) {

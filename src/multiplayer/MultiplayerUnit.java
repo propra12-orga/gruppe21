@@ -17,6 +17,7 @@ import main.GraphicalGameUnit;
 import main.UnitNavigator;
 import main.UnitState;
 import map.Map;
+import mapobjects.MapObject;
 import mapobjects.Player;
 import mapobjects.Upgrade;
 import unitTransitions.TransitionUnit;
@@ -35,14 +36,14 @@ public class MultiplayerUnit extends GraphicalGameUnit implements
 	private ReadFromHost fromHost = null;
 	private DataOutputStream os = null;
 	private DataInputStream is = null;
-	private Player playerOne;
-	private Player playerTwo;
 	private Player myPlayer;
 	private int myPlayerIndex;
 
 	private Server server;
 	private Socket toHostSocket;
 	private boolean asHost;
+
+	private boolean playerDiedMsgSend = false;
 
 	private int[] attendingPLayers;
 	/**
@@ -54,6 +55,7 @@ public class MultiplayerUnit extends GraphicalGameUnit implements
 	 * Message to be shown in case of a draw.
 	 */
 	private final String drawMessage = "Unbelieveable! It's a draw!";
+	private int playersRemaining;
 
 	// Constructor
 	public MultiplayerUnit(ReadFromHost fromHost, int myPlayerIndex,
@@ -76,29 +78,33 @@ public class MultiplayerUnit extends GraphicalGameUnit implements
 
 	@Override
 	public void updateComponent() {
-		if (!multiplayerMap.isFinished()) {
+		if (playersRemaining <= 1)
+			multiplayerMap.finishMap();
+
+		if (!myPlayer.isAlive() && !playerDiedMsgSend) {
+			writeToHost("Player:" + myPlayerIndex + ";died");
+			playersRemaining--;
+			playerDiedMsgSend = true;
+		}
+
+		if (!multiplayerMap.isFinished())
 			multiplayerMap.update();
-		} else {
-			if (!myPlayer.isAlive())
-				writeToHost("Player:" + myPlayerIndex + "died");
-			/*
-			 * A player died: Generate the appropriate image ...
-			 */
-			BufferedImage transitionMsg = createTransitionMessage(drawMessage);
-			if (playerOne.isAlive()) {
-				transitionMsg = createTransitionMessage("Player One"
-						+ winMessages[(int) (Math.random() * 3)]);
-			} else if (playerTwo.isAlive()) {
-				transitionMsg = createTransitionMessage("Player Two"
-						+ winMessages[(int) (Math.random() * 3)]);
+		else {
+			BufferedImage msg = null;
+			if (playersRemaining == 0) {
+				msg = createTransitionMessage(drawMessage);
+			} else {
+				for (int i = 0; i < multiplayerMap.getPlayers().size(); i++) {
+					if (multiplayerMap.getPlayerByNumber(i + 1).isAlive()) {
+						msg = createTransitionMessage("Player "
+								+ (i + 1)
+								+ winMessages[(int) (Math.random() * winMessages.length)]);
+						break;
+					}
+				}
 			}
-			/*
-			 * ... and pass it to a TransitionUnit
-			 */
 			TransitionUnit trans = new TransitionUnit(UnitState.BASE_MENU_UNIT,
-					transitionMsg, false);
-			UnitNavigator.getNavigator().removeGameUnit(
-					UnitState.LEVEL_MANAGER_UNIT);
+					msg, false);
 			UnitNavigator.getNavigator().addGameUnit(trans,
 					UnitState.TEMPORARY_UNIT);
 			UnitNavigator.getNavigator().set(UnitState.TEMPORARY_UNIT);
@@ -121,60 +127,79 @@ public class MultiplayerUnit extends GraphicalGameUnit implements
 		/*
 		 * Player KeyEvents
 		 */
-		if (key == KeyEvent.VK_UP) {
-			if (!myPlayer.direction.isUp()) {
-				int tmpPosX = myPlayer.getPosX();
-				int tmpPosY = myPlayer.getPosY();
-				writeToHost("Player:" + myPlayerIndex + ";" + "Up" + ";"
-						+ "Pressed" + "/" + tmpPosX + "/" + tmpPosY);
-				myPlayer.direction.setUp(true);
+		if (myPlayer.isAlive()) {
+			if (key == KeyEvent.VK_UP) {
+				if (!myPlayer.direction.isUp()) {
+					int tmpPosX = myPlayer.getPosX();
+					int tmpPosY = myPlayer.getPosY();
+					writeToHost("Player:" + myPlayerIndex + ";" + "Up" + ";"
+							+ "Pressed" + "/" + tmpPosX + "/" + tmpPosY);
+					myPlayer.direction.setUp(true);
+				}
+				return;
 			}
-			return;
-		}
 
-		if (key == KeyEvent.VK_DOWN) {
-			if (!myPlayer.direction.isDown()) {
-				int tmpPosX = myPlayer.getPosX();
-				int tmpPosY = myPlayer.getPosY();
-				writeToHost("Player:" + myPlayerIndex + ";" + "Down" + ";"
-						+ "Pressed" + "/" + tmpPosX + "/" + tmpPosY);
-				myPlayer.direction.setDown(true);
+			if (key == KeyEvent.VK_DOWN) {
+				if (!myPlayer.direction.isDown()) {
+					int tmpPosX = myPlayer.getPosX();
+					int tmpPosY = myPlayer.getPosY();
+					writeToHost("Player:" + myPlayerIndex + ";" + "Down" + ";"
+							+ "Pressed" + "/" + tmpPosX + "/" + tmpPosY);
+					myPlayer.direction.setDown(true);
 
+				}
+				return;
 			}
-			return;
-		}
 
-		if (key == KeyEvent.VK_LEFT) {
-			if (!myPlayer.direction.isLeft()) {
-				int tmpPosX = myPlayer.getPosX();
-				int tmpPosY = myPlayer.getPosY();
-				writeToHost("Player:" + myPlayerIndex + ";" + "Left" + ";"
-						+ "Pressed" + "/" + tmpPosX + "/" + tmpPosY);
-				myPlayer.direction.setLeft(true);
+			if (key == KeyEvent.VK_LEFT) {
+				if (!myPlayer.direction.isLeft()) {
+					int tmpPosX = myPlayer.getPosX();
+					int tmpPosY = myPlayer.getPosY();
+					writeToHost("Player:" + myPlayerIndex + ";" + "Left" + ";"
+							+ "Pressed" + "/" + tmpPosX + "/" + tmpPosY);
+					myPlayer.direction.setLeft(true);
 
+				}
+				return;
 			}
-			return;
-		}
 
-		if (key == KeyEvent.VK_RIGHT) {
-			if (!myPlayer.direction.isRight()) {
-				int tmpPosX = myPlayer.getPosX();
-				int tmpPosY = myPlayer.getPosY();
-				writeToHost("Player:" + myPlayerIndex + ";" + "Right" + ";"
-						+ "Pressed" + "/" + tmpPosX + "/" + tmpPosY);
-				myPlayer.direction.setRight(true);
+			if (key == KeyEvent.VK_RIGHT) {
+				if (!myPlayer.direction.isRight()) {
+					int tmpPosX = myPlayer.getPosX();
+					int tmpPosY = myPlayer.getPosY();
+					writeToHost("Player:" + myPlayerIndex + ";" + "Right" + ";"
+							+ "Pressed" + "/" + tmpPosX + "/" + tmpPosY);
+					myPlayer.direction.setRight(true);
 
+				}
+				return;
 			}
-			return;
-		}
 
-		if (key == KeyEvent.VK_SPACE) {
-			if (!(myPlayer.getCurrentBombs() == myPlayer.getMaxBombs())) {
-				int tmpPosX = myPlayer.getPosX();
-				int tmpPosY = myPlayer.getPosY();
-				writeToHost("Player:" + myPlayerIndex + ";" + "Bomb" + ";"
-						+ "Pressed" + "/" + tmpPosX + "/" + tmpPosY);
-				myPlayer.plantBomb(multiplayerMap.getCollisionMap());
+			if (key == KeyEvent.VK_SPACE) {
+				if (!(myPlayer.getCurrentBombs() == myPlayer.getMaxBombs())) {
+					int tmpPosX = myPlayer.getPosX();
+					int tmpPosY = myPlayer.getPosY();
+					writeToHost("Player:" + myPlayerIndex + ";" + "Bomb" + ";"
+							+ "Pressed" + "/" + tmpPosX + "/" + tmpPosY);
+					myPlayer.plantBomb(multiplayerMap.getCollisionMap());
+				}
+			}
+
+			if (key == KeyEvent.VK_C) {
+				if (myPlayer.hasRemoteBombs()) {
+					writeToHost("Player:" + myPlayerIndex + ";" + "Remote"
+							+ ";" + "Pressed");
+					myPlayer.bombExplode();
+				}
+			}
+
+			if (key == KeyEvent.VK_S) {
+				if (myPlayer.activateShield()) {
+					int tmpPosX = myPlayer.getPosX();
+					int tmpPosY = myPlayer.getPosY();
+					writeToHost("Player:" + myPlayerIndex + ";" + "Shield"
+							+ ";" + "Pressed" + "/" + tmpPosX + "/" + tmpPosY);
+				}
 			}
 		}
 	}
@@ -227,11 +252,14 @@ public class MultiplayerUnit extends GraphicalGameUnit implements
 		multiplayerMap = new Map(mapName);
 		multiplayerMap.removeUnattendedPlayers(attendingPLayers);
 		myPlayer = multiplayerMap.getPlayerByNumber(myPlayerIndex);
+		System.out.println("PLAYER COUNT: "
+				+ multiplayerMap.getPlayers().size());
 		for (int i = 0; i < multiplayerMap.getPlayers().size(); i++) {
+			multiplayerMap.getPlayerByNumber(i + 1).setMultiplayerModeTo(true);
 			if (!(i + 1 == myPlayerIndex))
 				multiplayerMap.getPlayerByNumber(i + 1).makeRemote();
-
 		}
+		playersRemaining = multiplayerMap.getPlayers().size();
 		/*
 		 * initializing the upgrade system
 		 */
@@ -306,17 +334,6 @@ public class MultiplayerUnit extends GraphicalGameUnit implements
 		if (incomingMsg.indexOf("Upgrade:") != -1) {
 			String[] parts = incomingMsg.split(":");
 			handleUpgradeEvents(parts[1]);
-			return;
-		}
-		if (incomingMsg.indexOf("Welcome Player ") != -1) {
-			// myPlayerIndex = Integer.parseInt(incomingMsg.substring(15, 16));
-			// myPlayer = multiplayerMap.getPlayerByNumber(myPlayerIndex);
-			// make all non self controlled players invulnerable
-			return;
-		}
-		if (incomingMsg.indexOf("Start!") != -1) {
-			System.out.println("Success!");
-			// initComponent();
 		}
 	}
 
@@ -330,7 +347,12 @@ public class MultiplayerUnit extends GraphicalGameUnit implements
 			return;
 		}
 		if (incoming.indexOf("died") != -1) {
-			multiplayerMap.getPlayerByNumber(playerIndex).die();
+			Player player = multiplayerMap.getPlayerByNumber(playerIndex);
+			if (player.isAlive()) {
+				playersRemaining--;
+				multiplayerMap.getMapObjects().get(2).remove(player);
+				multiplayerMap.getPlayerByNumber(playerIndex).die();
+			}
 		}
 	}
 
@@ -365,6 +387,16 @@ public class MultiplayerUnit extends GraphicalGameUnit implements
 			tmpPlayer.setPosX(Integer.parseInt(parts[1]));
 			tmpPlayer.setPosY(Integer.parseInt(parts[2]));
 			tmpPlayer.plantBomb(multiplayerMap.getCollisionMap());
+			return;
+		}
+		if (incoming.indexOf("Remote") != -1) {
+			tmpPlayer.bombExplode();
+			return;
+		}
+		if (incoming.indexOf("Shield") != -1) {
+			tmpPlayer.setPosX(Integer.parseInt(parts[1]));
+			tmpPlayer.setPosY(Integer.parseInt(parts[2]));
+			tmpPlayer.activateShield();
 		}
 	}
 
@@ -398,23 +430,47 @@ public class MultiplayerUnit extends GraphicalGameUnit implements
 
 	private void handleUpgradeEvents(String incoming) {
 		if (incoming.indexOf("PickUp") != -1) {
+			System.out.println(incoming);
 			String[] parts = incoming.split(";");
 			int tmpPlayerIndex = Integer.parseInt(parts[0].substring(6));
-			int tmpPosAtList = Integer.parseInt(parts[2]);
-			Upgrade tmpUpgrade = (Upgrade) multiplayerMap.getMapObjects()
-					.get(1).get(tmpPosAtList);
-			multiplayerMap.getPlayerByNumber(tmpPlayerIndex).giveUpgrade(
-					tmpUpgrade);
-			tmpUpgrade.setDestroyed(true);
+			for (MapObject obj : multiplayerMap.getMapObjects().get(1)) {
+				if (obj instanceof Upgrade) {
+					Upgrade tmpUpgrade = (Upgrade) obj;
+					if (tmpUpgrade.getMPID().equals(parts[2])) {
+						multiplayerMap.getPlayerByNumber(tmpPlayerIndex)
+								.giveUpgrade(tmpUpgrade);
+						break;
+					}
+				}
+			}
 		} else {
-			System.out.println("test");
+			System.out.println(incoming);
 			String[] parts = incoming.split("/");
-			Color tmpColor = Color.getColor(parts[0]); // getColor oder decode?
+			Color tmpColor = stringToColor(parts[0]);
 			int tmpPosX = Integer.parseInt(parts[1]);
 			int tmpPosY = Integer.parseInt(parts[2]);
-			multiplayerMap.addUpgrade(new Upgrade(tmpPosX, tmpPosY, true, true,
-					true, "upgrades", multiplayerMap.getGraphics(), tmpColor));
+			String MPID = parts[3];
+			Upgrade upgrade = new Upgrade(tmpPosX, tmpPosY, true, true, true,
+					"upgrades", multiplayerMap.getGraphics(), tmpColor, MPID);
+			multiplayerMap.addUpgradeRemotely(upgrade);
+			upgrade.setMap(multiplayerMap);
+
 		}
+	}
+
+	private Color stringToColor(String colName) {
+		Color c = null;
+		if (colName.equals("pink"))
+			return Color.pink;
+		if (colName.equals("blue"))
+			return Color.blue;
+		if (colName.equals("cyan"))
+			return Color.cyan;
+		if (colName.equals("magenta"))
+			return Color.magenta;
+		if (colName.equals("lightGray"))
+			return Color.lightGray;
+		return c;
 	}
 
 	/**
@@ -435,7 +491,10 @@ public class MultiplayerUnit extends GraphicalGameUnit implements
 		g2d.drawImage(mapCanvas, mapCanvasPosX, mapCanvasPosY,
 				mapCanvas.getWidth(), mapCanvas.getHeight(), null);
 		g2d.setFont(unitFont);
-
+		g2d.setColor(new Color(0, 0, 0, 200));
+		g2d.fillRect(mapCanvasPosX, mapCanvasPosY, mapCanvas.getWidth(),
+				mapCanvas.getHeight());
+		g2d.setColor(Color.white);
 		/*
 		 * center text message
 		 */
@@ -448,15 +507,14 @@ public class MultiplayerUnit extends GraphicalGameUnit implements
 	}
 
 	@Override
-	public void upgradeSpawned(int x, int y, Color color) {
-		writeToHost("Upgrade:" + color + "/" + x + "/" + y);
-		System.out.println("Upgrade:" + color + "/" + x + "/" + y);
+	public void upgradeSpawned(int x, int y, String color, String MPID) {
+		writeToHost("!Upgrade:" + color + "/" + x + "/" + y + "/" + MPID);
 	}
 
 	@Override
-	public void upgradePickedUp(int PosAtList) {
+	public void upgradePickedUp(int PosAtList, String MPID) {
 		writeToHost("!Upgrade:" + "Player" + myPlayerIndex + ";" + "PickUp"
-				+ ";" + PosAtList);
+				+ ";" + MPID);
 
 	}
 }

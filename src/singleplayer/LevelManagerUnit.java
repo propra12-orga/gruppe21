@@ -109,6 +109,11 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 		unitRunning = true;
 	}
 
+	/**
+	 * Create a LevelManagerUnit using a savegame.
+	 * 
+	 * @param save
+	 */
 	public LevelManagerUnit(Savegame save) {
 		this.campaignFile = save.getCampaignData().getCampaignName();
 		campaign = new CampaignReader(campaignFile).readCampaignFromFile();
@@ -182,6 +187,10 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 		}
 	}
 
+	/**
+	 * Create ingame screenshot and proceed to TransitionUnit. This will prevent
+	 * the LevelManagerUnit from being updated which will lead to a pause.
+	 */
 	private void pause() {
 		BufferedImage pauseImage = createGameSceenshot();
 		Graphics2D g2d = pauseImage.createGraphics();
@@ -217,6 +226,8 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 
 	@Override
 	public void handleKeyReleased(KeyEvent e) {
+		if (!mapActive)
+			return;
 		int key = e.getKeyCode();
 		if (key == KeyEvent.VK_UP) {
 			player.direction.setUp(false);
@@ -260,6 +271,7 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 		if (!unitRunning) {
 			mapActive = false;
 			levelGraphics = new ImageLoader();
+			campaign.setMapCounter(0);
 			UnitNavigator.getNavigator().addGameUnit(worldMapUnit,
 					UnitState.TEMPORARY_UNIT);
 			UnitNavigator.getNavigator().set(UnitState.TEMPORARY_UNIT);
@@ -348,8 +360,16 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 				currentMap.getHeight(), BufferedImage.TYPE_INT_ARGB);
 		Player tmpPlayer = player;
 		player = currentMap.getMapPlayer();
+
 		if (tmpPlayer != null && tmpPlayer.isAlive()) {
-			player.restorePlayerToData(tmpPlayer.getPlayerData());
+			if (!player.getBombsDeactivated()
+					&& tmpPlayer.getBombsDeactivated()) {
+				int tmp = player.getMaxBombs();
+				player.restorePlayerToData(tmpPlayer.getPlayerData());
+				player.setMaxBombs(tmp);
+			} else {
+				player.restorePlayerToData(tmpPlayer.getPlayerData());
+			}
 		}
 		currentMap.setCMListener(player);
 		player.direction.setUp(false);
@@ -523,10 +543,19 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 		return transitionImage;
 	}
 
+	/**
+	 * Creates a new savegame based on the current game progress and the players
+	 * upgrades.
+	 * 
+	 * @return
+	 */
 	public Savegame createSavegame() {
 		return new Savegame(player.getPlayerData(), campaign.getCampaignData());
 	}
 
+	/**
+	 * Activates unit remotely.
+	 */
 	public void activateUnit() {
 		unitRunning = true;
 	}

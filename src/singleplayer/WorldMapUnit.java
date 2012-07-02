@@ -15,6 +15,7 @@ import main.GameConstants;
 import main.GraphicalGameUnit;
 import main.UnitNavigator;
 import main.UnitState;
+import unitTransitions.TransitionUnit;
 
 /**
  * This subclass of GraphicalGameUnit is used to depict and interact with a
@@ -46,16 +47,15 @@ public class WorldMapUnit extends GraphicalGameUnit {
 	}
 
 	private boolean helpShown = false;
-
-	private String[] infoMsg = {
-			"Use Up and Down Keys to switch the selected level",
-			"Press 'Enter' to play, or 's' to save!" };
-	private String[] helpMsg = { "This is the WorldMap of Bomberman Island.",
+	private BufferedImage helpScreen;
+	private String[] helpMsg = {
 			"Here you can plan your journey and save your progress:",
 			"Use Up and Down Keys to switch the selected level",
-			"Press 'Enter' to play, or 'S' to save!" };
+			"Press 'Enter' to play, or 'S' to save!",
+			"You may hide or display this message by pressing 'F1'" };
 	private int textMaxWidth;
-	int[] lineWidth;
+	private int[] lineWidth;
+	private String heading;
 
 	@Override
 	public void drawComponent(Graphics g) {
@@ -80,10 +80,9 @@ public class WorldMapUnit extends GraphicalGameUnit {
 		/*
 		 * draw info message
 		 */
-		if (helpShown) {
-			drawTextInfo(g2d, infoMsg);
-		} else {
-			drawTextInfo(g2d, helpMsg);
+		if (!helpShown) {
+			helpShown = true;
+			initHelpscreen();
 		}
 		/*
 		 * draw level info
@@ -97,32 +96,20 @@ public class WorldMapUnit extends GraphicalGameUnit {
 				(int) (GameConstants.FRAME_SIZE_X - rect.getWidth()) / 2,
 				GameConstants.FRAME_SIZE_Y - 40);
 
+		/*
+		 * draw heading
+		 */
+		rect = unitFont.getStringBounds(heading, g2d.getFontRenderContext());
+		g2d.drawString(heading,
+				(int) (GameConstants.FRAME_SIZE_X - rect.getWidth()) / 2, 30);
+
 		g.setColor(Color.black);
 		g.fillRect(0, 0, GameConstants.FRAME_SIZE_X, GameConstants.FRAME_SIZE_Y);
 		g.drawImage(mapCanvas, mapCanvasX, mapCanvasY, null);
 	}
 
-	private void drawTextInfo(Graphics2D g2d, String[] text) {
-		g2d.setColor(Color.white);
-		for (int i = 0; i < text.length; i++) {
-			g2d.drawString(text[i],
-					(GameConstants.FRAME_SIZE_X - lineWidth[i]) / 2, 50 + i * 2
-							* unitFont.getSize());
-		}
-
-	}
-
 	public void setHelpShown(boolean helpShown) {
 		this.helpShown = helpShown;
-		lineWidth = new int[infoMsg.length];
-		for (int i = 0; i < infoMsg.length; i++) {
-			Rectangle2D rect = unitFont.getStringBounds(infoMsg[i], mapCanvas
-					.createGraphics().getFontRenderContext());
-			if (rect.getWidth() > textMaxWidth) {
-				textMaxWidth = (int) rect.getWidth();
-			}
-			lineWidth[i] = (int) rect.getWidth();
-		}
 	}
 
 	@Override
@@ -164,6 +151,10 @@ public class WorldMapUnit extends GraphicalGameUnit {
 		if (key == KeyEvent.VK_ESCAPE) {
 			UnitNavigator.getNavigator().set(UnitState.BASE_MENU_UNIT);
 		}
+		if (key == KeyEvent.VK_F1) {
+			initHelpscreen();
+			helpShown = true;
+		}
 	}
 
 	@Override
@@ -189,6 +180,8 @@ public class WorldMapUnit extends GraphicalGameUnit {
 		mapCanvasX = (GameConstants.FRAME_SIZE_X - mapCanvas.getWidth()) / 2;
 		mapCanvasY = (GameConstants.FRAME_SIZE_Y - mapCanvas.getHeight()) / 2;
 
+		heading = worldMap.getName() + " - Worldmap";
+
 		mapCanvas.createGraphics().setFont(unitFont);
 		lineWidth = new int[helpMsg.length];
 		for (int i = 0; i < helpMsg.length; i++) {
@@ -199,6 +192,7 @@ public class WorldMapUnit extends GraphicalGameUnit {
 			}
 			lineWidth[i] = (int) rect.getWidth();
 		}
+		loadHelpscreen();
 	}
 
 	@Override
@@ -206,4 +200,62 @@ public class WorldMapUnit extends GraphicalGameUnit {
 
 	}
 
+	/**
+	 * Loads helpscreen image.
+	 */
+	private void loadHelpscreen() {
+		helpScreen = new BufferedImage(textMaxWidth + 40, 40 + 2
+				* unitFont.getSize() * helpMsg.length,
+				BufferedImage.TYPE_INT_ARGB);
+		Graphics2D g2d = helpScreen.createGraphics();
+		Color color = new Color(0, 0, 0, 200);
+		g2d.setColor(color);
+		g2d.fillRect(0, 0, helpScreen.getWidth(), helpScreen.getHeight());
+
+		g2d.setColor(Color.white);
+		g2d.setFont(unitFont);
+
+		for (int i = 0; i < helpMsg.length; i++) {
+			g2d.drawString(helpMsg[i],
+					(helpScreen.getWidth() - lineWidth[i]) / 2, 50 + i * 2
+							* unitFont.getSize());
+		}
+
+	}
+
+	/**
+	 * Loads helpscreen image and initializes a TransitionUnit.
+	 */
+	private void initHelpscreen() {
+		BufferedImage helpscreenImage = createGameSceenshot();
+		helpscreenImage
+				.createGraphics()
+				.drawImage(
+						helpScreen,
+						(GameConstants.FRAME_SIZE_X - helpScreen.getWidth()) / 2,
+						(GameConstants.FRAME_SIZE_Y - helpScreen.getHeight()) / 2,
+						null);
+
+		TransitionUnit trans = new TransitionUnit(UnitState.TEMPORARY_UNIT,
+				helpscreenImage, this, false);
+		trans.setProgressionKey(KeyEvent.VK_F1);
+		UnitNavigator.getNavigator().addGameUnit(trans,
+				UnitState.TEMPORARY_UNIT);
+		UnitNavigator.getNavigator().set(UnitState.TEMPORARY_UNIT);
+	}
+
+	/**
+	 * Creates BufferedImage out of the mapCanvas and a black background.
+	 * 
+	 * @return BufferedImage depicting the current game screen.
+	 */
+	private BufferedImage createGameSceenshot() {
+		BufferedImage screenshot = new BufferedImage(
+				GameConstants.FRAME_SIZE_X, GameConstants.FRAME_SIZE_Y,
+				BufferedImage.TYPE_INT_ARGB);
+		Graphics2D g2d = screenshot.createGraphics();
+		g2d.setColor(Color.black);
+		g2d.drawImage(mapCanvas, mapCanvasX, mapCanvasY, null);
+		return screenshot;
+	}
 }
