@@ -1,0 +1,3 @@
+<animationset default="portal1.png">
+<animation frames="4" stretch="10" name="animation">portal.png</animation>
+</animationset>
