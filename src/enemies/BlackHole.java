@@ -24,7 +24,7 @@ public class BlackHole extends MapObject {
 		StoneOrb newOrb = new StoneOrb(50, 300, true, true, true, "stoneOrbs",
 				map.getGraphics());
 		newOrb.setMap(getMap());
-		map.getMapObjects().get(1).add(newOrb);
+		map.getMapObjects().get(2).add(newOrb);
 
 		spawnTime = System.nanoTime();
 	}
