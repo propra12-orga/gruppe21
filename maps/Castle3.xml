@@ -2736,7 +2736,7 @@
 				<visible>true</visible>
 				<collision>true</collision>
 				<destroyable>false</destroyable>
-				<image rotation="0">UndesPillar.png</image>
+				<image rotation="0">CastleUndesPillar.png</image>
 				<posx>500</posx>
 				<posy>200</posy>
 			</tile>
@@ -2744,8 +2744,16 @@
 				<visible>true</visible>
 				<collision>true</collision>
 				<destroyable>false</destroyable>
-				<image rotation="0">UndesPillar2.png</image>
+				<image rotation="0">CastleUndesPillar2.png</image>
 				<posx>650</posx>
+				<posy>200</posy>
+			</tile>
+			<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">CastleDesPillar.png</image>
+				<posx>750</posx>
 				<posy>200</posy>
 			</tile>
 		</level>
