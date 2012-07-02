@@ -78,7 +78,7 @@ public class Monster extends Enemy {
 					posY -= speed;
 					distance += speed;
 
-					if (distance >= 15) {
+					if (distance >= 20) {
 						Slime slime = new Slime(posX, posY, true, true, false,
 								"slime", map.getGraphics(), "up");
 						slime.setMap(getMap());
@@ -99,7 +99,7 @@ public class Monster extends Enemy {
 					posY += speed;
 					distance += speed;
 
-					if (distance >= 15) {
+					if (distance >= 20) {
 						Slime slime = new Slime(posX, posY, true, true, false,
 								"slime", map.getGraphics(), "down");
 						slime.setMap(getMap());
@@ -120,7 +120,7 @@ public class Monster extends Enemy {
 					posX -= speed;
 					distance += speed;
 
-					if (distance >= 15) {
+					if (distance >= 20) {
 						Slime slime = new Slime(posX, posY, true, true, false,
 								"slime", map.getGraphics(), "left");
 						slime.setMap(getMap());
@@ -141,7 +141,7 @@ public class Monster extends Enemy {
 					posX += speed;
 					distance += speed;
 
-					if (distance >= 15) {
+					if (distance >= 20) {
 						Slime slime = new Slime(posX, posY, true, true, false,
 								"slime", map.getGraphics(), "right");
 						slime.setMap(getMap());
