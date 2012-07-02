@@ -39,10 +39,6 @@ public class MultiplayerUnit extends GraphicalGameUnit implements
 	private Player myPlayer;
 	private int myPlayerIndex;
 
-	private Server server;
-	private Socket toHostSocket;
-	private boolean asHost;
-
 	private boolean playerDiedMsgSend = false;
 
 	private int[] attendingPLayers;

@@ -144,7 +144,7 @@ public class Map {
 		}
 		b.dispose();
 		collisionMap = collisionMaptemp;
-		// g2d.drawImage(collisionMap, 0, 0, mapSizeX, mapSizeY, null);
+		g2d.drawImage(collisionMap, 0, 0, mapSizeX, mapSizeY, null);
 
 	}
 
