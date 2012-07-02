@@ -7,6 +7,7 @@
 		<maxUpgrades>100</maxUpgrades>
 		<minimap>WoodwarsMenuPic.png</minimap>
 		<playercount>4</playercount>
+		<bombsActivated>true</bombsActivated>
 	</header>
 	<mapobjects>
 		<level>

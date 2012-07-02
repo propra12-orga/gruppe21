@@ -8,12 +8,50 @@ import java.awt.image.BufferedImage;
 
 import mapobjects.Enemy;
 
+/**
+ * <b>public class Skeleton extends Enemy</b>
+ * <p>
+ * A Skeleton object displays an enemy which is able to move in a random
+ * direction. Moreover it has the ability of shooting a skull into the moving
+ * direction.
+ * 
+ * @author masto104
+ */
 public class Skeleton extends Enemy {
 
-	private int waitingCounter, shootCounter;
+	/**
+	 * Used to time the waits before the enemy starts moving.
+	 */
+	private int waitingCounter;
 
+	/**
+	 * Used to time the shoot interval.
+	 */
+	private int shootCounter;
+
+	/**
+	 * Used to control when shootSkull method shall be called.
+	 */
 	private boolean shooted = false;
 
+	/**
+	 * Skeleton constructor.
+	 * 
+	 * @param x
+	 *            - x-coordinate.
+	 * @param y
+	 *            - y-coordinate.
+	 * @param v
+	 *            - sets visibility.
+	 * @param d
+	 *            - sets 'destructible' flag.
+	 * @param c
+	 *            - sets 'collision' flag
+	 * @param p
+	 *            - AnimationSet filename
+	 * @param gr
+	 *            - ImageLoader
+	 */
 	public Skeleton(int x, int y, boolean v, boolean d, boolean c, String p,
 			ImageLoader gr) {
 		super(x, y, v, d, c, p, gr);
@@ -115,32 +153,16 @@ public class Skeleton extends Enemy {
 		}
 	}
 
-	public void findPath(String up, String down, String left, String right) {
-		int choice = (int) (Math.random() * 4 + 1);
-		stop();
-
-		switch (choice) {
-		case 1:
-			UP = true;
-			animation.change(up);
-			break;
-		case 2:
-			DOWN = true;
-			animation.change(down);
-			break;
-		case 3:
-			LEFT = true;
-			animation.change(left);
-			break;
-		case 4:
-			RIGHT = true;
-			animation.change(right);
-			break;
-		default:
-			findPath(up, down, left, right);
-		}
-	}
-
+	/**
+	 * <b>public void shootSkull(String dir)</b>
+	 * <p>
+	 * Shoots a skull in the committed direction with a probability of 50%. The
+	 * skull object will be added to the mapobjects vector of the map to be
+	 * updated and draw.
+	 * 
+	 * @param dir
+	 *            - direction the skull will move into.
+	 */
 	private void shootSkull(String dir) {
 		int i = (int) (Math.random() * 2 + 1);
 

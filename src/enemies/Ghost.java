@@ -8,13 +8,54 @@ import java.awt.image.BufferedImage;
 
 import mapobjects.Enemy;
 
+/**
+ * <b>public class Ghost extends Enemy</b>
+ * <p>
+ * A Ghost object displays an enemy which is able to move through destructible
+ * walls. The enemy chooses a random direction when it has come out of a wall.
+ * 
+ * @author masto104
+ */
 public class Ghost extends Enemy {
 
+	/**
+	 * Used to decrease the speed while moving inside walls.
+	 */
 	private int walldelay;
+
+	/**
+	 * Used to decrease the speed.
+	 */
 	private int walkdelay;
+
+	/**
+	 * True, if the enemy is inside a wall.
+	 */
 	private boolean wallWalking = false;
+
+	/**
+	 * True, if enemy has completely left a wall.
+	 */
 	private boolean comingOutOfWall = false;
 
+	/**
+	 * Ghost constructor.
+	 * 
+	 * @param x
+	 *            - x-coordinate.
+	 * @param y
+	 *            - y-coordinate.
+	 * @param v
+	 *            - sets visibility.
+	 * @param d
+	 *            - sets 'destructible' flag.
+	 * @param c
+	 *            - sets 'collision' flag
+	 * @param p
+	 *            - AnimationSet filename
+	 * @param gr
+	 *            - ImageLoader
+	 */
 	public Ghost(int x, int y, boolean v, boolean d, boolean c, String p,
 			ImageLoader gr) {
 		super(x, y, v, d, c, p, gr);
@@ -80,39 +121,22 @@ public class Ghost extends Enemy {
 	}
 
 	@Override
-	public void findPath(String up, String down, String left, String right) {
-		int choice = (int) (Math.random() * 4 + 1);
-		stop();
-
-		switch (choice) {
-		case 1:
-			UP = true;
-			animation.change(up);
-			break;
-		case 2:
-			DOWN = true;
-			animation.change(down);
-			break;
-		case 3:
-			LEFT = true;
-			animation.change(left);
-			break;
-		case 4:
-			RIGHT = true;
-			animation.change(right);
-			break;
-		default:
-			findPath(up, down, left, right);
-		}
-	}
-
-	@Override
 	public void draw(Graphics2D g2d, ImageLoader gr, Graphics2D cm) {
 		g2d.drawImage(animation.getCurrentImage(), posX, posY, null);
 		cm.setPaint(Color.red);
 		cm.fillRect(posX + 5, posY + 5, 40, 40);
 	}
 
+	/**
+	 * <b>public void update(BufferedImage cm)</b>
+	 * <p>
+	 * Updates a Ghost object's status. May be used to move and animate a Ghost
+	 * object. Commands the Ghost object to call findPath() after leaving a
+	 * wall.
+	 * 
+	 * @param cm
+	 *            - collisionMap.
+	 */
 	@Override
 	public void update(BufferedImage cm) {
 		animation.animate();
