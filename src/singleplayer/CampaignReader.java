@@ -85,7 +85,7 @@ public class CampaignReader {
 		}
 
 		WorldMap worldMap = new WorldMap(coordinates, coordLabel,
-				progressIndicator, background, player);
+				progressIndicator, background, player, worldMapName);
 		Campaign campaign = new Campaign(levels, worldMap, filename);
 		return campaign;
 	}

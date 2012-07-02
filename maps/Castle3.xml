@@ -2,12 +2,1660 @@
 <map>
 	<header>
 	    <mapname>Schloss Level 3</mapname>
-		<sizex>300</sizex>
-		<sizey>2000</sizey>
-		<maxUpgrades>10</maxUpgrades>
+		<sizex>2500</sizex>
+		<sizey>550</sizey>
+		<maxUpgrades>0</maxUpgrades>
 	</header>
 	<mapobjects>
 		<level>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="2">SWLR.png</image>
+				<posx>2300</posx>
+				<posy>500</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWLR.png</image>
+				<posx>2200</posx>
+				<posy>500</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="2">SWLR.png</image>
+				<posx>2300</posx>
+				<posy>450</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWLR.png</image>
+				<posx>2200</posx>
+				<posy>450</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="2">SWLR.png</image>
+				<posx>2300</posx>
+				<posy>400</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWLR.png</image>
+				<posx>2200</posx>
+				<posy>400</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWEAUR.png</image>
+				<posx>2300</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWEAUL.png</image>
+				<posx>2200</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWU.png</image>
+				<posx>2350</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWU.png</image>
+				<posx>2400</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWEIUR.png</image>
+				<posx>2450</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="2">SWLR.png</image>
+				<posx>2450</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWEIOR.png</image>
+				<posx>2450</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWO.png</image>
+				<posx>2400</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWO.png</image>
+				<posx>2350</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWO.png</image>
+				<posx>2300</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWO.png</image>
+				<posx>2250</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWO.png</image>
+				<posx>2200</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWO.png</image>
+				<posx>2150</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWO.png</image>
+				<posx>2100</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWO.png</image>
+				<posx>2050</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWO.png</image>
+				<posx>2000</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWO.png</image>
+				<posx>1950</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWO.png</image>
+				<posx>1900</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWO.png</image>
+				<posx>1850</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWEAOR.png</image>
+				<posx>1800</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWEAOL.png</image>
+				<posx>1700</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="2">SWLR.png</image>
+				<posx>1800</posx>
+				<posy>200</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWLR.png</image>
+				<posx>1700</posx>
+				<posy>200</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="2">SWLR.png</image>
+				<posx>1800</posx>
+				<posy>150</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWLR.png</image>
+				<posx>1700</posx>
+				<posy>150</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWEIOR.png</image>
+				<posx>1800</posx>
+				<posy>100</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWEIOL.png</image>
+				<posx>1700</posx>
+				<posy>100</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWO.png</image>
+				<posx>1750</posx>
+				<posy>100</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWO.png</image>
+				<posx>1650</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWO.png</image>
+				<posx>1600</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWU.png</image>
+				<posx>2150</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWU.png</image>
+				<posx>2100</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWU.png</image>
+				<posx>2050</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWU.png</image>
+				<posx>2000</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWU.png</image>
+				<posx>1950</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWU.png</image>
+				<posx>1900</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWU.png</image>
+				<posx>1850</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWU.png</image>
+				<posx>1800</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWU.png</image>
+				<posx>1750</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWU.png</image>
+				<posx>1700</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWU.png</image>
+				<posx>1650</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWU.png</image>
+				<posx>1600</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWU.png</image>
+				<posx>1550</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWU.png</image>
+				<posx>1500</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWU.png</image>
+				<posx>1450</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWU.png</image>
+				<posx>1400</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWEAUR.png</image>
+				<posx>1350</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWEAUL.png</image>
+				<posx>1250</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="2">SWLR.png</image>
+				<posx>1350</posx>
+				<posy>400</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWLR.png</image>
+				<posx>1250</posx>
+				<posy>400</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="2">SWLR.png</image>
+				<posx>1350</posx>
+				<posy>450</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWLR.png</image>
+				<posx>1250</posx>
+				<posy>450</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWEIUR.png</image>
+				<posx>1350</posx>
+				<posy>500</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWU.png</image>
+				<posx>1300</posx>
+				<posy>500</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWEIUL.png</image>
+				<posx>1250</posx>
+				<posy>500</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWU.png</image>
+				<posx>1200</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWU.png</image>
+				<posx>1150</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWU.png</image>
+				<posx>1100</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWU.png</image>
+				<posx>1050</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWU.png</image>
+				<posx>1000</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWU.png</image>
+				<posx>950</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWU.png</image>
+				<posx>900</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWU.png</image>
+				<posx>850</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWU.png</image>
+				<posx>800</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWEAUR.png</image>
+				<posx>750</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWEAUL.png</image>
+				<posx>650</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="2">SWLR.png</image>
+				<posx>750</posx>
+				<posy>400</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWLR.png</image>
+				<posx>650</posx>
+				<posy>400</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="2">SWLR.png</image>
+				<posx>750</posx>
+				<posy>450</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWLR.png</image>
+				<posx>650</posx>
+				<posy>450</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWEIUR.png</image>
+				<posx>750</posx>
+				<posy>500</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWEIUL.png</image>
+				<posx>650</posx>
+				<posy>500</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWU.png</image>
+				<posx>700</posx>
+				<posy>500</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWU.png</image>
+				<posx>600</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWU.png</image>
+				<posx>550</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWU.png</image>
+				<posx>500</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWU.png</image>
+				<posx>450</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWU.png</image>
+				<posx>400</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWU.png</image>
+				<posx>350</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWU.png</image>
+				<posx>300</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWU.png</image>
+				<posx>250</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWU.png</image>
+				<posx>200</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWU.png</image>
+				<posx>150</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWU.png</image>
+				<posx>100</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWU.png</image>
+				<posx>50</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWEIUL.png</image>
+				<posx>0</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWLR.png</image>
+				<posx>0</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWEIOL.png</image>
+				<posx>0</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWO.png</image>
+				<posx>50</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWO.png</image>
+				<posx>100</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWEAOL.png</image>
+				<posx>150</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWEAOR.png</image>
+				<posx>250</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWLR.png</image>
+				<posx>150</posx>
+				<posy>200</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="2">SWLR.png</image>
+				<posx>250</posx>
+				<posy>200</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWLR.png</image>
+				<posx>150</posx>
+				<posy>150</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="2">SWLR.png</image>
+				<posx>250</posx>
+				<posy>150</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWLR.png</image>
+				<posx>150</posx>
+				<posy>100</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="2">SWLR.png</image>
+				<posx>250</posx>
+				<posy>100</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWO.png</image>
+				<posx>300</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWO.png</image>
+				<posx>350</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWO.png</image>
+				<posx>400</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWO.png</image>
+				<posx>450</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWO.png</image>
+				<posx>500</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWO.png</image>
+				<posx>550</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWO.png</image>
+				<posx>600</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWO.png</image>
+				<posx>650</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWO.png</image>
+				<posx>700</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWO.png</image>
+				<posx>750</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWO.png</image>
+				<posx>800</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWO.png</image>
+				<posx>850</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWO.png</image>
+				<posx>900</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWO.png</image>
+				<posx>950</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWO.png</image>
+				<posx>1000</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWO.png</image>
+				<posx>1050</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWO.png</image>
+				<posx>1100</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWO.png</image>
+				<posx>1150</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWO.png</image>
+				<posx>1200</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWO.png</image>
+				<posx>1250</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWO.png</image>
+				<posx>1300</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWO.png</image>
+				<posx>1350</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWO.png</image>
+				<posx>1400</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWO.png</image>
+				<posx>1450</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWO.png</image>
+				<posx>1500</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">SWO.png</image>
+				<posx>1550</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Kellerboden3.png</image>
+				<posx>50</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Kellerboden3.png</image>
+				<posx>100</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Kellerboden3.png</image>
+				<posx>150</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Kellerboden3.png</image>
+				<posx>200</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Kellerboden3.png</image>
+				<posx>250</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Kellerboden3.png</image>
+				<posx>300</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Kellerboden3.png</image>
+				<posx>350</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Kellerboden3.png</image>
+				<posx>400</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="1">Kellerboden2.png</image>
+				<posx>450</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="1">Kellerboden2.png</image>
+				<posx>500</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Kellerboden3.png</image>
+				<posx>550</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Kellerboden3.png</image>
+				<posx>600</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Kellerboden3.png</image>
+				<posx>650</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Kellerboden3.png</image>
+				<posx>700</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Kellerboden3.png</image>
+				<posx>750</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Kellerboden3.png</image>
+				<posx>800</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Kellerboden3.png</image>
+				<posx>850</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Kellerboden3.png</image>
+				<posx>900</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="1">Kellerboden2.png</image>
+				<posx>950</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="1">Kellerboden2.png</image>
+				<posx>1000</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Kellerboden3.png</image>
+				<posx>1050</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Kellerboden3.png</image>
+				<posx>1100</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Kellerboden3.png</image>
+				<posx>1150</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Kellerboden3.png</image>
+				<posx>1200</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Kellerboden3.png</image>
+				<posx>1250</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Kellerboden3.png</image>
+				<posx>1300</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Kellerboden3.png</image>
+				<posx>1350</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Kellerboden3.png</image>
+				<posx>1400</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Kellerboden3.png</image>
+				<posx>1450</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Kellerboden3.png</image>
+				<posx>1500</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Kellerboden3.png</image>
+				<posx>1550</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Kellerboden3.png</image>
+				<posx>1600</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="1">Kellerboden2.png</image>
+				<posx>1650</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="1">Kellerboden2.png</image>
+				<posx>1700</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Kellerboden3.png</image>
+				<posx>1750</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Kellerboden3.png</image>
+				<posx>1800</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Kellerboden3.png</image>
+				<posx>1850</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Kellerboden3.png</image>
+				<posx>1900</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Kellerboden3.png</image>
+				<posx>1950</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Kellerboden3.png</image>
+				<posx>2000</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Kellerboden3.png</image>
+				<posx>2050</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Kellerboden3.png</image>
+				<posx>2100</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Kellerboden3.png</image>
+				<posx>2150</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Kellerboden3.png</image>
+				<posx>2200</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Kellerboden3.png</image>
+				<posx>2250</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Kellerboden3.png</image>
+				<posx>2300</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Kellerboden3.png</image>
+				<posx>2350</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Kellerboden3.png</image>
+				<posx>2400</posx>
+				<posy>300</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Kellerboden3.png</image>
+				<posx>2250</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Kellerboden3.png</image>
+				<posx>2250</posx>
+				<posy>400</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Kellerboden3.png</image>
+				<posx>2250</posx>
+				<posy>450</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Kellerboden2.png</image>
+				<posx>2250</posx>
+				<posy>500</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Kellerboden3.png</image>
+				<posx>1300</posx>
+				<posy>450</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Kellerboden3.png</image>
+				<posx>1300</posx>
+				<posy>400</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Kellerboden3.png</image>
+				<posx>1300</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Kellerboden3.png</image>
+				<posx>200</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Kellerboden3.png</image>
+				<posx>200</posx>
+				<posy>200</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Kellerboden2.png</image>
+				<posx>200</posx>
+				<posy>150</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Kellerboden2.png</image>
+				<posx>200</posx>
+				<posy>100</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Kellerboden3.png</image>
+				<posx>700</posx>
+				<posy>400</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Kellerboden3.png</image>
+				<posx>700</posx>
+				<posy>450</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Kellerboden3.png</image>
+				<posx>700</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Kellerboden3.png</image>
+				<posx>1750</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Kellerboden3.png</image>
+				<posx>1750</posx>
+				<posy>200</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Kellerboden3.png</image>
+				<posx>1750</posx>
+				<posy>150</posy>
+			</tile>
+			<tile type="animatedfloor" animated="true">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<animationset>fackel3</animationset>
+				<posx>100</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="animatedfloor" animated="true">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<animationset>fackel3</animationset>
+				<posx>300</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="animatedfloor" animated="true">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<animationset>fackel3</animationset>
+				<posx>500</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="animatedfloor" animated="true">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<animationset>fackel3</animationset>
+				<posx>700</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="animatedfloor" animated="true">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<animationset>fackel3</animationset>
+				<posx>900</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="animatedfloor" animated="true">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<animationset>fackel3</animationset>
+				<posx>1100</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="animatedfloor" animated="true">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<animationset>fackel3</animationset>
+				<posx>1300</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="animatedfloor" animated="true">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<animationset>fackel3</animationset>
+				<posx>1500</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="animatedfloor" animated="true">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<animationset>fackel3</animationset>
+				<posx>1850</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="animatedfloor" animated="true">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<animationset>fackel3</animationset>
+				<posx>2050</posx>
+				<posy>250</posy>
+			</tile>
+			<tile type="animatedfloor" animated="true">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<animationset>fackel3</animationset>
+				<posx>2250</posx>
+				<posy>250</posy>
+			</tile>
 
 		</level>
 		<level>
@@ -15,10 +1663,26 @@
 				<visible>true</visible>
 				<collision>true</collision>
 				<destroyable>false</destroyable>
-				<image rotation="2">TGG.png</image>
-				<posx>1300</posx>
-				<posy>0</posy>
+				<image rotation="0">Kellerboden2.png</image>
+				<posx>200</posx>
+				<posy>100</posy>
 			</tile>
+			<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">CastleUndesPillar2.png</image>
+				<posx>1750</posx>
+				<posy>150</posy>
+			</tile>			
+			<tile type="wall" animated="false">
+				<visible>true</visible>
+				<collision>true</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">CastleUndesPillar2.png</image>
+				<posx>700</posx>
+				<posy>450</posy>
+			</tile>			
 		</level>
 		<level>
 			<character type="player" animated="true">
@@ -26,8 +1690,8 @@
 				<collision>true</collision>
 				<destroyable>false</destroyable>
 			 	<animationset>MPPlayer1</animationset>
-				<posx>150</posx>
-				<posy>700</posy>
+				<posx>2250</posx>
+				<posy>500</posy>
 			</character>
 			</level>						
 		<level>
@@ -38,9 +1702,6 @@
 
 	<items>
 		<animationset>simplebomb</animationset>
-		<animationset>upgrades</animationset>
-		<animationset>skulls</animationset>
-		<animationset>slime</animationset>
 		<image>exit.png</image>
 	</items>
 </map>
