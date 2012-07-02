@@ -24,7 +24,9 @@ public class Editor extends JFrame implements KeyListener, MouseListener {
 	private MapCanvas canvas = new MapCanvas();
 	private FileToolBar fileBar = new FileToolBar(48, 1);
 	private ToolBar toolBar = new ToolBar(48, 1, canvas);
-	private TileNavigator tileNavigator = new TileNavigator();
+	private TileNavigator tileNavigator = new TileNavigator(this);
+	private FileNavigator fileNavigator = new FileNavigator();
+	private TileViewer tileViewer = new TileViewer(this);
 	/**
 	 * status of the map changes
 	 */
@@ -53,14 +55,37 @@ public class Editor extends JFrame implements KeyListener, MouseListener {
 		toolBar.setBounds(200, 0, 400, 50);
 		canvas.setBounds(0, 50, 600, 550);
 		tileNavigator.setBounds(600, 0, 200, 300);
+		tileViewer.setBounds(600, 300, 200, 300);
 		add(fileBar);
 		add(toolBar);
 		add(canvas);
 		add(tileNavigator);
+		add(tileViewer);
 	}
 
 	public static void main(String args[]) {
 		new Editor();
+	}
+
+	public void loadNewFile(String type) {
+		if (type.equals("Tiles")) {
+			if (fileNavigator.openTile()) {
+				// if
+				// (fileNavigator.getCurrentFile().getName().endsWith(".png")) {
+				// tileNavigator.addTile(fileNavigator.getCurrentFile());
+				//
+				// }
+				tileNavigator.addTile(fileNavigator.getCurrentFile());
+			}
+		}
+		if (type.equals("Enemies")) {
+			fileNavigator.openEnemy();
+		}
+	}
+
+	public void updateTileViewer(Tile tile) {
+		tileViewer.setTile(tile);
+
 	}
 
 	@Override
@@ -110,4 +135,5 @@ public class Editor extends JFrame implements KeyListener, MouseListener {
 		// TODO Auto-generated method stub
 
 	}
+
 }
