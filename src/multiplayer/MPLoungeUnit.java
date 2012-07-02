@@ -127,40 +127,53 @@ public class MPLoungeUnit extends GraphicalGameUnit implements
 			}
 		}
 
-		if (asHost && key == KeyEvent.VK_ENTER && selectionCounter == 1) {
-			boolean allowedToStart = true;
-			for (int i = 0; i < playerStatus.length; i++) {
-				if (playerStatus[i] == PLAYER_CONNECTED)
-					allowedToStart = false;
+		if (key == KeyEvent.VK_ENTER) {
+			if (selectionCounter == 1) {
+				if (asHost) {
+					boolean allowedToStart = true;
+					for (int i = 0; i < playerStatus.length; i++) {
+						if (playerStatus[i] == PLAYER_CONNECTED)
+							allowedToStart = false;
+					}
+					if (allowedToStart) {
+						writeToHost("starting...");
+						startMultiplayer();
+					}
+				} else {
+					safeExit();
+				}
 			}
-			if (allowedToStart) {
-				writeToHost("starting...");
-				startMultiplayer();
-			}
-		}
 
-		if (key == KeyEvent.VK_ENTER && selectionCounter == 0) {
-			if (playerStatus[playerNumber] == PLAYER_READY) {
-				playerStatus[playerNumber] = PLAYER_CONNECTED;
-				writeToHost("Status-Player:" + playerNumber + ":"
-						+ playerStatus[playerNumber]);
-			} else {
-				playerStatus[playerNumber] = PLAYER_READY;
-				writeToHost("Status-Player:" + playerNumber + ":"
-						+ playerStatus[playerNumber]);
+			if (selectionCounter == 0) {
+				if (playerStatus[playerNumber] == PLAYER_READY) {
+					playerStatus[playerNumber] = PLAYER_CONNECTED;
+					writeToHost("Status-Player:" + playerNumber + ":"
+							+ playerStatus[playerNumber]);
+				} else {
+					playerStatus[playerNumber] = PLAYER_READY;
+					writeToHost("Status-Player:" + playerNumber + ":"
+							+ playerStatus[playerNumber]);
+				}
+			}
+			if (selectionCounter == 2) {
+				safeExit();
 			}
 		}
 		if (key == KeyEvent.VK_ESCAPE) {
-			try {
-				toHostSocket.close();
-				UnitNavigator.getNavigator().set(UnitState.BASE_MENU_UNIT);
-			} catch (IOException e1) {
-				System.err
-						.println("An error occured while trying to close the client socket!");
-				e1.printStackTrace();
-			}
+			safeExit();
 		}
 
+	}
+
+	private void safeExit() {
+		try {
+			toHostSocket.close();
+			UnitNavigator.getNavigator().set(UnitState.BASE_MENU_UNIT);
+		} catch (IOException e1) {
+			System.err
+					.println("An error occured while trying to close the client socket!");
+			e1.printStackTrace();
+		}
 	}
 
 	public void writeToHost(String outgoing) {
@@ -285,7 +298,7 @@ public class MPLoungeUnit extends GraphicalGameUnit implements
 		 */
 		tmpX = tmpX + tmpButton.getImage().getWidth() + elementSpace;
 		tmpButton = backInactive;
-		if (selectionCounter == 2) {
+		if (selectionCounter == 2 || !asHost && selectionCounter == 1) {
 			tmpButton = backActive;
 		}
 		g2d.drawImage(tmpButton.getImage(), tmpX, buttonStartY, null);
