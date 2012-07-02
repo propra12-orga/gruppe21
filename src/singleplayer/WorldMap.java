@@ -35,25 +35,32 @@ public class WorldMap {
 	 * to advance.
 	 */
 	private int maxLevelAccessible;
+	private String worldMapName;
 
 	/**
 	 * Construct a WorldMap.
 	 * 
 	 * @param levelCoords
 	 *            level locations.
+	 * @param worldMapName
 	 * @param worldmap
 	 *            map object representing the WorldMap.
 	 */
 	public WorldMap(Point[] levelCoords, String[] coordLabels,
 			GameGraphic[] progressIndicator, GameGraphic backgroundImg,
-			GameGraphic playerImg) {
+			GameGraphic playerImg, String worldMapName) {
 		this.levelCoords = levelCoords;
 		this.coordLabels = coordLabels;
 		this.progressIndicator = progressIndicator;
 		this.playerImg = playerImg;
 		this.backgroundImg = backgroundImg;
+		this.worldMapName = worldMapName;
 		maxLevelAccessible = 0;
 		selectedLevel = 0;
+	}
+
+	public String getName() {
+		return worldMapName;
 	}
 
 	public GameGraphic getPlayerImg() {

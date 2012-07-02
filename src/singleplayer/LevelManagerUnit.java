@@ -217,6 +217,8 @@ public class LevelManagerUnit extends GraphicalGameUnit {
 
 	@Override
 	public void handleKeyReleased(KeyEvent e) {
+		if (!mapActive)
+			return;
 		int key = e.getKeyCode();
 		if (key == KeyEvent.VK_UP) {
 			player.direction.setUp(false);
