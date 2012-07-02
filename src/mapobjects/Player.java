@@ -60,6 +60,8 @@ public class Player extends MoveableObject implements CMListener {
 
 	private boolean inMultiplayerMode = false;
 
+	private boolean bombsDeactivated = false;
+
 	/**
 	 * constructor
 	 * 
@@ -84,7 +86,14 @@ public class Player extends MoveableObject implements CMListener {
 		alive = true;
 	}
 
-	// TODO UseWeapon or plantBomB,ChangeWeapon
+	public boolean getBombsDeactivated() {
+		return bombsDeactivated;
+	}
+
+	public void disableBombs() {
+		bombsDeactivated = true;
+		maxbombs = 0;
+	}
 
 	public void setMultiplayerModeTo(boolean mode) {
 		inMultiplayerMode = mode;
@@ -532,7 +541,8 @@ public class Player extends MoveableObject implements CMListener {
 	}
 
 	public void setMaxBombs(int maxbombs) {
-		this.maxbombs = maxbombs;
+		if (!bombsDeactivated)
+			this.maxbombs = maxbombs;
 
 	}
 

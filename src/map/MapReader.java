@@ -19,6 +19,7 @@ import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 
+import enemies.BlackHole;
 import enemies.Boss;
 import enemies.Ghost;
 import enemies.Monster;
@@ -39,7 +40,7 @@ public class MapReader {
 	private boolean graphicisloaded = false;
 	private String[] moList = { "floor", "animatedfloor", "bomb", "effect",
 			"sillyEnemy", "runningEnemy", "skeleton", "monster", "ghost",
-			"exit", "player", "wall", "boss" };
+			"blackhole", "exit", "player", "wall", "boss" };
 	private int enemies = 0;
 
 	public MapReader(String mn) {
@@ -355,6 +356,25 @@ public class MapReader {
 									new Boss(Integer.parseInt(templist.get(c)
 											.getChildText("posx")), Integer
 											.parseInt(templist.get(c)
+													.getChildText("posy")),
+											Boolean.parseBoolean(templist
+													.get(c).getChildText(
+															"visible")),
+											Boolean.parseBoolean(templist
+													.get(c).getChildText(
+															"destroyable")),
+											Boolean.parseBoolean(templist
+													.get(c).getChildText(
+															"collision")),
+											templist.get(c).getChildText(
+													"animationset"), gr));
+							enemies++;
+						}
+						if (moList[j].equals("blackhole")) {
+							mo.get(i).add(
+									new BlackHole(Integer.parseInt(templist
+											.get(c).getChildText("posx")),
+											Integer.parseInt(templist.get(c)
 													.getChildText("posy")),
 											Boolean.parseBoolean(templist
 													.get(c).getChildText(

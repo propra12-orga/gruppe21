@@ -10,33 +10,33 @@ import mapobjects.Enemy;
 
 public class StoneOrb extends Enemy {
 
+	private double animationStart, appearTime = 500000000,
+			disappearTime = 500000000L;
+	private int distance;
+
 	public StoneOrb(int x, int y, boolean v, boolean d, boolean c, String p,
-			ImageLoader gr, String dir) {
+			ImageLoader gr) {
 		super(x, y, v, d, c, p, gr);
 		stop();
-		speed = 4;
-		initDirection(dir);
-	}
-
-	private void initDirection(String dir) {
-
-		if (dir.equals("right")) {
-			RIGHT = true;
-		} else {
-			System.out.println("Error in Orb#initDirection");
-		}
+		speed = 3;
+		RIGHT = true;
+		animation.start("move");
+		animationStart = System.nanoTime();
 	}
 
 	@Override
 	public void move() {
-
-		if (RIGHT) {
-			if (hasObjectCollision(posX + speed, posY, map.getCollisionMap())) {
-				die("enemyDying");
+		if (simpleHasColl(posX + 50, posY, map.getCollisionMap(), Color.gray)) {
+			if (distance > 100) {
+				stop();
+				die("disappear");
 			} else {
 				posX += speed;
-				animation.change("enemyRight");
+				distance += speed;
 			}
+		} else {
+			posX += speed;
+			distance += speed;
 		}
 	}
 

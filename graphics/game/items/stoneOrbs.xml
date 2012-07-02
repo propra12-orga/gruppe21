@@ -1,4 +1,4 @@
-<animationset default="Skull_front.png">
-<animation frames="3" stretch="15" name="enemyDying">Skull_explosion.png</animation>
-<animation frames="1" stretch="1" name="enemyRight">Skull_right.png</animation>
+<animationset default="stoneOrb.png">
+<animation frames="5" stretch="10" name="move">stoneOrb.png</animation>
+<animation frames="5" stretch="20" name="disappear">stoneOrb_disappearing.png</animation>
 </animationset>

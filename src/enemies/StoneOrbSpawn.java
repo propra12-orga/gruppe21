@@ -37,7 +37,7 @@ public class StoneOrbSpawn extends Enemy {
 			}
 
 			StoneOrb newOrb = new StoneOrb(x, y, true, true, true, "stoneOrbs",
-					map.getGraphics(), "right");
+					map.getGraphics());
 			newOrb.setMap(getMap());
 			map.getMapObjects().get(1).add(newOrb);
 

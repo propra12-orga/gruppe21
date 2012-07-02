@@ -4,8 +4,16 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 import javax.swing.ImageIcon;
+
+import main.GameConstants;
+
+import org.jdom2.Document;
+import org.jdom2.Element;
+import org.jdom2.JDOMException;
+import org.jdom2.input.SAXBuilder;
 
 /**
  * Class for loading and manipulating graphics
@@ -14,6 +22,7 @@ import javax.swing.ImageIcon;
  * 
  */
 public class EditorGraphics {
+	static Document mapXML;
 
 	/**
 	 * Loads an image from the given path and returns as BufferedImage.
@@ -47,5 +56,33 @@ public class EditorGraphics {
 
 		g2d.dispose();
 		return resImage;
+	}
+
+	public static BufferedImage loadImageAni(String absolutePath) {
+		String imagePath;
+		Element mapRoot;
+
+		try {
+			mapXML = new SAXBuilder().build(absolutePath);
+		} catch (JDOMException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		mapRoot = mapXML.getRootElement();
+		imagePath = mapRoot.getAttributeValue("default");
+
+		ImageIcon ii = new ImageIcon(GameConstants.MAP_GRAPHICS_DIR + imagePath);
+		Image image = ii.getImage();
+
+		BufferedImage buff = new BufferedImage(image.getWidth(null),
+				image.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+		Graphics2D b = buff.createGraphics();
+
+		b.drawImage(image, 0, 0, null);
+		b.dispose();
+
+		return (buff);
 	}
 }
