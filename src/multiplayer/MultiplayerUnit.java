@@ -83,6 +83,7 @@ public class MultiplayerUnit extends GraphicalGameUnit implements
 
 		if (!myPlayer.isAlive() && !playerDiedMsgSend) {
 			writeToHost("Player:" + myPlayerIndex + ";died");
+			playersRemaining--;
 			playerDiedMsgSend = true;
 		}
 
@@ -96,7 +97,7 @@ public class MultiplayerUnit extends GraphicalGameUnit implements
 				for (int i = 0; i < multiplayerMap.getPlayers().size(); i++) {
 					if (multiplayerMap.getPlayerByNumber(i + 1).isAlive()) {
 						msg = createTransitionMessage("Player "
-								+ i
+								+ (i + 1)
 								+ winMessages[(int) (Math.random() * winMessages.length)]);
 						break;
 					}
@@ -257,7 +258,6 @@ public class MultiplayerUnit extends GraphicalGameUnit implements
 			multiplayerMap.getPlayerByNumber(i + 1).setMultiplayerModeTo(true);
 			if (!(i + 1 == myPlayerIndex))
 				multiplayerMap.getPlayerByNumber(i + 1).makeRemote();
-
 		}
 		playersRemaining = multiplayerMap.getPlayers().size();
 		/*
@@ -491,7 +491,10 @@ public class MultiplayerUnit extends GraphicalGameUnit implements
 		g2d.drawImage(mapCanvas, mapCanvasPosX, mapCanvasPosY,
 				mapCanvas.getWidth(), mapCanvas.getHeight(), null);
 		g2d.setFont(unitFont);
-
+		g2d.setColor(new Color(0, 0, 0, 200));
+		g2d.fillRect(mapCanvasPosX, mapCanvasPosY, mapCanvas.getWidth(),
+				mapCanvas.getHeight());
+		g2d.setColor(Color.white);
 		/*
 		 * center text message
 		 */
