@@ -5,6 +5,7 @@
 		<sizex>1505</sizex>
 		<sizey>600</sizey>
 		<maxUpgrades>0</maxUpgrades>
+		<bombsActivated>false</bombsActivated>
 	</header>
 	<mapobjects>
 		<level>

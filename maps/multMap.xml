@@ -7,6 +7,7 @@
 		<maxUpgrades>100</maxUpgrades>
 		<minimap>MultMapMenuPic.png</minimap>
 		<playercount>2</playercount>
+		<bombsActivated>true</bombsActivated>
 	</header>
 	<mapobjects>
 		<level>

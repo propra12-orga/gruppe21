@@ -83,6 +83,9 @@ public class Map {
 		mapSizeX = Integer.parseInt(mr.getHeader("sizex"));
 		mapSizeY = Integer.parseInt(mr.getHeader("sizey"));
 		maxUpgrades = Integer.parseInt(mr.getHeader("maxUpgrades"));
+		boolean bombsActivated = Boolean.parseBoolean(mr
+				.getHeader("bombsActivated"));
+
 		drawLevels = mr.getDrawLevels();
 		upgradeCounter = 0;
 		mr.loadGraphics(graphics);
