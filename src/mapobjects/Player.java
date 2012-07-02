@@ -58,6 +58,8 @@ public class Player extends MoveableObject implements CMListener {
 	private double shieldStartTime, shieldTime = 500000000, immortalStartTime,
 			immortalTime = 6000000000L;
 
+	private boolean inMultiplayerMode = false;
+
 	/**
 	 * constructor
 	 * 
@@ -83,6 +85,10 @@ public class Player extends MoveableObject implements CMListener {
 	}
 
 	// TODO UseWeapon or plantBomB,ChangeWeapon
+
+	public void setMultiplayerModeTo(boolean mode) {
+		inMultiplayerMode = mode;
+	}
 
 	@Override
 	public void move() {
@@ -328,7 +334,8 @@ public class Player extends MoveableObject implements CMListener {
 				if (!shieldProtection) {
 					if (!remotePlayer) {
 						this.die();
-						map.finishMap();
+						if (!inMultiplayerMode)
+							map.finishMap();
 					}
 				} else {
 					if (!shieldHit) {

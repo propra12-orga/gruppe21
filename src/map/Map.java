@@ -83,6 +83,9 @@ public class Map {
 		mapSizeX = Integer.parseInt(mr.getHeader("sizex"));
 		mapSizeY = Integer.parseInt(mr.getHeader("sizey"));
 		maxUpgrades = Integer.parseInt(mr.getHeader("maxUpgrades"));
+		boolean bombsActivated = Boolean.parseBoolean(mr
+				.getHeader("bombsActivated"));
+
 		drawLevels = mr.getDrawLevels();
 		upgradeCounter = 0;
 		mr.loadGraphics(graphics);
@@ -279,9 +282,20 @@ public class Map {
 	}
 
 	public void removeUnattendedPlayers(int[] attendingPlayers) {
+		Player[] playerTmp = new Player[players.size()];
+		playerTmp = players.toArray(playerTmp);
+		mapObjects.get(2).clear();
+		players.clear();
 		for (int i = 0; i < attendingPlayers.length; i++) {
-			if (attendingPlayers[i] == MPLoungeUnit.PLAYER_UNAVAILABLE) {
-				mapObjects.get(2).remove(players.get(i));
+			if (attendingPlayers[i] == MPLoungeUnit.PLAYER_READY) {
+				mapObjects.get(2).add(playerTmp[i]);
+			} else {
+				playerTmp[i] = null;
+			}
+		}
+		for (Player player : playerTmp) {
+			if (player != null) {
+				players.add(player);
 			}
 		}
 	}
