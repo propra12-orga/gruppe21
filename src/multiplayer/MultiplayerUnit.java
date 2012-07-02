@@ -430,9 +430,11 @@ public class MultiplayerUnit extends GraphicalGameUnit implements
 			int tmpPosX = Integer.parseInt(parts[1]);
 			int tmpPosY = Integer.parseInt(parts[2]);
 			String MPID = parts[3];
-			multiplayerMap.addUpgradeRemotely(new Upgrade(tmpPosX, tmpPosY,
-					true, true, true, "upgrades", multiplayerMap.getGraphics(),
-					tmpColor, MPID));
+			Upgrade upgrade = new Upgrade(tmpPosX, tmpPosY, true, true, true,
+					"upgrades", multiplayerMap.getGraphics(), tmpColor, MPID);
+			multiplayerMap.addUpgradeRemotely(upgrade);
+			upgrade.setMap(multiplayerMap);
+
 		}
 	}
 
