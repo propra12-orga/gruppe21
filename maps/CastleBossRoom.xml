@@ -1247,6 +1247,14 @@
 				<collision>false</collision>
 				<destroyable>false</destroyable>
 				<image rotation="0">Kellerboden3.png</image>
+				<posx>50</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Kellerboden3.png</image>
 				<posx>100</posx>
 				<posy>350</posy>
 			</tile>
@@ -1352,6 +1360,14 @@
 				<destroyable>false</destroyable>
 				<image rotation="0">Kellerboden3.png</image>
 				<posx>750</posx>
+				<posy>350</posy>
+			</tile>
+			<tile type="floor" animated="false">
+				<visible>true</visible>
+				<collision>false</collision>
+				<destroyable>false</destroyable>
+				<image rotation="0">Kellerboden3.png</image>
+				<posx>800</posx>
 				<posy>350</posy>
 			</tile>
 			<tile type="floor" animated="false">
@@ -2110,7 +2126,7 @@
 				<visible>true</visible>
 				<collision>true</collision>
 				<destroyable>false</destroyable>
-				<image rotation="0">placeholder_undestructible.png</image>
+				<image rotation="0">CastleUndesPillar.png</image>
 				<posx>50</posx>
 				<posy>350</posy>
 			</tile>
@@ -2118,7 +2134,7 @@
 				<visible>true</visible>
 				<collision>true</collision>
 				<destroyable>false</destroyable>
-				<image rotation="0">placeholder_undestructible.png</image>
+				<image rotation="0">CastleUndesPillar.png</image>
 				<posx>800</posx>
 				<posy>350</posy>
 			</tile>
@@ -2126,7 +2142,7 @@
 				<visible>true</visible>
 				<collision>true</collision>
 				<destroyable>false</destroyable>
-				<image rotation="0">placeholder_undestructible.png</image>
+				<image rotation="0">CastleUndesPillar2.png</image>
 				<posx>200</posx>
 				<posy>600</posy>
 			</tile>
@@ -2134,7 +2150,7 @@
 				<visible>true</visible>
 				<collision>true</collision>
 				<destroyable>false</destroyable>
-				<image rotation="0">placeholder_undestructible.png</image>
+				<image rotation="0">CastleUndesPillar2.png</image>
 				<posx>650</posx>
 				<posy>600</posy>
 			</tile>
@@ -2142,7 +2158,7 @@
 				<visible>true</visible>
 				<collision>true</collision>
 				<destroyable>false</destroyable>
-				<image rotation="0">placeholder_undestructible.png</image>
+				<image rotation="0">CastleUndesPillar2.png</image>
 				<posx>100</posx>
 				<posy>150</posy>
 			</tile>
@@ -2150,7 +2166,7 @@
 				<visible>true</visible>
 				<collision>true</collision>
 				<destroyable>false</destroyable>
-				<image rotation="0">placeholder_undestructible.png</image>
+				<image rotation="0">CastleUndesPillar2.png</image>
 				<posx>750</posx>
 				<posy>150</posy>
 			</tile>
@@ -2158,7 +2174,7 @@
 				<visible>true</visible>
 				<collision>true</collision>
 				<destroyable>false</destroyable>
-				<image rotation="0">placeholder_undestructible.png</image>
+				<image rotation="0">CastleUndesPillar.png</image>
 				<posx>250</posx>
 				<posy>300</posy>
 			</tile>
@@ -2166,7 +2182,7 @@
 				<visible>true</visible>
 				<collision>true</collision>
 				<destroyable>false</destroyable>
-				<image rotation="0">placeholder_undestructible.png</image>
+				<image rotation="0">CastleUndesPillar.png</image>
 				<posx>600</posx>
 				<posy>300</posy>
 			</tile>
@@ -2174,7 +2190,7 @@
 				<visible>true</visible>
 				<collision>true</collision>
 				<destroyable>true</destroyable>
-				<image rotation="0">placeholder_destructible.png</image>
+				<image rotation="0">CastleDesPillar.png</image>
 				<posx>50</posx>
 				<posy>150</posy>
 			</tile>
@@ -2182,7 +2198,7 @@
 				<visible>true</visible>
 				<collision>true</collision>
 				<destroyable>true</destroyable>
-				<image rotation="0">placeholder_destructible.png</image>
+				<image rotation="0">CastleDesPillar.png</image>
 				<posx>150</posx>
 				<posy>150</posy>
 			</tile>
@@ -2190,7 +2206,7 @@
 				<visible>true</visible>
 				<collision>true</collision>
 				<destroyable>true</destroyable>
-				<image rotation="0">placeholder_destructible.png</image>
+				<image rotation="0">CastleDesPillar.png</image>
 				<posx>700</posx>
 				<posy>150</posy>
 			</tile>
@@ -2198,7 +2214,7 @@
 				<visible>true</visible>
 				<collision>true</collision>
 				<destroyable>true</destroyable>
-				<image rotation="0">placeholder_destructible.png</image>
+				<image rotation="0">CastleDesPillar.png</image>
 				<posx>800</posx>
 				<posy>150</posy>
 			</tile>
@@ -2206,7 +2222,7 @@
 				<visible>true</visible>
 				<collision>true</collision>
 				<destroyable>true</destroyable>
-				<image rotation="0">placeholder_destructible.png</image>
+				<image rotation="0">CastleDesPillar.png</image>
 				<posx>50</posx>
 				<posy>600</posy>
 			</tile>
@@ -2214,7 +2230,7 @@
 				<visible>true</visible>
 				<collision>true</collision>
 				<destroyable>true</destroyable>
-				<image rotation="0">placeholder_destructible.png</image>
+				<image rotation="0">CastleDesPillar.png</image>
 				<posx>800</posx>
 				<posy>600</posy>
 			</tile>
@@ -2248,7 +2264,6 @@
 
 	<items>
 		<animationset>upgrades</animationset>
-<<<<<<< HEAD
 		<animationset>simplebomb</animationset>
 		<animationset>aoeFlames</animationset>
 		<animationset>skulls</animationset>
@@ -2258,8 +2273,6 @@
 		<animationset>slime</animationset>
 		<animationset>portals</animationset>
 		<animationset>flames</animationset>
-=======
->>>>>>> f5d88e1487394d51392a0738a0947fe65df7bd74
 		<image>exit.png</image>
 	</items>
 </map>

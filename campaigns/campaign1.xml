@@ -74,10 +74,14 @@
 		</map>
 		<map>
 			<intro></intro>
-			<name>Castle3</name>
+			<name>Castle4</name>
 			<sequence>3</sequence>
 		</map>
-
+		<map>
+			<intro></intro>
+			<name>CastleBossRoom</name>
+			<sequence>3</sequence>
+		</map>
 	</maps>
 
 
