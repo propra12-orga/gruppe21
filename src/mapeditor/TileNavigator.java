@@ -6,6 +6,7 @@ import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.geom.Rectangle2D;
+import java.io.File;
 import java.util.Vector;
 
 import javax.swing.JPanel;
@@ -16,6 +17,7 @@ public class TileNavigator extends JPanel implements MouseListener {
 	private String mode = "Tiles";
 	private boolean tileOverflow = false;
 	private boolean enemyOverflow = false;
+	private Editor editor;
 
 	/**
 	 * Tabelements elements
@@ -25,11 +27,13 @@ public class TileNavigator extends JPanel implements MouseListener {
 	TilePanel tilePanelTiles = new TilePanel(5, 30, 190, 200);
 	TilePanel tilePanelEnemies = new TilePanel(5, 30, 190, 200);
 
-	public TileNavigator() {
+	public TileNavigator(Editor e) {
 		this.setBackground(Color.DARK_GRAY);
 		this.setSize(200, 300);
 		this.setDoubleBuffered(true);
 		addMouseListener(this);
+
+		editor = e;
 
 		/**
 		 * setup tabs
@@ -73,6 +77,12 @@ public class TileNavigator extends JPanel implements MouseListener {
 		g2d.drawLine(0, 0, 0, 299);
 	}
 
+	public void addTile(File file) {
+		tilePanelTiles.deselectAll();
+		tilePanelTiles.addTile(file);
+
+	}
+
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if (e.getButton() == MouseEvent.BUTTON1) {
@@ -100,10 +110,24 @@ public class TileNavigator extends JPanel implements MouseListener {
 						.get(i).getPosX() + buttonList.get(i).getWidth(),
 						buttonList.get(i).getPosY()
 								+ buttonList.get(i).getHeight())) {
-					if (buttonList.get(i).getAction().equals("newTile")) {
-
+					if (buttonList.get(i).getAction().equals("newtile")) {
+						editor.loadNewFile(mode);
 					}
 					this.repaint();
+				}
+			}
+
+			if (Mouse.isInRegion(e.getX(), e.getY(), 5, 30, 190, 200)) {
+				System.out.println("mouse is in tilepanel");
+				if (mode.equals("Tiles")) {
+					Tile cTile = tilePanelTiles.getTile(e.getX(), e.getY());
+					editor.updateTileViewer(cTile);
+					tilePanelTiles.deselectAll();
+					cTile.select();
+					this.repaint();
+				}
+				if (mode.equals("Enemies")) {
+
 				}
 			}
 		}
