@@ -382,6 +382,11 @@ public class Player extends MoveableObject implements CMListener {
 		return false;
 	}
 
+	/**
+	 * Handles the upgrade given by the giveUpgrade function
+	 * 
+	 * @param upgrade
+	 */
 	private void handleUpgrades(Upgrade upgrade) {
 		Color tmpColor = upgrade.getColor();
 		if ((tmpColor == Color.pink) && !maxBombs_used) {

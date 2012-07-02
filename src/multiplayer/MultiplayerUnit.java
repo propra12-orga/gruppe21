@@ -22,6 +22,12 @@ import mapobjects.Player;
 import mapobjects.Upgrade;
 import unitTransitions.TransitionUnit;
 
+/**
+ * Subclass of GraphicalGameUnit for network multiplayer games.
+ * 
+ * @author Dorian
+ * 
+ */
 public class MultiplayerUnit extends GraphicalGameUnit implements
 		multiplayer.ReadFromHost.SocketListener, UpgradeListener {
 
@@ -56,7 +62,15 @@ public class MultiplayerUnit extends GraphicalGameUnit implements
 	 */
 	private final String drawMessage = "Unbelieveable! It's a draw!";
 
-	// Constructor
+	/**
+	 * Create a multiplayer unit
+	 * 
+	 * @param fromHost
+	 * @param myPlayerIndex
+	 * @param mapName
+	 * @param toHostSocket
+	 * @param attendingPLayers
+	 */
 	public MultiplayerUnit(ReadFromHost fromHost, int myPlayerIndex,
 			String mapName, Socket toHostSocket, int[] attendingPLayers) {
 		this.toHostSocket = toHostSocket;
