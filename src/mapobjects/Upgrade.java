@@ -9,11 +9,20 @@ import java.awt.image.BufferedImage;
 public class Upgrade extends MapObject {
 
 	private Color color;
+	private String MPID;
 
 	public Upgrade(int x, int y, boolean v, boolean d, boolean c, String p,
 			ImageLoader gr, Color col) {
 		super(x, y, v, d, c, p, gr);
 		color = col;
+		initAnimation(col);
+	}
+
+	public Upgrade(int x, int y, boolean v, boolean d, boolean c, String p,
+			ImageLoader gr, Color col, String MPID) {
+		super(x, y, v, d, c, p, gr);
+		color = col;
+		this.MPID = MPID;
 		initAnimation(col);
 	}
 
@@ -61,6 +70,28 @@ public class Upgrade extends MapObject {
 
 	public Color getColor() {
 		return color;
+	}
+
+	public String getMPID() {
+		return MPID;
+	}
+
+	public void setMPID(String MPID) {
+		this.MPID = MPID;
+	}
+
+	public String getStringOfColor() {
+		if (color.equals(Color.pink))
+			return "pink";
+		if (color.equals(Color.blue))
+			return "blue";
+		if (color.equals(Color.cyan))
+			return "cyan";
+		if (color.equals(Color.magenta))
+			return "magenta";
+		if (color.equals(Color.lightGray))
+			return "lightGray";
+		return "";
 	}
 
 	public interface CMListener {

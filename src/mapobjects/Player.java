@@ -325,7 +325,7 @@ public class Player extends MoveableObject implements CMListener {
 	public void update(BufferedImage cm) {
 		if (simpleHasColl(posX, posY, map.getCollisionMap(), Color.orange,
 				Color.red)) {
-			if (!immortal || remotePlayer) {
+			if (!immortal) {
 				if (!shieldProtection && !remotePlayer) {
 					this.die();
 					map.finishMap();
@@ -338,8 +338,6 @@ public class Player extends MoveableObject implements CMListener {
 					}
 				}
 			} else {
-				// das hier wird auch aufgerufen, wenn ein remotePlayer was
-				// abbekommt, just sayin'
 				System.out.println("Hit, but immortal. Muhaha");
 			}
 		}
@@ -351,16 +349,9 @@ public class Player extends MoveableObject implements CMListener {
 				System.out.println("Shield off");
 			}
 		}
-		if (immortal && !remotePlayer) {
+		if (immortal) {
 			if (immortalStartTime + immortalTime <= System.nanoTime()) {
 				immortal = false;
-				animation.setCurrentAnimation(animation.getCurrentImagePath());
-				System.out.println("Now you are not immortal anymore");
-			}
-		}
-		if (remoteImmortal) {
-			if (immortalStartTime + immortalTime <= System.nanoTime()) {
-				remoteImmortal = false;
 				animation.setCurrentAnimation(animation.getCurrentImagePath());
 				System.out.println("Now you are not immortal anymore");
 			}
@@ -380,12 +371,14 @@ public class Player extends MoveableObject implements CMListener {
 		}
 	}
 
-	public void activateShield() {
+	public boolean activateShield() {
 		if (shieldEqu && !shieldProtection) {
 			shieldProtection = true;
 			animation.setCurrentAnimation("playerDown_bubble");
 			System.out.println("Shield activated");
+			return true;
 		}
+		return false;
 	}
 
 	private void handleUpgrades(Upgrade upgrade) {
@@ -411,15 +404,8 @@ public class Player extends MoveableObject implements CMListener {
 			bombRemote = true;
 		}
 		if (tmpColor == Color.lightGray) {
-			if (!remotePlayer) {
-				if (!immortal) {
-					immortal = true;
-					shieldProtection = false;
-					animation.setCurrentAnimation("playerDown_immortal");
-					immortalStartTime = System.nanoTime();
-				}
-			} else if (!remoteImmortal) {
-				remoteImmortal = true;
+			if (!immortal) {
+				immortal = true;
 				shieldProtection = false;
 				animation.setCurrentAnimation("playerDown_immortal");
 				immortalStartTime = System.nanoTime();
@@ -479,7 +465,6 @@ public class Player extends MoveableObject implements CMListener {
 	 */
 	public void makeRemote() {
 		remotePlayer = true;
-		immortal = true;
 	}
 
 	/**

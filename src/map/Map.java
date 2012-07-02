@@ -11,10 +11,10 @@ import java.util.Vector;
 import mapobjects.Bomb;
 import mapobjects.Enemy;
 import mapobjects.Exit;
+import mapobjects.FireBowl;
 import mapobjects.MapObject;
 import mapobjects.Player;
 import mapobjects.Upgrade;
-import mapobjects.FireBowl;
 import mapobjects.Upgrade.CMListener;
 import multiplayer.MPLoungeUnit;
 import multiplayer.UpgradeListener;
@@ -333,24 +333,28 @@ public class Map {
 		this.listener = listener;
 	}
 
-	public void addUpgrade(Upgrade upgrade) {
+	public void addSpawnedUpgrade(Upgrade upgrade) {
 		getMapObjects().get(1).add(upgrade);
 		incrementUpgradeCounter();
+		upgrade.setMPID(String.valueOf(upgradeCounter));
 		if (listener != null)
 			listener.upgradeSpawned(upgrade.getPosX(), upgrade.getPosY(),
-					upgrade.getColor());
+					upgrade.getStringOfColor(), upgrade.getMPID());
+	}
+
+	public void addUpgradeRemotely(Upgrade upgrade) {
+		getMapObjects().get(1).add(upgrade);
+		incrementUpgradeCounter();
 	}
 
 	public void synchronizePickup(Upgrade upgrade) {
-		if (listener != null)
-			listener.upgradePickedUp(getMapObjects().get(1).indexOf(upgrade));
-		else
-			UpgradePickUpEvent(upgrade);
-	}
-
-	private void UpgradePickUpEvent(Upgrade upgrade) {
-		if (cmListener != null)
-			cmListener.giveUpgrade(upgrade);
+		if (cmListener != null) {
+			if (listener != null) {
+				listener.upgradePickedUp(getMapObjects().get(1)
+						.indexOf(upgrade), upgrade.getMPID());
+			} else
+				cmListener.giveUpgrade(upgrade);
+		}
 	}
 
 	public void setCMListener(CMListener cmListener) {

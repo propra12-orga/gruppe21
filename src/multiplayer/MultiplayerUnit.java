@@ -177,6 +177,23 @@ public class MultiplayerUnit extends GraphicalGameUnit implements
 				myPlayer.plantBomb(multiplayerMap.getCollisionMap());
 			}
 		}
+
+		if (key == KeyEvent.VK_C) {
+			if (myPlayer.hasRemoteBombs()) {
+				writeToHost("Player:" + myPlayerIndex + ";" + "Remote" + ";"
+						+ "Pressed");
+				myPlayer.bombExplode();
+			}
+		}
+
+		if (key == KeyEvent.VK_S) {
+			if (myPlayer.activateShield()) {
+				int tmpPosX = myPlayer.getPosX();
+				int tmpPosY = myPlayer.getPosY();
+				writeToHost("Player:" + myPlayerIndex + ";" + "Shield" + ";"
+						+ "Pressed" + "/" + tmpPosX + "/" + tmpPosY);
+			}
+		}
 	}
 
 	@Override
@@ -306,17 +323,6 @@ public class MultiplayerUnit extends GraphicalGameUnit implements
 		if (incomingMsg.indexOf("Upgrade:") != -1) {
 			String[] parts = incomingMsg.split(":");
 			handleUpgradeEvents(parts[1]);
-			return;
-		}
-		if (incomingMsg.indexOf("Welcome Player ") != -1) {
-			// myPlayerIndex = Integer.parseInt(incomingMsg.substring(15, 16));
-			// myPlayer = multiplayerMap.getPlayerByNumber(myPlayerIndex);
-			// make all non self controlled players invulnerable
-			return;
-		}
-		if (incomingMsg.indexOf("Start!") != -1) {
-			System.out.println("Success!");
-			// initComponent();
 		}
 	}
 
@@ -365,6 +371,16 @@ public class MultiplayerUnit extends GraphicalGameUnit implements
 			tmpPlayer.setPosX(Integer.parseInt(parts[1]));
 			tmpPlayer.setPosY(Integer.parseInt(parts[2]));
 			tmpPlayer.plantBomb(multiplayerMap.getCollisionMap());
+			return;
+		}
+		if (incoming.indexOf("Remote") != -1) {
+			tmpPlayer.bombExplode();
+			return;
+		}
+		if (incoming.indexOf("Bomb") != -1) {
+			tmpPlayer.setPosX(Integer.parseInt(parts[1]));
+			tmpPlayer.setPosY(Integer.parseInt(parts[2]));
+			tmpPlayer.activateShield();
 		}
 	}
 
@@ -407,14 +423,30 @@ public class MultiplayerUnit extends GraphicalGameUnit implements
 					tmpUpgrade);
 			tmpUpgrade.setDestroyed(true);
 		} else {
-			System.out.println("test");
 			String[] parts = incoming.split("/");
-			Color tmpColor = Color.getColor(parts[0]); // getColor oder decode?
+			Color tmpColor = stringToColor(parts[0]);
 			int tmpPosX = Integer.parseInt(parts[1]);
 			int tmpPosY = Integer.parseInt(parts[2]);
-			multiplayerMap.addUpgrade(new Upgrade(tmpPosX, tmpPosY, true, true,
-					true, "upgrades", multiplayerMap.getGraphics(), tmpColor));
+			String MPID = parts[3];
+			multiplayerMap.addUpgradeRemotely(new Upgrade(tmpPosX, tmpPosY,
+					true, true, true, "upgrades", multiplayerMap.getGraphics(),
+					tmpColor, MPID));
 		}
+	}
+
+	private Color stringToColor(String colName) {
+		Color c = null;
+		if (colName.equals("pink"))
+			return Color.pink;
+		if (colName.equals("blue"))
+			return Color.blue;
+		if (colName.equals("cyan"))
+			return Color.cyan;
+		if (colName.equals("magenta"))
+			return Color.magenta;
+		if (colName.equals("lightGray"))
+			return Color.lightGray;
+		return c;
 	}
 
 	/**
@@ -448,15 +480,14 @@ public class MultiplayerUnit extends GraphicalGameUnit implements
 	}
 
 	@Override
-	public void upgradeSpawned(int x, int y, Color color) {
-		writeToHost("Upgrade:" + color + "/" + x + "/" + y);
-		System.out.println("Upgrade:" + color + "/" + x + "/" + y);
+	public void upgradeSpawned(int x, int y, String color, String MPID) {
+		writeToHost("!Upgrade:" + color + "/" + x + "/" + y + "/" + MPID);
 	}
 
 	@Override
-	public void upgradePickedUp(int PosAtList) {
+	public void upgradePickedUp(int PosAtList, String MPID) {
 		writeToHost("!Upgrade:" + "Player" + myPlayerIndex + ";" + "PickUp"
-				+ ";" + PosAtList);
+				+ ";" + PosAtList + ";" + MPID);
 
 	}
 }

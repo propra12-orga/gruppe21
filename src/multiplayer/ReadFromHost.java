@@ -31,7 +31,7 @@ public class ReadFromHost extends Thread implements Runnable {
 				System.out.println(incomingMsg);
 				listener.analizeIncoming(incomingMsg);
 			} catch (IOException e) {
-				System.out.println("Connetion to host lost!");
+				System.out.println("Connection to host lost!");
 				try {
 					toHostSocket.close();
 				} catch (IOException e1) {

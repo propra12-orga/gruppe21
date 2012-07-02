@@ -1,13 +1,11 @@
 package multiplayer;
 
-import java.io.BufferedInputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.net.SocketTimeoutException;
-import java.util.Scanner;
+import java.util.ArrayList;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -22,9 +20,8 @@ public class Server extends Thread {
 	private String selectedMap;
 	// Socket Management
 	private ToClientSocket[] toClientSockets;
-	// Console Input
-	private Scanner scanner = new Scanner(new BufferedInputStream(System.in),
-			"UTF-8");
+	// Upgrade Management
+	private ArrayList<String> MPIDList = new ArrayList<String>();
 
 	// Constructor
 	public Server(int maxPlayers, String selectedMap, int port)
@@ -33,7 +30,6 @@ public class Server extends Thread {
 		this.selectedMap = selectedMap;
 		toClientSockets = new ToClientSocket[maxPlayers + 1];
 		hostSocket = new ServerSocket(port);
-		/* hostSocket.setSoTimeout(10000); */// not sure if needed
 		this.start();
 	}
 
@@ -52,29 +48,12 @@ public class Server extends Thread {
 				toClientSockets[playerCount] = new ToClientSocket(playerCount,
 						hostSocket.accept());
 				playerCount += 1;
-				if (playerCount == maxPlayers + 1) {
+				if (playerCount == maxPlayers + 1)
 					gamestarted = true;
-					try {
-						Thread.sleep(10);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-					// distributeMessage("Start!");
-				}
-			} catch (SocketTimeoutException s) {
-				System.out.println("Socket T/O");
-				break;
 			} catch (IOException e) {
 				System.out.println("IOException");
 				break;
 			}
-		}
-		// System.out.println("Bomberman Server v1.0:");
-		String consoleInput = null;
-		while (true) {
-			consoleInput = scanner.next();
-			if (consoleInput.equals("stop")) // schliesse Sockets
-				break;
 		}
 	}
 
@@ -113,22 +92,28 @@ public class Server extends Thread {
 			handleRelevantMsg(sendingPlayer, incoming);
 		else {
 			if (incoming.contains("starting"))
-				setGameStarted(true);
+				gamestarted = true;
 
 			distributeMessage(sendingPlayer, incoming);
 		}
 	}
 
-	private void setGameStarted(boolean gamestarted) {
-		this.gamestarted = gamestarted;
-	}
-
-	private void handleRelevantMsg(int sendingPlayer, String incoming) {
+	private synchronized void handleRelevantMsg(int sendingPlayer,
+			String incoming) {
 		if (incoming.indexOf("Upgrade:") != -1)
-			distributeMessage(incoming);
+			if (incoming.indexOf("PickUp") != -1) {
+				String[] parts = incoming.split(";");
+				int listIndex = MPIDList.indexOf(parts[3]);
+				if (listIndex != -1) {
+					MPIDList.remove(listIndex);
+					distributeMessage(incoming);
+				}
+			} else {
+				String[] parts = incoming.split("/");
+				MPIDList.add(parts[3]);
+				distributeMessage(sendingPlayer, incoming);
+			}
 	}
-
-	// evtl stoppe den Thread, nachdem das Spiel startet
 
 	public class ToClientSocket extends Thread implements Runnable {
 		private DataOutputStream os = null;
