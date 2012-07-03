@@ -11,7 +11,10 @@ import javax.swing.JPanel;
 
 public class TileViewer extends JPanel implements MouseListener {
 	private Editor editor;
-	private Tile currentTile;
+	public Tile currentDrawTile;
+	public Tile currentSelectedTile;
+
+	private String mode = "paint";
 
 	public TileViewer(Editor e) {
 		this.setBackground(Color.GRAY);
@@ -23,7 +26,8 @@ public class TileViewer extends JPanel implements MouseListener {
 
 		File defaultF = new File("graphics/game/map/floorempty.png");
 		System.out.println(defaultF.getAbsolutePath());
-		currentTile = new Tile(defaultF, 0);
+		currentDrawTile = new Tile(defaultF, 0);
+		currentSelectedTile = new Tile(defaultF, 0);
 	}
 
 	@Override
@@ -31,24 +35,29 @@ public class TileViewer extends JPanel implements MouseListener {
 		super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D) g;
 
-		g2d.drawImage(currentTile.getImage(), 10, 10, 180, 180, null);
+		g2d.drawImage(currentDrawTile.getImage(), 10, 10, 180, 180, null);
 
 		g2d.setColor(Color.DARK_GRAY);
 		g2d.drawLine(0, 0, 0, 299);
 		g2d.drawLine(0, 0, 200, 0);
 	}
 
-	public void setTile(Tile tile) {
-		currentTile = tile;
+	public Tile getDrawTile() {
+		return currentDrawTile;
+	}
+
+	public void setDrawTile(Tile currentTile) {
+		this.currentDrawTile = currentTile;
 		repaint();
 	}
 
-	public Tile getCurrentTile() {
-		return currentTile;
+	public Tile getSelectedTile() {
+		return currentSelectedTile;
 	}
 
-	public void setCurrentTile(Tile currentTile) {
-		this.currentTile = currentTile;
+	public void setSelectedTile(Tile currentTile) {
+		this.currentSelectedTile = currentTile;
+		repaint();
 	}
 
 	@Override
@@ -79,6 +88,14 @@ public class TileViewer extends JPanel implements MouseListener {
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
 
+	}
+
+	public String getMode() {
+		return mode;
+	}
+
+	public void setMode(String mode) {
+		this.mode = mode;
 	}
 
 }

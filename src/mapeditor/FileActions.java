@@ -2,8 +2,9 @@ package mapeditor;
 
 public class FileActions {
 
-	public static void perform(String action) {
+	public static void perform(String action, Editor ed) {
 		if (action.equals("saveFile")) {
+
 			saveFile();
 		}
 		if (action.equals("openFile")) {
@@ -11,6 +12,7 @@ public class FileActions {
 		}
 		if (action.equals("newFile")) {
 			newFile();
+			ed.canvas.openNew();
 		}
 
 	}

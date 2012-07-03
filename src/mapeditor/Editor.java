@@ -21,12 +21,12 @@ public class Editor extends JFrame implements KeyListener, MouseListener {
 	 * Editor Components
 	 */
 	public ImageLoader imageStack = new ImageLoader();
-	private MapCanvas canvas = new MapCanvas();
-	private FileToolBar fileBar = new FileToolBar(48, 1);
+	public MapCanvas canvas = new MapCanvas(this);
+	private FileToolBar fileBar = new FileToolBar(48, 1, this);
 	private ToolBar toolBar = new ToolBar(48, 1, canvas);
 	private TileNavigator tileNavigator = new TileNavigator(this);
 	private FileNavigator fileNavigator = new FileNavigator();
-	private TileViewer tileViewer = new TileViewer(this);
+	public TileViewer tileViewer = new TileViewer(this);
 	/**
 	 * status of the map changes
 	 */
@@ -83,9 +83,9 @@ public class Editor extends JFrame implements KeyListener, MouseListener {
 		}
 	}
 
-	public void updateTileViewer(Tile tile) {
-		tileViewer.setTile(tile);
-
+	public void updateTileViewer(Tile tile, String mode) {
+		tileViewer.setDrawTile(tile);
+		tileViewer.setMode(mode);
 	}
 
 	@Override

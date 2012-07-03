@@ -29,16 +29,20 @@ public class FileToolBar extends JPanel implements MouseListener {
 	private int buttonSize;
 	private int padding;
 
+	Editor editor;
+
 	/**
 	 * FileToolBar constructor
 	 * 
 	 * sets up the Jpanel, adds Buttons
 	 */
-	public FileToolBar(int bSize, int padd) {
+	public FileToolBar(int bSize, int padd, Editor ed) {
 		this.setBackground(Color.gray);
 		this.setSize(200, 50);
 		this.setDoubleBuffered(true);
 		setFocusable(true);
+
+		editor = ed;
 
 		buttonSize = bSize;
 		padding = padd;
@@ -72,7 +76,7 @@ public class FileToolBar extends JPanel implements MouseListener {
 						.get(i).getPosX() + buttonList.get(i).getWidth(),
 						buttonList.get(i).getPosY()
 								+ buttonList.get(i).getHeight())) {
-					FileActions.perform(buttonList.get(i).getAction());
+					FileActions.perform(buttonList.get(i).getAction(), editor);
 				}
 			}
 		}

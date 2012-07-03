@@ -30,7 +30,7 @@ public class ToolBar extends JPanel implements MouseListener {
 	private int buttonSize;
 	private int padding;
 
-	MapCanvas mapCanvas = new MapCanvas();
+	MapCanvas mapCanvas = new MapCanvas(null);
 
 	/**
 	 * Constructor for Toolbar
@@ -59,7 +59,7 @@ public class ToolBar extends JPanel implements MouseListener {
 		buttonList.add(mediumButton = new Button(bSize, bSize, "bmedium.png",
 				"medium"));
 		buttonList.add(mediumButton = new Button(bSize, bSize, "bbig.png",
-				"big"));
+				"large"));
 	}
 
 	@Override
@@ -86,6 +86,7 @@ public class ToolBar extends JPanel implements MouseListener {
 						.get(i).getPosX() + buttonList.get(i).getWidth(),
 						buttonList.get(i).getPosY()
 								+ buttonList.get(i).getHeight())) {
+					mapCanvas.setMode(buttonList.get(i).getAction());
 				}
 			}
 		}

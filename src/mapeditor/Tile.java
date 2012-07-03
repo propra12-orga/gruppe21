@@ -12,7 +12,7 @@ import java.io.File;
  * @author eik
  * 
  */
-public class Tile {
+public class Tile implements Cloneable {
 
 	private int posX;
 	private int posY;
@@ -27,8 +27,7 @@ public class Tile {
 	public Tile(File file, int tilecounter) {
 		this.setPosX(((tilecounter % 4) * 45) + (tilecounter % 4 + 1) * 2);
 		this.setPosY(((tilecounter / 4) * 45) + (tilecounter / 4 + 1) * 4);
-		// this.setName(file.getName());
-		System.out.println(file.getAbsolutePath());
+		this.setName(file.getName());
 		if (file.getName().endsWith(".xml")) {
 			animated = true;
 			image = EditorGraphics.loadImageAni(file.getAbsolutePath());
@@ -48,6 +47,15 @@ public class Tile {
 
 	}
 
+	@Override
+	public Object clone() {
+		try {
+			return super.clone();
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
 	public void draw(Graphics2D g2d, int offX, int offY) {
 		int x = posX + offX;
 		int y = posY + offY;
@@ -63,6 +71,13 @@ public class Tile {
 			g2d.setColor(Color.red);
 			g2d.drawRect(x - 1, y - 1, 46, 46);
 		}
+	}
+
+	public void drawOnMap(Graphics2D g2d, int offX, int offY) {
+		int x = posX + offX;
+		int y = posY + offY;
+
+		g2d.drawImage(image, x, y, 50, 50, null);
 	}
 
 	public int getPosX() {

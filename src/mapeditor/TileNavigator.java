@@ -118,10 +118,9 @@ public class TileNavigator extends JPanel implements MouseListener {
 			}
 
 			if (Mouse.isInRegion(e.getX(), e.getY(), 5, 30, 190, 200)) {
-				System.out.println("mouse is in tilepanel");
 				if (mode.equals("Tiles")) {
 					Tile cTile = tilePanelTiles.getTile(e.getX(), e.getY());
-					editor.updateTileViewer(cTile);
+					editor.updateTileViewer(cTile, "paint");
 					tilePanelTiles.deselectAll();
 					cTile.select();
 					this.repaint();
