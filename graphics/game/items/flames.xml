@@ -1,4 +1,4 @@
-<animationset default="flame.png">
+<animationset default="flame_default.png">
 <animation frames="6" stretch="20" name="flame">flame.png</animation>
 <animation frames="6" stretch="20" name="disappear">flame_disappearing.png</animation>
 </animationset>

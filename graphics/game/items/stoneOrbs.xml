@@ -1,4 +1,4 @@
-<animationset default="stoneOrb.png">
+<animationset default="stoneOrb_default.png">
 <animation frames="5" stretch="10" name="move">stoneOrb.png</animation>
 <animation frames="5" stretch="20" name="disappear">stoneOrb_disappearing.png</animation>
 </animationset>
