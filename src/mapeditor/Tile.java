@@ -20,6 +20,9 @@ public class Tile implements Cloneable {
 	private String name;
 	private String type;
 	private boolean collision;
+	private boolean visible = true;
+	private boolean destroyable;
+
 	private BufferedImage image;
 	private int rotation = 0;
 	private boolean animated = false;
@@ -131,6 +134,30 @@ public class Tile implements Cloneable {
 	public void select() {
 		selected = true;
 
+	}
+
+	public boolean isVisible() {
+		return visible;
+	}
+
+	public void setVisible(boolean visible) {
+		this.visible = visible;
+	}
+
+	public boolean isDestroyable() {
+		return destroyable;
+	}
+
+	public void setDestroyable(boolean destroyable) {
+		this.destroyable = destroyable;
+	}
+
+	public int getRotation() {
+		return rotation;
+	}
+
+	public void setRotation(int rotation) {
+		this.rotation = rotation;
 	}
 
 }

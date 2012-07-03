@@ -33,7 +33,7 @@ public class EditorMap {
 		}
 
 		if (currentDrawLevel == 2) {
-			g2d.setColor(new Color(0, 0, 0, 50));
+			g2d.setColor(new Color(0, 0, 0, 100));
 			g2d.fillRect(0, 0, width, height);
 
 			for (int i = 0; i < tileListL2.size(); i++) {
@@ -73,5 +73,16 @@ public class EditorMap {
 		}
 		currentTileList.add(newTile);
 		System.out.println(currentTileList.size());
+	}
+
+	public void switchLevel() {
+		if (currentDrawLevel == 1) {
+			currentDrawLevel = 2;
+			currentTileList = tileListL2;
+		} else if (currentDrawLevel == 2) {
+			currentDrawLevel = 1;
+			currentTileList = tileListL1;
+		}
+		System.out.println(currentDrawLevel);
 	}
 }

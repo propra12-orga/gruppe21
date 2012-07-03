@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 public class MapCanvas extends JPanel implements MouseListener {
 
 	private String mode = "pointer";
-	private EditorMap editorMap = null;
+	public EditorMap editorMap = null;
 	private boolean xOverflow;
 	private boolean yOverflow;
 	private Editor editor;

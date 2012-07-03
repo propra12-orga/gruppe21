@@ -19,7 +19,8 @@ public class ToolBar extends JPanel implements MouseListener {
 	/**
 	 * Buttons
 	 */
-	private Button pointerButton, smallButton, mediumButton, bigButton;
+	private Button pointerButton, smallButton, mediumButton, bigButton,
+			levelSwitchButton, startButton, exitButton;
 	/**
 	 * a Vector list for the buttons to manage drawing etc.
 	 */
@@ -60,6 +61,12 @@ public class ToolBar extends JPanel implements MouseListener {
 				"medium"));
 		buttonList.add(mediumButton = new Button(bSize, bSize, "bbig.png",
 				"large"));
+		buttonList.add(levelSwitchButton = new Button(bSize, bSize, "ls.png",
+				"ls"));
+		buttonList.add(startButton = new Button(bSize, bSize, "start.png",
+				"start"));
+		buttonList
+				.add(exitButton = new Button(bSize, bSize, "exit.png", "exit"));
 	}
 
 	@Override
@@ -86,7 +93,12 @@ public class ToolBar extends JPanel implements MouseListener {
 						.get(i).getPosX() + buttonList.get(i).getWidth(),
 						buttonList.get(i).getPosY()
 								+ buttonList.get(i).getHeight())) {
-					mapCanvas.setMode(buttonList.get(i).getAction());
+					if (!buttonList.get(i).getAction().equals("ls")) {
+						mapCanvas.setMode(buttonList.get(i).getAction());
+					} else {
+						mapCanvas.editorMap.switchLevel();
+						mapCanvas.repaint();
+					}
 				}
 			}
 		}

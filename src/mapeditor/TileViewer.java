@@ -7,6 +7,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
 
+import javax.swing.Action;
+import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 
 public class TileViewer extends JPanel implements MouseListener {
@@ -16,10 +18,13 @@ public class TileViewer extends JPanel implements MouseListener {
 
 	private String mode = "paint";
 
+	private JCheckBox destroyBox, collideBox, visibleBox;
+
 	public TileViewer(Editor e) {
 		this.setBackground(Color.GRAY);
 		this.setSize(200, 300);
 		this.setDoubleBuffered(true);
+		this.setLayout(null);
 		addMouseListener(this);
 
 		editor = e;
@@ -28,6 +33,25 @@ public class TileViewer extends JPanel implements MouseListener {
 		System.out.println(defaultF.getAbsolutePath());
 		currentDrawTile = new Tile(defaultF, 0);
 		currentSelectedTile = new Tile(defaultF, 0);
+
+		this.add(destroyBox = new JCheckBox("is destroyable", false));
+		this.add(collideBox = new JCheckBox("has collision", false));
+		this.add(visibleBox = new JCheckBox("is visible", false));
+		Action toogleDestroy = toogleDestroy();
+		destroyBox.setBounds(5, 200, 150, 20);
+		destroyBox.setBackground(Color.gray);
+		destroyBox.addActionListener(null);
+		destroyBox.setAction(toogleDestroy);
+		collideBox.setBounds(5, 220, 150, 20);
+		collideBox.setBackground(Color.gray);
+		visibleBox.setBounds(5, 240, 150, 20);
+		visibleBox.setBackground(Color.gray);
+
+	}
+
+	private Action toogleDestroy() {
+		currentDrawTile.setDestroyable(!currentDrawTile.hasCollision());
+		return null;
 	}
 
 	@Override
@@ -48,6 +72,9 @@ public class TileViewer extends JPanel implements MouseListener {
 
 	public void setDrawTile(Tile currentTile) {
 		this.currentDrawTile = currentTile;
+		this.visibleBox.setSelected(currentTile.isVisible());
+		this.collideBox.setSelected(currentTile.hasCollision());
+		this.destroyBox.setSelected(currentTile.isDestroyable());
 		repaint();
 	}
 
