@@ -355,7 +355,7 @@ public class MultiplayerUnit extends GraphicalGameUnit implements
 		if (incomingMsg.indexOf("Player:") != -1) {
 			String[] parts = incomingMsg.split(":");
 			int playerIndex = Integer.parseInt(parts[1].substring(0, 1));
-			handlePlayerEvents(playerIndex, parts[1].substring(1));
+			handlePlayerEvents(playerIndex, parts[1].substring(2));
 			return;
 		}
 		if (incomingMsg.indexOf("Upgrade:") != -1) {

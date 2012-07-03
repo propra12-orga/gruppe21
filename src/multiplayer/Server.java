@@ -167,7 +167,7 @@ public class Server extends Thread {
 			}
 			toClientSockets.get(tmpIndex).terminate();
 			toClientSockets.remove(tmpIndex);
-			distributeMessage("Player:" + sendingPlayer + "died");
+			distributeMessage("Player:" + sendingPlayer + ";died");
 		}
 	}
 
@@ -268,7 +268,8 @@ public class Server extends Thread {
 				} catch (IOException e) {
 					toClientSockets.remove(this);
 					if (host.isGameStarted())
-						host.distributeMessage("Player:" + playerIndex + "died");
+						host.distributeMessage("Player:" + playerIndex
+								+ ";died");
 					terminate();
 				}
 			}
