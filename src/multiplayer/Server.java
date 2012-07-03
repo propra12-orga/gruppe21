@@ -19,7 +19,7 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class Server extends Thread {
 
-	public boolean gamestarted = false;
+	private boolean gamestarted = false;
 	// Host Socket
 	private ServerSocket hostSocket = null;
 	// Player Management
@@ -60,8 +60,8 @@ public class Server extends Thread {
 	public void run() {
 		while (gamestarted == false) {
 			try {
-				toClientSockets.add(new ToClientSocket(playerCount, hostSocket
-						.accept()));
+				toClientSockets.add(new ToClientSocket(playerCount, this,
+						hostSocket.accept()));
 				playerCount += 1;
 				if (playerCount == maxPlayers + 1)
 					gamestarted = true;
@@ -78,12 +78,16 @@ public class Server extends Thread {
 		}
 	}
 
+	public boolean isGameStarted() {
+		return gamestarted;
+	}
+
 	/**
 	 * Sends the given string object to all sockets
 	 * 
 	 * @param incoming
 	 */
-	public void distributeMessage(String incoming) {
+	private void distributeMessage(String incoming) {
 		for (ToClientSocket tcs : toClientSockets) {
 			Lock tmpLock = tcs.getWriteLock();
 			tmpLock.lock();
@@ -193,14 +197,16 @@ public class Server extends Thread {
 		private DataOutputStream os = null;
 		private DataInputStream is = null;
 		private int playerIndex;
+		private Server host;
 		private Socket clientSocket;
 		private Lock writeLock = new ReentrantLock();
 		private boolean hasRemoved = true;
 		private boolean stopped = false;
 
 		// Constructor
-		public ToClientSocket(int playerIndex, Socket clientSocket) {
+		public ToClientSocket(int playerIndex, Server host, Socket clientSocket) {
 			this.playerIndex = playerIndex;
+			this.host = host;
 			this.clientSocket = clientSocket;
 			try {
 				is = new DataInputStream(clientSocket.getInputStream());
@@ -257,12 +263,12 @@ public class Server extends Thread {
 			while (!stopped) {
 				try {
 					String incoming = is.readUTF();
-					System.out.println(incoming);
-					checkRelevance(playerIndex, incoming);
+					host.checkRelevance(playerIndex, incoming);
 				} catch (SocketTimeoutException e1) {
 				} catch (IOException e) {
 					toClientSockets.remove(this);
-					distributeMessage("Player:" + playerIndex + "died");
+					if (host.isGameStarted())
+						host.distributeMessage("Player:" + playerIndex + "died");
 					terminate();
 				}
 			}

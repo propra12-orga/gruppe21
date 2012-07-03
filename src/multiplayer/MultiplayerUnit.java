@@ -395,7 +395,6 @@ public class MultiplayerUnit extends GraphicalGameUnit implements
 			return;
 		}
 		if (incoming.indexOf("died") != -1) {
-			System.out.println("check");
 			Player player = multiplayerMap.getPlayerByNumber(playerIndex);
 			if (player.isAlive()) {
 				playersRemaining--;
@@ -496,7 +495,6 @@ public class MultiplayerUnit extends GraphicalGameUnit implements
 	 */
 	private void handleUpgradeEvents(String incoming) {
 		if (incoming.indexOf("PickUp") != -1) {
-			System.out.println(incoming);
 			String[] parts = incoming.split(";");
 			int tmpPlayerIndex = Integer.parseInt(parts[0].substring(6));
 			for (MapObject obj : multiplayerMap.getMapObjects().get(1)) {
@@ -510,7 +508,6 @@ public class MultiplayerUnit extends GraphicalGameUnit implements
 				}
 			}
 		} else {
-			System.out.println(incoming);
 			String[] parts = incoming.split("/");
 			Color tmpColor = stringToColor(parts[0]);
 			int tmpPosX = Integer.parseInt(parts[1]);

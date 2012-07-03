@@ -51,7 +51,6 @@ public class ReadFromHost extends Thread implements Runnable {
 		while (!stopped) {
 			try {
 				incomingMsg = is.readUTF();
-				System.out.println(incomingMsg);
 				listener.analizeIncoming(incomingMsg);
 			} catch (SocketTimeoutException e1) {
 			} catch (IOException e) {
