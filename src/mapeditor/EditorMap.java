@@ -2,6 +2,7 @@ package mapeditor;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.io.File;
 import java.util.Vector;
 
 public class EditorMap {
@@ -9,6 +10,8 @@ public class EditorMap {
 	private int height;
 	private int tilesX;
 	private int tilesY;
+	private boolean exitSet = false;
+	private boolean startSet = false;
 
 	private Vector<Tile> tileListL1 = new Vector<Tile>();
 	private Vector<Tile> tileListL2 = new Vector<Tile>();
@@ -17,11 +20,26 @@ public class EditorMap {
 
 	private int currentDrawLevel = 1;
 
+	public Tile exitTile;
+	public Tile startTile;
+
 	public EditorMap(int w, int h) {
 		tilesX = w;
 		tilesY = h;
 		width = w * 50;
 		height = h * 50;
+
+		File exit = new File("graphics/editor/buttons/exit.png");
+		File start = new File("graphics/editor/buttons/start.png");
+		exitTile = new Tile(exit, 0);
+		exitTile.setPosX(0);
+		exitTile.setPosY(0);
+		exitTile.setType("exit");
+		startTile = new Tile(start, 0);
+		startTile.setPosX(0);
+		startTile.setPosY(0);
+		startTile.setType("player");
+
 	}
 
 	public void draw(Graphics2D g2d) {
@@ -84,5 +102,68 @@ public class EditorMap {
 			currentTileList = tileListL1;
 		}
 		System.out.println(currentDrawLevel);
+	}
+
+	public void setExit(int x, int y) {
+		int newPosX = (x / 50) * 50;
+		int newPosY = (y / 50) * 50;
+		exitTile.setPosX(newPosX);
+		exitTile.setPosY(newPosY);
+		if (!exitSet) {
+			tileListL2.add(exitTile);
+			exitSet = true;
+		}
+	}
+
+	public void setStart(int x, int y) {
+		int newPosX = (x / 50) * 50;
+		int newPosY = (y / 50) * 50;
+		startTile.setPosX(newPosX);
+		startTile.setPosY(newPosY);
+		if (!startSet) {
+			tileListL2.add(startTile);
+			startSet = true;
+		}
+	}
+
+	public int getWidth() {
+		return width;
+	}
+
+	public void setWidth(int width) {
+		this.width = width;
+	}
+
+	public int getHeight() {
+		return height;
+	}
+
+	public void setHeight(int height) {
+		this.height = height;
+	}
+
+	public Vector<Tile> getTileListL1() {
+		return tileListL1;
+	}
+
+	public void setTileListL1(Vector<Tile> tileListL1) {
+		this.tileListL1 = tileListL1;
+	}
+
+	public Vector<Tile> getTileListL2() {
+		return tileListL2;
+	}
+
+	public void setTileListL2(Vector<Tile> tileListL2) {
+		this.tileListL2 = tileListL2;
+	}
+
+	public void setLevel2() {
+		currentDrawLevel = 2;
+		currentTileList = tileListL2;
+	}
+
+	public int countTiles() {
+		return (tilesX * tilesY);
 	}
 }
