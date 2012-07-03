@@ -94,6 +94,12 @@ public class Upgrade extends MapObject {
 		return "";
 	}
 
+	/**
+	 * Listener interface for upgrade collision with players
+	 * 
+	 * @author Dorian
+	 * 
+	 */
 	public interface CMListener {
 		public void giveUpgrade(Upgrade upgrade);
 

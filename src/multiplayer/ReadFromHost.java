@@ -20,6 +20,7 @@ public class ReadFromHost extends Thread implements Runnable {
 	private DataOutputStream os;
 	private DataInputStream is;
 	private String incomingMsg = null;
+	private boolean stopped = false;
 
 	/**
 	 * Create a Thread which reads on a DataInputStream and passes the incoming
@@ -45,7 +46,7 @@ public class ReadFromHost extends Thread implements Runnable {
 	}
 
 	public void run() {
-		while (true) {
+		while (!stopped) {
 			try {
 				incomingMsg = is.readUTF();
 				listener.analizeIncoming(incomingMsg);
@@ -58,6 +59,15 @@ public class ReadFromHost extends Thread implements Runnable {
 				}
 				break;
 			}
+		}
+	}
+
+	public void terminate() {
+		stopped = true;
+		try {
+			toHostSocket.close();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 

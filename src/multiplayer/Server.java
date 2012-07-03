@@ -9,6 +9,13 @@ import java.util.ArrayList;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+/**
+ * The Server class listens for incoming connections and holds the method for
+ * sending messages to the clients
+ * 
+ * @author Dorian
+ * 
+ */
 public class Server extends Thread {
 
 	public boolean gamestarted = false;
@@ -23,7 +30,14 @@ public class Server extends Thread {
 	// Upgrade Management
 	private ArrayList<String> MPIDList = new ArrayList<String>();
 
-	// Constructor
+	/**
+	 * Creates a Server Thread to listen for incoming connections
+	 * 
+	 * @param maxPlayers
+	 * @param selectedMap
+	 * @param port
+	 * @throws IOException
+	 */
 	public Server(int maxPlayers, String selectedMap, int port)
 			throws IOException {
 		this.maxPlayers = maxPlayers;
@@ -55,8 +69,18 @@ public class Server extends Thread {
 				break;
 			}
 		}
+		try {
+			hostSocket.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
+	/**
+	 * Sends the given string object to all sockets
+	 * 
+	 * @param incoming
+	 */
 	private void distributeMessage(String incoming) {
 		for (int i = 1; i < playerCount; i++) {
 			try {
@@ -70,6 +94,13 @@ public class Server extends Thread {
 		}
 	}
 
+	/**
+	 * Sends the given string object to all sockets but the socket with the
+	 * "sendingPlayer" index
+	 * 
+	 * @param sendingPlayer
+	 * @param incoming
+	 */
 	private void distributeMessage(int sendingPlayer, String incoming) {
 		for (int i = 1; i < playerCount; i++) {
 			if (!(i == sendingPlayer)) {
@@ -85,6 +116,12 @@ public class Server extends Thread {
 		}
 	}
 
+	/**
+	 * Determines if the incoming message needs a reaction from the server
+	 * 
+	 * @param sendingPlayer
+	 * @param incoming
+	 */
 	public void checkRelevance(int sendingPlayer, String incoming) {
 		if (incoming.startsWith("!"))
 			handleRelevantMsg(sendingPlayer, incoming);
@@ -96,23 +133,49 @@ public class Server extends Thread {
 		}
 	}
 
-	private synchronized void handleRelevantMsg(int sendingPlayer,
-			String incoming) {
-		if (incoming.indexOf("Upgrade:") != -1)
-			if (incoming.indexOf("PickUp") != -1) {
-				String[] parts = incoming.split(";");
-				int listIndex = MPIDList.indexOf(parts[2]);
-				if (listIndex != -1) {
-					MPIDList.remove(listIndex);
-					distributeMessage(incoming);
-				}
-			} else {
-				String[] parts = incoming.split("/");
-				MPIDList.add(parts[3]);
-				distributeMessage(sendingPlayer, incoming);
-			}
+	/**
+	 * Handles messages which contain upgrade-information and if necessary
+	 * supresses the message
+	 * 
+	 * @param sendingPlayer
+	 * @param incoming
+	 */
+	private void handleRelevantMsg(int sendingPlayer, String incoming) {
+		if (incoming.indexOf("Upgrade:") != -1) {
+			handleUpgradeMsg(sendingPlayer, incoming);
+			return;
+		}
+		if (incoming.contains("stop")) {
+			distributeMessage("stop");
+			return;
+		}
+		if (incoming.contains("close remote")) {
+			toClientSockets[sendingPlayer].terminate();
+		}
 	}
 
+	private synchronized void handleUpgradeMsg(int sendingPlayer,
+			String incoming) {
+		if (incoming.indexOf("PickUp") != -1) {
+			String[] parts = incoming.split(";");
+			int listIndex = MPIDList.indexOf(parts[2]);
+			if (listIndex != -1) {
+				MPIDList.remove(listIndex);
+				distributeMessage(incoming);
+			}
+		} else {
+			String[] parts = incoming.split("/");
+			MPIDList.add(parts[3]);
+			distributeMessage(sendingPlayer, incoming);
+		}
+	}
+
+	/**
+	 * This thread holds the socket to a client and reads on it
+	 * 
+	 * @author Dorian
+	 * 
+	 */
 	public class ToClientSocket extends Thread implements Runnable {
 		private DataOutputStream os = null;
 		private DataInputStream is = null;
@@ -120,6 +183,7 @@ public class Server extends Thread {
 		private Socket clientSocket;
 		private Lock writeLock = new ReentrantLock();
 		private boolean hasRemoved = true;
+		private boolean stopped = false;
 
 		// Constructor
 		public ToClientSocket(int playerIndex, Socket clientSocket) {
@@ -162,8 +226,17 @@ public class Server extends Thread {
 			}
 		}
 
+		public void terminate() {
+			stopped = true;
+			try {
+				clientSocket.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
 		public void run() {
-			while (true) {
+			while (!stopped) {
 				try {
 					String incoming = is.readUTF();
 					checkRelevance(playerIndex, incoming);

@@ -112,7 +112,7 @@ public class Skull extends Enemy {
 	public void draw(Graphics2D g2d, ImageLoader gr, Graphics2D cm) {
 		g2d.drawImage(animation.getCurrentImage(), posX, posY, null);
 		cm.setPaint(Color.red);
-		cm.fillRect(posX + 5, posY + 5, 40, 40);
+		cm.fillRect(posX + 10, posY + 10, 30, 30);
 	}
 
 	@Override

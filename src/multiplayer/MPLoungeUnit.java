@@ -8,7 +8,6 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.geom.Rectangle2D;
-import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
@@ -30,11 +29,11 @@ import map.MapReader;
 public class MPLoungeUnit extends GraphicalGameUnit implements
 		multiplayer.ReadFromHost.SocketListener {
 
+	/*
+	 * gui specific variables
+	 */
 	private GameGraphic background;
 	private GameGraphic[] playerStatusImages;
-	private static final String[] STATUS_MESSAGES = { "Unavailable",
-			"Connected", "Ready" };
-	private int[] playerStatus;
 	private String heading = "Multiplayer Lounge";
 	private int elementSpace = 40;
 	private int elementStartX = GameConstants.FRAME_SIZE_X / 4 - 100;
@@ -43,20 +42,12 @@ public class MPLoungeUnit extends GraphicalGameUnit implements
 	private int elementImageStartX = GameConstants.FRAME_SIZE_X / 4 + 10;
 	private int elementImageStartY = GameConstants.FRAME_SIZE_Y / 3 - 30;
 
-	private int mapX = GameConstants.FRAME_SIZE_X / 2;
-
 	private int buttonStartX;
 	private int buttonStartY = 3 * GameConstants.FRAME_SIZE_Y / 4;
 
-	public static final int PLAYER_UNAVAILABLE = 0;
-	public static final int PLAYER_CONNECTED = 1;
-	public static final int PLAYER_READY = 2;
-
-	private ReadFromHost fromHost = null;
-	private Socket toHostSocket = null;
+	private int mapX = GameConstants.FRAME_SIZE_X / 2;
 
 	GameGraphic selectedMap;
-	private String mapName;
 
 	GameGraphic backActive;
 	GameGraphic backInactive;
@@ -68,12 +59,40 @@ public class MPLoungeUnit extends GraphicalGameUnit implements
 	GameGraphic startInactive;
 
 	private int selectionCounter = 0;
+	private static final String[] STATUS_MESSAGES = { "Unavailable",
+			"Connected", "Ready" };
 
-	private int playerNumber;
-	boolean asHost;
+	/**
+	 * Every player's status is stored in this array.
+	 */
+	private int[] playerStatus;
 
+	/*
+	 * Integer constants describing a user's state
+	 */
+	public static final int PLAYER_UNAVAILABLE = 0;
+	public static final int PLAYER_CONNECTED = 1;
+	public static final int PLAYER_READY = 2;
+
+	/*
+	 * Used to communicate with a Server object.
+	 */
+	private ReadFromHost fromHost = null;
+	private Socket toHostSocket = null;
 	private DataOutputStream os = null;
-	private DataInputStream is = null;
+
+	/**
+	 * Multiplayer map chosen by the host.
+	 */
+	private String mapName;
+	/**
+	 * The player's id.
+	 */
+	private int playerNumber;
+	/**
+	 * States if this unit is used by a host or a client.
+	 */
+	boolean asHost;
 
 	public MPLoungeUnit(ReadFromHost fromHost, Socket toHostSocket,
 			int playerNumber, String mapName, boolean asHost) {
@@ -82,7 +101,6 @@ public class MPLoungeUnit extends GraphicalGameUnit implements
 		fromHost.setListener(this);
 		try {
 			os = new DataOutputStream(toHostSocket.getOutputStream());
-			is = new DataInputStream(toHostSocket.getInputStream());
 		} catch (IOException e) {
 			System.err.println("Failed to fetch Stream from socket.");
 			e.printStackTrace();
@@ -165,6 +183,9 @@ public class MPLoungeUnit extends GraphicalGameUnit implements
 
 	}
 
+	/**
+	 * Close toHostSocket and proceed to main menu.
+	 */
 	private void safeExit() {
 		try {
 			toHostSocket.close();
@@ -176,6 +197,11 @@ public class MPLoungeUnit extends GraphicalGameUnit implements
 		}
 	}
 
+	/**
+	 * Send a message to the server.
+	 * 
+	 * @param outgoing
+	 */
 	public void writeToHost(String outgoing) {
 		try {
 			os.writeUTF(outgoing);
@@ -328,6 +354,9 @@ public class MPLoungeUnit extends GraphicalGameUnit implements
 		}
 	}
 
+	/**
+	 * Load and start a new MultiplayerUnit.
+	 */
 	private void startMultiplayer() {
 		MultiplayerUnit mpUnit = new MultiplayerUnit(fromHost,
 				playerNumber + 1, mapName, toHostSocket, playerStatus);

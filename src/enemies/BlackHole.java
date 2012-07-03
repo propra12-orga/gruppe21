@@ -11,7 +11,7 @@ import mapobjects.MapObject;
 
 public class BlackHole extends MapObject {
 
-	private double spawnTime, spawnCountdown = 4000000000L;
+	private double spawnTime, spawnCountdown = 7400000000L;
 	private AnimatedFloor finishHole;
 
 	public BlackHole(int x, int y, boolean v, boolean d, boolean c, String p,
@@ -24,7 +24,7 @@ public class BlackHole extends MapObject {
 		StoneOrb newOrb = new StoneOrb(50, 300, true, true, true, "stoneOrbs",
 				map.getGraphics());
 		newOrb.setMap(getMap());
-		map.getMapObjects().get(1).add(newOrb);
+		map.getMapObjects().get(2).add(newOrb);
 
 		spawnTime = System.nanoTime();
 	}
