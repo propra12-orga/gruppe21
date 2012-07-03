@@ -18,9 +18,9 @@ public class Tile implements Cloneable {
 	private int posY;
 	private boolean selected = false;
 	private String name;
-	private String type;
+	private String type = "floor";
 	private boolean collision;
-	private boolean visible = true;
+	private boolean visible;
 	private boolean destroyable;
 
 	private BufferedImage image;
@@ -31,6 +31,7 @@ public class Tile implements Cloneable {
 		this.setPosX(((tilecounter % 4) * 45) + (tilecounter % 4 + 1) * 2);
 		this.setPosY(((tilecounter / 4) * 45) + (tilecounter / 4 + 1) * 4);
 		this.setName(file.getName());
+		this.visible = true;
 		if (file.getName().endsWith(".xml")) {
 			animated = true;
 			image = EditorGraphics.loadImageAni(file.getAbsolutePath());
@@ -45,7 +46,7 @@ public class Tile implements Cloneable {
 	public Tile(String string) {
 		this.setPosX(0);
 		this.setPosY(0);
-		System.out.println("this is the url" + string);
+
 		image = EditorGraphics.loadImage(string);
 
 	}
@@ -158,6 +159,10 @@ public class Tile implements Cloneable {
 
 	public void setRotation(int rotation) {
 		this.rotation = rotation;
+	}
+
+	public boolean isAnimated() {
+		return animated;
 	}
 
 }

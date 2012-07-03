@@ -70,6 +70,12 @@ public class MapCanvas extends JPanel implements MouseListener {
 				editorMap.addTile(e.getX(), e.getY(),
 						editor.tileViewer.getDrawTile());
 			}
+			if (mode.equals("exit")) {
+				editorMap.setExit(e.getX(), e.getY());
+			}
+			if (mode.equals("start")) {
+				editorMap.setStart(e.getX(), e.getY());
+			}
 			repaint();
 		}
 

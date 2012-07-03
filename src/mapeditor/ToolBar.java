@@ -95,6 +95,11 @@ public class ToolBar extends JPanel implements MouseListener {
 								+ buttonList.get(i).getHeight())) {
 					if (!buttonList.get(i).getAction().equals("ls")) {
 						mapCanvas.setMode(buttonList.get(i).getAction());
+						if (buttonList.get(i).getAction().equals("start")
+								|| buttonList.get(i).getAction().equals("exit")) {
+							mapCanvas.editorMap.setLevel2();
+							mapCanvas.repaint();
+						}
 					} else {
 						mapCanvas.editorMap.switchLevel();
 						mapCanvas.repaint();
