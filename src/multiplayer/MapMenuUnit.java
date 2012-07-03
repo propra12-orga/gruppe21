@@ -160,6 +160,7 @@ public class MapMenuUnit extends GraphicalGameUnit {
 		try {
 			Server server = new Server(maxPlayers, mapName, port);
 		} catch (IOException e) {
+			e.printStackTrace();
 			System.err.println("Failed to install server.");
 		}
 	}

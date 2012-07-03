@@ -44,6 +44,7 @@ public class Server extends Thread {
 		this.selectedMap = selectedMap;
 		toClientSockets = new ToClientSocket[maxPlayers + 1];
 		hostSocket = new ServerSocket(port);
+		hostSocket.setSoTimeout(300);
 		this.start();
 	}
 
@@ -65,7 +66,7 @@ public class Server extends Thread {
 				if (playerCount == maxPlayers + 1)
 					gamestarted = true;
 			} catch (IOException e) {
-				System.out.println("IOException");
+				System.err.println("IOException");
 				break;
 			}
 		}
