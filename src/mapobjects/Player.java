@@ -386,6 +386,7 @@ public class Player extends MoveableObject implements CMListener {
 		for (Bomb bomb : remoteBombs) {
 			bomb.explode(map.getCollisionMap());
 		}
+		remoteBombs.clear();
 	}
 
 	public boolean activateShield() {
