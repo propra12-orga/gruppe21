@@ -184,4 +184,10 @@ public class NetworkConnectorUnit extends GraphicalGameUnit implements
 
 	}
 
+	@Override
+	public void disconnectRecognized() {
+		// TODO Auto-generated method stub
+
+	}
+
 }

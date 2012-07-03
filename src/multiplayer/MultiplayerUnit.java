@@ -344,7 +344,7 @@ public class MultiplayerUnit extends GraphicalGameUnit implements
 		try {
 			os.writeUTF(outgoing);
 		} catch (IOException e) {
-			System.out.println("Failed to write Message!");
+			// System.out.println("Failed to write Message!");
 		}
 	}
 
@@ -355,7 +355,7 @@ public class MultiplayerUnit extends GraphicalGameUnit implements
 		if (incomingMsg.indexOf("Player:") != -1) {
 			String[] parts = incomingMsg.split(":");
 			int playerIndex = Integer.parseInt(parts[1].substring(0, 1));
-			handlePlayerEvents(playerIndex, parts[1].substring(2));
+			handlePlayerEvents(playerIndex, parts[1].substring(1));
 			return;
 		}
 		if (incomingMsg.indexOf("Upgrade:") != -1) {
@@ -365,6 +365,15 @@ public class MultiplayerUnit extends GraphicalGameUnit implements
 		}
 		if (incomingMsg.indexOf("stop") != -1) {
 			writeToHost("!close remote");
+			fromHost.terminate();
+			if (UnitNavigator.getNavigator().getActiveUnit() == this) {
+				UnitNavigator.getNavigator().set(UnitState.BASE_MENU_UNIT);
+				UnitNavigator.getNavigator().removeGameUnit(
+						UnitState.LEVEL_MANAGER_UNIT);
+			}
+			return;
+		}
+		if (incomingMsg.indexOf("exit client") != -1) {
 			fromHost.terminate();
 		}
 	}
@@ -386,6 +395,7 @@ public class MultiplayerUnit extends GraphicalGameUnit implements
 			return;
 		}
 		if (incoming.indexOf("died") != -1) {
+			System.out.println("check");
 			Player player = multiplayerMap.getPlayerByNumber(playerIndex);
 			if (player.isAlive()) {
 				playersRemaining--;
@@ -572,5 +582,12 @@ public class MultiplayerUnit extends GraphicalGameUnit implements
 		writeToHost("!Upgrade:" + "Player" + myPlayerIndex + ";" + "PickUp"
 				+ ";" + MPID);
 
+	}
+
+	@Override
+	public void disconnectRecognized() {
+		UnitNavigator.getNavigator().set(UnitState.BASE_MENU_UNIT);
+		UnitNavigator.getNavigator().removeGameUnit(
+				UnitState.LEVEL_MANAGER_UNIT);
 	}
 }

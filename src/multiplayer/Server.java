@@ -5,6 +5,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketTimeoutException;
 import java.util.ArrayList;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -26,7 +27,7 @@ public class Server extends Thread {
 	private int playerCount = 1;
 	private String selectedMap;
 	// Socket Management
-	private ToClientSocket[] toClientSockets;
+	private ArrayList<ToClientSocket> toClientSockets = new ArrayList<ToClientSocket>();
 	// Upgrade Management
 	private ArrayList<String> MPIDList = new ArrayList<String>();
 
@@ -42,9 +43,8 @@ public class Server extends Thread {
 			throws IOException {
 		this.maxPlayers = maxPlayers;
 		this.selectedMap = selectedMap;
-		toClientSockets = new ToClientSocket[maxPlayers + 1];
 		hostSocket = new ServerSocket(port);
-		hostSocket.setSoTimeout(300);
+		hostSocket.setSoTimeout(3000);
 		this.start();
 	}
 
@@ -60,11 +60,12 @@ public class Server extends Thread {
 	public void run() {
 		while (gamestarted == false) {
 			try {
-				toClientSockets[playerCount] = new ToClientSocket(playerCount,
-						hostSocket.accept());
+				toClientSockets.add(new ToClientSocket(playerCount, hostSocket
+						.accept()));
 				playerCount += 1;
 				if (playerCount == maxPlayers + 1)
 					gamestarted = true;
+			} catch (SocketTimeoutException e1) {
 			} catch (IOException e) {
 				System.err.println("IOException");
 				break;
@@ -82,16 +83,16 @@ public class Server extends Thread {
 	 * 
 	 * @param incoming
 	 */
-	private void distributeMessage(String incoming) {
-		for (int i = 1; i < playerCount; i++) {
+	public void distributeMessage(String incoming) {
+		for (ToClientSocket tcs : toClientSockets) {
+			Lock tmpLock = tcs.getWriteLock();
+			tmpLock.lock();
 			try {
-				Lock tmpLock = toClientSockets[i].getWriteLock();
-				tmpLock.lock();
-				toClientSockets[i].getOS().writeUTF(incoming);
-				tmpLock.unlock();
+				tcs.getOS().writeUTF(incoming);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+			tmpLock.unlock();
 		}
 	}
 
@@ -103,16 +104,16 @@ public class Server extends Thread {
 	 * @param incoming
 	 */
 	private void distributeMessage(int sendingPlayer, String incoming) {
-		for (int i = 1; i < playerCount; i++) {
-			if (!(i == sendingPlayer)) {
+		for (ToClientSocket tcs : toClientSockets) {
+			if (!(tcs.getPlayerIndex() == sendingPlayer)) {
+				Lock tmpLock = tcs.getWriteLock();
+				tmpLock.lock();
 				try {
-					Lock tmpLock = toClientSockets[i].getWriteLock();
-					tmpLock.lock();
-					toClientSockets[i].getOS().writeUTF(incoming);
-					tmpLock.unlock();
+					tcs.getOS().writeUTF(incoming);
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
+				tmpLock.unlock();
 			}
 		}
 	}
@@ -151,7 +152,18 @@ public class Server extends Thread {
 			return;
 		}
 		if (incoming.contains("close remote")) {
-			toClientSockets[sendingPlayer].terminate();
+			toClientSockets.get(sendingPlayer - 1).terminate();
+			return;
+		}
+		if (incoming.contains("leaving")) {
+			int tmpIndex = sendingPlayer - 1;
+			try {
+				toClientSockets.get(tmpIndex).getOS().writeUTF("exit client");
+			} catch (IOException e) {
+			}
+			toClientSockets.get(tmpIndex).terminate();
+			toClientSockets.remove(tmpIndex);
+			distributeMessage("Player:" + sendingPlayer + "died");
 		}
 	}
 
@@ -193,6 +205,7 @@ public class Server extends Thread {
 			try {
 				is = new DataInputStream(clientSocket.getInputStream());
 				os = new DataOutputStream(clientSocket.getOutputStream());
+				clientSocket.setSoTimeout(7000);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -214,6 +227,10 @@ public class Server extends Thread {
 
 		public void setRemoved(boolean b) {
 			hasRemoved = b;
+		}
+
+		public int getPlayerIndex() {
+			return playerIndex;
 		}
 
 		private void initializePlayerSlot() {
@@ -240,14 +257,13 @@ public class Server extends Thread {
 			while (!stopped) {
 				try {
 					String incoming = is.readUTF();
+					System.out.println(incoming);
 					checkRelevance(playerIndex, incoming);
+				} catch (SocketTimeoutException e1) {
 				} catch (IOException e) {
-					e.printStackTrace();
-					try {
-						Thread.sleep(10);
-					} catch (InterruptedException e1) {
-						e1.printStackTrace();
-					}
+					toClientSockets.remove(this);
+					distributeMessage("Player:" + playerIndex + "died");
+					terminate();
 				}
 			}
 		}

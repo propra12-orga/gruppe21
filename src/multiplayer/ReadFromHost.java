@@ -4,6 +4,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 
 /**
@@ -39,6 +40,7 @@ public class ReadFromHost extends Thread implements Runnable {
 			DataInputStream is, SocketListener listener) throws IOException,
 			UnknownHostException {
 		this.toHostSocket = toHostSocket;
+		toHostSocket.setSoTimeout(7000);
 		this.listener = listener;
 		this.os = os;
 		this.is = is;
@@ -49,15 +51,13 @@ public class ReadFromHost extends Thread implements Runnable {
 		while (!stopped) {
 			try {
 				incomingMsg = is.readUTF();
+				System.out.println(incomingMsg);
 				listener.analizeIncoming(incomingMsg);
+			} catch (SocketTimeoutException e1) {
 			} catch (IOException e) {
 				System.out.println("Connection to host lost!");
-				try {
-					toHostSocket.close();
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
-				break;
+				listener.disconnectRecognized();
+				terminate();
 			}
 		}
 	}
@@ -77,6 +77,8 @@ public class ReadFromHost extends Thread implements Runnable {
 
 	public interface SocketListener {
 		public void analizeIncoming(String input);
+
+		public void disconnectRecognized();
 	}
 
 }
