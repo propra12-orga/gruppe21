@@ -138,6 +138,8 @@ public class MultiplayerUnit extends GraphicalGameUnit implements
 		 */
 		if (key == KeyEvent.VK_ESCAPE) {
 			UnitNavigator.getNavigator().set(UnitState.BASE_MENU_UNIT);
+			UnitNavigator.getNavigator().removeGameUnit(
+					UnitState.LEVEL_MANAGER_UNIT);
 			if (myPlayerIndex == 1)
 				writeToHost("!stop");
 			else
