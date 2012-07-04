@@ -160,7 +160,7 @@ public class Map {
 			this.exit.activate();
 			exitActivated = true;
 		}
-
+		System.out.println(enemies);
 		/*
 		 * Use two separate Threads for faster updating
 		 */
@@ -230,7 +230,7 @@ public class Map {
 		thread2.start();
 		while (!part1Finished && !part2Finished) {
 			try {
-				Thread.sleep(2);
+				Thread.sleep(3);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

@@ -187,6 +187,11 @@ public class LocalMultiplayerUnit extends GraphicalGameUnit {
 		 * load map and players
 		 */
 		multiplayerMap = new Map(mapName);
+		int[] attendingPlayers = new int[] { MPLoungeUnit.PLAYER_READY,
+				MPLoungeUnit.PLAYER_READY, MPLoungeUnit.PLAYER_UNAVAILABLE,
+				MPLoungeUnit.PLAYER_UNAVAILABLE };
+		multiplayerMap.removeUnattendedPlayers(attendingPlayers);
+		multiplayerMap.setMaxUpgrades(0);
 		playerOne = multiplayerMap.getPlayerByNumber(1);
 		playerTwo = multiplayerMap.getPlayerByNumber(2);
 		/*

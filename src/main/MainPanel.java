@@ -34,7 +34,7 @@ public class MainPanel extends JPanel implements Runnable {
 	 * duration specified in STANDARD_SLEEP, otherwise the sleep time is
 	 * computed by subtracting the update period from ITERATION_TIME.
 	 */
-	public static final int ITERATION_TIME = 12;
+	public static final int ITERATION_TIME = 11;
 	/**
 	 * If it takes longer to draw and update the active GraphicalGameUnit than
 	 * specified in ITERATION_TIME, the update-thread is being put to sleep for
@@ -50,6 +50,8 @@ public class MainPanel extends JPanel implements Runnable {
 	private boolean timeMeasurementActivated = false;;
 	private int timeCounter = 0;
 	private long timeMeasured = 0;
+
+	private final int MAX_TIME_COUNT = 1000;
 
 	/**
 	 * Set up MainPanel and add a KeyListener.
@@ -140,11 +142,14 @@ public class MainPanel extends JPanel implements Runnable {
 			if (timeMeasurementActivated) {
 				timeMeasured += (System.nanoTime() - time) / 1000;
 				timeCounter++;
-				if (timeCounter == 100) {
+				if (timeCounter == MAX_TIME_COUNT) {
 					timeMeasurementActivated = false;
 					System.out
-							.println("Durchschnitt der benötigten Updatezyklen: "
-									+ (timeMeasured / 100));
+							.println("Durchschnitt der benötigten Zeit für die letzten "
+									+ MAX_TIME_COUNT
+									+ " Updatezyklen: "
+									+ (timeMeasured / MAX_TIME_COUNT)
+									+ " Mikrosekunden.");
 					timeMeasured = 0;
 					timeCounter = 0;
 				}
@@ -152,7 +157,6 @@ public class MainPanel extends JPanel implements Runnable {
 			repaint();
 			timeDiff = System.nanoTime() - beforeTime;
 			sleepTime = ITERATION_TIME - timeDiff / 1000000L;
-
 			if (sleepTime < 0)
 				sleepTime = STANDARD_SLEEP;
 			try {
