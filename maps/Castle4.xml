@@ -3011,7 +3011,7 @@
 			    <visible>true</visible>
 				<collision>true</collision>
 				<destroyable>false</destroyable>
-			 	<animationset>MPPlayer1</animationset>
+			 	<animationset>player1</animationset>
 				<posx>150</posx>
 				<posy>700</posy>
 			</character>

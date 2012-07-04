@@ -4280,7 +4280,7 @@
 			    <visible>true</visible>
 				<collision>true</collision>
 				<destroyable>false</destroyable>
-			 	<animationset>MPPlayer1</animationset>
+			 	<animationset>player1</animationset>
 				<posx>250</posx>
 				<posy>0</posy>
 			</character>
