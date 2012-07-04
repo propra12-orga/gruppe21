@@ -364,4 +364,10 @@ public class MPLoungeUnit extends GraphicalGameUnit implements
 				UnitState.LEVEL_MANAGER_UNIT);
 		UnitNavigator.getNavigator().set(UnitState.LEVEL_MANAGER_UNIT);
 	}
+
+	@Override
+	public void disconnectRecognized() {
+		// TODO Auto-generated method stub
+
+	}
 }
