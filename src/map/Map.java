@@ -148,6 +148,9 @@ public class Map {
 
 	}
 
+	private boolean part1Finished = false;
+	private boolean part2Finished = false;
+
 	/**
 	 * iterates over the MapObjects and calls their update methods removes
 	 * destroyed objects/enemies
@@ -157,34 +160,84 @@ public class Map {
 			this.exit.activate();
 			exitActivated = true;
 		}
-		for (int i = 0; i < drawLevels; i++) {
-			for (int j = 0; j < mapObjects.get(i).size(); j++) {
-				mapObjects.get(i).get(j);
-				if (mapObjects.get(i).get(j).isDestroyed()) { // destroyed
-					// mapObjects
-					// will be
-					// removed from
-					// the list
-					if (mapObjects.get(i).get(j) instanceof Bomb) {
-						for (Player player : players) {
-							if (player.getID() == ((Bomb) mapObjects.get(i)
-									.get(j)).getPlayerID())
-								player.removeBomb();
-						}// TODO Auto-generated constructor stub
-					}
-					if (mapObjects.get(i).get(j) instanceof Enemy) {
-						this.decreaseEnemies();
-					}
-					if (mapObjects.get(i).get(j) instanceof FireBowl) {
-						boss.fireBowls.remove(mapObjects.get(i).get(j));
-					}
-					mapObjects.get(i).remove(j);
 
-				} else {
-					mapObjects.get(i).get(j).update(collisionMap);
+		/*
+		 * Use two separate Threads for faster updating
+		 */
+		Thread thread1 = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				int i = 1;
+				for (int j = 0; j < mapObjects.get(i).size(); j++) {
+					if (mapObjects.get(i).get(j).isDestroyed()) {
+						if (mapObjects.get(i).get(j) instanceof Bomb) {
+							for (Player player : players) {
+								if (player.getID() == ((Bomb) mapObjects.get(i)
+										.get(j)).getPlayerID())
+									player.removeBomb();
+							}
+						}
+						if (mapObjects.get(i).get(j) instanceof Enemy) {
+							decreaseEnemies();
+						}
+						if (mapObjects.get(i).get(j) instanceof FireBowl) {
+							boss.fireBowls.remove(mapObjects.get(i).get(j));
+						}
+						mapObjects.get(i).remove(j);
+
+					} else {
+						mapObjects.get(i).get(j).update(collisionMap);
+					}
 				}
+				part1Finished = true;
+			}
+		});
+		thread1.start();
+		Thread thread2 = new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+
+				for (int i = 0; i < drawLevels; i++) {
+					if (i == 1)
+						continue;
+					for (int j = 0; j < mapObjects.get(i).size(); j++) {
+						if (mapObjects.get(i).get(j).isDestroyed()) {
+							if (mapObjects.get(i).get(j) instanceof Bomb) {
+								for (Player player : players) {
+									if (player.getID() == ((Bomb) mapObjects
+											.get(i).get(j)).getPlayerID())
+										player.removeBomb();
+								}
+							}
+							if (mapObjects.get(i).get(j) instanceof Enemy) {
+								decreaseEnemies();
+							}
+							if (mapObjects.get(i).get(j) instanceof FireBowl) {
+								boss.fireBowls.remove(mapObjects.get(i).get(j));
+							}
+							mapObjects.get(i).remove(j);
+
+						} else {
+							mapObjects.get(i).get(j).update(collisionMap);
+						}
+					}
+				}
+				part2Finished = true;
+
+			}
+		});
+		thread2.start();
+		while (!part1Finished && !part2Finished) {
+			try {
+				Thread.sleep(2);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
+		part1Finished = false;
+		part2Finished = false;
 	}
 
 	/**

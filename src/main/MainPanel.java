@@ -34,7 +34,7 @@ public class MainPanel extends JPanel implements Runnable {
 	 * duration specified in STANDARD_SLEEP, otherwise the sleep time is
 	 * computed by subtracting the update period from ITERATION_TIME.
 	 */
-	public static final int ITERATION_TIME = 10;
+	public static final int ITERATION_TIME = 12;
 	/**
 	 * If it takes longer to draw and update the active GraphicalGameUnit than
 	 * specified in ITERATION_TIME, the update-thread is being put to sleep for
@@ -46,6 +46,10 @@ public class MainPanel extends JPanel implements Runnable {
 	 * Main thread for updating and rendering the active GraphicalGameUnit.
 	 */
 	private Thread gameThread;
+
+	private boolean timeMeasurementActivated = false;;
+	private int timeCounter = 0;
+	private long timeMeasured = 0;
 
 	/**
 	 * Set up MainPanel and add a KeyListener.
@@ -60,6 +64,9 @@ public class MainPanel extends JPanel implements Runnable {
 		addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_F5) {
+					timeMeasurementActivated = true;
+				}
 				if (e.getKeyCode() == KeyEvent.VK_UP)
 					System.out.print(""); // this somehow helps avoiding nasty
 											// keyListener bugs
@@ -127,14 +134,27 @@ public class MainPanel extends JPanel implements Runnable {
 				running = false;
 			}
 			requestFocusInWindow();
-			UnitNavigator.getNavigator().getActiveUnit().updateComponent();
-			repaint();
 
+			long time = System.nanoTime();
+			UnitNavigator.getNavigator().getActiveUnit().updateComponent();
+			if (timeMeasurementActivated) {
+				timeMeasured += (System.nanoTime() - time) / 1000;
+				timeCounter++;
+				if (timeCounter == 100) {
+					timeMeasurementActivated = false;
+					System.out
+							.println("Durchschnitt der benötigten Updatezyklen: "
+									+ (timeMeasured / 100));
+					timeMeasured = 0;
+					timeCounter = 0;
+				}
+			}
+			repaint();
 			timeDiff = System.nanoTime() - beforeTime;
 			sleepTime = ITERATION_TIME - timeDiff / 1000000L;
 
 			if (sleepTime < 0)
-				sleepTime = 4;
+				sleepTime = STANDARD_SLEEP;
 			try {
 				Thread.sleep(sleepTime);
 			} catch (InterruptedException e) {

@@ -11,174 +11,7 @@
 	</header>
 	<mapobjects>
 		<level>
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Grasfloor.png</image>
-				<posx>0</posx>
-				<posy>0</posy>
-			</tile>
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Grasfloor.png</image>
-				<posx>50</posx>
-				<posy>0</posy>
-			</tile>
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Grasfloor.png</image>
-				<posx>100</posx>
-				<posy>0</posy>
-			</tile>
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Grasfloor.png</image>
-				<posx>150</posx>
-				<posy>0</posy>
-			</tile>
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Grasfloor.png</image>
-				<posx>200</posx>
-				<posy>0</posy>
-			</tile>
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Grasfloor.png</image>
-				<posx>250</posx>
-				<posy>0</posy>
-			</tile>
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Grasfloor.png</image>
-				<posx>300</posx>
-				<posy>0</posy>
-			</tile>			
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Grasfloor.png</image>
-				<posx>350</posx>
-				<posy>0</posy>
-			</tile>
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Grasfloor.png</image>
-				<posx>400</posx>
-				<posy>0</posy>
-			</tile>
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Grasfloor.png</image>
-				<posx>450</posx>
-				<posy>0</posy>
-			</tile>
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Grasfloor.png</image>
-				<posx>500</posx>
-				<posy>0</posy>
-			</tile>			
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Grasfloor.png</image>
-				<posx>550</posx>
-				<posy>0</posy>
-			</tile>
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Grasfloor.png</image>
-				<posx>600</posx>
-				<posy>0</posy>
-			</tile>			
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Grasfloor.png</image>
-				<posx>650</posx>
-				<posy>0</posy>
-			</tile>
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Grasfloor.png</image>
-				<posx>700</posx>
-				<posy>0</posy>
-			</tile>			
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Grasfloor.png</image>
-				<posx>750</posx>
-				<posy>0</posy>
-			</tile>
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Grasfloor.png</image>
-				<posx>800</posx>
-				<posy>0</posy>
-			</tile>
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Grasfloor.png</image>
-				<posx>850</posx>
-				<posy>0</posy>
-			</tile>
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Grasfloor.png</image>
-				<posx>900</posx>
-				<posy>0</posy>
-			</tile>
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Grasfloor.png</image>
-				<posx>950</posx>
-				<posy>0</posy>
-			</tile>
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Grasfloor.png</image>
-				<posx>0</posx>
-				<posy>50</posy>
-			</tile>
+			
 			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
@@ -322,22 +155,6 @@
 				<image rotation="0">Grasfloor.png</image>
 				<posx>900</posx>
 				<posy>50</posy>
-			</tile>
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Grasfloor.png</image>
-				<posx>950</posx>
-				<posy>50</posy>
-			</tile>
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Grasfloor.png</image>
-				<posx>0</posx>
-				<posy>100</posy>
 			</tile>
 			<tile type="floor" animated="false">
 				<visible>true</visible>
@@ -488,22 +305,6 @@
 				<collision>false</collision>
 				<destroyable>false</destroyable>
 				<image rotation="0">Grasfloor.png</image>
-				<posx>950</posx>
-				<posy>100</posy>
-			</tile>
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Grasfloor.png</image>
-				<posx>0</posx>
-				<posy>150</posy>
-			</tile>
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Grasfloor.png</image>
 				<posx>50</posx>
 				<posy>150</posy>
 			</tile>
@@ -642,22 +443,6 @@
 				<image rotation="0">Grasfloor.png</image>
 				<posx>900</posx>
 				<posy>150</posy>
-			</tile>
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Grasfloor.png</image>
-				<posx>950</posx>
-				<posy>150</posy>
-			</tile>
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Grasfloor.png</image>
-				<posx>0</posx>
-				<posy>200</posy>
 			</tile>
 			<tile type="floor" animated="false">
 				<visible>true</visible>
@@ -808,22 +593,6 @@
 				<collision>false</collision>
 				<destroyable>false</destroyable>
 				<image rotation="0">Grasfloor.png</image>
-				<posx>950</posx>
-				<posy>200</posy>
-			</tile>
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Grasfloor.png</image>
-				<posx>0</posx>
-				<posy>250</posy>
-			</tile>
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Grasfloor.png</image>
 				<posx>50</posx>
 				<posy>250</posy>
 			</tile>
@@ -963,22 +732,8 @@
 				<posx>900</posx>
 				<posy>250</posy>
 			</tile>
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Grasfloor.png</image>
-				<posx>950</posx>
-				<posy>250</posy>
-			</tile>
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Grasfloor.png</image>
-				<posx>0</posx>
-				<posy>300</posy>
-			</tile>
+	
+			
 			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
@@ -1123,22 +878,8 @@
 				<posx>900</posx>
 				<posy>300</posy>
 			</tile>
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Grasfloor.png</image>
-				<posx>950</posx>
-				<posy>300</posy>
-			</tile>
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Grasfloor.png</image>
-				<posx>0</posx>
-				<posy>350</posy>
-			</tile>
+		
+			
 			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
@@ -1283,22 +1024,8 @@
 				<posx>900</posx>
 				<posy>350</posy>
 			</tile>
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Grasfloor.png</image>
-				<posx>950</posx>
-				<posy>350</posy>
-			</tile>
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Grasfloor.png</image>
-				<posx>0</posx>
-				<posy>400</posy>
-			</tile>
+	
+			
 			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
@@ -1443,22 +1170,7 @@
 				<posx>900</posx>
 				<posy>400</posy>
 			</tile>
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Grasfloor.png</image>
-				<posx>950</posx>
-				<posy>400</posy>
-			</tile>
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Grasfloor.png</image>
-				<posx>0</posx>
-				<posy>450</posy>
-			</tile>
+	
 			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
@@ -1603,22 +1315,8 @@
 				<posx>900</posx>
 				<posy>450</posy>
 			</tile>
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Grasfloor.png</image>
-				<posx>950</posx>
-				<posy>450</posy>
-			</tile>
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Grasfloor.png</image>
-				<posx>0</posx>
-				<posy>500</posy>
-			</tile>
+
+			
 			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
@@ -1763,22 +1461,8 @@
 				<posx>900</posx>
 				<posy>500</posy>
 			</tile>
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Grasfloor.png</image>
-				<posx>950</posx>
-				<posy>500</posy>
-			</tile>
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Grasfloor.png</image>
-				<posx>0</posx>
-				<posy>550</posy>
-			</tile>
+
+			
 			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
@@ -1923,22 +1607,8 @@
 				<posx>900</posx>
 				<posy>550</posy>
 			</tile>
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Grasfloor.png</image>
-				<posx>950</posx>
-				<posy>550</posy>
-			</tile>
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Grasfloor.png</image>
-				<posx>0</posx>
-				<posy>600</posy>
-			</tile>
+
+			
 			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
@@ -2083,22 +1753,8 @@
 				<posx>900</posx>
 				<posy>600</posy>
 			</tile>
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Grasfloor.png</image>
-				<posx>950</posx>
-				<posy>600</posy>
-			</tile>
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Grasfloor.png</image>
-				<posx>0</posx>
-				<posy>650</posy>
-			</tile>
+
+			
 			<tile type="floor" animated="false">
 				<visible>true</visible>
 				<collision>false</collision>
@@ -2243,174 +1899,7 @@
 				<posx>900</posx>
 				<posy>650</posy>
 			</tile>
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Grasfloor.png</image>
-				<posx>950</posx>
-				<posy>650</posy>
-			</tile>
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Grasfloor.png</image>
-				<posx>0</posx>
-				<posy>700</posy>
-			</tile>
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Grasfloor.png</image>
-				<posx>50</posx>
-				<posy>700</posy>
-			</tile>
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Grasfloor.png</image>
-				<posx>100</posx>
-				<posy>700</posy>
-			</tile>
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Grasfloor.png</image>
-				<posx>150</posx>
-				<posy>700</posy>
-			</tile>
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Grasfloor.png</image>
-				<posx>200</posx>
-				<posy>700</posy>
-			</tile>
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Grasfloor.png</image>
-				<posx>250</posx>
-				<posy>700</posy>
-			</tile>
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Grasfloor.png</image>
-				<posx>300</posx>
-				<posy>700</posy>
-			</tile>			
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Grasfloor.png</image>
-				<posx>350</posx>
-				<posy>700</posy>
-			</tile>
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Grasfloor.png</image>
-				<posx>400</posx>
-				<posy>700</posy>
-			</tile>
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Grasfloor.png</image>
-				<posx>450</posx>
-				<posy>700</posy>
-			</tile>
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Grasfloor.png</image>
-				<posx>500</posx>
-				<posy>700</posy>
-			</tile>			
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Grasfloor.png</image>
-				<posx>550</posx>
-				<posy>700</posy>
-			</tile>
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Grasfloor.png</image>
-				<posx>600</posx>
-				<posy>700</posy>
-			</tile>			
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Grasfloor.png</image>
-				<posx>650</posx>
-				<posy>700</posy>
-			</tile>
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Grasfloor.png</image>
-				<posx>700</posx>
-				<posy>700</posy>
-			</tile>			
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Grasfloor.png</image>
-				<posx>750</posx>
-				<posy>700</posy>
-			</tile>
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Grasfloor.png</image>
-				<posx>800</posx>
-				<posy>700</posy>
-			</tile>
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Grasfloor.png</image>
-				<posx>850</posx>
-				<posy>700</posy>
-			</tile>
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Grasfloor.png</image>
-				<posx>900</posx>
-				<posy>700</posy>
-			</tile>
-			<tile type="floor" animated="false">
-				<visible>true</visible>
-				<collision>false</collision>
-				<destroyable>false</destroyable>
-				<image rotation="0">Grasfloor.png</image>
-				<posx>950</posx>
-				<posy>700</posy>
-			</tile>
+
 			</level>
 			<level>
 			<tile type="wall" animated="false">
