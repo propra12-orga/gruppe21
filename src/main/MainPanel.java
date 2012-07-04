@@ -34,7 +34,7 @@ public class MainPanel extends JPanel implements Runnable {
 	 * duration specified in STANDARD_SLEEP, otherwise the sleep time is
 	 * computed by subtracting the update period from ITERATION_TIME.
 	 */
-	public static final int ITERATION_TIME = 11;
+	public static final int ITERATION_TIME = 10;
 	/**
 	 * If it takes longer to draw and update the active GraphicalGameUnit than
 	 * specified in ITERATION_TIME, the update-thread is being put to sleep for
@@ -66,6 +66,10 @@ public class MainPanel extends JPanel implements Runnable {
 		addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
+				/*
+				 * captures the amount of time needed to update the active
+				 * GraphicalGameUnit
+				 */
 				if (e.getKeyCode() == KeyEvent.VK_F5) {
 					timeMeasurementActivated = true;
 				}

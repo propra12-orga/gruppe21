@@ -21,8 +21,19 @@ import multiplayer.UpgradeListener;
 import enemies.Boss;
 
 /**
- * the map class holds all objects of the map in a vector (MapObjects) the map
- * is loaded by the MapReader
+ * The map class holds all objects of the map in a vector (MapObjects). A map
+ * object will be loaded from XML by a MapReader. The MapObjects are stored in a
+ * List of Lists, allowing us to address certain types of MapObjects directly.
+ * This comes handy, if some type of MapObject needs to be drawn underneath
+ * another. We refer to the different sub lists as 'draw levels':<br>
+ * <br>
+ * 0 - Floor tiles<br>
+ * 1 - Wall objects<br>
+ * 2 - Player objects<br>
+ * 3 - Enemy objects<br>
+ * 4 - Exploding bombs<br>
+ * <br>
+ * The XML files must be structured accordingly.
  * 
  * @author eik
  * 
@@ -148,9 +159,6 @@ public class Map {
 
 	}
 
-	private boolean part1Finished = false;
-	private boolean part2Finished = false;
-
 	/**
 	 * iterates over the MapObjects and calls their update methods removes
 	 * destroyed objects/enemies
@@ -160,84 +168,34 @@ public class Map {
 			this.exit.activate();
 			exitActivated = true;
 		}
-		System.out.println(enemies);
-		/*
-		 * Use two separate Threads for faster updating
-		 */
-		Thread thread1 = new Thread(new Runnable() {
-			@Override
-			public void run() {
-				int i = 1;
-				for (int j = 0; j < mapObjects.get(i).size(); j++) {
-					if (mapObjects.get(i).get(j).isDestroyed()) {
-						if (mapObjects.get(i).get(j) instanceof Bomb) {
-							for (Player player : players) {
-								if (player.getID() == ((Bomb) mapObjects.get(i)
-										.get(j)).getPlayerID())
-									player.removeBomb();
-							}
-						}
-						if (mapObjects.get(i).get(j) instanceof Enemy) {
-							decreaseEnemies();
-						}
-						if (mapObjects.get(i).get(j) instanceof FireBowl) {
-							boss.fireBowls.remove(mapObjects.get(i).get(j));
-						}
-						mapObjects.get(i).remove(j);
 
-					} else {
-						mapObjects.get(i).get(j).update(collisionMap);
-					}
-				}
-				part1Finished = true;
-			}
-		});
-		thread1.start();
-		Thread thread2 = new Thread(new Runnable() {
-
-			@Override
-			public void run() {
-
-				for (int i = 0; i < drawLevels; i++) {
-					if (i == 1)
-						continue;
-					for (int j = 0; j < mapObjects.get(i).size(); j++) {
-						if (mapObjects.get(i).get(j).isDestroyed()) {
-							if (mapObjects.get(i).get(j) instanceof Bomb) {
-								for (Player player : players) {
-									if (player.getID() == ((Bomb) mapObjects
-											.get(i).get(j)).getPlayerID())
-										player.removeBomb();
-								}
-							}
-							if (mapObjects.get(i).get(j) instanceof Enemy) {
-								decreaseEnemies();
-							}
-							if (mapObjects.get(i).get(j) instanceof FireBowl) {
-								boss.fireBowls.remove(mapObjects.get(i).get(j));
-							}
-							mapObjects.get(i).remove(j);
-
-						} else {
-							mapObjects.get(i).get(j).update(collisionMap);
+		for (int i = 0; i < drawLevels; i++) {
+			for (int j = 0; j < mapObjects.get(i).size(); j++) {
+				/*
+				 * remove destroyed objects from the list
+				 */
+				if (mapObjects.get(i).get(j).isDestroyed()) {
+					if (mapObjects.get(i).get(j) instanceof Bomb) {
+						for (Player player : players) {
+							if (player.getID() == ((Bomb) mapObjects.get(i)
+									.get(j)).getPlayerID())
+								player.removeBomb();
 						}
 					}
-				}
-				part2Finished = true;
+					if (mapObjects.get(i).get(j) instanceof Enemy) {
+						decreaseEnemies();
+					}
+					if (mapObjects.get(i).get(j) instanceof FireBowl) {
+						boss.fireBowls.remove(mapObjects.get(i).get(j));
+					}
+					mapObjects.get(i).remove(j);
 
-			}
-		});
-		thread2.start();
-		while (!part1Finished && !part2Finished) {
-			try {
-				Thread.sleep(3);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				} else {
+					mapObjects.get(i).get(j).update(collisionMap);
+				}
 			}
 		}
-		part1Finished = false;
-		part2Finished = false;
+
 	}
 
 	/**

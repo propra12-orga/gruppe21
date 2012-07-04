@@ -335,6 +335,15 @@ public class MultiplayerUnit extends GraphicalGameUnit implements
 		 */
 		g.drawImage(mapCanvas, mapCanvasPosX, mapCanvasPosY,
 				mapCanvas.getWidth(), mapCanvas.getHeight(), null);
+		if (!myPlayer.isAlive() && !multiplayerMap.isFinished()) {
+			Graphics2D g2d = (Graphics2D) g;
+			g2d.setFont(unitFont);
+			Rectangle2D rect = unitFont.getStringBounds("You died!",
+					g2d.getFontRenderContext());
+			g2d.drawString("You died!",
+					(int) (GameConstants.FRAME_SIZE_X - rect.getWidth()) / 2,
+					(int) (GameConstants.FRAME_SIZE_Y - rect.getHeight()) / 2);
+		}
 	}
 
 	/**
