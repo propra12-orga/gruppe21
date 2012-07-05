@@ -80,6 +80,7 @@ public class Editor extends JFrame implements KeyListener, MouseListener {
 		}
 		if (type.equals("Enemies")) {
 			fileNavigator.openEnemy();
+			tileNavigator.addEnemy(fileNavigator.getCurrentFile());
 		}
 	}
 

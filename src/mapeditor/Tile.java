@@ -43,6 +43,21 @@ public class Tile implements Cloneable {
 		selected = true;
 	}
 
+	public Tile(File file, int tilecounter, boolean b) {
+		this.setPosX(((tilecounter % 4) * 45) + (tilecounter % 4 + 1) * 2);
+		this.setPosY(((tilecounter / 4) * 45) + (tilecounter / 4 + 1) * 4);
+		this.setName(file.getName());
+		this.setType("enemy");
+		this.visible = true;
+		this.collision = true;
+		if (file.getName().endsWith(".xml")) {
+			animated = true;
+			image = EditorGraphics.loadImageEne(file.getAbsolutePath());
+
+		}
+		selected = true;
+	}
+
 	public Tile(String string) {
 		this.setPosX(0);
 		this.setPosY(0);

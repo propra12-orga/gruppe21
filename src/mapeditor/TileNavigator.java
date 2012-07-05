@@ -83,6 +83,11 @@ public class TileNavigator extends JPanel implements MouseListener {
 
 	}
 
+	public void addEnemy(File file) {
+		tilePanelEnemies.deselectAll();
+		tilePanelEnemies.addEnemy(file);
+	}
+
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if (e.getButton() == MouseEvent.BUTTON1) {
@@ -126,7 +131,11 @@ public class TileNavigator extends JPanel implements MouseListener {
 					this.repaint();
 				}
 				if (mode.equals("Enemies")) {
-
+					Tile cTile = tilePanelEnemies.getTile(e.getX(), e.getY());
+					editor.updateTileViewer(cTile, "paint");
+					tilePanelEnemies.deselectAll();
+					cTile.select();
+					this.repaint();
 				}
 			}
 		}
@@ -168,4 +177,5 @@ public class TileNavigator extends JPanel implements MouseListener {
 	public void setMode(String mode) {
 		this.mode = mode;
 	}
+
 }

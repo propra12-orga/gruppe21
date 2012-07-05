@@ -85,4 +85,32 @@ public class EditorGraphics {
 
 		return (buff);
 	}
+
+	public static BufferedImage loadImageEne(String absolutePath) {
+		String imagePath;
+		Element mapRoot;
+
+		try {
+			mapXML = new SAXBuilder().build(absolutePath);
+		} catch (JDOMException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		mapRoot = mapXML.getRootElement();
+		imagePath = mapRoot.getAttributeValue("default");
+
+		ImageIcon ii = new ImageIcon(GameConstants.CHAR_DIR + imagePath);
+		Image image = ii.getImage();
+
+		BufferedImage buff = new BufferedImage(image.getWidth(null),
+				image.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+		Graphics2D b = buff.createGraphics();
+
+		b.drawImage(image, 0, 0, null);
+		b.dispose();
+
+		return (buff);
+	}
 }

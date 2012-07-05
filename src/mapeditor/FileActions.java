@@ -106,6 +106,82 @@ public class FileActions {
 																.getPosY()))));
 
 			}
+
+			if (currentList.get(i).getType().equals("player")) {
+				root.getChild("mapobjects")
+						.getChildren()
+						.get(2)
+						.addContent(
+								new Element("character")
+										.setAttribute("type", "player")
+										.setAttribute("animated", "true")
+										.addContent(
+												new Element("visible")
+														.addContent("true"))
+										.addContent(
+												new Element("collision")
+														.addContent("true"))
+										.addContent(
+												new Element("destroyable")
+														.addContent("false"))
+										.addContent(
+												new Element("animationset")
+														.addContent("player1"))
+										.addContent(
+												new Element("posx").addContent(String
+														.valueOf(editor.canvas.editorMap.startTile
+																.getPosX())))
+										.addContent(
+												new Element("posy").addContent(String
+														.valueOf(editor.canvas.editorMap.startTile
+																.getPosY()))));
+
+			}
+
+			if (currentList.get(i).getType().equals("enemy")) {
+				String[] splitN = currentList.get(i).getName().split(".xml");
+				String enType;
+				System.out.println(splitN[0]);
+				System.out.println(splitN[0].endsWith("s"));
+				if (splitN[0].endsWith("s")) {
+					String tmpType = (String) splitN[0].subSequence(0,
+							(splitN[0].length() - 1));
+					enType = tmpType;
+					System.out.println(tmpType);
+				} else {
+					enType = splitN[0];
+				}
+				root.getChild("mapobjects")
+						.getChildren()
+						.get(3)
+						.addContent(
+								new Element("character")
+										.setAttribute("type", enType)
+										.setAttribute("animated", "true")
+										.addContent(
+												new Element("visible")
+														.addContent("true"))
+										.addContent(
+												new Element("collision")
+														.addContent("true"))
+										.addContent(
+												new Element("destroyable")
+														.addContent("false"))
+										.addContent(
+												new Element("animationset")
+														.addContent(splitN[0]))
+										.addContent(
+												new Element("posx").addContent(String
+														.valueOf(currentList
+																.get(i)
+																.getPosX())))
+										.addContent(
+												new Element("posy").addContent(String
+														.valueOf(currentList
+																.get(i)
+																.getPosY()))));
+
+			}
 		}
 
 		// Items section schreiben
@@ -113,6 +189,9 @@ public class FileActions {
 				.addContent(
 						new Element("animationset").addContent("simplebomb"))
 				.addContent(new Element("animationset").addContent("upgrades"))
+				.addContent(new Element("animationset").addContent("skulls"))
+				.addContent(new Element("animationset").addContent("slime"))
+				.addContent(new Element("animationset").addContent("stoneOrbs"))
 				.addContent(new Element("image").addContent("exit.png")));
 
 		// XML-Dokument in Datei speichern
@@ -149,7 +228,7 @@ public class FileActions {
 					tile.getName());
 		}
 		el.addContent(new Element("tile")
-				.setAttribute("type", "floor")
+				.setAttribute("type", tile.getType())
 				.setAttribute("animated", String.valueOf(tile.isAnimated()))
 				.addContent(
 						new Element("visible").addContent(String.valueOf(tile

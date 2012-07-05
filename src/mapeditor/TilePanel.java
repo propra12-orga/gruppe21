@@ -38,6 +38,11 @@ public class TilePanel {
 
 	}
 
+	public void addEnemy(File file) {
+		tileList.add(new Tile(file, tilecounter, true));
+		tilecounter++;
+	}
+
 	/**
 	 * Getter and Setter
 	 * 
@@ -102,4 +107,5 @@ public class TilePanel {
 		}
 		return tile;
 	}
+
 }
