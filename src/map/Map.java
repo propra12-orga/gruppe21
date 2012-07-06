@@ -299,6 +299,7 @@ public class Map {
 
 	public void removeUnattendedPlayers(int[] attendingPlayers) {
 		Player[] playerTmp = new Player[players.size()];
+		System.out.println(playerTmp.length);
 		playerTmp = players.toArray(playerTmp);
 		mapObjects.get(2).clear();
 		players.clear();
@@ -306,7 +307,8 @@ public class Map {
 			if (attendingPlayers[i] == MPLoungeUnit.PLAYER_READY) {
 				mapObjects.get(2).add(playerTmp[i]);
 			} else {
-				playerTmp[i] = null;
+				if (i < playerTmp.length)
+					playerTmp[i] = null;
 			}
 		}
 		for (Player player : playerTmp) {
