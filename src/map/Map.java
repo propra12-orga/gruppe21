@@ -299,7 +299,6 @@ public class Map {
 
 	public void removeUnattendedPlayers(int[] attendingPlayers) {
 		Player[] playerTmp = new Player[players.size()];
-		System.out.println(playerTmp.length);
 		playerTmp = players.toArray(playerTmp);
 		mapObjects.get(2).clear();
 		players.clear();
