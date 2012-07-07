@@ -20,7 +20,7 @@ public class Board extends JPanel {
 		Graphics2D g2d = (Graphics2D) g;
 		map.update();
 		map.drawMap(g2d);
-		// g2d.drawImage(map.CollisionMap,0,0,null);
+		// g2d.drawImage(map.collisionMap, 0, 0, null);
 		g2d.dispose();
 		waiting(200);
 	}

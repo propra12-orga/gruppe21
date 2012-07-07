@@ -318,13 +318,12 @@ public abstract class MapObject {
 				|| y > cm.getHeight() - GameConstants.TILE_SIZE) {
 			return true;
 		}
-		BufferedImage collTest = cm.getSubimage(x, y, GameConstants.TILE_SIZE,
-				GameConstants.TILE_SIZE);
-		for (int i = 0; i < collTest.getWidth(); i++) {
-			for (int j = 0; j < collTest.getHeight(); j++) {
-				Color test = new Color(collTest.getRGB(i, j));
+		int tmpSIZE = GameConstants.TILE_SIZE;
+		for (int i = 0; i < tmpSIZE; i += 7) {
+			for (int j = 0; j < tmpSIZE; j += 7) {
+				int test = cm.getRGB(x + i, y + j);
 				for (Color color : ca) {
-					if (test.equals(color)) {
+					if (test == color.getRGB()) {
 						return true;
 					}
 				}

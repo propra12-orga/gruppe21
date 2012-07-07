@@ -124,7 +124,6 @@ public class MultiplayerUnit extends GraphicalGameUnit implements
 					UnitState.TEMPORARY_UNIT);
 			UnitNavigator.getNavigator().set(UnitState.TEMPORARY_UNIT);
 		}
-
 	}
 
 	/**
